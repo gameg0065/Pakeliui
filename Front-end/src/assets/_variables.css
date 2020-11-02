@@ -1,0 +1,38 @@
+:root {
+	/* Color styles */
+	--color-black: #212429;
+	--color-gray-4: #495057;
+	--color-gray-3: #ACB5BD;
+	--color-gray-2: #DDE2E5;
+	--color-gray-1: #F8F9FA;
+	--color-primary: #BB83FF;
+	--color-primary-light-1: #C99CFF;
+	--color-primary-light-2: #D6B5FF;
+	--color-primary-light-3: #E4CDFF;
+	--color-primary-light-4: #F1E6FF;
+	--color-primary-dark-1: #9136FF;
+	--color-primary-dark-2: #6900E8;
+	--color-primary-dark-3: #46009A;
+	--color-primary-dark-4: #23004D;
+	--color-secondary: #F784AD;
+	--color-secondary-light-1: #F99DBD;
+	--color-secondary-light-2: #FAB5CE;
+	--color-secondary-light-3: #FCCEDE;
+	--color-secondary-light-4: #FDE6EF;
+	--color-secondary-dark-1: #F23D7E;
+	--color-secondary-dark-2: #D60E55;
+	--color-secondary-dark-3: #8E0939;
+	--color-secondary-dark-4: #47051C;
+	--color-tertiary: #FFB800;
+	--color-tertiary-light-1: #FFC633;
+	--color-tertiary-light-2: #FFD466;
+	--color-tertiary-light-3: #FFE399;
+	--color-tertiary-light-4: #FFF1CC;
+	--color-tertiary-dark-1: #CC9300;
+	--color-tertiary-dark-2: #996E00;
+	--color-tertiary-dark-3: #664A00;
+	--color-tertiary-dark-4: #332500;
+
+	/* Effect styles */
+	--shadow:  10px 0px 4px rgba(0, 0, 0, 0.25);
+}

@@ -1,0 +1,47 @@
+@font-face {
+	font-family: 'Montserrat-Regular';
+	src: url('fonts/Montserrat-Regular.ttf');
+}
+
+@font-face {
+	font-family: 'Montserrat-Medium';
+	src: url('fonts/Montserrat-Medium.ttf');
+}
+
+h1 {
+	font-family: 'Montserrat-Medium';
+	font-size: 57px;
+}
+
+h2 {
+	font-family: 'Montserrat-Medium';
+	font-size: 43px;
+}
+
+h3 {
+	font-family: 'Montserrat-Regular';
+	font-size: 32px;
+}
+
+h4 {
+	font-family: 'Montserrat-Regular';
+	font-size: 24px;
+}
+
+h5 {
+	font-family: 'Montserrat-Medium';
+	font-size: 13px;
+	letter-spacing: 8%;
+	text-transform: uppercase;
+}
+
+p {
+	font-family: 'Montserrat-Regular';
+	font-size: 18px;
+	line-height: 30px;
+}
+
+small {
+	font-family: 'Montserrat-Regular';
+	font-size: 13px;
+}
