@@ -2,7 +2,10 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/posts">skelbimai</router-link> |
+      <router-link to="/about">apie mus</router-link> |
+      <router-link to="/contacts">kontaktai</router-link> |
+      <router-link to="/terms">sąlygos</router-link>
     </div>
     <router-view />
   </div>
