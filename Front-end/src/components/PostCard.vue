@@ -29,6 +29,8 @@ export default {
 <style scoped>
 .card {
   transition: all 0.2s linear;
+  margin: 20px;
+  padding: 20px;
 }
 
 .card:hover {
@@ -43,5 +45,9 @@ export default {
 
 h4 {
   color: var(--color-primary);
+}
+
+a {
+  text-decoration: none;
 }
 </style>
