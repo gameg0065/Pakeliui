@@ -4,14 +4,14 @@
 	</nav> -->
 	<nav>
 		<ul class="left-links">
-			<li><img src="../assets/images/logo-pakeliui.svg" alt="logo" /></li>
-			<li><Button text="skelbimai" :isSecondary="true"></Button></li>
-			<li><Button text="įkelk skelbimą" :isSecondary="true"></Button></li>
+			<li><img src="../assets/images/logo-pakeliui.svg"></li>
+			<li><Button text="skelbimai" :isSecondary="true" url=""></Button></li>
+			<li><Button text="įkelk skelbimą" :isSecondary="true" url=""></Button></li>
 		</ul>
 		<ul class="right-links">
-			<li><Button text="Prisijungti"></Button></li>
-			<li><Button text="Registruotis"></Button></li>
-			<li><Button text="Mano profilis"></Button></li>
+			<li><a href="">prisijungti</a></li>
+			<li><a href="">registruotis</a></li>
+			<li><a href="">profilis</a></li>
 		</ul>
 	</nav>
 </template>
@@ -20,19 +20,19 @@
 @import '../assets/styles/_typography.css';
 @import '../assets/styles/menu.scss';
 @import '../assets/styles/Button.css';
+
+img {
+	height: 30px;
+}
 </style>
 
 <script lang="ts">
 import Vue from 'vue';
 import Button from '@/components/Button.vue';
 
-export default Vue.extend({
-	name: 'Menu',
-	props: {
-		text: String
-	},
+export default {
 	components: {
 		Button
 	}
-});
+};
 </script>
