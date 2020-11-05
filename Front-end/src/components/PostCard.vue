@@ -1,27 +1,18 @@
 <template>
-  <router-link :to="{ name: 'post', params: { id: '1' } }">
+  <router-link :to="{ name: 'post', params: { id: post.id } }">
     <div class="card shadow">
-      <h4>{{ event.title }}</h4>
-      <p>{{ event.date + ', ' + event.dayName + ' ' + event.time }}</p>
-      <small> {{ event.driverName }}</small>
-      <p>Laisvų vietų: {{ event.availableSpace }}</p>
+      <h4>{{ post.title }}</h4>
+      <p>{{ post.date + ', ' + post.dayName + ' ' + post.time }}</p>
+      <small> {{ post.driverName }}</small>
+      <p>Laisvų vietų: {{ post.seetCount - post.passengers.length }}</p>
     </div>
   </router-link>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      event: {
-        title: 'Vilnius - Klaipėda',
-        date: '2020-10-15',
-        dayName: 'šeštadienis',
-        time: '18:00',
-        driverName: 'Vairuotojo vardas, pavardė',
-        availableSpace: 3
-      }
-    };
+  props: {
+    post: Object
   }
 };
 </script>
