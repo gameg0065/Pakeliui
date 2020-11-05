@@ -1,33 +1,31 @@
 <template>
-  <!-- <nav class="about">
-		<div class="menu">HELLOOooooo {{ text }}</div>
-	</nav> -->
   <nav>
     <ul class="left-links">
-      <li><img src="../assets/images/logo-pakeliui.svg" /></li>
-      <li v-show="isLogedIn">
-        <Button text="skelbimai" :isSecondary="true" url=""></Button>
+      <li>
+        <a href="#"
+          ><img src="../assets/images/logo-pakeliui.svg" class="logo"
+        /></a>
       </li>
       <li v-show="isLogedIn">
-        <Button text="įkelk skelbimą" :isSecondary="true" url=""></Button>
+        <Button text="skelbimai" :isSecondary="true"></Button>
+      </li>
+      <li v-show="isLogedIn">
+        <Button text="įkelk skelbimą" :isSecondary="true"></Button>
       </li>
     </ul>
     <ul class="right-links">
-      <li v-show="!isLogedIn"><a href="">prisijungti</a></li>
-      <li v-show="!isLogedIn"><a href="">registruotis</a></li>
-      <li v-show="isLogedIn"><a href="">profilis</a></li>
+      <li v-show="!isLogedIn"><a href="#">prisijungti</a></li>
+      <li v-show="!isLogedIn"><a href="#">registruotis</a></li>
+      <li v-show="isLogedIn"><a href="#">profilis</a></li>
     </ul>
   </nav>
 </template>
+
 <style lang="scss">
 @import '../assets/styles/_variables.css';
 @import '../assets/styles/_typography.css';
 @import '../assets/styles/header.scss';
 @import '../assets/styles/Button.css';
-
-img {
-  height: 30px;
-}
 </style>
 
 <script lang="ts">
