@@ -1,5 +1,5 @@
 <template>
   <div>
-    <h1>this is APIE MUS page</h1>
+    <h1>this is SKELBIMAI page</h1>
   </div>
 </template>
