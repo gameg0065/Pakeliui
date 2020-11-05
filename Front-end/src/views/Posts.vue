@@ -1,9 +1,18 @@
 <template>
   <div>
     <h1>this is SKELBIMAI page</h1>
-
-    <router-link :to="{ name: 'post', params: { id: '1' } }"
-      >skelbimas #1</router-link
-    >
+    <PostCard />
+    <PostCard />
+    <PostCard />
   </div>
 </template>
+
+<script>
+import PostCard from '@/components/PostCard.vue';
+
+export default {
+  components: {
+    PostCard
+  }
+};
+</script>
