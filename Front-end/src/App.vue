@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/posts">skelbimai</router-link> |
-      <router-link to="/about">apie mus</router-link> |
-      <router-link to="/contacts">kontaktai</router-link> |
-      <router-link to="/terms">sąlygos</router-link>
+      <router-link :to="{ name: 'home' }">Home</router-link> |
+      <router-link :to="{ name: 'posts' }">skelbimai</router-link> |
+      <router-link :to="{ name: 'about' }">apie mus</router-link> |
+      <router-link :to="{ name: 'contacts' }">kontaktai</router-link> |
+      <router-link :to="{ name: 'terms' }">sąlygos</router-link>
     </div>
     <router-view />
   </div>

@@ -12,27 +12,27 @@ Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
 	{
 		path: '/',
-		name: 'Home',
+		name: 'home',
 		component: Home
 	},
 	{
 		path: '/about',
-		name: 'About',
+		name: 'about',
 		component: About
 	},
 	{
 		path: '/contacts',
-		name: 'Contacts',
+		name: 'contacts',
 		component: Contacts
 	},
 	{
 		path: '/posts',
-		name: 'Posts',
+		name: 'posts',
 		component: Posts
 	},
 	{
 		path: '/terms',
-		name: 'Terms',
+		name: 'terms',
 		component: Terms
 	}
 ];
