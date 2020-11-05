@@ -3,18 +3,26 @@
     <div id="nav">
       <router-link :to="{ name: 'home' }">Home</router-link> |
       <router-link :to="{ name: 'post-create' }">sukurk skelbimą</router-link> |
-      <router-link :to="{ name: 'posts' }">skelbimai</router-link> |
-      <router-link :to="{ name: 'about' }">apie mus</router-link> |
-      <router-link :to="{ name: 'contacts' }">kontaktai</router-link> |
-      <router-link :to="{ name: 'terms' }">sąlygos</router-link>
+      <router-link :to="{ name: 'posts' }">skelbimai</router-link>
     </div>
     <router-view />
+
+    <Footer />
   </div>
 </template>
 
+<script>
+import Footer from '@/components/Footer.vue';
+export default {
+  components: {
+    Footer
+  }
+};
+</script>
+
 <style lang="scss">
-@import "./assets/styles/_typography.css";
-@import "./assets/styles/_variables.css";
+@import './assets/styles/_typography.css';
+@import './assets/styles/_variables.css';
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
