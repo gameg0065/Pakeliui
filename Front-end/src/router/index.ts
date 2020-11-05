@@ -4,6 +4,8 @@ import VueRouter, { RouteConfig } from 'vue-router';
 import Home from '../views/Home.vue';
 import About from '../views/About.vue';
 import Contacts from '../views/Contacts.vue';
+import Post from '../views/Post.vue';
+import PostCreate from '../views/PostCreate.vue';
 import Posts from '../views/Posts.vue';
 import Terms from '../views/Terms.vue';
 
@@ -24,6 +26,16 @@ const routes: Array<RouteConfig> = [
 		path: '/contacts',
 		name: 'contacts',
 		component: Contacts
+	},
+	{
+		path: '/post',
+		name: 'post',
+		component: Post
+	},
+	{
+		path: '/post/create',
+		name: 'post-create',
+		component: PostCreate
 	},
 	{
 		path: '/posts',
