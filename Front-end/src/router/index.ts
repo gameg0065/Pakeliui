@@ -4,6 +4,7 @@ import VueRouter, { RouteConfig } from 'vue-router';
 import Home from '../views/Home.vue';
 import About from '../views/About.vue';
 import Contacts from '../views/Contacts.vue';
+import PageNotFound from '../views/PageNotFound.vue';
 import Post from '../views/Post.vue';
 import PostCreate from '../views/PostCreate.vue';
 import Posts from '../views/Posts.vue';
@@ -46,6 +47,11 @@ const routes: Array<RouteConfig> = [
 		path: '/terms',
 		name: 'terms',
 		component: Terms
+	},
+	{
+		path: '*',
+		name: '404',
+		component: PageNotFound
 	}
 ];
 
