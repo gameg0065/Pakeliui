@@ -29,9 +29,10 @@ const routes: Array<RouteConfig> = [
 		component: Contacts
 	},
 	{
-		path: '/post',
+		path: '/post/:id',
 		name: 'post',
-		component: Post
+		component: Post,
+		props: true
 	},
 	{
 		path: '/post/create',

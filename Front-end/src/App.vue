@@ -2,7 +2,6 @@
   <div id="app">
     <div id="nav">
       <router-link :to="{ name: 'home' }">Home</router-link> |
-      <router-link :to="{ name: 'post' }">skelbimas #1</router-link> |
       <router-link :to="{ name: 'post-create' }">sukurk skelbimą</router-link> |
       <router-link :to="{ name: 'posts' }">skelbimai</router-link> |
       <router-link :to="{ name: 'about' }">apie mus</router-link> |
