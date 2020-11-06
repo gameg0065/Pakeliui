@@ -17,7 +17,6 @@ export default {
   },
   created() {
     this.post = PostService.getPost(this.id);
-    console.log(this.post);
   }
 };
 </script>
