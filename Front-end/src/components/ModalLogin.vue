@@ -12,31 +12,32 @@
       :focusTrap="true"
     >
       <div class="container">
-        <h3>Prisijunk</h3>
-        <small>
-          Neturi paskyros?
-          <a href="#" @click.prevent="showModalRegister">Užsiregistruok</a>
-        </small>
-        <form action="#">
-          <div class="form-group">
+        <div>
+          <h3>Prisijunk</h3>
+          <small>
+            Neturi paskyros?
+            <a href="#" @click.prevent="showModalRegister">Užsiregistruok</a>
+          </small>
+        </div>
+
+        <form>
+          <div>
             <label for="email"> Elektroninis paštas </label>
-            <input type="email" id="email" name="email" ref="email" />
+            <input type="email" id="email" ref="email" />
           </div>
-          <div class="form-group">
+          <div>
             <label for="password"> Slaptažodis </label>
-            <input type="password" id="password" name="password" />
+            <input type="password" id="password" />
           </div>
-          <div class="form-group">
-            <label
-              ><input type="checkbox" name="remember" /> Prisimink mane
-            </label>
+          <div>
+            <label><input type="checkbox" /> Prisimink mane </label>
           </div>
           <small>
             <a href="#" @click.prevent="remindPassword">
               Pamiršai slaptažodį?
             </a>
           </small>
-          <div class="form-group">
+          <div>
             <button @click.prevent="submit">Prisijunk</button>
           </div>
         </form>

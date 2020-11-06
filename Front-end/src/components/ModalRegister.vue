@@ -15,27 +15,26 @@
         <h3>Užsiregistruok</h3>
         <small>
           Jau turi paskyrą?
-          <a href="#" @click.prevent="showLogin">
+          <a href="#" @click.prevent="showModalLogin">
             Prisijunk
           </a>
         </small>
 
         <form>
-          <div class="form-group">
+          <div>
             <label for="email"> Elektroninis paštas </label>
-            <input type="email" id="email" name="email" ref="email" />
+            <input type="email" id="email" ref="email" />
           </div>
-          <div class="form-group">
+          <div>
             <label for="password"> Slaptažodis </label>
-            <input type="password" id="password" name="password" />
+            <input type="password" id="password" />
           </div>
-          <div class="form-group">
+          <div>
             <label
-              ><input type="checkbox" name="remember" /> Sutinku su Vartojimo
-              Sąlygom
+              ><input type="checkbox" /> Sutinku su Vartojimo Sąlygom
             </label>
           </div>
-          <div class="form-group">
+          <div>
             <button @click.prevent="submit">
               Sukurti paskyrą
             </button>
@@ -59,7 +58,7 @@ export default {
     show() {
       this.$modal.show('modal-register');
     },
-    showLogin() {
+    showModalLogin() {
       this.hide();
       this.$modal.show('modal-login');
     },
@@ -77,10 +76,5 @@ export default {
 <style scoped>
 .container {
   padding: 20px;
-}
-
-.vm--modal {
-  background-color: red;
-  border-radius: 100px;
 }
 </style>
