@@ -1,18 +1,22 @@
 <template>
-	<div class="home">
-		<img alt="Vue logo" src="../assets/logo.png" />
-		<HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-	</div>
+  <div class="home">
+    <router-link :to="{ name: 'posts' }">
+      <Button text="skelbimai" :isLarge="true" />
+    </router-link>
+
+    <router-link :to="{ name: 'post-create' }">
+      <Button text="sukurk skelbimą" :isSecondary="true" :isLarge="true" />
+    </router-link>
+  </div>
 </template>
 
-<script lang="ts">
+<script lang='ts'>
 import Vue from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import Button from '@/components/Button.vue'; // @ is an alias to /src
 
 export default Vue.extend({
-	name: 'Home',
-	components: {
-		HelloWorld
-	}
+  components: {
+    Button
+  }
 });
 </script>
