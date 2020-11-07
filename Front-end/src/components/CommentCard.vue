@@ -1,7 +1,17 @@
 <template>
   <div class="card shadow">
-    <img v-if="comment.author.photo" :src="comment.author.photo"/>
+    <img v-if="comment.author.photo" :src="comment.author.photo" />
     <p>{{ comment.author.name }}</p>
+
+    <div v-if="comment.author.rating">
+      <p>Rating:</p>
+      <img
+        v-for="index in Math.round(comment.author.rating)"
+        :key="index"
+        src="../assets/icons/star.svg"
+      />
+    </div>
+
     <small>{{ comment.date }}</small>
     <p>{{ comment.text }}</p>
   </div>
