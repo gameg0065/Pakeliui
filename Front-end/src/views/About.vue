@@ -47,6 +47,5 @@
 
 <style lang="scss">
 @import '../assets/styles/about-us.css';
-@import '../assets/styles/_typography.css';
-@import '../assets/styles/_variables.css';
+
 </style>
