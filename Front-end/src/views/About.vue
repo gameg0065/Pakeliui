@@ -6,7 +6,7 @@
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere est
         quisquam, illo doloribus tempore numquam blanditiis, velit eligendi
         accusantium doloremque aspernatur! Nulla veniam molestias pariatur,
-        explicabo doloremque hic velit consequatur.
+        explicabo doloremque hic veli consequatur.
       </p>
       <div class="profiles">
         <div class="profile">
