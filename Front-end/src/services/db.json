@@ -1,0 +1,57 @@
+{
+	"posts": [
+		{
+			"id": 1,
+			"title": "Vilnius - Kaunas",
+			"date": "2020-10-09",
+			"dayName": "penktadienis",
+			"time": "18:00",
+			"driverName": "Vairuotojo vardas, pavardė",
+			"seetCount": 3,
+			"passengers": [
+				{
+					"id": 100,
+					"name": "user name"
+				},
+				{
+					"id": 102,
+					"name": "user name"
+				}
+			]
+		},
+		{
+			"id": 2,
+			"title": "Utena - Šiauliai",
+			"date": "2020-11-14",
+			"dayName": "šeštadienis",
+			"time": "18:00",
+			"driverName": "Vairuotojo vardas, pavardė",
+			"seetCount": 4,
+			"passengers": [
+				{
+					"id": 101,
+					"name": "user name"
+				},
+				{
+					"id": 202,
+					"name": "user name"
+				}
+			]
+		},
+		{
+			"id": 3,
+			"title": "Vilnius - Palanga",
+			"date": "2020-12-24",
+			"dayName": "ketvirtadienis",
+			"time": "18:00",
+			"driverName": "Vairuotojo vardas, pavardė",
+			"seetCount": 5,
+			"passengers": [
+				{
+					"id": 101,
+					"name": "user name"
+				}
+			]
+		}
+	]
+}

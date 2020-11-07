@@ -1,14 +1,34 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link :to="{ name: 'home' }">Home</router-link> |
+      <router-link :to="{ name: 'post-create' }">sukurk skelbimą</router-link> |
+      <router-link :to="{ name: 'posts' }">skelbimai</router-link>
     </div>
     <router-view />
+
+    <Footer />
   </div>
 </template>
 
+<script>
+import Footer from '@/components/Footer.vue';
+export default {
+  components: {
+    Footer
+  }
+};
+</script>
+
 <style lang="scss">
+@import './assets/styles/_typography.css';
+@import './assets/styles/_variables.css';
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

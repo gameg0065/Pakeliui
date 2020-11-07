@@ -27,7 +27,7 @@ export default {
     },
     url: {
       default: '#',
-      required: true,
+      required: false,
       type: String
     }
   },
@@ -50,7 +50,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="css">
-@import '../assets/styles/_typography.css';
-@import '../assets/styles/_variables.css';
 @import '../assets/styles/Button.css';
 </style>
