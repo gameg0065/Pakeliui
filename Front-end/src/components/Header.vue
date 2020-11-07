@@ -6,21 +6,21 @@
           ><img src="../assets/images/logo-pakeliui.svg" class="logo"
         /></router-link>
       </li>
-      <li v-show="isLogedIn">
+      <li v-if="isLogedIn">
         <router-link :to="{ name: 'posts' }">
           <Button text="skelbimai" :isSecondary="true" />
         </router-link>
       </li>
-      <li v-show="isLogedIn">
+      <li v-if="isLogedIn">
         <router-link :to="{ name: 'post-create' }">
           <Button text="sukurk skelbimą" :isSecondary="true" />
         </router-link>
       </li>
     </ul>
     <ul class="right-links">
-      <li v-show="!isLogedIn"><a href="#">prisijungti</a></li>
-      <li v-show="!isLogedIn"><a href="#">registruotis</a></li>
-      <li v-show="isLogedIn"><a href="#">profilis</a></li>
+      <li v-if="!isLogedIn"><a href="#">prisijungti</a></li>
+      <li v-if="!isLogedIn"><a href="#">registruotis</a></li>
+      <li v-if="isLogedIn"><a href="#">profilis</a></li>
     </ul>
   </nav>
 </template>
