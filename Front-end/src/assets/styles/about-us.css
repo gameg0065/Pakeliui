@@ -1,0 +1,46 @@
+.about {
+    display: flex;
+    justify-content: center;
+}
+
+.body {
+    width: 1000px;
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.body h2 {
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+
+.body p {
+    align-self: center;
+    max-width: 900px;
+    padding-bottom: 37px;
+    line-height: 30px;
+}
+
+.profiles {
+    align-self: center;
+    max-width: 650px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px;
+    padding-bottom: 0px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+    padding: 0;
+    width: 210px;
+}
+
+.profile img {
+    width: 144px;
+    height: 144px;
+}
