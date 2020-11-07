@@ -37,15 +37,11 @@
   </nav>
 </template>
 
-<style lang="scss">
-@import '../assets/styles/_variables.css';
-@import '../assets/styles/_typography.css';
+<style scoped lang="scss">
 @import '../assets/styles/header.scss';
-@import '../assets/styles/Button.css';
 </style>
 
-<script lang="ts">
-import Vue from 'vue';
+<script>
 import Button from '@/components/Button.vue';
 import ModalLogin from '@/components/ModalLogin.vue';
 import ModalRegister from '@/components/ModalRegister.vue';
