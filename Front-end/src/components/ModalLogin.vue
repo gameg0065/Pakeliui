@@ -1,7 +1,5 @@
 <template>
   <div>
-    <a href="/#login" @click.prevent="show"> PRISIJUNGTI </a>
-
     <modal
       name="modal-login"
       @opened="onOpen"
