@@ -37,7 +37,7 @@
   </nav>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import '../assets/styles/header.scss';
 </style>
 
