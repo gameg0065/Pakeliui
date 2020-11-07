@@ -3,7 +3,6 @@
     <p>{{ comment.author.name }}</p>
     <small>{{ comment.date }}</small>
     <p>{{ comment.text }}</p>
-    <small>{{ comment.date }}</small>
   </div>
 </template>
 
