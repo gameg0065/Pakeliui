@@ -10,7 +10,7 @@
       />
     </div>
 
-    <div class="card">
+    <div>
       <div>
         <textarea rows="4">Mano komentaras goes here</textarea>
       </div>
