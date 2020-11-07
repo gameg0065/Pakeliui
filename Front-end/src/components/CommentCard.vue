@@ -1,5 +1,6 @@
 <template>
   <div class="card shadow">
+    <img v-if="comment.author.photo" :src="comment.author.photo"/>
     <p>{{ comment.author.name }}</p>
     <small>{{ comment.date }}</small>
     <p>{{ comment.text }}</p>
