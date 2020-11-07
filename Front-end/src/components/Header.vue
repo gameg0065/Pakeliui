@@ -20,7 +20,11 @@
     <ul class="right-links">
       <li v-if="!isLogedIn"><a href="#">prisijungti</a></li>
       <li v-if="!isLogedIn"><a href="#">registruotis</a></li>
-      <li v-if="isLogedIn"><a href="#">profilis</a></li>
+      <li v-if="isLogedIn">
+        <router-link :to="{ name: 'user', params: { id: '1' } }"
+          >profilis</router-link
+        >
+      </li>
     </ul>
   </nav>
 </template>
