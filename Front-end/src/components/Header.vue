@@ -2,39 +2,55 @@
   <nav>
     <ul class="left-links">
       <li>
-        <a href="#"
+        <router-link :to="{ name: 'home' }"
           ><img src="../assets/images/logo-pakeliui.svg" class="logo"
-        /></a>
+        /></router-link>
       </li>
-      <li v-show="isLogedIn">
-        <Button text="skelbimai" :isSecondary="true"></Button>
+      <li v-if="isLogedIn">
+        <router-link :to="{ name: 'posts' }">
+          <Button text="skelbimai" :isSecondary="true" />
+        </router-link>
       </li>
-      <li v-show="isLogedIn">
-        <Button text="įkelk skelbimą" :isSecondary="true"></Button>
+      <li v-if="isLogedIn">
+        <router-link :to="{ name: 'post-create' }">
+          <Button text="sukurk skelbimą" :isSecondary="true" />
+        </router-link>
       </li>
     </ul>
     <ul class="right-links">
-      <li v-show="!isLogedIn"><a href="#">prisijungti</a></li>
-      <li v-show="!isLogedIn"><a href="#">registruotis</a></li>
-      <li v-show="isLogedIn"><a href="#">profilis</a></li>
+      <li v-if="!isLogedIn">
+        <ModalLogin />
+        <a href="#" @click.prevent="$modal.show('modal-login')">prisijungti</a>
+      </li>
+      <li v-if="!isLogedIn">
+        <ModalRegister />
+        <a href="#" @click.prevent="$modal.show('modal-register')"
+          >registruotis</a
+        >
+      </li>
+      <li v-if="isLogedIn">
+        <router-link :to="{ name: 'user', params: { id: '1' } }"
+          >profilis</router-link
+        >
+      </li>
     </ul>
   </nav>
 </template>
 
 <style lang="scss">
-@import '../assets/styles/_variables.css';
-@import '../assets/styles/_typography.css';
 @import '../assets/styles/header.scss';
-@import '../assets/styles/Button.css';
 </style>
 
-<script lang="ts">
-import Vue from 'vue';
+<script>
 import Button from '@/components/Button.vue';
+import ModalLogin from '@/components/ModalLogin.vue';
+import ModalRegister from '@/components/ModalRegister.vue';
 
 export default {
   components: {
-    Button
+    Button,
+    ModalLogin,
+    ModalRegister
   },
   data() {
     return {

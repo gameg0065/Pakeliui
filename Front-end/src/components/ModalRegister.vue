@@ -1,7 +1,5 @@
 <template>
   <div>
-    <a href="/#register" @click.prevent="show"> REGISTRUOTIS </a>
-
     <modal
       name="modal-register"
       @opened="onOpen"

@@ -9,6 +9,7 @@ import Post from '../views/Post.vue';
 import PostCreate from '../views/PostCreate.vue';
 import Posts from '../views/Posts.vue';
 import Terms from '../views/Terms.vue';
+import User from '../views/User.vue';
 
 Vue.use(VueRouter);
 
@@ -48,6 +49,12 @@ const routes: Array<RouteConfig> = [
 		path: '/terms',
 		name: 'terms',
 		component: Terms
+	},
+	{
+		path: '/user/:id',
+		name: 'user',
+		component: User,
+		props: true
 	},
 	{
 		path: '*',
