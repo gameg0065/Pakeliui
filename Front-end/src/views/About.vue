@@ -43,9 +43,6 @@
   </div>
 </template>
 
-
-
 <style lang="scss">
 @import '../assets/styles/about-us.css';
-
 </style>
