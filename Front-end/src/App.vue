@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Header />
     <div id="nav">
       <router-link :to="{ name: 'home' }">Home</router-link> |
       <router-link :to="{ name: 'post-create' }">sukurk skelbimą</router-link> |
@@ -12,9 +13,11 @@
 </template>
 
 <script>
+import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 export default {
   components: {
+    Header,
     Footer
   }
 };
