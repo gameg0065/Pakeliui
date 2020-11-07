@@ -2,15 +2,19 @@
   <nav>
     <ul class="left-links">
       <li>
-        <a href="#"
+        <router-link :to="{ name: 'home' }"
           ><img src="../assets/images/logo-pakeliui.svg" class="logo"
-        /></a>
+        /></router-link>
       </li>
       <li v-show="isLogedIn">
-        <Button text="skelbimai" :isSecondary="true"></Button>
+        <router-link :to="{ name: 'posts' }">
+          <Button text="skelbimai" :isSecondary="true" />
+        </router-link>
       </li>
       <li v-show="isLogedIn">
-        <Button text="įkelk skelbimą" :isSecondary="true"></Button>
+        <router-link :to="{ name: 'post-create' }">
+          <Button text="sukurk skelbimą" :isSecondary="true" />
+        </router-link>
       </li>
     </ul>
     <ul class="right-links">
