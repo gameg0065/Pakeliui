@@ -1,27 +1,6 @@
 {
 	"posts": [
 		{
-			"id": 1,
-			"title": "Vilnius - Kaunas",
-			"date": "2020-10-09",
-			"dayName": "penktadienis",
-			"distance": 100,
-			"time": "18:00",
-			"driver": {
-				"id": 110
-			},
-			"seetCount": 3,
-			"passengers": [
-				{
-					"id": 100
-				},
-				{
-					"id": 101
-				},
-				{
-					"id": 111
-				}
-			],
 			"comments": [
 				{
 					"author": {
@@ -47,27 +26,29 @@
 					"text": "Kva kva",
 					"date": "2020-12-12"
 				}
-			]
-		},
-		{
-			"id": 2,
-			"title": "Utena - Šiauliai",
-			"date": "2020-11-14",
-			"dayName": "šeštadienis",
-			"time": "18:00",
+			],
+			"date": "2020-10-09",
 			"driver": {
 				"id": 110
 			},
-			"seetCount": 4,
-			"distance": 180,
+			"distance": 100,
+			"id": 1,
 			"passengers": [
 				{
 					"id": 100
 				},
 				{
 					"id": 101
+				},
+				{
+					"id": 111
 				}
 			],
+			"seetCount": 3,
+			"time": "18:00",
+			"title": "Vilnius - Kaunas"
+		},
+		{
 			"comments": [
 				{
 					"author": {
@@ -77,24 +58,40 @@
 					"id": 1,
 					"text": "Nobody realizes that some people expend tremendous energy merely to be normal."
 				}
-			]
+			],
+			"date": "2020-11-14",
+			"distance": 180,
+			"driver": {
+				"id": 110
+			},
+			"id": 2,
+			"passengers": [
+				{
+					"id": 100
+				},
+				{
+					"id": 101
+				}
+			],
+			"seetCount": 4,
+			"time": "18:00",
+			"title": "Utena - Šiauliai"
 		},
 		{
-			"id": 3,
-			"title": "Vilnius - Palanga",
 			"date": "2020-12-24",
-			"dayName": "ketvirtadienis",
 			"distance": 331,
-			"time": "18:00",
 			"driver": {
 				"id": 111
 			},
-			"seetCount": 5,
+			"id": 3,
 			"passengers": [
 				{
 					"id": 100
 				}
-			]
+			],
+			"seetCount": 5,
+			"time": "18:00",
+			"title": "Vilnius - Palanga"
 		}
 	],
 	"users": [
