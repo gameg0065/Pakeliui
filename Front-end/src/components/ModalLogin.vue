@@ -21,7 +21,7 @@
         <form>
           <div>
             <label for="email"> Elektroninis paštas </label>
-            <input type="email" id="email" ref="email" />
+            <input type="email" id="email" ref="email" v-model="id" />
           </div>
           <div>
             <label for="password"> Slaptažodis </label>
@@ -45,8 +45,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'ModalLogin',
+  computed: {
+    ...mapGetters(['isLoggedIn', 'userID'])
+  },
+  data() {
+    return {
+      id: 0
+    };
+  },
   methods: {
     hide() {
       this.$modal.hide('modal-login');
@@ -66,13 +76,16 @@ export default {
     },
     submit() {
       // validate here
-      
+      this.$store.commit('SET_USER_ID', this.id);
       this.$store.commit('SET_LOGGED_IN', true);
       this.hide();
     }
   },
   mount() {
     this.show();
+  },
+  created() {
+    this.id = this.userID;
   }
 };
 </script>
