@@ -46,16 +46,16 @@ import Button from '@/components/Button.vue';
 import ModalLogin from '@/components/ModalLogin.vue';
 import ModalRegister from '@/components/ModalRegister.vue';
 
+import { mapGetters } from 'vuex';
+
 export default {
   components: {
     Button,
     ModalLogin,
     ModalRegister
   },
-  data() {
-    return {
-      isLoggedIn: true,
-    };
+  computed: {
+    ...mapGetters(['isLoggedIn'])
   }
 };
 </script>
