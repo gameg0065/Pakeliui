@@ -1,5 +1,5 @@
 <template>
-  <a v-bind:href="url" class="button" v-bind:class="computeClass">
+  <a @click="onClick" class="button" :class="computeClass">
     {{ text }}
   </a>
 </template>
@@ -8,6 +8,10 @@
 export default {
   name: 'Button',
   props: {
+    click: {
+      required: false,
+      type: Function
+    },
     isLarge: {
       required: false,
       type: Boolean
@@ -24,11 +28,6 @@ export default {
       default: 'button',
       required: true,
       type: String
-    },
-    url: {
-      default: '#',
-      required: false,
-      type: String
     }
   },
   computed: {
@@ -43,6 +42,13 @@ export default {
       }
 
       return css;
+    }
+  },
+  methods: {
+    onClick() {
+      if (typeof this.click === 'function') {
+        this.click();
+      }
     }
   }
 };
