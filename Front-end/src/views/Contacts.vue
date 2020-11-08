@@ -3,7 +3,7 @@
     <h2>Kontaktai</h2>
     <form>
       <div>
-        <label for="full-name">Vardas,pavardė*</label>
+        <label for="full-name">Vardas, pavardė*</label>
         <input type="text" id="full-name" />
       </div>
 
@@ -11,6 +11,7 @@
         <label for="email">Elektroninis paštas*</label>
         <input type="email" id="email" />
       </div>
+
       <div>
         <label for="phone">Telefono numeris</label>
         <input type="tel" id="phone" />
@@ -32,6 +33,7 @@
 
       <button @click.prevent>Siųsti</button>
     </form>
+
     <img
       src="https://i1.alfi.lt/21081/76/48.png"
       alt="map Lietuva, Vilnius, Naugarduko g 141"
@@ -44,14 +46,14 @@ import cities from '../assets/cities.json';
 export default {
   data() {
     return {
-      selectedCity: null,
-      cities: []
+      cities: [],
+      selectedCity: null
     };
   },
   created() {
     this.cities = cities.sort();
     this.selectedCity = this.cities.find(
-      city => city.toLowerCase() === 'vilnius'
+      city => city.toLowerCase() === 'vilnius';
     );
   }
 };
