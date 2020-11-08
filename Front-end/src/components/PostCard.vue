@@ -12,12 +12,15 @@
         <small>{{ driver.name }}</small>
         <p>Laisvų vietų: {{ post.seetCount - post.passengers.length }}</p>
       </div>
-      <p class="request-status">PENDING</p>
-      <Button
-        text="Atšaukti rezervaciją"
-        :isSecondary="true"
-        :isOutlined="true"
-      />
+
+      <div v-if="!todo">
+        <p class="request-status">PENDING</p>
+        <Button
+          text="Atšaukti rezervaciją"
+          :isSecondary="true"
+          :isOutlined="true"
+        />
+      </div>
     </div>
   </router-link>
 </template>
@@ -37,7 +40,8 @@ export default {
   },
   data() {
     return {
-      driver: Object
+      driver: Object,
+      todo: true
     };
   },
   created() {
