@@ -25,10 +25,7 @@
 			"comments": [
 				{
 					"author": {
-						"id": 100,
-						"name": "Agnė Kuzminskaitė",
-						"photo": "",
-						"rating": 4
+						"id": 100
 					},
 					"date": "2020-10-16",
 					"id": 1,
@@ -36,14 +33,19 @@
 				},
 				{
 					"author": {
-						"id": 111,
-						"name": "Geras Vairuotojas",
-						"photo": "",
-						"rating": 3.2
+						"id": 111
 					},
 					"id": 2,
 					"text": "Aš turėjau triratuką. Vienas ratas nesisuko. Oi kaip dėjaus ant asfalto!",
 					"date": "2020-11-11"
+				},
+				{
+					"author": {
+						"id": 101
+					},
+					"id": 3,
+					"text": "Kva kva",
+					"date": "2020-12-12"
 				}
 			]
 		},
@@ -69,10 +71,7 @@
 			"comments": [
 				{
 					"author": {
-						"id": 101,
-						"name": "Laura Paukštė",
-						"photo": "",
-						"rating": 5
+						"id": 101
 					},
 					"date": "2020-10-15",
 					"id": 1,
@@ -213,9 +212,11 @@
 			"photo": "https://randomuser.me/api/portraits/men/1.jpg",
 			"rating": 1,
 			"registrationDate": "2018-05-15",
-			"travels": [{
-				"id": 1
-			}]
+			"travels": [
+				{
+					"id": 1
+				}
+			]
 		}
 	]
 }
