@@ -72,6 +72,7 @@
 				"id": 110
 			},
 			"id": 2,
+			"info": "Some dull info",
 			"passengers": [
 				{
 					"id": 100
@@ -80,10 +81,13 @@
 					"id": 101
 				}
 			],
+			"price": 15,
 			"seetCount": 4,
 			"time": "18:00",
 			"route": {
+				"dropoff": "Lenino paminklas",
 				"from": "Utena",
+				"pickup": "Norfa",
 				"to": "Šiauliai"
 			}
 		},
@@ -94,15 +98,19 @@
 				"id": 111
 			},
 			"id": 3,
+			"info": "Palanga močiučių, močiučių Palanga!",
 			"passengers": [
 				{
 					"id": 100
 				}
 			],
+			"price": 0,
 			"seetCount": 5,
 			"time": "18:00",
 			"route": {
+				"dropoff": "Pas močiutę",
 				"from": "Vilnius",
+				"pickup": "Lukiškių aikštė",
 				"to": "Palanga"
 			}
 		}
