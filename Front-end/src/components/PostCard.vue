@@ -8,7 +8,7 @@
       </div>
       <div>
         <h4>{{ post.title }}</h4>
-        <p>{{ post.date + ', ' + post.dayName + ' ' + post.time }}</p>
+        <p>{{ post.date + ', ' + post.time }}</p>
         <small>{{ driver.name }}</small>
         <p>Laisvų vietų: {{ post.seetCount - post.passengers.length }}</p>
       </div>
