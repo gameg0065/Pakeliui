@@ -1,16 +1,9 @@
 <template>
   <div class="card shadow">
-    <img v-if="comment.author.photo" :src="comment.author.photo" />
-    <p>{{ comment.author.name }}</p>
+    <Avatar :path="comentator.photo" />
+    <p>{{ comentator.name }}</p>
 
-    <div v-if="comment.author.rating">
-      <p>Rating:</p>
-      <img
-        v-for="index in Math.round(comment.author.rating)"
-        :key="index"
-        src="../assets/icons/star.svg"
-      />
-    </div>
+    <Rating :rating="comentator.rating" />
 
     <small>{{ comment.date }}</small>
     <p>{{ comment.text }}</p>
@@ -18,11 +11,27 @@
 </template>
 
 <script>
+import Avatar from '@/components/Avatar.vue';
+import Rating from '@/components/Rating.vue';
+import UserService from '@/services/UserService.js';
+
 export default {
   props: {
     comment: {
       type: Object
     }
+  },
+  components: {
+    Avatar,
+    Rating
+  },
+  data() {
+    return {
+      comentator: Object
+    };
+  },
+  created() {
+    this.comentator = UserService.getUser(this.comment.author.id);
   }
 };
 </script>
