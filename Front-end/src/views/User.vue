@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>this is USER # {{ id }} page</h1>
-    <h1>this is USER # {{ typeof id }} page</h1>
     <Avatar :path="user.photo" size="big" />
     <p>{{ user.name }}</p>
   </div>
