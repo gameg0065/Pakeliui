@@ -7,7 +7,7 @@
         <small>{{ driver.driver.rating }} / 5</small>
       </div>
       <div>
-        <h4>{{ post.title }}</h4>
+        <h4>{{ post.travel.from + ' - ' + post.travel.to }}</h4>
         <p>{{ post.date + ', ' + post.time }}</p>
         <small>{{ driver.name }}</small>
         <p>Laisvų vietų: {{ post.seetCount - post.passengers.length }}</p>

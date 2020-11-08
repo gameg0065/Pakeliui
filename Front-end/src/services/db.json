@@ -46,7 +46,10 @@
 			],
 			"seetCount": 3,
 			"time": "18:00",
-			"title": "Vilnius - Kaunas"
+			"travel": {
+				"from": "Vilnius",
+				"to": "Kaunas"
+			}
 		},
 		{
 			"comments": [
@@ -75,7 +78,10 @@
 			],
 			"seetCount": 4,
 			"time": "18:00",
-			"title": "Utena - Šiauliai"
+			"travel": {
+				"from": "Utena",
+				"to": "Šiauliai"
+			}
 		},
 		{
 			"date": "2020-12-24",
@@ -91,7 +97,10 @@
 			],
 			"seetCount": 5,
 			"time": "18:00",
-			"title": "Vilnius - Palanga"
+			"travel": {
+				"from": "Vilnius",
+				"to": "Palanga"
+			}
 		}
 	],
 	"users": [
