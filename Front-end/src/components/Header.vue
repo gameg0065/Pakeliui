@@ -6,29 +6,29 @@
           ><img src="../assets/images/logo-pakeliui.svg" class="logo"
         /></router-link>
       </li>
-      <li v-if="isLogedIn">
+      <li v-if="isLoggedIn">
         <router-link :to="{ name: 'posts' }">
           <Button text="skelbimai" :isSecondary="true" />
         </router-link>
       </li>
-      <li v-if="isLogedIn">
+      <li v-if="isLoggedIn">
         <router-link :to="{ name: 'post-create' }">
           <Button text="sukurk skelbimą" :isSecondary="true" />
         </router-link>
       </li>
     </ul>
     <ul class="right-links">
-      <li v-if="!isLogedIn">
+      <li v-if="!isLoggedIn">
         <ModalLogin />
         <a href="#" @click.prevent="$modal.show('modal-login')">prisijungti</a>
       </li>
-      <li v-if="!isLogedIn">
+      <li v-if="!isLoggedIn">
         <ModalRegister />
         <a href="#" @click.prevent="$modal.show('modal-register')"
           >registruotis</a
         >
       </li>
-      <li v-if="isLogedIn">
+      <li v-if="isLoggedIn">
         <router-link :to="{ name: 'user', params: { id: '1' } }"
           >profilis</router-link
         >
@@ -54,7 +54,7 @@ export default {
   },
   data() {
     return {
-      isLogedIn: true
+      isLoggedIn: true,
     };
   }
 };
