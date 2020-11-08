@@ -66,6 +66,8 @@ export default {
     },
     submit() {
       // validate here
+      
+      this.$store.commit('SET_LOGGED_IN', true);
       this.hide();
     }
   },
