@@ -10,7 +10,6 @@
 			"driver": {
 				"id": 110
 			},
-			"driverName": "Vairuotojo vardas, pavardė",
 			"seetCount": 3,
 			"passengers": [
 				{
@@ -57,7 +56,6 @@
 			"driver": {
 				"id": 110
 			},
-			"driverName": "Vairuotojo vardas, pavardė",
 			"seetCount": 4,
 			"distance": 180,
 			"passengers": [
@@ -92,7 +90,6 @@
 			"driver": {
 				"id": 111
 			},
-			"driverName": "Vairuotojo vardas, pavardė",
 			"seetCount": 5,
 			"passengers": [
 				{
