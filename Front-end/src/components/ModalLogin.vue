@@ -45,16 +45,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import UserService from '@/services/UserService.js';
 
 export default {
   name: 'ModalLogin',
-  computed: {
-    ...mapGetters(['isLoggedIn', 'userID'])
-  },
   data() {
     return {
-      id: 0
+      id: this.$store.getters.userID
     };
   },
   methods: {
@@ -76,7 +73,13 @@ export default {
     },
     submit() {
       // validate here
-      this.$store.commit('SET_USER_ID', this.id);
+      const id = parseInt(this.id);
+      const user = UserService.getUser(id);
+      if (!user) {
+        return alert('Toks vartotojas neegzistuoja');
+      }
+
+      this.$store.commit('SET_USER_ID', id);
       this.$store.commit('SET_LOGGED_IN', true);
       this.hide();
     }
@@ -84,9 +87,6 @@ export default {
   mount() {
     this.show();
   },
-  created() {
-    this.id = this.userID;
-  }
 };
 </script>
 
