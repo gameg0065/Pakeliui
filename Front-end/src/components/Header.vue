@@ -29,7 +29,7 @@
         >
       </li>
       <li v-if="isLoggedIn">
-        <router-link :to="{ name: 'user', params: { id: '1' } }"
+        <router-link :to="{ name: 'user', params: { id: userID } }"
           >profilis</router-link
         >
       </li>
@@ -55,7 +55,7 @@ export default {
     ModalRegister
   },
   computed: {
-    ...mapGetters(['isLoggedIn'])
+    ...mapGetters(['isLoggedIn', 'userID'])
   }
 };
 </script>
