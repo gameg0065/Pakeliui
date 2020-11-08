@@ -1,36 +1,36 @@
 <template>
   <div class="body">
     <h2>Kontaktai</h2>
-    <form action="#">
-      <div class="full-name">
-        <label for="full-name">Vardas Pavardė</label>
-        <input type="text" name="full-name" id="full-name" />
+    <form>
+      <div>
+        <label for="full-name">Vardas,pavardė*</label>
+        <input type="text" id="full-name" />
       </div>
 
-      <div class="email">
-        <label for="email">Elektroninis paštas</label>
-        <input type="email" name="email" id="email" />
+      <div>
+        <label for="email">Elektroninis paštas*</label>
+        <input type="email" id="email" />
       </div>
-      <div class="phone">
+      <div>
         <label for="phone">Telefono numeris</label>
-        <input type="tel" name="phone" id="phone" />
+        <input type="tel" id="phone" />
       </div>
 
-      <div class="city-drop">
+      <div>
         <label for="city-drop">Miestas</label>
-        <select name="city-drop" id="city-drop">
+        <select id="city-drop" v-model="selectedCity">
           <option v-for="(city, index) in cities" :key="index" :value="city"
             >{{ city }}
           </option>
         </select>
       </div>
 
-      <div class="agenda">
+      <div>
         <label for="agenda">Dėstyk savo reikalus čia</label>
-        <textarea name="agenda" id="agenda" cols="30" rows="3"></textarea>
+        <textarea id="agenda" cols="30" rows="3"></textarea>
       </div>
 
-      <button class="submit">Siųsti</button>
+      <button @click.prevent>Siųsti</button>
     </form>
     <img
       src="https://i1.alfi.lt/21081/76/48.png"
@@ -40,14 +40,21 @@
 </template>
 
 <script>
+import cities from '../assets/cities.json';
 export default {
   data() {
     return {
-      cities: ['Vilnius', 'Klaipeda', 'Siauliai', 'Panevezys', 'Alytus']
+      selectedCity: null,
+      cities: []
     };
   },
   created() {
-    this.cities.sort();
+    this.cities = cities.sort();
+    this.selectedCity = this.cities.find(
+      city => city.toLowerCase() === 'vilnius'
+    );
   }
 };
 </script>
+
+
