@@ -124,6 +124,24 @@
 				"phone": "8-XXX-XXXXX"
 			},
 			"driver": {},
+			"feedback": [
+				{
+					"author": {
+						"id": 110
+					},
+					"date": "2020-10-10",
+					"ratingGiven": 4,
+					"text": "Mano komentaras bla bla bla"
+				},
+				{
+					"author": {
+						"id": 111
+					},
+					"date": "2020-12-12",
+					"ratingGiven": 5,
+					"text": "Diezai, bekarai, bemoliai ... taškosi broliai šaunuoliai ..."
+				}
+			],
 			"id": 100,
 			"isDriver": false,
 			"lastActive": "some date and time",
@@ -148,6 +166,16 @@
 				"phone": "8-XXX-XXXXX"
 			},
 			"driver": {},
+			"feedback": [
+				{
+					"author": {
+						"id": 111
+					},
+					"date": "2020-04-15",
+					"ratingGiven": 2,
+					"text": "Lorem imsum?"
+				}
+			],
 			"id": 101,
 			"isDriver": false,
 			"lastActive": "some date and time",
@@ -182,6 +210,24 @@
 					"photo": "https://avatarfiles.alphacoders.com/123/thumb-1920-123711.jpg"
 				},
 				"contact": "facebook",
+				"feedback": [
+					{
+						"author": {
+							"id": 100
+						},
+						"date": "2020-11-15",
+						"ratingGiven": 1,
+						"text": "Durnas vairuotojas, nemoka važiuoti"
+					},
+					{
+						"author": {
+							"id": 101
+						},
+						"date": "2020-11-16",
+						"ratingGiven": 1,
+						"text": "Pritariu, tikrai durnas"
+					}
+				],
 				"posts": [
 					{
 						"id": 1
@@ -192,6 +238,16 @@
 				],
 				"rating": 3
 			},
+			"feedback": [
+				{
+					"author": {
+						"id": 111
+					},
+					"date": "2020-10-15",
+					"ratingGiven": 3,
+					"text": "Atsiliepimas apie Dėdę Vanią, kurį kažkada vežiau."
+				}
+			],
 			"id": 110,
 			"isDriver": true,
 			"lastActive": "some date and time",
@@ -216,6 +272,7 @@
 					"photo": "https://avatarfiles.alphacoders.com/120/thumb-1920-120969.jpg"
 				},
 				"contact": "facebook",
+				"feedback": [],
 				"posts": [
 					{
 						"id": 3
