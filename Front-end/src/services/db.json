@@ -33,6 +33,7 @@
 			},
 			"distance": 100,
 			"id": 1,
+			"info": "Lorep ipsum bla bla bla",
 			"passengers": [
 				{
 					"id": 100
@@ -44,10 +45,13 @@
 					"id": 111
 				}
 			],
+			"price": 123,
 			"seetCount": 3,
 			"time": "18:00",
-			"travel": {
+			"route": {
+				"dropoff": "Prie pat jūros",
 				"from": "Vilnius",
+				"pickup": "Akropolis, Maxima",
 				"to": "Kaunas"
 			}
 		},
@@ -78,7 +82,7 @@
 			],
 			"seetCount": 4,
 			"time": "18:00",
-			"travel": {
+			"route": {
 				"from": "Utena",
 				"to": "Šiauliai"
 			}
@@ -97,7 +101,7 @@
 			],
 			"seetCount": 5,
 			"time": "18:00",
-			"travel": {
+			"route": {
 				"from": "Vilnius",
 				"to": "Palanga"
 			}

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ post.travel.from + ' - ' + post.travel.to }}</h1>
+    <h1>{{ post.route.from + ' - ' + post.route.to }}</h1>
     <p>{{ post.date }}</p>
 
     <Comments :comments="post.comments" />
