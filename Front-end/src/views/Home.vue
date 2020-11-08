@@ -10,7 +10,7 @@
         <Button text="skelbimai" :isLarge="true" />
       </router-link>
 
-      <router-link :to="{ name: 'post-create' }">
+      <router-link v-if="isDriver" :to="{ name: 'post-create' }">
         <Button text="sukurk skelbimą" :isSecondary="true" :isLarge="true" />
       </router-link>
     </div>
@@ -43,7 +43,7 @@ export default {
     Button
   },
   computed: {
-    ...mapGetters(['isLoggedIn'])
+    ...mapGetters(['isLoggedIn', 'isDriver'])
   },
   methods: {
     openModalLogin() {

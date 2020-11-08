@@ -38,6 +38,11 @@
           <div>
             <Button :click="submit" text="prisijungti" :isOutlined="true" />
           </div>
+
+          <div>
+            <p class="red">users: 100, 101</p>
+            <p class="red">drivers: 110, 111</p>
+          </div>
         </form>
       </div>
     </modal>
@@ -83,8 +88,10 @@ export default {
         return alert('Toks vartotojas neegzistuoja');
       }
 
-      this.$store.commit('SET_USER_ID', id);
+      this.$store.commit('SET_IS_DRIVER', user.isDriver);
       this.$store.commit('SET_LOGGED_IN', true);
+      this.$store.commit('SET_USER_ID', id);
+
       this.hide();
     }
   },
@@ -97,5 +104,9 @@ export default {
 <style scoped>
 .container {
   padding: 20px;
+}
+
+.red {
+  color: red;
 }
 </style>

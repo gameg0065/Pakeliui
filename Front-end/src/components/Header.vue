@@ -12,7 +12,7 @@
         </router-link>
       </li>
       <li v-if="isLoggedIn">
-        <router-link :to="{ name: 'post-create' }">
+        <router-link v-if="isDriver" :to="{ name: 'post-create' }">
           <Button text="sukurk skelbimą" :isSecondary="true" />
         </router-link>
       </li>
@@ -49,7 +49,7 @@ export default {
     Button
   },
   computed: {
-    ...mapGetters(['isLoggedIn', 'userID'])
+    ...mapGetters(['isLoggedIn', 'isDriver', 'userID'])
   }
 };
 </script>
