@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <!-- MODAL DIALOGS -->
+    <ModalLogin />
+    <ModalRegister />
+
     <Header />
 
     <router-view />
@@ -11,10 +15,16 @@
 <script>
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
+
+import ModalLogin from '@/components/ModalLogin.vue';
+import ModalRegister from '@/components/ModalRegister.vue';
+
 export default {
   components: {
     Header,
-    Footer
+    Footer,
+    ModalLogin,
+    ModalRegister
   }
 };
 </script>

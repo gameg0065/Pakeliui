@@ -1,8 +1,5 @@
 <template>
   <div class="home">
-    <ModalLogin />
-    <ModalRegister />
-
     <h1>Geresnis būdas keliauti</h1>
     <h3>
       Pakeliui - tai platforma, skirta žmonėms lengvai keliauti bei pavežėti
@@ -39,15 +36,11 @@
 
 <script lang='ts'>
 import Button from '@/components/Button.vue';
-import ModalLogin from '@/components/ModalLogin.vue';
-import ModalRegister from '@/components/ModalRegister.vue';
 
 import { mapGetters } from 'vuex';
 export default {
   components: {
-    Button,
-    ModalLogin,
-    ModalRegister
+    Button
   },
   computed: {
     ...mapGetters(['isLoggedIn'])

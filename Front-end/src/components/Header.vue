@@ -19,11 +19,9 @@
     </ul>
     <ul class="right-links">
       <li v-if="!isLoggedIn">
-        <ModalLogin />
         <a href="#" @click.prevent="$modal.show('modal-login')">prisijungti</a>
       </li>
       <li v-if="!isLoggedIn">
-        <ModalRegister />
         <a href="#" @click.prevent="$modal.show('modal-register')"
           >registruotis</a
         >
@@ -43,16 +41,12 @@
 
 <script>
 import Button from '@/components/Button.vue';
-import ModalLogin from '@/components/ModalLogin.vue';
-import ModalRegister from '@/components/ModalRegister.vue';
 
 import { mapGetters } from 'vuex';
 
 export default {
   components: {
-    Button,
-    ModalLogin,
-    ModalRegister
+    Button
   },
   computed: {
     ...mapGetters(['isLoggedIn', 'userID'])
