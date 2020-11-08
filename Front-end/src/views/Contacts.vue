@@ -31,7 +31,7 @@
         <textarea id="agenda" cols="30" rows="3"></textarea>
       </div>
 
-      <button @click.prevent>Siųsti</button>
+      <Button :click="submit" text="Siųsti" :isOutlined="true" />
     </form>
 
     <img
@@ -42,8 +42,13 @@
 </template>
 
 <script>
+import Button from '@/components/Button.vue';
 import cities from '../assets/cities.json';
+
 export default {
+  components: {
+    Button
+  },
   data() {
     return {
       cities: [],
@@ -55,6 +60,11 @@ export default {
     this.selectedCity = this.cities.find(
       city => city.toLowerCase() === 'vilnius'
     );
+  },
+  methods: {
+    submit() {
+      alert('Jau bėgu ir siunčiu');
+    }
   }
 };
 </script>

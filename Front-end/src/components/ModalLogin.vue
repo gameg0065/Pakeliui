@@ -36,7 +36,7 @@
             </a>
           </small>
           <div>
-            <button @click.prevent="submit">Prisijunk</button>
+            <Button :click="submit" text="prisijungti" :isOutlined="true" />
           </div>
         </form>
       </div>
@@ -45,10 +45,14 @@
 </template>
 
 <script>
+import Button from '@/components/Button.vue';
 import UserService from '@/services/UserService.js';
 
 export default {
   name: 'ModalLogin',
+  components: {
+    Button
+  },
   data() {
     return {
       id: this.$store.getters.userID
@@ -86,7 +90,7 @@ export default {
   },
   mount() {
     this.show();
-  },
+  }
 };
 </script>
 
