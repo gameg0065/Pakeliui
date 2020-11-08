@@ -53,7 +53,7 @@ export default {
   created() {
     this.cities = cities.sort();
     this.selectedCity = this.cities.find(
-      city => city.toLowerCase() === 'vilnius';
+      city => city.toLowerCase() === 'vilnius'
     );
   }
 };
