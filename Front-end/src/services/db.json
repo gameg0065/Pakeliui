@@ -102,6 +102,9 @@
 			"passengers": [
 				{
 					"id": 100
+				},
+				{
+					"id": 110
 				}
 			],
 			"price": 0,
@@ -119,6 +122,7 @@
 		{
 			"about": "Aš Agnė, jeeee",
 			"contacts": {
+				"city": "Vilnius",
 				"email": "agne.kuzminskaite@mif.stud.vu.lt",
 				"facebook": "FB Account",
 				"phone": "8-XXX-XXXXX"
@@ -161,6 +165,7 @@
 		{
 			"about": "Jei ne nuogos ir ne uogos, dzūkų mergos būtų grybai",
 			"contacts": {
+				"city": "Kaunas",
 				"email": "laura.paukste@gmail.com",
 				"facebook": "FB Account",
 				"phone": "8-XXX-XXXXX"
@@ -198,6 +203,7 @@
 		{
 			"about": "Mano batai buvo 2, vienas dingo - nerandu. Oi kaip dėjaus ant asfalto!",
 			"contacts": {
+				"city": "Kalabybiškis",
 				"email": "dede.vania@gmail.com",
 				"facebook": "dedeVaniaFacebook",
 				"phone": "8-XXX-XXXXX"
@@ -255,11 +261,16 @@
 			"photo": "https://images.unsplash.com/photo-1542973748-658653fb3d12?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ",
 			"rating": 1,
 			"registrationDate": "2018-05-15",
-			"trips": []
+			"trips": [
+				{
+					"id": 3
+				}
+			]
 		},
 		{
 			"about": "Nu ką aš žinau, mama sakė ateiti ir užsiregistruoti, ir įkelti skelbimų. Gal mergą susirasiu.",
 			"contacts": {
+				"city": "Rietavas",
 				"email": "geras.vairuotojas@gmail.com",
 				"facebook": "gerasVairuotojasFacebook",
 				"phone": "8-XXX-XXXXX"
