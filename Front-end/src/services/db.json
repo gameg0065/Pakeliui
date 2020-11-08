@@ -17,6 +17,30 @@
 					"id": 102,
 					"name": "user name"
 				}
+			],
+			"comments": [
+				{
+					"author": {
+						"id": 123,
+						"name": "Agnė Kuzminskaitė",
+						"photo": "",
+						"rating": 4
+					},
+					"date": "2020-10-16",
+					"id": 1,
+					"text": "Ar bagažinėje bus vietos? Noriu vežtis 2 didelius lagaminus ir bulvių maišą."
+				},
+				{
+					"author": {
+						"id": 200,
+						"name": "Dėdė vania",
+						"photo": "",
+						"rating": 3.2
+					},
+					"id": 2,
+					"text": "Aš turėjau triratuką. Vienas ratas nesisuko. Oi kaip dėjaus ant asfalto!",
+					"date": "2020-11-11"
+				}
 			]
 		},
 		{
@@ -35,6 +59,19 @@
 				{
 					"id": 202,
 					"name": "user name"
+				}
+			],
+			"comments": [
+				{
+					"author": {
+						"id": 101,
+						"name": "Albert Camus",
+						"photo": "",
+						"rating": 5
+					},
+					"date": "2020-10-15",
+					"id": 1,
+					"text": "Nobody realizes that some people expend tremendous energy merely to be normal."
 				}
 			]
 		},
