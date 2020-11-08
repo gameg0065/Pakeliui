@@ -5,23 +5,28 @@
 			"title": "Vilnius - Kaunas",
 			"date": "2020-10-09",
 			"dayName": "penktadienis",
+			"distance": 100,
 			"time": "18:00",
+			"driver": {
+				"id": 110
+			},
 			"driverName": "Vairuotojo vardas, pavardė",
 			"seetCount": 3,
 			"passengers": [
 				{
-					"id": 100,
-					"name": "user name"
+					"id": 100
 				},
 				{
-					"id": 102,
-					"name": "user name"
+					"id": 101
+				},
+				{
+					"id": 111
 				}
 			],
 			"comments": [
 				{
 					"author": {
-						"id": 123,
+						"id": 100,
 						"name": "Agnė Kuzminskaitė",
 						"photo": "",
 						"rating": 4
@@ -32,8 +37,8 @@
 				},
 				{
 					"author": {
-						"id": 200,
-						"name": "Dėdė vania",
+						"id": 111,
+						"name": "Geras Vairuotojas",
 						"photo": "",
 						"rating": 3.2
 					},
@@ -49,23 +54,25 @@
 			"date": "2020-11-14",
 			"dayName": "šeštadienis",
 			"time": "18:00",
+			"driver": {
+				"id": 110
+			},
 			"driverName": "Vairuotojo vardas, pavardė",
 			"seetCount": 4,
+			"distance": 180,
 			"passengers": [
 				{
-					"id": 101,
-					"name": "user name"
+					"id": 100
 				},
 				{
-					"id": 202,
-					"name": "user name"
+					"id": 101
 				}
 			],
 			"comments": [
 				{
 					"author": {
 						"id": 101,
-						"name": "Albert Camus",
+						"name": "Laura Paukštė",
 						"photo": "",
 						"rating": 5
 					},
@@ -80,15 +87,138 @@
 			"title": "Vilnius - Palanga",
 			"date": "2020-12-24",
 			"dayName": "ketvirtadienis",
+			"distance": 331,
 			"time": "18:00",
+			"driver": {
+				"id": 111
+			},
 			"driverName": "Vairuotojo vardas, pavardė",
 			"seetCount": 5,
 			"passengers": [
 				{
-					"id": 101,
-					"name": "user name"
+					"id": 100
 				}
 			]
+		}
+	],
+	"users": [
+		{
+			"about": "Aš Agnė, jeeee",
+			"contacts": {
+				"email": "agne.kuzminskaite@mif.stud.vu.lt",
+				"facebook": "FB Account",
+				"phone": "8-XXX-XXXXX"
+			},
+			"driver": {},
+			"id": 101,
+			"isDriver": false,
+			"lastActive": "some date and time",
+			"name": "Agnė Kuzminskaitė",
+			"photo": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-0.3.5&q=80&fm=jpg",
+			"rating": 5,
+			"registrationDate": "2020-10-20",
+			"travels": [
+				{
+					"id": 1
+				},
+				{
+					"id": 3
+				}
+			]
+		},
+		{
+			"about": "Jei ne nuogos ir ne uogos, dzūkų mergos būtų grybai",
+			"contacts": {
+				"email": "laura.paukste@gmail.com",
+				"facebook": "FB Account",
+				"phone": "8-XXX-XXXXX"
+			},
+			"driver": {},
+			"id": 101,
+			"isDriver": false,
+			"lastActive": "some date and time",
+			"name": "Laura Paukštė",
+			"photo": "https://images-na.ssl-images-amazon.com/images/M/MV5BYzg2NDY4MjAtZDBjNS00MGRhLWJkZDMtYWJkZDM1NWZiMzgyXkEyXkFqcGdeQXVyMTE1MzA3MTI@._V1_UX172_CR0,0,172,256_AL_.jpg",
+			"rating": 4,
+			"registrationDate": "2020-10-20",
+			"travels": [
+				{
+					"id": 1
+				},
+				{
+					"id": 2
+				},
+				{
+					"id": 3
+				}
+			]
+		},
+		{
+			"about": "Mano batai buvo 2, vienas dingo - nerandu. Oi kaip dėjaus ant asfalto!",
+			"contacts": {
+				"email": "dede.vania@gmail.com",
+				"facebook": "dedeVaniaFacebook",
+				"phone": "8-XXX-XXXXX"
+			},
+			"driver": {
+				"about": "Im fast and furious",
+				"car": {
+					"date": "2005-10-10",
+					"model": "Volvo S40",
+					"photo": "https://avatarfiles.alphacoders.com/123/thumb-1920-123711.jpg"
+				},
+				"contact": "facebook",
+				"posts": [
+					{
+						"id": 1
+					},
+					{
+						"id": 2
+					}
+				],
+				"rating": 3
+			},
+			"id": 110,
+			"isDriver": true,
+			"lastActive": "some date and time",
+			"name": "Dėdė Vania",
+			"photo": "https://images.unsplash.com/photo-1542973748-658653fb3d12?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ",
+			"rating": 1,
+			"registrationDate": "2018-05-15",
+			"travels": []
+		},
+		{
+			"about": "Nu ką aš žinau, mama sakė ateiti ir užsiregistruoti, ir įkelti skelbimų. Gal mergą susirasiu.",
+			"contacts": {
+				"email": "geras.vairuotojas@gmail.com",
+				"facebook": "gerasVairuotojasFacebook",
+				"phone": "8-XXX-XXXXX"
+			},
+			"driver": {
+				"about": "Nu baise gers",
+				"car": {
+					"date": "2015-01-1ū8",
+					"model": "Mazda",
+					"photo": "https://avatarfiles.alphacoders.com/120/thumb-1920-120969.jpg"
+				},
+				"contact": "facebook",
+				"posts": [
+					{
+						"id": 3
+					}
+				],
+				"rating": 5
+			},
+			"id": 111,
+			"isDriver": true,
+			"lastActive": "some date and time",
+			"name": "Geras Vairuotojas",
+			"photo": "https://randomuser.me/api/portraits/men/1.jpg",
+			"rating": 1,
+			"registrationDate": "2018-05-15",
+			"travels": [{
+				"id": 1
+			}]
 		}
 	]
 }
