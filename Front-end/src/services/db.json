@@ -1,30 +1,10 @@
 {
 	"posts": [
 		{
-			"id": 1,
-			"title": "Vilnius - Kaunas",
-			"date": "2020-10-09",
-			"dayName": "penktadienis",
-			"time": "18:00",
-			"driverName": "Vairuotojo vardas, pavardė",
-			"seetCount": 3,
-			"passengers": [
-				{
-					"id": 100,
-					"name": "user name"
-				},
-				{
-					"id": 102,
-					"name": "user name"
-				}
-			],
 			"comments": [
 				{
 					"author": {
-						"id": 123,
-						"name": "Agnė Kuzminskaitė",
-						"photo": "",
-						"rating": 4
+						"id": 100
 					},
 					"date": "2020-10-16",
 					"id": 1,
@@ -32,61 +12,295 @@
 				},
 				{
 					"author": {
-						"id": 200,
-						"name": "Dėdė vania",
-						"photo": "",
-						"rating": 3.2
+						"id": 111
 					},
 					"id": 2,
 					"text": "Aš turėjau triratuką. Vienas ratas nesisuko. Oi kaip dėjaus ant asfalto!",
 					"date": "2020-11-11"
-				}
-			]
-		},
-		{
-			"id": 2,
-			"title": "Utena - Šiauliai",
-			"date": "2020-11-14",
-			"dayName": "šeštadienis",
-			"time": "18:00",
-			"driverName": "Vairuotojo vardas, pavardė",
-			"seetCount": 4,
-			"passengers": [
-				{
-					"id": 101,
-					"name": "user name"
 				},
 				{
-					"id": 202,
-					"name": "user name"
+					"author": {
+						"id": 101
+					},
+					"id": 3,
+					"text": "Kva kva",
+					"date": "2020-12-12"
 				}
 			],
+			"date": "2020-10-09",
+			"driver": {
+				"id": 110
+			},
+			"distance": 100,
+			"id": 1,
+			"info": "Lorep ipsum bla bla bla",
+			"passengers": [
+				{
+					"id": 100
+				},
+				{
+					"id": 101
+				},
+				{
+					"id": 111
+				}
+			],
+			"price": 123,
+			"seetCount": 3,
+			"time": "18:00",
+			"route": {
+				"dropoff": "Prie pat jūros",
+				"from": "Vilnius",
+				"pickup": "Akropolis, Maxima",
+				"to": "Kaunas"
+			}
+		},
+		{
 			"comments": [
 				{
 					"author": {
-						"id": 101,
-						"name": "Albert Camus",
-						"photo": "",
-						"rating": 5
+						"id": 101
 					},
 					"date": "2020-10-15",
 					"id": 1,
 					"text": "Nobody realizes that some people expend tremendous energy merely to be normal."
 				}
+			],
+			"date": "2020-11-14",
+			"distance": 180,
+			"driver": {
+				"id": 110
+			},
+			"id": 2,
+			"info": "Some dull info",
+			"passengers": [
+				{
+					"id": 100
+				},
+				{
+					"id": 101
+				}
+			],
+			"price": 15,
+			"seetCount": 4,
+			"time": "18:00",
+			"route": {
+				"dropoff": "Lenino paminklas",
+				"from": "Utena",
+				"pickup": "Norfa",
+				"to": "Šiauliai"
+			}
+		},
+		{
+			"date": "2020-12-24",
+			"distance": 331,
+			"driver": {
+				"id": 111
+			},
+			"id": 3,
+			"info": "Palanga močiučių, močiučių Palanga!",
+			"passengers": [
+				{
+					"id": 100
+				},
+				{
+					"id": 110
+				}
+			],
+			"price": 0,
+			"seetCount": 5,
+			"time": "18:00",
+			"route": {
+				"dropoff": "Pas močiutę",
+				"from": "Vilnius",
+				"pickup": "Lukiškių aikštė",
+				"to": "Palanga"
+			}
+		}
+	],
+	"users": [
+		{
+			"about": "Aš Agnė, jeeee",
+			"contacts": {
+				"city": "Vilnius",
+				"email": "agne.kuzminskaite@mif.stud.vu.lt",
+				"facebook": "FB Account",
+				"phone": "8-XXX-XXXXX"
+			},
+			"driver": {},
+			"feedback": [
+				{
+					"author": {
+						"id": 110
+					},
+					"date": "2020-10-10",
+					"ratingGiven": 4,
+					"text": "Mano komentaras bla bla bla"
+				},
+				{
+					"author": {
+						"id": 111
+					},
+					"date": "2020-12-12",
+					"ratingGiven": 5,
+					"text": "Diezai, bekarai, bemoliai ... taškosi broliai šaunuoliai ..."
+				}
+			],
+			"id": 100,
+			"isDriver": false,
+			"lastActive": "some date and time",
+			"name": "Agnė Kuzminskaitė",
+			"photo": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-0.3.5&q=80&fm=jpg",
+			"rating": 5,
+			"registrationDate": "2020-10-20",
+			"trips": [
+				{
+					"id": 1
+				},
+				{
+					"id": 3
+				}
 			]
 		},
 		{
-			"id": 3,
-			"title": "Vilnius - Palanga",
-			"date": "2020-12-24",
-			"dayName": "ketvirtadienis",
-			"time": "18:00",
-			"driverName": "Vairuotojo vardas, pavardė",
-			"seetCount": 5,
-			"passengers": [
+			"about": "Jei ne nuogos ir ne uogos, dzūkų mergos būtų grybai",
+			"contacts": {
+				"city": "Kaunas",
+				"email": "laura.paukste@gmail.com",
+				"facebook": "FB Account",
+				"phone": "8-XXX-XXXXX"
+			},
+			"driver": {},
+			"feedback": [
 				{
-					"id": 101,
-					"name": "user name"
+					"author": {
+						"id": 111
+					},
+					"date": "2020-04-15",
+					"ratingGiven": 2,
+					"text": "Lorem imsum?"
+				}
+			],
+			"id": 101,
+			"isDriver": false,
+			"lastActive": "some date and time",
+			"name": "Laura Paukštė",
+			"photo": "https://images-na.ssl-images-amazon.com/images/M/MV5BYzg2NDY4MjAtZDBjNS00MGRhLWJkZDMtYWJkZDM1NWZiMzgyXkEyXkFqcGdeQXVyMTE1MzA3MTI@._V1_UX172_CR0,0,172,256_AL_.jpg",
+			"rating": 4,
+			"registrationDate": "2020-10-20",
+			"trips": [
+				{
+					"id": 1
+				},
+				{
+					"id": 2
+				},
+				{
+					"id": 3
+				}
+			]
+		},
+		{
+			"about": "Mano batai buvo 2, vienas dingo - nerandu. Oi kaip dėjaus ant asfalto!",
+			"contacts": {
+				"city": "Kalabybiškis",
+				"email": "dede.vania@gmail.com",
+				"facebook": "dedeVaniaFacebook",
+				"phone": "8-XXX-XXXXX"
+			},
+			"driver": {
+				"about": "Im fast and furious",
+				"car": {
+					"date": "2005-10-10",
+					"model": "Volvo S40",
+					"photo": "https://avatarfiles.alphacoders.com/123/thumb-1920-123711.jpg"
+				},
+				"contact": "facebook",
+				"feedback": [
+					{
+						"author": {
+							"id": 100
+						},
+						"date": "2020-11-15",
+						"ratingGiven": 1,
+						"text": "Durnas vairuotojas, nemoka važiuoti"
+					},
+					{
+						"author": {
+							"id": 101
+						},
+						"date": "2020-11-16",
+						"ratingGiven": 1,
+						"text": "Pritariu, tikrai durnas"
+					}
+				],
+				"posts": [
+					{
+						"id": 1
+					},
+					{
+						"id": 2
+					}
+				],
+				"rating": 3
+			},
+			"feedback": [
+				{
+					"author": {
+						"id": 111
+					},
+					"date": "2020-10-15",
+					"ratingGiven": 3,
+					"text": "Atsiliepimas apie Dėdę Vanią, kurį kažkada vežiau."
+				}
+			],
+			"id": 110,
+			"isDriver": true,
+			"lastActive": "some date and time",
+			"name": "Dėdė Vania",
+			"photo": "https://images.unsplash.com/photo-1542973748-658653fb3d12?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ",
+			"rating": 1,
+			"registrationDate": "2018-05-15",
+			"trips": [
+				{
+					"id": 3
+				}
+			]
+		},
+		{
+			"about": "Nu ką aš žinau, mama sakė ateiti ir užsiregistruoti, ir įkelti skelbimų. Gal mergą susirasiu.",
+			"contacts": {
+				"city": "Rietavas",
+				"email": "geras.vairuotojas@gmail.com",
+				"facebook": "gerasVairuotojasFacebook",
+				"phone": "8-XXX-XXXXX"
+			},
+			"driver": {
+				"about": "Nu baise gers",
+				"car": {
+					"date": "2015-01-1ū8",
+					"model": "Mazda",
+					"photo": "https://avatarfiles.alphacoders.com/120/thumb-1920-120969.jpg"
+				},
+				"contact": "facebook",
+				"feedback": [],
+				"posts": [
+					{
+						"id": 3
+					}
+				],
+				"rating": 5
+			},
+			"id": 111,
+			"isDriver": true,
+			"lastActive": "some date and time",
+			"name": "Geras Vairuotojas",
+			"photo": "https://randomuser.me/api/portraits/men/1.jpg",
+			"rating": 1,
+			"registrationDate": "2018-05-15",
+			"trips": [
+				{
+					"id": 1
 				}
 			]
 		}

@@ -21,7 +21,7 @@
         <form>
           <div>
             <label for="email"> Elektroninis paštas </label>
-            <input type="email" id="email" ref="email" />
+            <input type="email" id="email" ref="email" v-model="id" />
           </div>
           <div>
             <label for="password"> Slaptažodis </label>
@@ -36,7 +36,12 @@
             </a>
           </small>
           <div>
-            <button @click.prevent="submit">Prisijunk</button>
+            <Button :click="submit" text="prisijungti" :isOutlined="true" />
+          </div>
+
+          <div>
+            <p class="red">users: 100, 101</p>
+            <p class="red">drivers: 110, 111</p>
           </div>
         </form>
       </div>
@@ -45,8 +50,19 @@
 </template>
 
 <script>
+import Button from '@/components/Button.vue';
+import UserService from '@/services/UserService.js';
+
 export default {
   name: 'ModalLogin',
+  components: {
+    Button
+  },
+  data() {
+    return {
+      id: this.$store.getters.userID
+    };
+  },
   methods: {
     hide() {
       this.$modal.hide('modal-login');
@@ -66,8 +82,16 @@ export default {
     },
     submit() {
       // validate here
-      
+      const id = parseInt(this.id);
+      const user = UserService.getUser(id);
+      if (!user) {
+        return alert('Toks vartotojas neegzistuoja');
+      }
+
+      this.$store.commit('SET_IS_DRIVER', user.isDriver);
       this.$store.commit('SET_LOGGED_IN', true);
+      this.$store.commit('SET_USER_ID', id);
+
       this.hide();
     }
   },
@@ -80,5 +104,9 @@ export default {
 <style scoped>
 .container {
   padding: 20px;
+}
+
+.red {
+  color: red;
 }
 </style>

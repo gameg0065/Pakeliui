@@ -12,24 +12,22 @@
         </router-link>
       </li>
       <li v-if="isLoggedIn">
-        <router-link :to="{ name: 'post-create' }">
+        <router-link v-if="isDriver" :to="{ name: 'post-create' }">
           <Button text="sukurk skelbimą" :isSecondary="true" />
         </router-link>
       </li>
     </ul>
     <ul class="right-links">
       <li v-if="!isLoggedIn">
-        <ModalLogin />
         <a href="#" @click.prevent="$modal.show('modal-login')">prisijungti</a>
       </li>
       <li v-if="!isLoggedIn">
-        <ModalRegister />
         <a href="#" @click.prevent="$modal.show('modal-register')"
           >registruotis</a
         >
       </li>
       <li v-if="isLoggedIn">
-        <router-link :to="{ name: 'user', params: { id: '1' } }"
+        <router-link :to="{ name: 'user', params: { id: userID } }"
           >profilis</router-link
         >
       </li>
@@ -43,19 +41,15 @@
 
 <script>
 import Button from '@/components/Button.vue';
-import ModalLogin from '@/components/ModalLogin.vue';
-import ModalRegister from '@/components/ModalRegister.vue';
 
 import { mapGetters } from 'vuex';
 
 export default {
   components: {
-    Button,
-    ModalLogin,
-    ModalRegister
+    Button
   },
   computed: {
-    ...mapGetters(['isLoggedIn'])
+    ...mapGetters(['isLoggedIn', 'isDriver', 'userID'])
   }
 };
 </script>

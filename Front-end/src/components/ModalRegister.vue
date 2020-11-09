@@ -33,9 +33,10 @@
             </label>
           </div>
           <div>
-            <button @click.prevent="submit">
+            <Button :click="submit" text="Sukurti paskyrą" :isOutlined="true" />
+            <!-- <button @click.prevent="submit">
               Sukurti paskyrą
-            </button>
+            </button> -->
           </div>
         </form>
       </div>
@@ -44,8 +45,13 @@
 </template>
 
 <script>
+import Button from '@/components/Button.vue';
+
 export default {
   name: 'ModalRegister',
+  components: {
+    Button
+  },
   methods: {
     hide() {
       this.$modal.hide('modal-register');

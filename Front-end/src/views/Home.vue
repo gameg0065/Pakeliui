@@ -10,13 +10,24 @@
         <Button text="skelbimai" :isLarge="true" />
       </router-link>
 
-      <router-link :to="{ name: 'post-create' }">
+      <router-link v-if="isDriver" :to="{ name: 'post-create' }">
         <Button text="sukurk skelbimą" :isSecondary="true" :isLarge="true" />
       </router-link>
     </div>
     <div v-if="!isLoggedIn">
-      <Button text="prisijungti" :isSecondary="false" :isLarge="true" />
-      <Button text="užsiregistruoti" :isSecondary="true" :isLarge="true" />
+      <Button
+        :click="openModalLogin"
+        text="prisijungti"
+        :isSecondary="false"
+        :isLarge="true"
+      />
+
+      <Button
+        :click="openModalRegister"
+        text="užsiregistruoti"
+        :isSecondary="true"
+        :isLarge="true"
+      />
     </div>
 
     <img src="../assets/images/hero-image.png" alt="hero" />
@@ -32,7 +43,16 @@ export default {
     Button
   },
   computed: {
-    ...mapGetters(['isLoggedIn'])
+    ...mapGetters(['isLoggedIn', 'isDriver'])
+  },
+  methods: {
+    openModalLogin() {
+      this.$modal.show('modal-login');
+    },
+    openModalRegister() {
+      this.$modal.show('modal-register');
+    }
   }
 };
 </script>
+
