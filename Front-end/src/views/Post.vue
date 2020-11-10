@@ -31,12 +31,12 @@
           <li><p>{{post.route.dropoff}}</p></li>
           <li><p>{{post.seetCount}}</p></li>
           <li><p>paskaiciuoti</p></li>
-          <li><p>{{post.price}}$</p></li>
+          <li><p>{{post.price}}€</p></li>
         </ul>
        <img src="https://i.stack.imgur.com/yEshb.gif" alt="map">
-       
+
       <ul><li><small>Papildoma informacija</small></li></ul>
-      <ul id="extra"><li><p>{{post.info}}</p></li></ul>
+      <ul><li><p>{{post.info}}</p></li></ul>
       
     </div>
 
