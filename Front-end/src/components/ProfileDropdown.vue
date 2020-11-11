@@ -22,10 +22,13 @@
       </div>
     </div>
     <div v-else>
-      <div class="dropbutton">
-        <img src="../assets/icons/pen-tool.svg" />
-        <p>Sukurti skelbimą</p>
-      </div>
+      <router-link @click.native="emitClick" :to="{ name: 'post-create' }">
+        <div class="dropbutton">
+          <img src="../assets/icons/pen-tool.svg" />
+          <p>Sukurti skelbimą</p>
+        </div>
+      </router-link>
+
       <div class="dropbutton">
         <img src="../assets/icons/archive.svg" />
         <p>Skelbimų istorija</p>
