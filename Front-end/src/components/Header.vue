@@ -27,9 +27,9 @@
         >
       </li>
       <li v-if="isLoggedIn">
-        <router-link :to="{ name: 'user', params: { id: userID } }"
-          >profilis</router-link
-        >
+        <a href="#" @click.prevent="$emit('on-profile-button-click')">
+          profilis
+        </a>
       </li>
     </ul>
   </nav>
