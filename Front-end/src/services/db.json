@@ -141,21 +141,30 @@
 			"registrationDate": "2020-10-20",
 			"trips": [
 				{
-					"id": 1,
-					"status": "TAKEN",
 					"feedback": {
 						"id": 5
-					}
+					},
+					"id": 1,
+					"post": {
+						"id": 1
+					},
+					"status": "TAKEN"
 				},
 				{
+					"feedback": null,
 					"id": 2,
-					"status": "PENDING",
-					"feedback": null
+					"post": {
+						"id": 2
+					},
+					"status": "PENDING"
 				},
 				{
+					"feedback": null,
 					"id": 3,
-					"status": "TAKEN",
-					"feedback": null
+					"post": {
+						"id": 3
+					},
+					"status": "TAKEN"
 				}
 			]
 		},
@@ -181,18 +190,29 @@
 			"registrationDate": "2020-10-20",
 			"trips": [
 				{
-					"id": 1,
-					"status": "TAKEN",
 					"feedback": {
 						"id": 6
-					}
-				},
-				{
-					"id": 2,
+					},
+					"id": 1,
+					"post": {
+						"id": 1
+					},
 					"status": "TAKEN"
 				},
 				{
+					"feedback": null,
+					"id": 2,
+					"post": {
+						"id": 2
+					},
+					"status": "TAKEN"
+				},
+				{
+					"feedback": null,
 					"id": 3,
+					"post": {
+						"id": 3
+					},
 					"status": "TAKEN"
 				}
 			]
@@ -240,7 +260,11 @@
 			"registrationDate": "2018-05-15",
 			"trips": [
 				{
-					"id": 3,
+					"feedback": null,
+					"id": 1,
+					"post": {
+						"id": 3
+					},
 					"status": "TAKEN"
 				}
 			]
@@ -281,7 +305,11 @@
 			"registrationDate": "2018-05-15",
 			"trips": [
 				{
+					"feedback": null,
 					"id": 1,
+					"post": {
+						"id": 1
+					},
 					"status": "TAKEN"
 				}
 			]
