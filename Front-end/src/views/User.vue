@@ -187,9 +187,9 @@ export default {
       }, 0);
     },
     getFeedbacks(feedbacks) {
-      return feedbacks.map(function(feedback) {
-        return FeedbackService.getFeedback(feedback.id);
-      });
+      return feedbacks.map((feedback) =>
+        FeedbackService.getFeedback(feedback.id)
+      );
     }
   }
 };
