@@ -2,7 +2,9 @@
   <div class="feedback card shadow">
     <Avatar :path="driver.photo" size="small" />
     <router-link :to="{ name: 'post', params: { id: post.id } }">
-      <p>{{ post.route.from + ' - ' + post.route.to }}</p>
+      <p class="skelbimoLinkas">
+        {{ post.route.from + ' - ' + post.route.to }}
+      </p>
     </router-link>
     <small> {{ post.date + ', ' + post.time }}</small>
 
@@ -56,5 +58,9 @@ export default {
 <style>
 p.tripStatus {
   color: var(--color-secondary);
+}
+
+p.skelbimoLinkas {
+  color: var(--color-primary);
 }
 </style>
