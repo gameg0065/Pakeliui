@@ -15,13 +15,15 @@
       <p>Redaguoti profilį</p>
     </div>
 
-    <div v-if="!isDriver">
+    <!-- <div v-if="!isDriver"> -->
+    <router-link @click.native="emitClick" :to="{ name: 'user-history' }">
       <div class="dropbutton">
         <img src="../assets/icons/archive.svg" />
         <p>Rezervacijų istorija</p>
       </div>
-    </div>
-    <div v-else>
+    </router-link>
+    <!-- </div> -->
+    <div v-if="isDriver">
       <router-link @click.native="emitClick" :to="{ name: 'post-create' }">
         <div class="dropbutton">
           <img src="../assets/icons/pen-tool.svg" />
