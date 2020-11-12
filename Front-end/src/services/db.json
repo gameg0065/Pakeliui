@@ -139,14 +139,22 @@
 			"photo": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-0.3.5&q=80&fm=jpg",
 			"rating": 5,
 			"registrationDate": "2020-10-20",
-			"trips": [
-				{
-					"id": 1
-				},
-				{
-					"id": 3
-				}
-			]
+			"trips": {
+				"canceled": [],
+				"pending": [
+					{
+						"id": 2
+					}
+				],
+				"taken": [
+					{
+						"id": 1
+					},
+					{
+						"id": 3
+					}
+				]
+			}
 		},
 		{
 			"about": "Jei ne nuogos ir ne uogos, dzūkų mergos būtų grybai",
@@ -168,17 +176,21 @@
 			"photo": "https://images-na.ssl-images-amazon.com/images/M/MV5BYzg2NDY4MjAtZDBjNS00MGRhLWJkZDMtYWJkZDM1NWZiMzgyXkEyXkFqcGdeQXVyMTE1MzA3MTI@._V1_UX172_CR0,0,172,256_AL_.jpg",
 			"rating": 4,
 			"registrationDate": "2020-10-20",
-			"trips": [
-				{
-					"id": 1
-				},
-				{
-					"id": 2
-				},
-				{
-					"id": 3
-				}
-			]
+			"trips": {
+				"canceled": [],
+				"pending": [],
+				"taken": [
+					{
+						"id": 1
+					},
+					{
+						"id": 2
+					},
+					{
+						"id": 3
+					}
+				]
+			}
 		},
 		{
 			"about": "Mano batai buvo 2, vienas dingo - nerandu. Oi kaip dėjaus ant asfalto!",
@@ -221,11 +233,15 @@
 			"photo": "https://images.unsplash.com/photo-1542973748-658653fb3d12?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ",
 			"rating": 1,
 			"registrationDate": "2018-05-15",
-			"trips": [
-				{
-					"id": 3
-				}
-			]
+			"trips": {
+				"canceled": [],
+				"pending": [],
+				"taken": [
+					{
+						"id": 3
+					}
+				]
+			}
 		},
 		{
 			"about": "Nu ką aš žinau, mama sakė ateiti ir užsiregistruoti, ir įkelti skelbimų. Gal mergą susirasiu.",
@@ -261,11 +277,15 @@
 			"photo": "https://randomuser.me/api/portraits/men/1.jpg",
 			"rating": 1,
 			"registrationDate": "2018-05-15",
-			"trips": [
-				{
-					"id": 1
-				}
-			]
+			"trips": {
+				"canceled": [],
+				"pending": [],
+				"taken": [
+					{
+						"id": 1
+					}
+				]
+			}
 		}
 	],
 	"feedbacks": [
