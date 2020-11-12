@@ -186,9 +186,9 @@ export default {
         return accumulator;
       }, 0);
     },
-    getFeedbacks(IDs) {
-      return IDs.map(function(id) {
-        return FeedbackService.getFeedback(id);
+    getFeedbacks(feedbacks) {
+      return feedbacks.map(function(feedback) {
+        return FeedbackService.getFeedback(feedback.id);
       });
     }
   }
