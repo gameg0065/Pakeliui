@@ -28,6 +28,11 @@ export default new Vuex.Store({
 		},
 		SET_LOGGED_IN(state, value) {
 			state.user.isLoggedIn = value;
+			if (!value) {
+				state.user.id = 0;
+				state.user.isDriver = false;
+				state.user.isLoggedIn = false;
+			}
 		},
 		SET_USER_ID(state, id) {
 			state.user.id = id;

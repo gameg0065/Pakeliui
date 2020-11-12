@@ -4,7 +4,12 @@
     <ModalLogin />
     <ModalRegister />
 
-    <Header />
+    <ProfileDropdown
+      v-if="dropdownIsVisible"
+      @on-profile-button-click="onProfileButtonClick"
+    />
+
+    <Header @on-profile-button-click="onProfileButtonClick" />
 
     <router-view />
 
@@ -18,13 +23,25 @@ import Footer from '@/components/Footer.vue';
 
 import ModalLogin from '@/components/ModalLogin.vue';
 import ModalRegister from '@/components/ModalRegister.vue';
+import ProfileDropdown from '@/components/ProfileDropdown.vue';
 
 export default {
   components: {
     Header,
     Footer,
     ModalLogin,
-    ModalRegister
+    ModalRegister,
+    ProfileDropdown
+  },
+  data() {
+    return {
+      dropdownIsVisible: false
+    };
+  },
+  methods: {
+    onProfileButtonClick(event) {
+      this.dropdownIsVisible = !this.dropdownIsVisible;
+    }
   }
 };
 </script>
