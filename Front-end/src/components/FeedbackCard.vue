@@ -44,7 +44,7 @@ export default {
     };
   },
   created() {
-    this.post = PostService.getPost(this.trip.id);
+    this.post = PostService.getPost(this.trip.post.id);
     this.driver = UserService.getUser(this.post.driver.id);
     if (this.trip.feedback) {
       this.feedback = FeedbackService.getFeedback(this.trip.feedback.id);
