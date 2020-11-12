@@ -23,11 +23,21 @@
     <div>
       <h3>Rezervacijų istorija TODO</h3>
       <div v-if="user.trips.taken">
-        <div v-for="post in getTrips('taken')" :key="post.id" :post="post">
-          <router-link :to="{ name: 'post', params: { id: post.id } }">
-            <p>{{ post.route.from + ' - ' + post.route.to }}</p>
-          </router-link>
-        </div>
+        <FeedbackCard
+          v-for="trip in user.trips.taken"
+          :key="trip.id"
+          :trip="trip"
+          :userID="user.id"
+        />
+      </div>
+      <div v-if="user.trips.canceled">
+        <FeedbackCard
+          v-for="trip in user.trips.canceled"
+          :key="trip.id"
+          :trip="trip"
+          :userID="user.id"
+          :isCanceled="true"
+        />
       </div>
       <div v-else><p>Istorija tuščia</p></div>
     </div>
@@ -37,6 +47,7 @@
 <script>
 import Button from '@/components/Button.vue';
 import PostCard from '@/components/PostCard.vue';
+import FeedbackCard from '@/components/FeedbackCard.vue';
 
 import PostService from '@/services/PostService.js';
 import UserService from '@/services/UserService.js';
@@ -46,6 +57,7 @@ import { mapGetters } from 'vuex';
 export default {
   components: {
     Button,
+    FeedbackCard,
     PostCard,
   },
   computed: {
@@ -60,6 +72,9 @@ export default {
     this.user = UserService.getUser(this.userID);
   },
   methods: {
+    getTrip(id){
+      return PostService.getPost(id);
+    },
     getTrips(type) {
       return this.user.trips[type].map(function (obj) {
         return PostService.getPost(obj.id);
