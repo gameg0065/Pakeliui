@@ -2,11 +2,11 @@
   <div>
     <div>
       <h2>Mano rezervacijos</h2>
-      <div v-if="user.trips.pending && user.trips.pending.length > 0">
+      <div v-if="pendingTrips && pendingTrips.length > 0">
         <PostCard
-          v-for="post in getTrips('pending')"
-          :key="post.id"
-          :post="post"
+          v-for="trip in pendingTrips"
+          :key="trip.id"
+          :post="getPost(trip.id)"
           :isReserved="true"
         />
       </div>
@@ -21,25 +21,15 @@
       </div>
     </div>
     <div>
-      <h3>Rezervacijų istorija TODO</h3>
-      <div v-if="user.trips.taken">
+      <h3>Rezervacijų istorija</h3>
+      <div v-if="nonPendingTrips && nonPendingTrips.length > 0">
         <FeedbackCard
-          v-for="trip in user.trips.taken"
+          v-for="trip in nonPendingTrips"
           :key="trip.id"
           :trip="trip"
-          :userID="user.id"
         />
       </div>
-      <div v-if="user.trips.canceled">
-        <FeedbackCard
-          v-for="trip in user.trips.canceled"
-          :key="trip.id"
-          :trip="trip"
-          :userID="user.id"
-          :isCanceled="true"
-        />
-      </div>
-      <div v-else><p>Istorija tuščia</p></div>
+      <p v-else>Istorija tuščia</p>
     </div>
   </div>
 </template>
@@ -65,20 +55,27 @@ export default {
   },
   data() {
     return {
+      nonPendingTrips: [],
+      pendingTrips: [],
       user: Object,
     };
   },
   created() {
     this.user = UserService.getUser(this.userID);
+
+    if (this.user.trips && this.user.trips.length) {
+      this.nonPendingTrips = this.user.trips.filter(function (trip) {
+        return trip.status !== 'PENDING';
+      });
+
+      this.pendingTrips = this.user.trips.filter(function (trip) {
+        return trip.status === 'PENDING';
+      });
+    }
   },
   methods: {
-    getTrip(id){
+    getPost(id) {
       return PostService.getPost(id);
-    },
-    getTrips(type) {
-      return this.user.trips[type].map(function (obj) {
-        return PostService.getPost(obj.id);
-      });
     },
   },
 };

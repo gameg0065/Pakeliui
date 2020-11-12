@@ -1,27 +1,21 @@
 <template>
-  <div class="card shadow">
+  <div class="feedback card shadow">
     <Avatar :path="driver.photo" size="small" />
     <router-link :to="{ name: 'post', params: { id: post.id } }">
       <p>{{ post.route.from + ' - ' + post.route.to }}</p>
     </router-link>
     <small> {{ post.date + ', ' + post.time }}</small>
 
-    <div v-if="isCanceled">
-      <p>ATMESTA</p>
-    </div>
-
-    <div v-else>
-      <div v-if="feedback.id">
-        {{ feedback.text }}
+    <div v-if="trip.status === 'TAKEN'">
+      <div v-if="trip.feedback">
+        <p>{{ feedback.text }}</p>
         <Rating :rating="feedback.rating" />
       </div>
-      <div v-else>
-        <Button
-          :click="leaveFeedback"
-          text="parašyk atsiliepimą"
-          :isOutlined="true"
-        />
-      </div>
+
+      <Button v-else text="parašyk atsiliepimą" :isOutlined="true" />
+    </div>
+    <div v-else>
+      <p class="tripStatus">{{ trip.status }}</p>
     </div>
   </div>
 </template>
@@ -30,16 +24,13 @@
 import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
 import Rating from '@/components/Rating.vue';
+
 import UserService from '@/services/UserService.js';
 import FeedbackService from '@/services/FeedbackService.js';
 import PostService from '@/services/PostService.js';
 
 export default {
-  props: {
-    trip: Object,
-    userID: Number,
-    isCanceled: Boolean,
-  },
+  props: ['trip'],
   components: {
     Avatar,
     Button,
@@ -48,8 +39,8 @@ export default {
   data() {
     return {
       driver: Object,
-      post: Object,
       feedback: Object,
+      post: Object,
     };
   },
   created() {
@@ -59,17 +50,11 @@ export default {
       this.feedback = FeedbackService.getFeedback(this.trip.feedback.id);
     }
   },
-  methods: {
-    leaveFeedback() {
-      alert(
-        'TODO\n' +
-          'feedback sender ID: ' +
-          this.userID +
-          '\n' +
-          'feedback receiver ID: ' +
-          this.driver.id
-      );
-    },
-  },
 };
 </script>
+
+<style>
+p.tripStatus {
+  color: red;
+}
+</style>
