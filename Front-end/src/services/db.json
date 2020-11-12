@@ -39,9 +39,6 @@
 					"id": 100
 				},
 				{
-					"id": 101
-				},
-				{
 					"id": 111
 				}
 			],
@@ -205,7 +202,7 @@
 					"post": {
 						"id": 2
 					},
-					"status": "TAKEN"
+					"status": "CANCELED"
 				},
 				{
 					"feedback": null,
@@ -311,6 +308,14 @@
 						"id": 1
 					},
 					"status": "TAKEN"
+				},
+				{
+					"feedback": null,
+					"id": 2,
+					"post": {
+						"id": 2
+					},
+					"status": "CANCELED"
 				}
 			]
 		}
