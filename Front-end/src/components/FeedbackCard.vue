@@ -11,9 +11,9 @@
         <p>{{ feedback.text }}</p>
         <Rating :rating="feedback.rating" />
       </div>
-
       <Button v-else text="parašyk atsiliepimą" :isOutlined="true" />
     </div>
+
     <div v-else>
       <p class="tripStatus">{{ trip.status }}</p>
     </div>
@@ -25,9 +25,9 @@ import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
 import Rating from '@/components/Rating.vue';
 
-import UserService from '@/services/UserService.js';
 import FeedbackService from '@/services/FeedbackService.js';
 import PostService from '@/services/PostService.js';
+import UserService from '@/services/UserService.js';
 
 export default {
   props: ['trip'],
@@ -55,6 +55,6 @@ export default {
 
 <style>
 p.tripStatus {
-  color: red;
+  color: var(--color-secondary);
 }
 </style>

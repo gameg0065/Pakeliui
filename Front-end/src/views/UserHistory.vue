@@ -36,8 +36,8 @@
 
 <script>
 import Button from '@/components/Button.vue';
-import PostCard from '@/components/PostCard.vue';
 import FeedbackCard from '@/components/FeedbackCard.vue';
+import PostCard from '@/components/PostCard.vue';
 
 import PostService from '@/services/PostService.js';
 import UserService from '@/services/UserService.js';
@@ -63,14 +63,13 @@ export default {
   created() {
     this.user = UserService.getUser(this.userID);
 
-    if (this.user.trips && this.user.trips.length) {
-      this.nonPendingTrips = this.user.trips.filter(function (trip) {
-        return trip.status !== 'PENDING';
-      });
-
-      this.pendingTrips = this.user.trips.filter(function (trip) {
-        return trip.status === 'PENDING';
-      });
+    if (this.user.trips && this.user.trips.length > 0) {
+      this.nonPendingTrips = this.user.trips.filter(
+        (trip) => trip.status !== 'PENDING'
+      );
+      this.pendingTrips = this.user.trips.filter(
+        (trip) => trip.status === 'PENDING'
+      );
     }
   },
   methods: {
