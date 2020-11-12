@@ -107,18 +107,31 @@
       </div>
     </div>
 
-    <div v-if="user.feedback && user.feedback.length > 0">
+    <div
+      v-if="
+        user.feedbacks &&
+          user.feedbacks.received &&
+          user.feedbacks.received.length > 0
+      "
+    >
       <h3>Atsiliepimai apie mane kaip keleivį</h3>
+
       <CommentCard
-        v-for="feedback in user.feedback"
+        v-for="feedback in getFeedbacks(user.feedbacks.received)"
         :key="feedback.id"
         :comment="feedback"
       />
     </div>
-    <div v-if="user.driver.feedback && user.driver.feedback.length > 0">
+    <div
+      v-if="
+        user.driver.feedbacks &&
+          user.driver.feedbacks.received &&
+          user.driver.feedbacks.received.length > 0
+      "
+    >
       <h3>Atsiliepimai apie mane kaip vairuotoją</h3>
       <CommentCard
-        v-for="feedback in user.driver.feedback"
+        v-for="feedback in getFeedbacks(user.driver.feedbacks.received)"
         :key="feedback.id"
         :comment="feedback"
       />
@@ -131,6 +144,7 @@ import Avatar from '@/components/Avatar.vue';
 import CommentCard from '@/components/CommentCard.vue';
 import Rating from '@/components/Rating.vue';
 
+import FeedbackService from '@/services/FeedbackService.js';
 import PostService from '@/services/PostService.js';
 import UserService from '@/services/UserService.js';
 
@@ -171,6 +185,11 @@ export default {
         accumulator += post.passengers.length;
         return accumulator;
       }, 0);
+    },
+    getFeedbacks(IDs) {
+      return IDs.map(function(id) {
+        return FeedbackService.getFeedback(id);
+      });
     }
   }
 };
