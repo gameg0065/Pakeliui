@@ -15,13 +15,14 @@
       <p>Redaguoti profilį</p>
     </div>
 
-    <div v-if="!isDriver">
+    <router-link @click.native="emitClick" :to="{ name: 'user-history' }">
       <div class="dropbutton">
         <img src="../assets/icons/archive.svg" />
         <p>Rezervacijų istorija</p>
       </div>
-    </div>
-    <div v-else>
+    </router-link>
+
+    <div v-if="isDriver">
       <router-link @click.native="emitClick" :to="{ name: 'post-create' }">
         <div class="dropbutton">
           <img src="../assets/icons/pen-tool.svg" />
@@ -52,7 +53,7 @@ import { mapGetters } from 'vuex';
 
 export default {
   computed: {
-    ...mapGetters(['isLoggedIn', 'isDriver', 'userID'])
+    ...mapGetters(['isLoggedIn', 'isDriver', 'userID']),
   },
   methods: {
     emitClick() {
@@ -61,8 +62,8 @@ export default {
     logout() {
       this.$store.commit('SET_LOGGED_IN', false);
       this.emitClick();
-    }
-  }
+    },
+  },
 };
 </script>
 

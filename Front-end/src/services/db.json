@@ -39,9 +39,6 @@
 					"id": 100
 				},
 				{
-					"id": 101
-				},
-				{
 					"id": 111
 				}
 			],
@@ -75,9 +72,6 @@
 			"info": "Some dull info",
 			"passengers": [
 				{
-					"id": 100
-				},
-				{
 					"id": 101
 				}
 			],
@@ -102,6 +96,9 @@
 			"passengers": [
 				{
 					"id": 100
+				},
+				{
+					"id": 101
 				},
 				{
 					"id": 110
@@ -129,8 +126,19 @@
 			},
 			"driver": {},
 			"feedbacks": {
-				"sent": [5],
-				"received": [1, 2]
+				"sent": [
+					{
+						"id": 5
+					}
+				],
+				"received": [
+					{
+						"id": 1
+					},
+					{
+						"id": 2
+					}
+				]
 			},
 			"id": 100,
 			"isDriver": false,
@@ -141,10 +149,30 @@
 			"registrationDate": "2020-10-20",
 			"trips": [
 				{
-					"id": 1
+					"feedback": {
+						"id": 5
+					},
+					"id": 1,
+					"post": {
+						"id": 1
+					},
+					"status": "TAKEN"
 				},
 				{
-					"id": 3
+					"feedback": null,
+					"id": 2,
+					"post": {
+						"id": 2
+					},
+					"status": "PENDING"
+				},
+				{
+					"feedback": null,
+					"id": 3,
+					"post": {
+						"id": 3
+					},
+					"status": "TAKEN"
 				}
 			]
 		},
@@ -158,8 +186,16 @@
 			},
 			"driver": {},
 			"feedbacks": {
-				"sent": [6],
-				"received": [3]
+				"sent": [
+					{
+						"id": 6
+					}
+				],
+				"received": [
+					{
+						"id": 3
+					}
+				]
 			},
 			"id": 101,
 			"isDriver": false,
@@ -170,13 +206,30 @@
 			"registrationDate": "2020-10-20",
 			"trips": [
 				{
-					"id": 1
+					"feedback": {
+						"id": 6
+					},
+					"id": 1,
+					"post": {
+						"id": 1
+					},
+					"status": "TAKEN"
 				},
 				{
-					"id": 2
+					"feedback": null,
+					"id": 2,
+					"post": {
+						"id": 2
+					},
+					"status": "CANCELED"
 				},
 				{
-					"id": 3
+					"feedback": null,
+					"id": 3,
+					"post": {
+						"id": 3
+					},
+					"status": "TAKEN"
 				}
 			]
 		},
@@ -197,8 +250,19 @@
 				},
 				"contact": "facebook",
 				"feedbacks": {
-					"sent": [1],
-					"received": [2, 5, 6]
+					"sent": [
+						{
+							"id": 1
+						}
+					],
+					"received": [
+						{
+							"id": 5
+						},
+						{
+							"id": 6
+						}
+					]
 				},
 				"posts": [
 					{
@@ -212,7 +276,11 @@
 			},
 			"feedbacks": {
 				"sent": [],
-				"received": [4]
+				"received": [
+					{
+						"id": 4
+					}
+				]
 			},
 			"id": 110,
 			"isDriver": true,
@@ -223,7 +291,12 @@
 			"registrationDate": "2018-05-15",
 			"trips": [
 				{
-					"id": 3
+					"feedback": null,
+					"id": 1,
+					"post": {
+						"id": 3
+					},
+					"status": "TAKEN"
 				}
 			]
 		},
@@ -244,7 +317,17 @@
 				},
 				"contact": "facebook",
 				"feedbacks": {
-					"sent": [2, 3, 4],
+					"sent": [
+						{
+							"id": 2
+						},
+						{
+							"id": 3
+						},
+						{
+							"id": 4
+						}
+					],
 					"rceived": []
 				},
 				"posts": [
@@ -263,7 +346,20 @@
 			"registrationDate": "2018-05-15",
 			"trips": [
 				{
-					"id": 1
+					"feedback": null,
+					"id": 1,
+					"post": {
+						"id": 1
+					},
+					"status": "TAKEN"
+				},
+				{
+					"feedback": null,
+					"id": 2,
+					"post": {
+						"id": 2
+					},
+					"status": "CANCELED"
 				}
 			]
 		}

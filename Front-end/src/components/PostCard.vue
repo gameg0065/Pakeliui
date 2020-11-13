@@ -13,10 +13,11 @@
         <p>Laisvų vietų: {{ post.seetCount - post.passengers.length }}</p>
       </div>
 
-      <div v-if="!todo">
+      <div v-if="isReserved">
         <p class="request-status">PENDING</p>
         <Button
           text="Atšaukti rezervaciją"
+          :click="cancelReservation"
           :isSecondary="true"
           :isOutlined="true"
         />
@@ -32,7 +33,8 @@ import UserService from '@/services/UserService.js';
 
 export default {
   props: {
-    post: Object
+    post: Object,
+    isReserved: Boolean,
   },
   components: {
     Avatar,
@@ -46,6 +48,11 @@ export default {
   },
   created() {
     this.driver = UserService.getUser(this.post.driver.id);
+  },
+  methods:{
+    cancelReservation(){
+      alert('TODO');
+    }
   }
 };
 </script>
