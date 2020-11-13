@@ -186,10 +186,10 @@ export default {
         return accumulator;
       }, 0);
     },
-    getFeedbacks(IDs) {
-      return IDs.map(function(id) {
-        return FeedbackService.getFeedback(id);
-      });
+    getFeedbacks(feedbacks) {
+      return feedbacks.map((feedback) =>
+        FeedbackService.getFeedback(feedback.id)
+      );
     }
   }
 };

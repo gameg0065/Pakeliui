@@ -11,6 +11,7 @@ import Posts from '../views/Posts.vue';
 import Terms from '../views/Terms.vue';
 import User from '../views/User.vue';
 import UserEdit from '../views/UserEdit.vue';
+import UserHistory from '../views/UserHistory.vue';
 
 Vue.use(VueRouter);
 
@@ -61,6 +62,12 @@ const routes: Array<RouteConfig> = [
 		path: '/user/edit',
 		name: 'user-edit',
 		component: UserEdit,
+  },
+  {
+		path: '/user/history',
+		name: 'user-history',
+		component: UserHistory
+
 	},
 	{
 		path: '*',
