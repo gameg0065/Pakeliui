@@ -10,10 +10,15 @@
       </div>
     </router-link>
 
-    <div class="dropbutton">
-      <img src="../assets/icons/settings.svg" />
-      <p>Redaguoti profilį</p>
-    </div>
+    <router-link
+      @click.native="emitClick"
+      :to="{ name: 'user-edit' }"
+    >
+      <div class="dropbutton">
+        <img src="../assets/icons/settings.svg" />
+        <p>Redaguoti profilį</p>
+      </div>
+    </router-link>
 
     <div v-if="!isDriver">
       <div class="dropbutton">
