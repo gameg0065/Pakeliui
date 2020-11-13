@@ -43,6 +43,19 @@
       </div>
 
       <div>
+        <label for="user-contact">Susisiek su manim*</label>
+        <select id="user-contact" v-model="user.contact">
+          <option
+            v-for="(option, index) in contactOptions"
+            :key="index"
+            :value="option"
+          >
+            {{ option }}
+          </option>
+        </select>
+      </div>
+
+      <div>
         <label for="user-about">Apie mane</label>
         <textarea id="user-about" rows="3" v-model="user.about" />
       </div>
@@ -139,7 +152,7 @@ export default {
   },
   data() {
     return {
-      contactOptions: ['email', 'facebook', 'telefonas'],
+      contactOptions: ['email', 'facebook', 'phone'],
       user: Object,
     };
   },
