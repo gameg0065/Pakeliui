@@ -1,15 +1,16 @@
 <template>
   <div class="post">
-    <div class="name">
+    <div>
       <h2>Skelbimas</h2>
       <p>skelbimo busena: aktyvus/pasibaiges</p>
     </div>
-    <div class="userCard">
+
+    <div>
       <h3>userCard</h3>
       <Button text="rezervuoti" :isOutlined="true" />
     </div>
 
-    <div class="post-info">
+    <div>
       <div>
         <small>Kelionės data </small>
         <p>{{ post.date }}</p>
