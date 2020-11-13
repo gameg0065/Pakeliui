@@ -15,20 +15,20 @@
         <p>{{ post.date }}</p>
       </div>
       <div>
-          <small>Kelionės laikas </small>
-          {{ post.time }}
+        <small>Kelionės laikas </small>
+        {{ post.time }}
       </div>
-       <div>
-         <small>Iš miesto </small>
-         <p>{{ post.route.from }}</p>
+      <div>
+        <small>Iš miesto </small>
+        <p>{{ post.route.from }}</p>
       </div>
-       <div>
-         <small>Paėmimo adresas</small>
-         <p>{{ post.route.pickup }}</p>
+      <div>
+        <small>Paėmimo adresas</small>
+        <p>{{ post.route.pickup }}</p>
       </div>
-       <div>
-         <small>Į miestą</small>
-         <p>{{ post.route.to }}</p>
+      <div>
+        <small>Į miestą</small>
+        <p>{{ post.route.to }}</p>
       </div>
       <div>
         <small>Pristatymo vieta</small>
@@ -36,7 +36,7 @@
       </div>
       <div>
         <small>Kiek gali paimti keleivių</small>
-         <p>{{ post.seetCount }}</p>
+        <p>{{ post.seetCount }}</p>
       </div>
       <div>
         <small>Liko laisvų vietų</small>
@@ -48,13 +48,11 @@
       </div>
       <div>
         <small>Papildoma informacija</small>
-         <p>{{ post.info }}</p>
+        <p>{{ post.info }}</p>
       </div>
     </div>
-   
-      
-      <img src="https://i.stack.imgur.com/yEshb.gif" alt="map" />
 
+    <img src="https://i.stack.imgur.com/yEshb.gif" alt="map" />
 
     <Button text="REZERVUOTI" />
     <Comments :comments="post.comments" />
@@ -70,22 +68,22 @@ export default {
   props: ['id'],
   components: {
     Comments,
-    Button
+    Button,
   },
   data() {
     return {
-      post: {}
+      post: {},
     };
   },
   created() {
     this.post = PostService.getPost(this.id);
-  }
+  },
 };
 </script>
 
 <style lang="scss">
-  .post-info{
-    display: flex;
-    flex-direction: column;
-  }
+.post-info {
+  display: flex;
+  flex-direction: column;
+}
 </style>
