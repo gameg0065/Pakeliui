@@ -147,6 +147,12 @@ export default {
     this.user = UserService.getUser(this.userID);
   },
   methods: {
+    changeCarPhoto() {
+      alert('TODO');
+    },
+    changeUserPhoto() {
+      alert('TODO');
+	},
     checkboxChanged() {
       const user = this.user;
       let driver = user.driver;
@@ -157,12 +163,6 @@ export default {
         driver.contact = driver.contact || '';
         driver.about = driver.about || '';
       }
-    },
-    changeCarPhoto() {
-      alert('TODO');
-    },
-    changeUserPhoto() {
-      alert('TODO');
     },
     deleteProfile() {
       alert('TODO');
