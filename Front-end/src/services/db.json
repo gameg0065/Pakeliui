@@ -118,6 +118,7 @@
 	"users": [
 		{
 			"about": "Aš Agnė, jeeee",
+			"birthDate": "2000-01-01",
 			"contacts": {
 				"city": "Vilnius",
 				"email": "agne.kuzminskaite@mif.stud.vu.lt",
@@ -178,6 +179,7 @@
 		},
 		{
 			"about": "Jei ne nuogos ir ne uogos, dzūkų mergos būtų grybai",
+			"birthDate": "2002-02-15",
 			"contacts": {
 				"city": "Kaunas",
 				"email": "laura.paukste@gmail.com",
@@ -235,6 +237,7 @@
 		},
 		{
 			"about": "Mano batai buvo 2, vienas dingo - nerandu. Oi kaip dėjaus ant asfalto!",
+			"birthDate": "1991-12-13",
 			"contacts": {
 				"city": "Kalabybiškis",
 				"email": "dede.vania@gmail.com",
@@ -302,6 +305,7 @@
 		},
 		{
 			"about": "Nu ką aš žinau, mama sakė ateiti ir užsiregistruoti, ir įkelti skelbimų. Gal mergą susirasiu.",
+			"birthDate": "1999-12-31",
 			"contacts": {
 				"city": "Rietavas",
 				"email": "geras.vairuotojas@gmail.com",
@@ -311,7 +315,7 @@
 			"driver": {
 				"about": "Nu baise gers",
 				"car": {
-					"date": "2015-01-1ū8",
+					"date": "2015-01-18",
 					"model": "Mazda",
 					"photo": "https://avatarfiles.alphacoders.com/120/thumb-1920-120969.jpg"
 				},

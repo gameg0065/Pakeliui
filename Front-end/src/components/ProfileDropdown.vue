@@ -10,10 +10,15 @@
       </div>
     </router-link>
 
-    <div class="dropbutton">
-      <img src="../assets/icons/settings.svg" />
-      <p>Redaguoti profilį</p>
-    </div>
+    <router-link
+      @click.native="emitClick"
+      :to="{ name: 'user-edit' }"
+    >
+      <div class="dropbutton">
+        <img src="../assets/icons/settings.svg" />
+        <p>Redaguoti profilį</p>
+      </div>
+    </router-link>
 
     <router-link @click.native="emitClick" :to="{ name: 'user-history' }">
       <div class="dropbutton">
