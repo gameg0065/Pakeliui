@@ -183,24 +183,21 @@
 					"id": 1,
 					"post": {
 						"id": 1
-					},
-					"status": "TAKEN"
+					}
 				},
 				{
 					"feedback": null,
 					"id": 2,
 					"post": {
 						"id": 2
-					},
-					"status": "PENDING"
+					}
 				},
 				{
 					"feedback": null,
 					"id": 3,
 					"post": {
 						"id": 3
-					},
-					"status": "TAKEN"
+					}
 				}
 			]
 		},
@@ -242,24 +239,21 @@
 					"id": 1,
 					"post": {
 						"id": 1
-					},
-					"status": "TAKEN"
+					}
 				},
 				{
 					"feedback": null,
 					"id": 2,
 					"post": {
 						"id": 2
-					},
-					"status": "TAKEN"
+					}
 				},
 				{
 					"feedback": null,
 					"id": 3,
 					"post": {
 						"id": 3
-					},
-					"status": "TAKEN"
+					}
 				}
 			]
 		},
@@ -327,8 +321,7 @@
 					"id": 1,
 					"post": {
 						"id": 3
-					},
-					"status": "PENDING"
+					}
 				}
 			]
 		},
@@ -384,16 +377,14 @@
 					"id": 1,
 					"post": {
 						"id": 1
-					},
-					"status": "TAKEN"
+					}
 				},
 				{
 					"feedback": null,
 					"id": 2,
 					"post": {
 						"id": 2
-					},
-					"status": "CANCELED"
+					}
 				}
 			]
 		}
