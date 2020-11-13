@@ -3,6 +3,7 @@
     <div>
       <h2>Profilio redagavimas</h2>
 
+		
       <div>
         <Avatar :path="user.photo" size="big" />
         <Button
@@ -19,7 +20,7 @@
 
       <div>
         <label for="birth-date">Gimino metai*</label>
-        <input type="text" id="birth-date" v-model="user.birthDate" />
+		<Datepicker id="birth-date" v-model="user.birthDate" format="yyyy-MM-dd" :monday-first="true"/>
       </div>
 
       <div>
@@ -86,7 +87,7 @@
 
       <div>
         <label for="car-date">Pagaminimo metai*</label>
-        <input type="text" id="car-date" v-model="user.driver.car.date" />
+		<Datepicker id="car-date" v-model="user.driver.car.date" format="yyyy-MM-dd" :monday-first="true"/>
       </div>
 
       <div>
@@ -124,6 +125,7 @@
 import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
 
+import Datepicker from 'vuejs-datepicker';
 import UserService from '@/services/UserService.js';
 import { mapGetters } from 'vuex';
 
@@ -131,6 +133,7 @@ export default {
   components: {
     Avatar,
     Button,
+    Datepicker,
   },
   computed: {
     ...mapGetters(['isLoggedIn', 'isDriver', 'userID']),
