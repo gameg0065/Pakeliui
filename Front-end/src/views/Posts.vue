@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Skelbimai</h2>
-    <PostFilter @post-filter-changed="onPostFilterChanged" />
+    <PostFilter @on-post-filter-changed="onPostFilterChanged" />
     <PostCard v-for="post in posts" :key="post.id" :post="post" />
   </div>
 </template>
@@ -28,13 +28,19 @@ export default {
   methods: {
     onPostFilterChanged(route, date) {
       const posts = PostService.getPosts();
+      const stringsAreEqual = this.stringsAreEqual;
+
       this.posts = posts.filter(function (post) {
-        if (route.from && post.route.from !== route.from) {
-          return false;
+        if (route.from) {
+          if (stringsAreEqual(route.from, post.route.from)) {
+            return false;
+          }
         }
-        
-        if (route.to && post.route.to !== route.to) {
-          return false;
+
+        if (route.to) {
+          if (stringsAreEqual(route.to, post.route.to)) {
+            return false;
+          }
         }
 
         if (date) {
@@ -47,6 +53,9 @@ export default {
         }
         return true;
       });
+    },
+    stringsAreEqual(string1, string2) {
+      return string1.toLowerCase() === string2.toLowerCase();
     },
   },
 };

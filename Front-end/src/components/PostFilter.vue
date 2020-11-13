@@ -11,7 +11,7 @@
     </div>
 
     <div>
-      <label for="date">Pasirinkite datą</label>
+      <label for="date">Kelionės data</label>
       <Datepicker
         id="date"
         v-model="date"
@@ -50,16 +50,17 @@ export default {
   },
   methods: {
     applyFilter() {
-      this.$emit('post-filter-changed', this.route, this.date);
+      this.$emit('on-post-filter-changed', this.route, this.date);
     },
     resetFilter() {
       this.date = '';
       this.route = {
         from: '',
         to: '',
-      };
+	  };
+	  
       this.applyFilter();
-    },
+	},
   },
 };
 </script>
