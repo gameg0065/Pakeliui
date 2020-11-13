@@ -6,7 +6,7 @@
     </div>
 
     <div>
-      <h3>userCard</h3>
+      <UserCard :post="post" :displayedInPost="true"/>
       <Button text="rezervuoti" :isOutlined="true" />
     </div>
 
@@ -61,15 +61,18 @@
 </template>
 
 <script>
-import PostService from '@/services/PostService.js';
-import Comments from '@/components/Comments.vue';
 import Button from '@/components/Button.vue';
+import Comments from '@/components/Comments.vue';
+import UserCard from '@/components/UserCard.vue';
+
+import PostService from '@/services/PostService.js';
 
 export default {
   props: ['id'],
   components: {
     Comments,
     Button,
+    UserCard,
   },
   data() {
     return {
