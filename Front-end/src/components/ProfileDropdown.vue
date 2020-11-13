@@ -35,10 +35,14 @@
         </div>
       </router-link>
 
-      <div class="dropbutton">
-        <img src="../assets/icons/archive.svg" />
-        <p>Skelbimų istorija</p>
-      </div>
+
+      <router-link @click.native="emitClick" :to="{ name: 'driver-history' }">
+        <div class="dropbutton">
+          <img src="../assets/icons/archive.svg" />
+          <p>Skelbimų istorija</p>
+        </div>
+      </router-link>
+
       <div class="dropbutton">
         <img src="../assets/icons/inbox.svg" />
         <p>Gautos rezervacijos</p>
