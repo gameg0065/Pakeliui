@@ -44,7 +44,7 @@
 
       <div>
         <label for="user-contact">Susisiek su manim*</label>
-        <select id="user-contact" v-model="user.contact">
+        <select id="user-contact" v-model="user.contactMethod">
           <option
             v-for="(option, index) in contactOptions"
             :key="index"
@@ -104,7 +104,7 @@
 
       <div>
         <label for="driver-contact">Susisiek su manim*</label>
-        <select id="driver-contact" v-model="user.driver.contact">
+        <select id="driver-contact" v-model="user.driver.contactMethod">
           <option
             v-for="(option, index) in contactOptions"
             :key="index"
