@@ -19,10 +19,11 @@
     <div>
       <h3>Skelbimų istorija</h3>
       <div v-if="expiredPosts.length > 0">
-        TODO
-        <div v-for="post in expiredPosts" :key="post.id">
-          <p>{{ post.route.from + ' - ' + post.route.to }}</p>
-        </div>
+        <DriverExpiredPostCard
+          v-for="post in expiredPosts"
+          :key="post.id"
+          :post="post"
+        />
       </div>
       <div v-else>
         <p>istorija tuščia</p>
@@ -33,6 +34,7 @@
 
 <script>
 import DriverActivePostCard from '@/components/DriverActivePostCard.vue';
+import DriverExpiredPostCard from '@/components/DriverExpiredPostCard.vue';
 
 import PostService from '@/services/PostService.js';
 import UserService from '@/services/UserService.js';
@@ -42,6 +44,7 @@ import { mapGetters } from 'vuex';
 export default {
   components: {
     DriverActivePostCard,
+    DriverExpiredPostCard,
   },
   computed: {
     ...mapGetters(['isLoggedIn', 'isDriver', 'userID']),
