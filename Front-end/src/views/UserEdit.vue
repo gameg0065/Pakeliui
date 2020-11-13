@@ -2,7 +2,6 @@
   <div>
     <div>
       <h2>Profilio redagavimas</h2>
-
 		
       <div>
         <Avatar :path="user.photo" size="big" />
@@ -14,38 +13,38 @@
       </div>
 
       <div>
-        <label for="full-name">Vardas, pavardė*</label>
-        <input type="text" id="full-name" v-model="user.name" />
+        <label for="user-name">Vardas, pavardė*</label>
+        <input type="text" id="user-name" v-model="user.name" />
       </div>
 
       <div>
-        <label for="birth-date">Gimino metai*</label>
-		<Datepicker id="birth-date" v-model="user.birthDate" format="yyyy-MM-dd" :monday-first="true"/>
+        <label for="user-birthdate">Gimino metai*</label>
+		<Datepicker id="user-birthdate" v-model="user.birthDate" format="yyyy-MM-dd" :monday-first="true"/>
       </div>
 
       <div>
-        <label for="city">Miestas</label>
+        <label for="contacts-city">Miestas</label>
         <input type="text" id="city" v-model="user.contacts.city" />
       </div>
 
       <div>
-        <label for="phone-number">Telefonas</label>
-        <input type="text" id="phone-number" v-model="user.contacts.phone" />
+        <label for="contacts-phone">Telefonas</label>
+        <input type="text" id="contacts-phone" v-model="user.contacts.phone" />
       </div>
 
       <div>
-        <label for="email">Elektroninis paštas</label>
-        <input type="text" id="email" v-model="user.contacts.email" />
+        <label for="contacts-email">Elektroninis paštas</label>
+        <input type="text" id="contacts-email" v-model="user.contacts.email" />
       </div>
 
       <div>
-        <label for="facebook">Facebook</label>
-        <input type="text" id="facebook" v-model="user.contacts.facebook" />
+        <label for="contacts-facebook">Facebook</label>
+        <input type="text" id="contacts-facebook" v-model="user.contacts.facebook" />
       </div>
 
       <div>
-        <label for="about">Apie mane</label>
-        <textarea id="about" rows="3" v-model="user.about" />
+        <label for="user-about">Apie mane</label>
+        <textarea id="user-about" rows="3" v-model="user.about" />
       </div>
 
       <label
