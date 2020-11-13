@@ -6,59 +6,55 @@
     </div>
     <div class="userCard">
       <h3>userCard</h3>
-      <Button text="rezervuoti" />
+      <Button text="rezervuoti" :isOutlined="true" />
     </div>
 
     <div class="post-info">
-      <ul>
-        <li><small>Keliones data: </small></li>
-        <li><small>Keliones laikas </small></li>
-        <li><small>Is miesto </small></li>
-        <li><small>Paemimo adresas</small></li>
-        <li><small>I miesta</small></li>
-        <li><small>Pristatymo vieta</small></li>
-        <li><small>Kiek ali paimti keleiviu</small></li>
-        <li><small>Liko laisvu vietu</small></li>
-        <li><small>Keliones kaina</small></li>
-      </ul>
-      <ul class="info">
-        <li>
-          <p>{{ post.date }}</p>
-        </li>
-        <li>
-          <p>{{ post.time }}</p>
-        </li>
-        <li>
-          <p>{{ post.route.from }}</p>
-        </li>
-        <li>
-          <p>{{ post.route.pickup }}</p>
-        </li>
-        <li>
-          <p>{{ post.route.to }}</p>
-        </li>
-        <li>
-          <p>{{ post.route.dropoff }}</p>
-        </li>
-        <li>
-          <p>{{ post.seetCount }}</p>
-        </li>
-        <li><p>paskaiciuoti</p></li>
-        <li>
-          <p>{{ post.price }}€</p>
-        </li>
-      </ul>
+      <div>
+        <small>Kelionės data </small>
+        <p>{{ post.date }}</p>
+      </div>
+      <div>
+          <small>Kelionės laikas </small>
+          {{ post.time }}
+      </div>
+       <div>
+         <small>Iš miesto </small>
+         <p>{{ post.route.from }}</p>
+      </div>
+       <div>
+         <small>Paėmimo adresas</small>
+         <p>{{ post.route.pickup }}</p>
+      </div>
+       <div>
+         <small>Į miestą</small>
+         <p>{{ post.route.to }}</p>
+      </div>
+      <div>
+        <small>Pristatymo vieta</small>
+        <p>{{ post.route.dropoff }}</p>
+      </div>
+      <div>
+        <small>Kiek gali paimti keleivių</small>
+         <p>{{ post.seetCount }}</p>
+      </div>
+      <div>
+        <small>Liko laisvų vietų</small>
+        <p>paskaičiuoti</p>
+      </div>
+      <div>
+        <small>Kelionės kaina</small>
+        <p>{{ post.price }}€</p>
+      </div>
+      <div>
+        <small>Papildoma informacija</small>
+         <p>{{ post.info }}</p>
+      </div>
+    </div>
+   
+      
       <img src="https://i.stack.imgur.com/yEshb.gif" alt="map" />
 
-      <ul>
-        <li><small>Papildoma informacija</small></li>
-      </ul>
-      <ul>
-        <li>
-          <p>{{ post.info }}</p>
-        </li>
-      </ul>
-    </div>
 
     <Button text="REZERVUOTI" />
     <Comments :comments="post.comments" />
@@ -88,5 +84,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/styles/post.css';
+  .post-info{
+    display: flex;
+    flex-direction: column;
+  }
 </style>
