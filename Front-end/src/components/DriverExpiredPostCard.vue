@@ -34,9 +34,9 @@ export default {
   },
   methods: {
     getPassengers(status) {
-      return this.post.passengers.filter(function (passenger) {
-        return passenger.status === status;
-      });
+      return this.post.passengers.filter(
+        (passenger) => passenger.status === status
+      );
     },
   },
 };

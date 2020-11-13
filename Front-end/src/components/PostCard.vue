@@ -33,8 +33,8 @@ import UserService from '@/services/UserService.js';
 
 export default {
   props: {
-    post: Object,
     isPending: Boolean,
+    post: Object,
   },
   components: {
     Avatar,

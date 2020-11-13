@@ -61,26 +61,24 @@ export default {
     };
   },
   created() {
+    const getPost = this.getPost;
     const nonPendingTrips = this.nonPendingTrips;
     const pendingTrips = this.pendingTrips;
     const userID = this.userID;
 
     this.user = UserService.getUser(userID);
+    this.user.trips.forEach((trip) => {
+      const post = getPost(trip.post.id);
+      const passenger = post.passengers.find(
+        (passenger) => passenger.id === userID
+      );
 
-    if (this.user.trips && this.user.trips.length > 0) {
-      this.user.trips.forEach((trip) => {
-        const post = PostService.getPost(trip.post.id);
-        const passenger = post.passengers.find(
-          (passenger) => passenger.id === userID
-        );
-
-        if (passenger.status === 'PENDING') {
-          pendingTrips.push(trip);
-        } else {
-          nonPendingTrips.push(trip);
-        }
-      });
-    }
+      if (passenger.status === 'PENDING') {
+        pendingTrips.push(trip);
+      } else {
+        nonPendingTrips.push(trip);
+      }
+    });
   },
   methods: {
     getPost(id) {

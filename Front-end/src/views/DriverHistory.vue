@@ -72,7 +72,6 @@ export default {
         activePosts.push(post);
       }
     });
-  },
-  methods: {},
+  }
 };
 </script>
