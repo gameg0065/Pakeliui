@@ -7,7 +7,7 @@
           v-for="trip in pendingTrips"
           :key="trip.id"
           :post="getPost(trip.post.id)"
-          :isReserved="true"
+          :isPending="true"
         />
       </div>
       <div v-else>

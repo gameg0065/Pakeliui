@@ -13,7 +13,7 @@
         <p>Laisvų vietų: {{ post.seetCount - post.passengers.length }}</p>
       </div>
 
-      <div v-if="isReserved">
+      <div v-if="isPending">
         <p class="request-status">PENDING</p>
         <Button
           text="Atšaukti rezervaciją"
@@ -34,7 +34,7 @@ import UserService from '@/services/UserService.js';
 export default {
   props: {
     post: Object,
-    isReserved: Boolean,
+    isPending: Boolean,
   },
   components: {
     Avatar,
@@ -43,7 +43,6 @@ export default {
   data() {
     return {
       driver: Object,
-      todo: true
     };
   },
   created() {
