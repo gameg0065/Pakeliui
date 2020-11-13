@@ -10,7 +10,7 @@
       />
     </div>
 
-    <div>
+    <div v-if="isActive">
       <div>
         <textarea rows="4">Mano komentaras goes here</textarea>
       </div>
@@ -32,7 +32,8 @@ import CommentCard from '@/components/CommentCard.vue';
 
 export default {
   props: {
-    comments: Array
+    comments: Array,
+    isActive: Boolean,
   },
   components: {
     Button,

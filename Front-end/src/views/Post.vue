@@ -2,12 +2,13 @@
   <div class="post">
     <div>
       <h2>Skelbimas</h2>
-      <p>skelbimo busena: aktyvus/pasibaiges</p>
+      <p v-if="isActive" class="post-active">Skelbimo būsena: aktyvus</p>
+      <p v-else class="post-expired">Skelbimo būsena: pasibaigęs</p>
     </div>
 
     <div>
-      <UserCard :post="post" :displayedInPost="true"/>
-      <Button text="rezervuoti" :isOutlined="true" />
+      <UserCard :post="post" :displayedInPost="true" />
+      <Button v-if="isActive" text="rezervuoti" :isOutlined="true" />
     </div>
 
     <div>
@@ -55,8 +56,8 @@
 
     <img src="https://i.stack.imgur.com/yEshb.gif" alt="map" />
 
-    <Button text="REZERVUOTI" />
-    <Comments :comments="post.comments" />
+    <Button v-if="isActive" text="REZERVUOTI" />
+    <Comments :comments="post.comments" :isActive="isActive"/>
   </div>
 </template>
 
@@ -76,12 +77,27 @@ export default {
   },
   data() {
     return {
-      post: {},
+      isActive: Boolean,
+      post: Object,
     };
   },
   created() {
     this.post = PostService.getPost(this.id);
+
+    const now = new Date();
+    const postDate = new Date(this.post.date);
+
+    this.isActive = postDate.getTime() >= now.getTime();
   },
 };
 </script>
 
+<style scoped>
+p.post-active {
+  color: var(--color-primary);
+}
+
+p.post-expired {
+  color: var(--color-secondary);
+}
+</style>
