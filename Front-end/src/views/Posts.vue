@@ -32,13 +32,13 @@ export default {
 
       this.posts = posts.filter(function (post) {
         if (route.from) {
-          if (stringsAreEqual(route.from, post.route.from)) {
+          if (!stringsAreEqual(route.from, post.route.from)) {
             return false;
           }
         }
 
         if (route.to) {
-          if (stringsAreEqual(route.to, post.route.to)) {
+          if (!stringsAreEqual(route.to, post.route.to)) {
             return false;
           }
         }
