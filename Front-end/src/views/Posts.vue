@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>this is SKELBIMAI page</h1>
+    <h2>Skelbimai</h2>
     <PostCard v-for="post in posts" :key="post.id" :post="post" />
   </div>
 </template>
