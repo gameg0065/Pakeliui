@@ -83,8 +83,5 @@ export default {
 </script>
 
 <style lang="scss">
-.post-info {
-  display: flex;
-  flex-direction: column;
-}
+ 
 </style>
