@@ -10,6 +10,7 @@ import PostCreate from '../views/PostCreate.vue';
 import Posts from '../views/Posts.vue';
 import Terms from '../views/Terms.vue';
 import User from '../views/User.vue';
+import UserEdit from '../views/UserEdit.vue';
 
 Vue.use(VueRouter);
 
@@ -55,6 +56,11 @@ const routes: Array<RouteConfig> = [
 		name: 'user',
 		component: User,
 		props: true
+	},
+	{
+		path: '/user/edit',
+		name: 'user-edit',
+		component: UserEdit,
 	},
 	{
 		path: '*',
