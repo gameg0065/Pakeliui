@@ -84,8 +84,8 @@ export default {
       this.isEditMode = false;
     }
 
-    this.post.driver = this.post.driver || {};
     this.post.distance = this.post.distance || 0;
+    this.post.driver = this.post.driver || {};
     this.post.passengers = this.post.passengers || [];
     this.post.route = this.post.route || {};
   },
