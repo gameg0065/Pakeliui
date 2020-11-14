@@ -29,6 +29,7 @@
       <li v-if="isLoggedIn">
         <a href="#" @click.prevent="$emit('on-profile-button-click')">
           profilis
+          <Avatar :path="getUser().photo" size="small" />
         </a>
       </li>
     </ul>
@@ -40,16 +41,25 @@
 </style>
 
 <script>
+import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
+
+import UserService from '@/services/UserService.js';
 
 import { mapGetters } from 'vuex';
 
 export default {
   components: {
-    Button
+    Avatar,
+    Button,
   },
   computed: {
     ...mapGetters(['isLoggedIn', 'isDriver', 'userID'])
-  }
+  },
+  methods: {
+    getUser() {
+      return UserService.getUser(this.userID);
+    },
+  },
 };
 </script>
