@@ -2,7 +2,10 @@
   <div class="card shadow">
     <Avatar :path="user.photo" />
 
-    <h4>{{ user.name }}</h4>
+    <router-link :to="{ name: 'user', params: { id: user.id } }">
+      <h4 class="link">{{ user.name }}</h4>
+    </router-link>
+
     <small> Kelionių skaičius: TODO </small>
     <p>Susisiek su manim: {{ getContactInfo() }}</p>
 
@@ -45,3 +48,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+h4.link {
+  color: var(--color-primary);
+}
+</style>
