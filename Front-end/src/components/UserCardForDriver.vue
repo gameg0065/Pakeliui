@@ -6,7 +6,7 @@
       <h4 class="link">{{ user.name }}</h4>
     </router-link>
 
-    <small> Kelionių skaičius: TODO </small>
+    <small> Kelionių skaičius: {{ countTrips() }} </small>
     <p>Susisiek su manim: {{ getContactInfo() }}</p>
 
     <Rating :rating="user.rating" />
@@ -22,6 +22,7 @@ import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
 import Rating from '@/components/Rating.vue';
 
+import PostService from '@/services/PostService.js';
 import UserService from '@/services/UserService.js';
 
 export default {
@@ -40,6 +41,21 @@ export default {
     this.user = UserService.getUser(this.passengerID);
   },
   methods: {
+    countTrips() {
+      const posts = PostService.getPosts();
+      const user = this.user;
+
+      let counter = 0;
+      posts.forEach(function (post) {
+        post.passengers.forEach(function (passenger) {
+          if (passenger.id === user.id && passenger.status === 'TAKEN') {
+            counter++;
+          }
+        });
+      });
+
+      return counter;
+    },
     getContactInfo() {
       const contactMethod = this.user.contactMethod;
       const contactInfo = this.user.contacts[contactMethod];
