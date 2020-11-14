@@ -8,7 +8,7 @@
     </router-link>
     <small> {{ post.date + ', ' + post.time }}</small>
 
-    <div v-if="trip.status === 'TAKEN'">
+    <div v-if="passenger.status === 'TAKEN'">
       <div v-if="trip.feedback">
         <p>{{ feedback.text }}</p>
         <Rating :rating="feedback.rating" />
@@ -17,7 +17,7 @@
     </div>
 
     <div v-else>
-      <p class="tripStatus">{{ trip.status }}</p>
+      <p class="tripStatus">{{ passenger.status }}</p>
     </div>
   </div>
 </template>
@@ -31,6 +31,8 @@ import FeedbackService from '@/services/FeedbackService.js';
 import PostService from '@/services/PostService.js';
 import UserService from '@/services/UserService.js';
 
+import { mapGetters } from 'vuex';
+
 export default {
   props: ['trip'],
   components: {
@@ -38,16 +40,28 @@ export default {
     Button,
     Rating,
   },
+  computed: {
+    ...mapGetters(['isLoggedIn', 'isDriver', 'userID']),
+  },
   data() {
     return {
       driver: Object,
       feedback: Object,
+      passenger: Object,
       post: Object,
     };
   },
   created() {
+    const userID = this.userID;
+
     this.post = PostService.getPost(this.trip.post.id);
+
+    this.passenger = this.post.passengers.find(
+      (passenger) => passenger.id === userID
+    );
+
     this.driver = UserService.getUser(this.post.driver.id);
+
     if (this.trip.feedback) {
       this.feedback = FeedbackService.getFeedback(this.trip.feedback.id);
     }

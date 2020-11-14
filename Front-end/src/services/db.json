@@ -36,10 +36,21 @@
 			"info": "Lorep ipsum bla bla bla",
 			"passengers": [
 				{
-					"id": 100
+					"id": 100,
+					"status": "TAKEN",
+					"feedback": null
 				},
 				{
-					"id": 111
+					"id": 101,
+					"status": "TAKEN",
+					"feedback": {
+						"id": 1
+					}
+				},
+				{
+					"id": 111,
+					"status": "TAKEN",
+					"feedback": null
 				}
 			],
 			"price": 123,
@@ -63,7 +74,7 @@
 					"text": "Nobody realizes that some people expend tremendous energy merely to be normal."
 				}
 			],
-			"date": "2020-11-14",
+			"date": "2020-12-24",
 			"distance": 180,
 			"driver": {
 				"id": 110
@@ -72,7 +83,16 @@
 			"info": "Some dull info",
 			"passengers": [
 				{
-					"id": 101
+					"id": 100,
+					"status": "PENDING"
+				},
+				{
+					"id": 101,
+					"status": "TAKEN"
+				},
+				{
+					"id": 111,
+					"status": "CANCELED"
 				}
 			],
 			"price": 15,
@@ -95,13 +115,19 @@
 			"info": "Palanga močiučių, močiučių Palanga!",
 			"passengers": [
 				{
-					"id": 100
+					"id": 100,
+					"status": "TAKEN",
+					"feedback": null
 				},
 				{
-					"id": 101
+					"id": 101,
+					"status": "TAKEN",
+					"feedback": null
 				},
 				{
-					"id": 110
+					"id": 110,
+					"status": "PENDING",
+					"feedback": null
 				}
 			],
 			"price": 0,
@@ -157,24 +183,21 @@
 					"id": 1,
 					"post": {
 						"id": 1
-					},
-					"status": "TAKEN"
+					}
 				},
 				{
 					"feedback": null,
 					"id": 2,
 					"post": {
 						"id": 2
-					},
-					"status": "PENDING"
+					}
 				},
 				{
 					"feedback": null,
 					"id": 3,
 					"post": {
 						"id": 3
-					},
-					"status": "TAKEN"
+					}
 				}
 			]
 		},
@@ -216,24 +239,21 @@
 					"id": 1,
 					"post": {
 						"id": 1
-					},
-					"status": "TAKEN"
+					}
 				},
 				{
 					"feedback": null,
 					"id": 2,
 					"post": {
 						"id": 2
-					},
-					"status": "CANCELED"
+					}
 				},
 				{
 					"feedback": null,
 					"id": 3,
 					"post": {
 						"id": 3
-					},
-					"status": "TAKEN"
+					}
 				}
 			]
 		},
@@ -301,8 +321,7 @@
 					"id": 1,
 					"post": {
 						"id": 3
-					},
-					"status": "TAKEN"
+					}
 				}
 			]
 		},
@@ -358,16 +377,14 @@
 					"id": 1,
 					"post": {
 						"id": 1
-					},
-					"status": "TAKEN"
+					}
 				},
 				{
 					"feedback": null,
 					"id": 2,
 					"post": {
 						"id": 2
-					},
-					"status": "CANCELED"
+					}
 				}
 			]
 		}

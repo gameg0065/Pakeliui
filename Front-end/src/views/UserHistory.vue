@@ -7,7 +7,7 @@
           v-for="trip in pendingTrips"
           :key="trip.id"
           :post="getPost(trip.post.id)"
-          :isReserved="true"
+          :isPending="true"
         />
       </div>
       <div v-else>
@@ -61,16 +61,24 @@ export default {
     };
   },
   created() {
-    this.user = UserService.getUser(this.userID);
+    const getPost = this.getPost;
+    const nonPendingTrips = this.nonPendingTrips;
+    const pendingTrips = this.pendingTrips;
+    const userID = this.userID;
 
-    if (this.user.trips && this.user.trips.length > 0) {
-      this.nonPendingTrips = this.user.trips.filter(
-        (trip) => trip.status !== 'PENDING'
+    this.user = UserService.getUser(userID);
+    this.user.trips.forEach((trip) => {
+      const post = getPost(trip.post.id);
+      const passenger = post.passengers.find(
+        (passenger) => passenger.id === userID
       );
-      this.pendingTrips = this.user.trips.filter(
-        (trip) => trip.status === 'PENDING'
-      );
-    }
+
+      if (passenger.status === 'PENDING') {
+        pendingTrips.push(trip);
+      } else {
+        nonPendingTrips.push(trip);
+      }
+    });
   },
   methods: {
     getPost(id) {
