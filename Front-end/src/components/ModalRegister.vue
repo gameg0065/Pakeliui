@@ -18,6 +18,10 @@
 
         <form>
           <div>
+            <label for="name"> Vardas, pavardė </label>
+            <input type="text" id="name" />
+          </div>
+          <div>
             <label for="email"> Elektroninis paštas </label>
             <input type="email" id="email" ref="email" />
           </div>
