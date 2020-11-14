@@ -5,8 +5,13 @@
         <div v-for="passenger in post.passengers" :key="passenger.id">
           <div v-if="passenger.status === 'PENDING'">
             <UserCardForDriver :passengerID="passenger.id" :post="post" />
-            <Button text="atmesti" :isOutlined="true" :isSecondary="true" />
-            <Button text="patvirtinti" :isOutlined="true" />
+            <Button
+              text="atmesti"
+              :click="dismiss"
+              :isOutlined="true"
+              :isSecondary="true"
+            />
+            <Button text="patvirtinti" :click="approve" :isOutlined="true" />
           </div>
         </div>
       </div>
@@ -43,6 +48,12 @@ export default {
     this.pendingPosts = this.getDriverPostsWithPassengersWithStatus('PENDING');
   },
   methods: {
+    approve() {
+      alert('TODO');
+    },
+    dismiss() {
+      alert('TODO');
+    },
     getDriverPostsWithPassengersWithStatus(status) {
       const postHasPassengersWithStatus = this.postHasPassengersWithStatus;
       const user = UserService.getUser(this.userID);
