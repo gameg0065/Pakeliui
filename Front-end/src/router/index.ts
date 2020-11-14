@@ -49,7 +49,7 @@ const routes: Array<RouteConfig> = [
 		component: PostCreate
 	},
 	{
-		path: '/post/edit',
+		path: '/post/:id/edit',
 		name: 'post-edit',
 		component: PostCreate,
 		props: true
@@ -73,13 +73,12 @@ const routes: Array<RouteConfig> = [
 	{
 		path: '/user/edit',
 		name: 'user-edit',
-		component: UserEdit,
-  },
-  {
+		component: UserEdit
+	},
+	{
 		path: '/user/history',
 		name: 'user-history',
 		component: UserHistory
-
 	},
 	{
 		path: '*',
