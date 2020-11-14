@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 v-if="isEditMode">Redaguok skelbimą</h2>
-    <h2 v-else>Sukur skelbimą</h2>
+    <h2 v-else>Sukurk skelbimą</h2>
 
     <div>
       <label for="post-date">Kelionės data*</label>
