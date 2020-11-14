@@ -1,31 +1,31 @@
 <template>
-  <router-link :to="{ name: 'post', params: { id: post.id } }">
-    <div class="card shadow">
-      <div>
-        <Avatar :path="driver.photo" />
-        <img src="../assets/icons/star.svg" alt="star" />
-        <small>{{ driver.driver.rating }} / 5</small>
-      </div>
-      <div>
-        <h4>{{ post.route.from + ' - ' + post.route.to }}</h4>
-        <p>{{ post.date + ', ' + post.time }}</p>
-        <small>{{ driver.name }}</small>
-        <p>Laisvų vietų: {{ post.seetCount - post.passengers.length }}</p>
-      </div>
-
-      <p v-if="hasExpired()" class="expired"> EXPIRED </p>
-
-      <div v-if="isPending">
-        <p class="request-status">PENDING</p>
-        <Button
-          text="Atšaukti rezervaciją"
-          :click="cancelReservation"
-          :isSecondary="true"
-          :isOutlined="true"
-        />
-      </div>
+  <div class="card shadow">
+    <div>
+      <Avatar :path="driver.photo" />
+      <img src="../assets/icons/star.svg" alt="star" />
+      <small>{{ driver.driver.rating }} / 5</small>
     </div>
-  </router-link>
+    <div>
+      <router-link :to="{ name: 'post', params: { id: post.id } }">
+        <h4>{{ post.route.from + ' - ' + post.route.to }}</h4>
+      </router-link>
+      <p>{{ post.date + ', ' + post.time }}</p>
+      <small>{{ driver.name }}</small>
+      <p>Laisvų vietų: {{ post.seetCount - post.passengers.length }}</p>
+    </div>
+
+    <p v-if="hasExpired()" class="expired">EXPIRED</p>
+
+    <div v-if="isPending">
+      <p class="request-status">PENDING</p>
+      <Button
+        text="Atšaukti rezervaciją"
+        :click="cancelReservation"
+        :isSecondary="true"
+        :isOutlined="true"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
