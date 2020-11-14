@@ -7,7 +7,7 @@
     </div>
 
     <div>
-      <UserCard :post="post" :displayedInPost="true" />
+      <UserCardInPost :post="post" />
       <Button v-if="isActive" text="rezervuoti" :isOutlined="true" />
     </div>
 
@@ -64,7 +64,7 @@
 <script>
 import Button from '@/components/Button.vue';
 import Comments from '@/components/Comments.vue';
-import UserCard from '@/components/UserCard.vue';
+import UserCardInPost from '@/components/UserCardInPost.vue';
 
 import PostService from '@/services/PostService.js';
 
@@ -73,7 +73,7 @@ export default {
   components: {
     Comments,
     Button,
-    UserCard,
+    UserCardInPost,
   },
   data() {
     return {
@@ -82,7 +82,7 @@ export default {
     };
   },
   created() {
-    this.post = PostService.getPost(this.id);
+    this.post = PostService.getPost(parseInt(this.id));
 
     const now = new Date();
     const postDate = new Date(this.post.date);
