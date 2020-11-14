@@ -35,7 +35,6 @@
         </div>
       </router-link>
 
-
       <router-link @click.native="emitClick" :to="{ name: 'driver-history' }">
         <div class="dropbutton">
           <img src="../assets/icons/archive.svg" />
@@ -43,10 +42,12 @@
         </div>
       </router-link>
 
-      <div class="dropbutton">
-        <img src="../assets/icons/inbox.svg" />
-        <p>Gautos rezervacijos</p>
-      </div>
+      <router-link @click.native="emitClick" :to="{ name: 'driver-requests' }">
+        <div class="dropbutton">
+          <img src="../assets/icons/inbox.svg" />
+          <p>Gautos rezervacijos</p>
+        </div>
+      </router-link>
     </div>
     <router-link @click.native="logout" :to="{ name: 'home' }">
       <div class="dropbutton">
