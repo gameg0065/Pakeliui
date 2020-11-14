@@ -80,7 +80,7 @@ export default {
   created() {
     if (this.id) {
       this.isEditMode = true;
-      this.post = PostService.getPost(this.id);
+      this.post = PostService.getPost(parseInt(this.id));
     } else {
       this.isEditMode = false;
     }
