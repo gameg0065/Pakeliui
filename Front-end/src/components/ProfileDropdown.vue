@@ -10,14 +10,20 @@
       </div>
     </router-link>
 
-    <router-link @click.native="emitClick" :to="{ name: 'user-edit' }">
+    <router-link
+      @click.native="emitClick"
+      :to="{ name: 'user-edit', params: { id: userID } }"
+    >
       <div class="dropbutton">
         <img src="../assets/icons/settings.svg" />
         <p>Redaguoti profilį</p>
       </div>
     </router-link>
 
-    <router-link @click.native="emitClick" :to="{ name: 'user-history' }">
+    <router-link
+      @click.native="emitClick"
+      :to="{ name: 'user-history', params: { id: userID } }"
+    >
       <div class="dropbutton">
         <img src="../assets/icons/archive.svg" />
         <p>Rezervacijų istorija</p>
@@ -32,14 +38,20 @@
         </div>
       </router-link>
 
-      <router-link @click.native="emitClick" :to="{ name: 'driver-history' }">
+      <router-link
+        @click.native="emitClick"
+        :to="{ name: 'driver-history', params: { id: userID } }"
+      >
         <div class="dropbutton">
           <img src="../assets/icons/archive.svg" />
           <p>Skelbimų istorija</p>
         </div>
       </router-link>
 
-      <router-link @click.native="emitClick" :to="{ name: 'driver-requests' }">
+      <router-link
+        @click.native="emitClick"
+        :to="{ name: 'driver-requests', params: { id: userID } }"
+      >
         <div class="dropbutton">
           <img src="../assets/icons/inbox.svg" />
           <p>Gautos rezervacijos</p>
