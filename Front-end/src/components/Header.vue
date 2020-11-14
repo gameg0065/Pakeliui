@@ -54,7 +54,7 @@ export default {
     Button,
   },
   computed: {
-    ...mapGetters(['isLoggedIn', 'isDriver', 'userID'])
+    ...mapGetters(['isLoggedIn', 'isDriver', 'userID']),
   },
   methods: {
     getUser() {

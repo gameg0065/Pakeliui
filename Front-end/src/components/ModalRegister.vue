@@ -13,9 +13,7 @@
         <h3>Užsiregistruok</h3>
         <small>
           Jau turi paskyrą?
-          <a href="#" @click.prevent="showModalLogin">
-            Prisijunk
-          </a>
+          <a href="#" @click.prevent="showModalLogin"> Prisijunk </a>
         </small>
 
         <form>
@@ -50,7 +48,7 @@ import Button from '@/components/Button.vue';
 export default {
   name: 'ModalRegister',
   components: {
-    Button
+    Button,
   },
   methods: {
     hide() {
@@ -69,11 +67,11 @@ export default {
     submit() {
       // validate here
       this.hide();
-    }
+    },
   },
   mount() {
     this.show();
-  }
+  },
 };
 </script>
 

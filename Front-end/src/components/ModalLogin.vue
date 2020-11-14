@@ -56,11 +56,11 @@ import UserService from '@/services/UserService.js';
 export default {
   name: 'ModalLogin',
   components: {
-    Button
+    Button,
   },
   data() {
     return {
-      id: this.$store.getters.userID
+      id: this.$store.getters.userID,
     };
   },
   methods: {
@@ -93,11 +93,11 @@ export default {
       this.$store.commit('SET_USER_ID', id);
 
       this.hide();
-    }
+    },
   },
   mount() {
     this.show();
-  }
+  },
 };
 </script>
 

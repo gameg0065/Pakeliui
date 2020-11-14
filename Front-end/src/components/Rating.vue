@@ -13,8 +13,8 @@ export default {
   props: {
     rating: {
       type: [Number, String],
-      default: 5
-    }
-  }
+      default: 5,
+    },
+  },
 };
 </script>

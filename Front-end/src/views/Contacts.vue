@@ -20,8 +20,8 @@
       <div>
         <label for="city-drop">Miestas</label>
         <select id="city-drop" v-model="selectedCity">
-          <option v-for="(city, index) in cities" :key="index" :value="city"
-            >{{ city }}
+          <option v-for="(city, index) in cities" :key="index" :value="city">
+            {{ city }}
           </option>
         </select>
       </div>
@@ -47,25 +47,25 @@ import cities from '../assets/cities.json';
 
 export default {
   components: {
-    Button
+    Button,
   },
   data() {
     return {
       cities: [],
-      selectedCity: null
+      selectedCity: null,
     };
   },
   created() {
     this.cities = cities.sort();
     this.selectedCity = this.cities.find(
-      city => city.toLowerCase() === 'vilnius'
+      (city) => city.toLowerCase() === 'vilnius'
     );
   },
   methods: {
     submit() {
       alert('Jau bėgu ir siunčiu');
-    }
-  }
+    },
+  },
 };
 </script>
 

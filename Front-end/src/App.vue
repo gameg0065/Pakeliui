@@ -11,7 +11,7 @@
 
     <Header @on-profile-button-click="onProfileButtonClick" />
 
-    <router-view :key="$route.fullPath"/>
+    <router-view :key="$route.fullPath" />
 
     <Footer />
   </div>
@@ -31,18 +31,18 @@ export default {
     Footer,
     ModalLogin,
     ModalRegister,
-    ProfileDropdown
+    ProfileDropdown,
   },
   data() {
     return {
-      dropdownIsVisible: false
+      dropdownIsVisible: false,
     };
   },
   methods: {
     onProfileButtonClick(event) {
       this.dropdownIsVisible = !this.dropdownIsVisible;
-    }
-  }
+    },
+  },
 };
 </script>
 

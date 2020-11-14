@@ -57,7 +57,7 @@
     <img src="https://i.stack.imgur.com/yEshb.gif" alt="map" />
 
     <Button v-if="isActive" text="REZERVUOTI" />
-    <Comments :comments="post.comments" :isActive="isActive"/>
+    <Comments :comments="post.comments" :isActive="isActive" />
   </div>
 </template>
 

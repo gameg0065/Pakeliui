@@ -57,10 +57,10 @@ export default {
       this.route = {
         from: '',
         to: '',
-	  };
-	  
+      };
+
       this.applyFilter();
-	},
+    },
   },
 };
 </script>

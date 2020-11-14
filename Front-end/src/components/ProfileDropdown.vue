@@ -10,10 +10,7 @@
       </div>
     </router-link>
 
-    <router-link
-      @click.native="emitClick"
-      :to="{ name: 'user-edit' }"
-    >
+    <router-link @click.native="emitClick" :to="{ name: 'user-edit' }">
       <div class="dropbutton">
         <img src="../assets/icons/settings.svg" />
         <p>Redaguoti profilį</p>

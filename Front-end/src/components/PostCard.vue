@@ -38,7 +38,7 @@ export default {
   },
   components: {
     Avatar,
-    Button
+    Button,
   },
   data() {
     return {
@@ -48,11 +48,11 @@ export default {
   created() {
     this.driver = UserService.getUser(this.post.driver.id);
   },
-  methods:{
-    cancelReservation(){
+  methods: {
+    cancelReservation() {
       alert('TODO');
-    }
-  }
+    },
+  },
 };
 </script>
 

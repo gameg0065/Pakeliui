@@ -24,7 +24,7 @@
 
     <div>
       <small>Nukeliauta kilometrų</small>
-      <p>{{ countDistance(this.user.trips) + ' km'}}</p>
+      <p>{{ countDistance(this.user.trips) + ' km' }}</p>
     </div>
 
     <div>
@@ -73,7 +73,7 @@
 
       <div>
         <small>Pavežta kilometrų</small>
-        <p>{{ countDistance(this.user.driver.posts) + ' km'}}</p>
+        <p>{{ countDistance(this.user.driver.posts) + ' km' }}</p>
       </div>
 
       <div>
@@ -110,8 +110,8 @@
     <div
       v-if="
         user.feedbacks &&
-          user.feedbacks.received &&
-          user.feedbacks.received.length > 0
+        user.feedbacks.received &&
+        user.feedbacks.received.length > 0
       "
     >
       <h3>Atsiliepimai apie mane kaip keleivį</h3>
@@ -125,8 +125,8 @@
     <div
       v-if="
         user.driver.feedbacks &&
-          user.driver.feedbacks.received &&
-          user.driver.feedbacks.received.length > 0
+        user.driver.feedbacks.received &&
+        user.driver.feedbacks.received.length > 0
       "
     >
       <h3>Atsiliepimai apie mane kaip vairuotoją</h3>
@@ -153,11 +153,11 @@ export default {
   components: {
     Avatar,
     Rating,
-    CommentCard
+    CommentCard,
   },
   data() {
     return {
-      user: Object
+      user: Object,
     };
   },
   created() {
@@ -190,7 +190,7 @@ export default {
       return feedbacks.map((feedback) =>
         FeedbackService.getFeedback(feedback.id)
       );
-    }
-  }
+    },
+  },
 };
 </script>

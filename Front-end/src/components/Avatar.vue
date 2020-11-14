@@ -6,12 +6,12 @@
 export default {
   props: {
     path: {
-      type: String
+      type: String,
     },
     size: {
       type: String,
-      default: 'regular'
-    }
+      default: 'regular',
+    },
   },
   methods: {
     getImage(path) {
@@ -21,8 +21,8 @@ export default {
       return this.path
         ? this.path
         : require('../assets/images/user-undefined.png');
-    }
-  }
+    },
+  },
 };
 </script>
 

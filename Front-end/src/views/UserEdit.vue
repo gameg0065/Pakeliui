@@ -2,7 +2,7 @@
   <div>
     <div>
       <h2>Profilio redagavimas</h2>
-		
+
       <div>
         <Avatar :path="user.photo" size="big" />
         <Button
@@ -19,7 +19,12 @@
 
       <div>
         <label for="user-birthdate">Gimino metai*</label>
-		<Datepicker id="user-birthdate" v-model="user.birthDate" format="yyyy-MM-dd" :monday-first="true"/>
+        <Datepicker
+          id="user-birthdate"
+          v-model="user.birthDate"
+          format="yyyy-MM-dd"
+          :monday-first="true"
+        />
       </div>
 
       <div>
@@ -39,7 +44,11 @@
 
       <div>
         <label for="contacts-facebook">Facebook</label>
-        <input type="text" id="contacts-facebook" v-model="user.contacts.facebook" />
+        <input
+          type="text"
+          id="contacts-facebook"
+          v-model="user.contacts.facebook"
+        />
       </div>
 
       <div>
@@ -99,7 +108,12 @@
 
       <div>
         <label for="car-date">Pagaminimo metai*</label>
-		<Datepicker id="car-date" v-model="user.driver.car.date" format="yyyy-MM-dd" :monday-first="true"/>
+        <Datepicker
+          id="car-date"
+          v-model="user.driver.car.date"
+          format="yyyy-MM-dd"
+          :monday-first="true"
+        />
       </div>
 
       <div>
@@ -165,7 +179,7 @@ export default {
     },
     changeUserPhoto() {
       alert('TODO');
-	},
+    },
     checkboxChanged() {
       const user = this.user;
       let driver = user.driver;

@@ -37,7 +37,7 @@ export default {
   },
   components: {
     Button,
-    CommentCard
-  }
+    CommentCard,
+  },
 };
 </script>

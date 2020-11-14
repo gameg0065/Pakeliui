@@ -18,21 +18,21 @@ import UserService from '@/services/UserService.js';
 export default {
   props: {
     comment: {
-      type: Object
-    }
+      type: Object,
+    },
   },
   components: {
     Avatar,
-    Rating
+    Rating,
   },
   data() {
     return {
-      comentator: Object
+      comentator: Object,
     };
   },
   created() {
     this.comentator = UserService.getUser(this.comment.author.id);
-  }
+  },
 };
 </script>
 
