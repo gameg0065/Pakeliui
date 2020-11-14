@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Profilis #{{ id }}</h2>
+    <h2>Profilis</h2>
     <Avatar :path="user.photo" size="big" />
     <div>
       <small>Vardas, pavardė</small>
