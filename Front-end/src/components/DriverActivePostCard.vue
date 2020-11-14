@@ -57,7 +57,7 @@
     <Button text="ištrinti" :isOutlined="true" :isSecondary="true" />
 
     <router-link
-      :to="{ name: 'post-edit', params: { postedit: post, id: post.id } }"
+      :to="{ name: 'post-edit', params: { id: post.id } }"
     >
       <Button text="redaguoti" :isOutlined="true" />
     </router-link>

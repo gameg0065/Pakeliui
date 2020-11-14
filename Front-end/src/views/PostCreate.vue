@@ -61,8 +61,9 @@
 import Button from '@/components/Button.vue';
 import Datepicker from 'vuejs-datepicker';
 
+import PostService from '@/services/PostService.js';
 export default {
-  props: ['postedit'],
+  props: ['id'],
   components: {
     Button,
     Datepicker,
@@ -77,9 +78,9 @@ export default {
     };
   },
   created() {
-    if (this.postedit) {
+    if (this.id) {
       this.isEditMode = true;
-      this.post = this.postedit;
+      this.post = PostService.getPost(this.id);
     } else {
       this.isEditMode = false;
     }
