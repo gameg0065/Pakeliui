@@ -13,6 +13,8 @@
         <p>Laisvų vietų: {{ post.seetCount - post.passengers.length }}</p>
       </div>
 
+      <p v-if="hasExpired()" class="expired"> EXPIRED </p>
+
       <div v-if="isPending">
         <p class="request-status">PENDING</p>
         <Button
@@ -52,6 +54,12 @@ export default {
     cancelReservation() {
       alert('TODO');
     },
+    hasExpired() {
+      const now = new Date();
+      const postDate = new Date(this.post.date);
+
+      return now.getTime() >= postDate.getTime();
+    },
   },
 };
 </script>
@@ -80,5 +88,9 @@ h4,
 
 a {
   text-decoration: none;
+}
+
+p.expired {
+  color: var(--color-secondary);
 }
 </style>
