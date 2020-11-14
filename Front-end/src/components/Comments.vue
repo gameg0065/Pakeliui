@@ -20,7 +20,7 @@
       <small>Rašydami komentarą, sutinkate su portalo taisyklėmis.</small>
 
       <div>
-        <Button text="komentuoti" :isOutlined="true" />
+        <Button text="komentuoti" :click="submit" :isOutlined="true" />
       </div>
     </div>
   </div>
@@ -38,6 +38,11 @@ export default {
   components: {
     Button,
     CommentCard,
+  },
+  methods: {
+    submit() {
+      alert('TODO');
+    },
   },
 };
 </script>
