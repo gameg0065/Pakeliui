@@ -53,7 +53,7 @@
       <textarea id="post-info" rows="3" v-model="post.info" />
     </div>
 
-    <Button text="išsaugoti" :isOutlined="true"/>
+    <Button :click="submit" text="išsaugoti" :isOutlined="true" />
   </div>
 </template>
 
@@ -85,6 +85,11 @@ export default {
     }
 
     this.post.route = this.post.route || {};
+  },
+  methods: {
+    submit() {
+      alert('TODO');
+    },
   },
 };
 </script>
