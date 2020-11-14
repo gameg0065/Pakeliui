@@ -49,6 +49,12 @@ const routes: Array<RouteConfig> = [
 		component: PostCreate
 	},
 	{
+		path: '/post/edit',
+		name: 'post-edit',
+		component: PostCreate,
+		props: true
+	},
+	{
 		path: '/posts',
 		name: 'posts',
 		component: Posts
