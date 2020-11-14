@@ -5,6 +5,7 @@ import Home from '../views/Home.vue';
 import About from '../views/About.vue';
 import Contacts from '../views/Contacts.vue';
 import DriverHistory from '../views/DriverHistory.vue';
+import DriverRequests from '../views/DriverRequests.vue';
 import PageNotFound from '../views/PageNotFound.vue';
 import Post from '../views/Post.vue';
 import PostCreate from '../views/PostCreate.vue';
@@ -36,6 +37,11 @@ const routes: Array<RouteConfig> = [
 		path: '/driver/history',
 		name: 'driver-history',
 		component: DriverHistory
+	},
+	{
+		path: '/driver/requests',
+		name: 'driver-requests',
+		component: DriverRequests
 	},
 	{
 		path: '/post/:id',
