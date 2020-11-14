@@ -4,7 +4,7 @@
       <div v-for="post in pendingPosts" :key="post.id">
         <div v-for="passenger in post.passengers" :key="passenger.id">
           <div v-if="passenger.status === 'PENDING'">
-            <UserCardForDriver :passengerID="passenger.id" :postID="post.id" />
+            <UserCardForDriver :passengerID="passenger.id" :post="post" />
             <Button text="atmesti" :isOutlined="true" :isSecondary="true" />
             <Button text="patvirtinti" :isOutlined="true" />
           </div>

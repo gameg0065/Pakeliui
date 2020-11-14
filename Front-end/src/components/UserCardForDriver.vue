@@ -11,7 +11,7 @@
 
     <Rating :rating="user.rating" />
 
-    <router-link :to="{ name: 'post', params: { id: postID } }">
+    <router-link :to="{ name: 'post', params: { id: post.id } }">
       <Button text="atidaryti skelbimą" :isOutlined="true" />
     </router-link>
   </div>
@@ -25,7 +25,7 @@ import Rating from '@/components/Rating.vue';
 import UserService from '@/services/UserService.js';
 
 export default {
-  props: ['passengerID', 'postID'],
+  props: ['passengerID', 'post'],
   components: {
     Avatar,
     Button,
