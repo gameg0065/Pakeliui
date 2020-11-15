@@ -6,30 +6,30 @@
           ><img src="../assets/images/logo-pakeliui.svg" class="logo"
         /></router-link>
       </li>
-      <li v-if="isLoggedIn">
+      <li v-if="user">
         <router-link :to="{ name: 'posts' }">
           <Button text="skelbimai" :isSecondary="true" />
         </router-link>
       </li>
-      <li v-if="isLoggedIn">
-        <router-link v-if="isDriver" :to="{ name: 'post-create' }">
+      <li v-if="user">
+        <router-link v-if="user.isDriver" :to="{ name: 'post-create' }">
           <Button text="sukurk skelbimą" :isSecondary="true" />
         </router-link>
       </li>
     </ul>
     <ul class="right-links">
-      <li v-if="!isLoggedIn">
+      <li v-if="!user">
         <a href="#" @click.prevent="$modal.show('modal-login')">prisijungti</a>
       </li>
-      <li v-if="!isLoggedIn">
+      <li v-if="!user">
         <a href="#" @click.prevent="$modal.show('modal-register')"
           >registruotis</a
         >
       </li>
-      <li v-if="isLoggedIn">
+      <li v-if="user">
         <a href="#" @click.prevent="$emit('on-profile-button-click')">
           profilis
-          <Avatar :path="getUser().photo" size="small" />
+          <Avatar :path="user.photo" size="small" />
         </a>
       </li>
     </ul>
@@ -44,10 +44,6 @@
 import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
 
-import UserService from '@/services/UserService.js';
-
-import { mapGetters } from 'vuex';
-
 export default {
   name: 'Header',
   components: {
@@ -55,11 +51,8 @@ export default {
     Button,
   },
   computed: {
-    ...mapGetters(['isLoggedIn', 'isDriver', 'userID']),
-  },
-  methods: {
-    getUser() {
-      return UserService.getUser(this.userID);
+    user() {
+      return this.$store.getters.getUser;
     },
   },
 };

@@ -29,8 +29,6 @@ import UserCardForDriver from '@/components/UserCardForDriver.vue';
 import PostService from '@/services/PostService.js';
 import UserService from '@/services/UserService.js';
 
-import { mapGetters } from 'vuex';
-
 export default {
   name: 'DriverRequests',
   components: {
@@ -38,7 +36,9 @@ export default {
     UserCardForDriver,
   },
   computed: {
-    ...mapGetters(['isLoggedIn', 'isDriver', 'userID']),
+    user() {
+      return this.$store.getters.getUser;
+    },
   },
   data() {
     return {
@@ -57,7 +57,7 @@ export default {
     },
     getDriverPostsWithPassengersWithStatus(status) {
       const postHasPassengersWithStatus = this.postHasPassengersWithStatus;
-      const user = UserService.getUser(this.userID);
+      const user = this.user;
 
       return user.driver.posts.reduce(function (accumulator, trip) {
         const post = PostService.getPost(trip.id);
