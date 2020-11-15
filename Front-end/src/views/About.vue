@@ -10,32 +10,50 @@
       </p>
       <div class="profiles">
         <div class="profile">
-          <Avatar size="big" path="https://images.unsplash.com/photo-1476493279419-b785d41e38d8?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=61eaea85f1aa3d065400179c78163f15"/>
+          <Avatar
+            size="big"
+            path="https://images.unsplash.com/photo-1476493279419-b785d41e38d8?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=61eaea85f1aa3d065400179c78163f15"
+          />
           <p>Aistė Stončiūtė</p>
         </div>
 
         <div class="profile">
-          <Avatar size="big" path="https://uifaces.co/our-content/donated/FJkauyEa.jpg"/>
+          <Avatar
+            size="big"
+            path="https://uifaces.co/our-content/donated/FJkauyEa.jpg"
+          />
           <p>Ignas Pangonis</p>
         </div>
 
         <div class="profile">
-          <Avatar size="big" path="https://uifaces.co/our-content/donated/vIqzOHXj.jpg"/>
+          <Avatar
+            size="big"
+            path="https://uifaces.co/our-content/donated/vIqzOHXj.jpg"
+          />
           <p>Benjaminas Račas</p>
         </div>
 
         <div class="profile">
-          <Avatar size="big" path="https://uifaces.co/our-content/donated/1H_7AxP0.jpg"/>
+          <Avatar
+            size="big"
+            path="https://uifaces.co/our-content/donated/1H_7AxP0.jpg"
+          />
           <p>Vadimas Kožemiakinas</p>
         </div>
 
         <div class="profile">
-          <Avatar size="big" path="https://uifaces.co/our-content/donated/Square__small_.jpg"/>
+          <Avatar
+            size="big"
+            path="https://uifaces.co/our-content/donated/Square__small_.jpg"
+          />
           <p>Tomas Kvedravičius</p>
         </div>
 
         <div class="profile">
-          <Avatar size="big" path="https://uifaces.co/our-content/donated/Xp0NB-TL.jpg"/>
+          <Avatar
+            size="big"
+            path="https://uifaces.co/our-content/donated/Xp0NB-TL.jpg"
+          />
           <p>Tomas Šinkūnas</p>
         </div>
       </div>
@@ -46,9 +64,10 @@
 <script>
 import Avatar from '@/components/Avatar.vue';
 export default {
+  name: 'About',
   components: {
-    Avatar
-  }
+    Avatar,
+  },
 };
 </script>
 <style lang="scss">

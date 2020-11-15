@@ -49,12 +49,13 @@ import UserService from '@/services/UserService.js';
 import { mapGetters } from 'vuex';
 
 export default {
+  name: 'Header',
   components: {
     Avatar,
     Button,
   },
   computed: {
-    ...mapGetters(['isLoggedIn', 'isDriver', 'userID'])
+    ...mapGetters(['isLoggedIn', 'isDriver', 'userID']),
   },
   methods: {
     getUser() {

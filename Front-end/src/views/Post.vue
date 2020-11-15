@@ -8,7 +8,12 @@
 
     <div>
       <UserCardInPost :post="post" />
-      <Button v-if="isActive" text="rezervuoti" :isOutlined="true" />
+      <Button
+        v-if="isActive"
+        text="rezervuoti"
+        :click="reserve"
+        :isOutlined="true"
+      />
     </div>
 
     <div>
@@ -56,8 +61,8 @@
 
     <img src="https://i.stack.imgur.com/yEshb.gif" alt="map" />
 
-    <Button v-if="isActive" text="REZERVUOTI" />
-    <Comments :comments="post.comments" :isActive="isActive"/>
+    <Button v-if="isActive" text="rezervuoti" :click="reserve" />
+    <Comments :comments="post.comments" :isActive="isActive" />
   </div>
 </template>
 
@@ -69,6 +74,7 @@ import UserCardInPost from '@/components/UserCardInPost.vue';
 import PostService from '@/services/PostService.js';
 
 export default {
+  name: 'Post',
   props: ['id'],
   components: {
     Comments,
@@ -88,6 +94,11 @@ export default {
     const postDate = new Date(this.post.date);
 
     this.isActive = postDate.getTime() >= now.getTime();
+  },
+  methods: {
+    reserve() {
+      alert('TODO');
+    },
   },
 };
 </script>

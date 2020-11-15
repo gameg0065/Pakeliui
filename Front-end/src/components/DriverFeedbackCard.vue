@@ -1,7 +1,9 @@
 <template>
   <div>
     <Avatar :path="user.photo" />
-    <p>{{ user.name }}</p>
+    <router-link :to="{ name: 'user', params: { id: user.id } }">
+      <p class="link">{{ user.name }}</p>
+    </router-link>
 
     <div v-if="feedback">
       <small> Įvertinimo data: {{ feedback.date }} </small>
@@ -11,8 +13,8 @@
 
     <Button
       v-else
-      :click="rateUser"
       text="įvertink keleivį"
+      :click="rateUser"
       :isOutlined="true"
     />
   </div>
@@ -27,6 +29,7 @@ import FeedbackService from '@/services/FeedbackService.js';
 import UserService from '@/services/UserService.js';
 
 export default {
+  name: 'DriverFeedbackCard',
   props: ['passenger'],
   components: {
     Avatar,
@@ -52,3 +55,9 @@ export default {
   },
 };
 </script>
+
+<style>
+p.link {
+  color: var(--color-primary);
+}
+</style>

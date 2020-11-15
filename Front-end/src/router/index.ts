@@ -34,14 +34,16 @@ const routes: Array<RouteConfig> = [
 		component: Contacts
 	},
 	{
-		path: '/driver/history',
+		path: '/user/:id/driver/history',
 		name: 'driver-history',
-		component: DriverHistory
+		component: DriverHistory,
+		props: true
 	},
 	{
-		path: '/driver/requests',
+		path: '/user/:id/driver/requests',
 		name: 'driver-requests',
-		component: DriverRequests
+		component: DriverRequests,
+		props: true
 	},
 	{
 		path: '/post/:id',
@@ -50,7 +52,7 @@ const routes: Array<RouteConfig> = [
 		props: true
 	},
 	{
-		path: '/post/create',
+		path: '/postcreate',
 		name: 'post-create',
 		component: PostCreate
 	},
@@ -77,14 +79,16 @@ const routes: Array<RouteConfig> = [
 		props: true
 	},
 	{
-		path: '/user/edit',
+		path: '/user/:id/edit',
 		name: 'user-edit',
-		component: UserEdit
+		component: UserEdit,
+		props: true
 	},
 	{
-		path: '/user/history',
+		path: '/user/:id/history',
 		name: 'user-history',
-		component: UserHistory
+		component: UserHistory,
+		props: true
 	},
 	{
 		path: '*',

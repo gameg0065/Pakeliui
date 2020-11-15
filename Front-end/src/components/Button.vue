@@ -10,28 +10,28 @@ export default {
   props: {
     click: {
       required: false,
-      type: Function
+      type: Function,
     },
     isLarge: {
       required: false,
-      type: Boolean
+      type: Boolean,
     },
     isOutlined: {
       required: false,
-      type: Boolean
+      type: Boolean,
     },
     isSecondary: {
       required: false,
-      type: Boolean
+      type: Boolean,
     },
     text: {
       default: 'button',
       required: true,
-      type: String
-    }
+      type: String,
+    },
   },
   computed: {
-    computeClass: function() {
+    computeClass: function () {
       let css = this.isSecondary ? 'secondary' : 'primary';
       if (this.isOutlined) {
         css += '-outlined';
@@ -42,15 +42,15 @@ export default {
       }
 
       return css;
-    }
+    },
   },
   methods: {
     onClick() {
       if (typeof this.click === 'function') {
         this.click();
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

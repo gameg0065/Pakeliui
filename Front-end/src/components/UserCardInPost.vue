@@ -21,6 +21,7 @@ import Rating from '@/components/Rating.vue';
 import UserService from '@/services/UserService.js';
 
 export default {
+  name: 'UserCardInPost',
   props: ['post'],
   components: {
     Avatar,

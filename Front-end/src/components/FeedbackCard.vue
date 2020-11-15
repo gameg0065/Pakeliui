@@ -2,7 +2,7 @@
   <div class="feedback card shadow">
     <Avatar :path="driver.photo" size="small" />
     <router-link :to="{ name: 'post', params: { id: post.id } }">
-      <p class="skelbimoLinkas">
+      <p class="link">
         {{ post.route.from + ' - ' + post.route.to }}
       </p>
     </router-link>
@@ -13,7 +13,12 @@
         <p>{{ feedback.text }}</p>
         <Rating :rating="feedback.rating" />
       </div>
-      <Button v-else text="parašyk atsiliepimą" :isOutlined="true" />
+      <Button
+        v-else
+        text="parašyk atsiliepimą"
+        :click="writeFeedback"
+        :isOutlined="true"
+      />
     </div>
 
     <div v-else>
@@ -34,6 +39,7 @@ import UserService from '@/services/UserService.js';
 import { mapGetters } from 'vuex';
 
 export default {
+  name: 'FeedbackCard',
   props: ['trip'],
   components: {
     Avatar,
@@ -66,6 +72,11 @@ export default {
       this.feedback = FeedbackService.getFeedback(this.trip.feedback.id);
     }
   },
+  methods: {
+    writeFeedback() {
+      alert('TODO');
+    },
+  },
 };
 </script>
 
@@ -74,7 +85,7 @@ p.tripStatus {
   color: var(--color-secondary);
 }
 
-p.skelbimoLinkas {
+p.link {
   color: var(--color-primary);
 }
 </style>

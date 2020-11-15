@@ -20,7 +20,7 @@
       <small>Rašydami komentarą, sutinkate su portalo taisyklėmis.</small>
 
       <div>
-        <Button text="komentuoti" :isOutlined="true" />
+        <Button text="komentuoti" :click="submit" :isOutlined="true" />
       </div>
     </div>
   </div>
@@ -31,13 +31,19 @@ import Button from '@/components/Button.vue';
 import CommentCard from '@/components/CommentCard.vue';
 
 export default {
+  name: 'Comments',
   props: {
     comments: Array,
     isActive: Boolean,
   },
   components: {
     Button,
-    CommentCard
-  }
+    CommentCard,
+  },
+  methods: {
+    submit() {
+      alert('TODO');
+    },
+  },
 };
 </script>

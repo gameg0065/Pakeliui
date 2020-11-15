@@ -39,11 +39,12 @@ import Button from '@/components/Button.vue';
 
 import { mapGetters } from 'vuex';
 export default {
+  name: 'Home',
   components: {
-    Button
+    Button,
   },
   computed: {
-    ...mapGetters(['isLoggedIn', 'isDriver'])
+    ...mapGetters(['isLoggedIn', 'isDriver']),
   },
   methods: {
     openModalLogin() {
@@ -51,8 +52,8 @@ export default {
     },
     openModalRegister() {
       this.$modal.show('modal-register');
-    }
-  }
+    },
+  },
 };
 </script>
 

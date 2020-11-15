@@ -13,12 +13,14 @@
         <h3>Užsiregistruok</h3>
         <small>
           Jau turi paskyrą?
-          <a href="#" @click.prevent="showModalLogin">
-            Prisijunk
-          </a>
+          <a href="#" @click.prevent="showModalLogin"> Prisijunk </a>
         </small>
 
         <form>
+          <div>
+            <label for="name"> Vardas, pavardė </label>
+            <input type="text" id="name" />
+          </div>
           <div>
             <label for="email"> Elektroninis paštas </label>
             <input type="email" id="email" ref="email" />
@@ -50,7 +52,7 @@ import Button from '@/components/Button.vue';
 export default {
   name: 'ModalRegister',
   components: {
-    Button
+    Button,
   },
   methods: {
     hide() {
@@ -69,11 +71,11 @@ export default {
     submit() {
       // validate here
       this.hide();
-    }
+    },
   },
   mount() {
     this.show();
-  }
+  },
 };
 </script>
 

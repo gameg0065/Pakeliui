@@ -37,28 +37,37 @@
 
     <div>
       <small>Patvirtinti keleiviai</small>
-      <Avatar
-        v-for="user in getApprovedPassengers(post, 'TAKEN')"
-        :key="user.id"
-        :path="user.photo"
-      />
+      <div v-for="user in getApprovedPassengers(post, 'TAKEN')" :key="user.id">
+        <router-link :to="{ name: 'user', params: { id: user.id } }">
+          <Avatar :path="user.photo" />
+        </router-link>
+      </div>
     </div>
 
     <div>
       <small>Keleiviai, laukiantys patvirtinimo</small>
-      <Avatar
+      <div
         v-for="user in getApprovedPassengers(post, 'PENDING')"
         :key="user.id"
-        :path="user.photo"
-      />
+      >
+        <router-link :to="{ name: 'user', params: { id: user.id } }">
+          <Avatar :path="user.photo" />
+        </router-link>
+      </div>
     </div>
 
-    <Button text="peržiūrėti skelbimą" :isOutlined="true" />
-    <Button text="ištrinti" :isOutlined="true" :isSecondary="true" />
+    <router-link :to="{ name: 'post', params: { id: post.id } }">
+      <Button text="peržiūrėti skelbimą" :isOutlined="true" />
+    </router-link>
 
-    <router-link
-      :to="{ name: 'post-edit', params: { id: post.id } }"
-    >
+    <Button
+      text="ištrinti"
+      :click="deletePost"
+      :isOutlined="true"
+      :isSecondary="true"
+    />
+
+    <router-link :to="{ name: 'post-edit', params: { id: post.id } }">
       <Button text="redaguoti" :isOutlined="true" />
     </router-link>
   </div>
@@ -71,12 +80,16 @@ import Button from '@/components/Button.vue';
 import UserService from '@/services/UserService.js';
 
 export default {
+  name: 'DriverActivePostCard',
   props: ['post'],
   components: {
     Avatar,
     Button,
   },
   methods: {
+    deletePost() {
+      alert('TODO');
+    },
     getApprovedPassengers(post, status) {
       const users = [];
 

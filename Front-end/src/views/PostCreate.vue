@@ -63,6 +63,7 @@ import Datepicker from 'vuejs-datepicker';
 
 import PostService from '@/services/PostService.js';
 export default {
+  name: 'PostCreate',
   props: ['id'],
   components: {
     Button,

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Profilis #{{ id }}</h2>
+    <h2>Profilis</h2>
     <Avatar :path="user.photo" size="big" />
     <div>
       <small>Vardas, pavardė</small>
@@ -13,28 +13,18 @@
     </div>
 
     <div>
-      <small>Buvo prisijungęs</small>
-      <p>TODO</p>
-    </div>
-
-    <div>
       <small>Kelionių skaičius</small>
       <p>{{ user.trips.length }}</p>
     </div>
 
     <div>
       <small>Nukeliauta kilometrų</small>
-      <p>{{ countDistance(this.user.trips) + ' km'}}</p>
+      <p>{{ countDistance(this.user.trips) + ' km' }}</p>
     </div>
 
     <div>
       <small>Įvertinimas</small>
       <Rating :rating="user.rating" />
-    </div>
-
-    <div>
-      <small>Preferencijos</small>
-      <p>TODO</p>
     </div>
 
     <div>
@@ -73,7 +63,7 @@
 
       <div>
         <small>Pavežta kilometrų</small>
-        <p>{{ countDistance(this.user.driver.posts) + ' km'}}</p>
+        <p>{{ countDistance(this.user.driver.posts) + ' km' }}</p>
       </div>
 
       <div>
@@ -110,8 +100,8 @@
     <div
       v-if="
         user.feedbacks &&
-          user.feedbacks.received &&
-          user.feedbacks.received.length > 0
+        user.feedbacks.received &&
+        user.feedbacks.received.length > 0
       "
     >
       <h3>Atsiliepimai apie mane kaip keleivį</h3>
@@ -125,8 +115,8 @@
     <div
       v-if="
         user.driver.feedbacks &&
-          user.driver.feedbacks.received &&
-          user.driver.feedbacks.received.length > 0
+        user.driver.feedbacks.received &&
+        user.driver.feedbacks.received.length > 0
       "
     >
       <h3>Atsiliepimai apie mane kaip vairuotoją</h3>
@@ -149,15 +139,16 @@ import PostService from '@/services/PostService.js';
 import UserService from '@/services/UserService.js';
 
 export default {
+  name: 'User',
   props: ['id'],
   components: {
     Avatar,
     Rating,
-    CommentCard
+    CommentCard,
   },
   data() {
     return {
-      user: Object
+      user: Object,
     };
   },
   created() {
@@ -190,7 +181,7 @@ export default {
       return feedbacks.map((feedback) =>
         FeedbackService.getFeedback(feedback.id)
       );
-    }
-  }
+    },
+  },
 };
 </script>

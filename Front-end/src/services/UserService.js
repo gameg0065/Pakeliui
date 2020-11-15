@@ -5,7 +5,7 @@ export default {
 	getUser(id) {
 		return db.users.find(user => user.id === id);
 	},
-	getUseers() {
+	getUsers() {
 		return db.users;
 	}
 };

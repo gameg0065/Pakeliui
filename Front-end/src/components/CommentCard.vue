@@ -1,7 +1,10 @@
 <template>
   <div class="card shadow">
     <Avatar :path="comentator.photo" />
-    <p>{{ comentator.name }}</p>
+
+    <router-link :to="{ name: 'user', params: { id: comentator.id } }">
+      <p class="link">{{ comentator.name }}</p>
+    </router-link>
 
     <Rating :rating="comentator.rating" />
 
@@ -16,23 +19,24 @@ import Rating from '@/components/Rating.vue';
 import UserService from '@/services/UserService.js';
 
 export default {
+  name: 'CommentCard',
   props: {
     comment: {
-      type: Object
-    }
+      type: Object,
+    },
   },
   components: {
     Avatar,
-    Rating
+    Rating,
   },
   data() {
     return {
-      comentator: Object
+      comentator: Object,
     };
   },
   created() {
     this.comentator = UserService.getUser(this.comment.author.id);
-  }
+  },
 };
 </script>
 
@@ -51,5 +55,9 @@ export default {
   -webkit-box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25); /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   -moz-box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25); /* Firefox 3.5 - 3.6 */
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25); /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+p.link {
+  color: var(--color-primary);
 }
 </style>

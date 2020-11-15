@@ -18,12 +18,8 @@
       </div>
 
       <div>
-        <label for="city-drop">Miestas</label>
-        <select id="city-drop" v-model="selectedCity">
-          <option v-for="(city, index) in cities" :key="index" :value="city"
-            >{{ city }}
-          </option>
-        </select>
+        <label for="city">Miestas</label>
+        <input type="text" id="city" />
       </div>
 
       <div>
@@ -43,29 +39,17 @@
 
 <script>
 import Button from '@/components/Button.vue';
-import cities from '../assets/cities.json';
 
 export default {
+  name: 'Contacts',
   components: {
-    Button
-  },
-  data() {
-    return {
-      cities: [],
-      selectedCity: null
-    };
-  },
-  created() {
-    this.cities = cities.sort();
-    this.selectedCity = this.cities.find(
-      city => city.toLowerCase() === 'vilnius'
-    );
+    Button,
   },
   methods: {
     submit() {
-      alert('Jau bėgu ir siunčiu');
-    }
-  }
+      alert('TODO\nJau bėgu ir siunčiu');
+    },
+  },
 };
 </script>
 

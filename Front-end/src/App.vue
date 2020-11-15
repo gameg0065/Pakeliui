@@ -11,7 +11,7 @@
 
     <Header @on-profile-button-click="onProfileButtonClick" />
 
-    <router-view :key="$route.fullPath"/>
+    <router-view :key="$route.fullPath" />
 
     <Footer />
   </div>
@@ -26,23 +26,24 @@ import ModalRegister from '@/components/ModalRegister.vue';
 import ProfileDropdown from '@/components/ProfileDropdown.vue';
 
 export default {
+  name: 'App',
   components: {
     Header,
     Footer,
     ModalLogin,
     ModalRegister,
-    ProfileDropdown
+    ProfileDropdown,
   },
   data() {
     return {
-      dropdownIsVisible: false
+      dropdownIsVisible: false,
     };
   },
   methods: {
     onProfileButtonClick(event) {
       this.dropdownIsVisible = !this.dropdownIsVisible;
-    }
-  }
+    },
+  },
 };
 </script>
 
