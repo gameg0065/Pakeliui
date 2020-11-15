@@ -2,7 +2,7 @@
   <div class="dropdown shadow">
     <router-link
       @click.native="emitClick"
-      :to="{ name: 'user', params: { id: userID } }"
+      :to="{ name: 'user', params: { id: user.id } }"
     >
       <div class="dropbutton">
         <img src="../assets/icons/user.svg" />
@@ -12,7 +12,7 @@
 
     <router-link
       @click.native="emitClick"
-      :to="{ name: 'user-edit', params: { id: userID } }"
+      :to="{ name: 'user-edit', params: { id: user.id } }"
     >
       <div class="dropbutton">
         <img src="../assets/icons/settings.svg" />
@@ -22,7 +22,7 @@
 
     <router-link
       @click.native="emitClick"
-      :to="{ name: 'user-history', params: { id: userID } }"
+      :to="{ name: 'user-history', params: { id: user.id } }"
     >
       <div class="dropbutton">
         <img src="../assets/icons/archive.svg" />
@@ -30,7 +30,7 @@
       </div>
     </router-link>
 
-    <div v-if="isDriver">
+    <div v-if="user.isDriver">
       <router-link @click.native="emitClick" :to="{ name: 'post-create' }">
         <div class="dropbutton">
           <img src="../assets/icons/pen-tool.svg" />
@@ -40,7 +40,7 @@
 
       <router-link
         @click.native="emitClick"
-        :to="{ name: 'driver-history', params: { id: userID } }"
+        :to="{ name: 'driver-history', params: { id: user.id } }"
       >
         <div class="dropbutton">
           <img src="../assets/icons/archive.svg" />
@@ -50,7 +50,7 @@
 
       <router-link
         @click.native="emitClick"
-        :to="{ name: 'driver-requests', params: { id: userID } }"
+        :to="{ name: 'driver-requests', params: { id: user.id } }"
       >
         <div class="dropbutton">
           <img src="../assets/icons/inbox.svg" />
@@ -68,19 +68,19 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
 export default {
   name: 'ProfileDropdown',
   computed: {
-    ...mapGetters(['isLoggedIn', 'isDriver', 'userID']),
+    user() {
+      return this.$store.getters.getUser;
+    },
   },
   methods: {
     emitClick() {
       this.$emit('on-profile-button-click');
     },
     logout() {
-      this.$store.commit('SET_LOGGED_IN', false);
+      this.$store.dispatch('logout');
       this.emitClick();
     },
   },
