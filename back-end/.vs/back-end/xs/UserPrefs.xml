@@ -1,0 +1,31 @@
+﻿<Properties StartupConfiguration="{6730ABC0-3E7C-41E1-95A5-4FCA71E79CA0}|Default">
+  <MonoDevelop.Ide.ItemProperties.back-end PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="DAL/BackEndContext.cs">
+    <Files>
+      <File FileName="Startup.cs" Line="29" Column="1" />
+      <File FileName="Program.cs" Line="10" Column="18" />
+      <File FileName="DAL/BackEndDatabase.cs" Line="1" Column="1" />
+      <File FileName="DAL/BackEndContext.cs" Line="13" Column="26" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="back-end" expanded="True">
+            <Node name="back-end" expanded="True">
+              <Node name="DAL" expanded="True">
+                <Node name="BackEndContext.cs" selected="True" />
+              </Node>
+              <Node name="Entities" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
