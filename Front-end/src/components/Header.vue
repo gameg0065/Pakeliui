@@ -44,8 +44,6 @@
 import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
 
-import UserService from '@/services/UserService.js';
-
 export default {
   name: 'Header',
   components: {
