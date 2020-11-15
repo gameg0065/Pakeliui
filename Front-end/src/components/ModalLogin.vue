@@ -88,11 +88,9 @@ export default {
         return alert('Toks vartotojas neegzistuoja');
       }
 
-      this.$store.commit('SET_IS_DRIVER', user.isDriver);
-      this.$store.commit('SET_LOGGED_IN', true);
-      this.$store.commit('SET_USER_ID', id);
-
-      this.hide();
+      this.$store.dispatch('login', user).then(() => {
+        this.hide();
+      });
     },
   },
   mount() {
