@@ -21,14 +21,14 @@
         <form>
           <div>
             <label for="email"> Elektroninis paštas </label>
-            <input type="email" id="email" ref="email" v-model="id" />
+            <input type="email" id="email" ref="email" v-model="credentials.id" />
           </div>
           <div>
             <label for="password"> Slaptažodis </label>
-            <input type="password" id="password" />
+            <input type="password" id="password" v-model="credentials.password"/>
           </div>
           <div>
-            <label><input type="checkbox" /> Prisimink mane </label>
+            <label><input type="checkbox" v-model="credentials.rememberMe" /> Prisimink mane </label>
           </div>
           <small>
             <a href="#" @click.prevent="remindPassword">
@@ -60,7 +60,11 @@ export default {
   },
   data() {
     return {
-      id: this.$store.getters.userID,
+      credentials:{
+        id: 110,
+        password: null,
+        rememberMe: null,
+      }
     };
   },
   methods: {
@@ -82,7 +86,7 @@ export default {
     },
     submit() {
       // validate here
-      const id = parseInt(this.id);
+      const id = parseInt(this.credentials.id);
       const user = UserService.getUser(id);
       if (!user) {
         return alert('Toks vartotojas neegzistuoja');
