@@ -36,8 +36,6 @@ import FeedbackService from '@/services/FeedbackService.js';
 import PostService from '@/services/PostService.js';
 import UserService from '@/services/UserService.js';
 
-import { mapGetters } from 'vuex';
-
 export default {
   name: 'FeedbackCard',
   props: ['trip'],
@@ -47,7 +45,9 @@ export default {
     Rating,
   },
   computed: {
-    ...mapGetters(['isLoggedIn', 'isDriver', 'userID']),
+    user() {
+      return this.$store.getters.getUser;
+    },
   },
   data() {
     return {
@@ -58,7 +58,7 @@ export default {
     };
   },
   created() {
-    const userID = this.userID;
+    const userID = this.user.id;
 
     this.post = PostService.getPost(this.trip.post.id);
 
