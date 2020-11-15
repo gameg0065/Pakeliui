@@ -24,31 +24,31 @@ public class Travel
         ID = id;
         DriverID = driverID;
         CarID = carID;
-        From_CityID = fromCityID;
-        To_CityID = toCityID;
-        Travel_Date = travelDate;
-        Create_Date = travelDate;
-        Last_Update = lastUpdate;
-        Is_Canceled = isCanceled;
-        Two_Passengers_Backseat = twoPassengersBackseat;
+        FromCityID = fromCityID;
+        ToCityID = toCityID;
+        TravelDate = travelDate;
+        CreateDate = travelDate;
+        LastUpdate = lastUpdate;
+        IsCanceled = isCanceled;
+        TwoPassengersBackseat = twoPassengersBackseat;
         Price = price;
-        Travel_Info = travelInfo;
-        Max_Passenger_No = maxPassengerNo;
+        TravelInfo = travelInfo;
+        MaxPassengerNo = maxPassengerNo;
     } 
 
     public int ID { get; set; }
     public int DriverID { get; set; }
     public int CarID { get; set; }
-    public int From_CityID { get; set; }
-    public int To_CityID { get; set; }
-    public DateTime Travel_Date { get; set; }
-    public DateTime Create_Date { get; set; }
-    public DateTime Last_Update { get; set; }
-    public bool Is_Canceled { get; set; }
-    public bool Two_Passengers_Backseat { get; set; }
+    public int FromCityID { get; set; }
+    public int ToCityID { get; set; }
+    public DateTime TravelDate { get; set; }
+    public DateTime CreateDate { get; set; }
+    public DateTime LastUpdate { get; set; }
+    public bool IsCanceled { get; set; }
+    public bool TwoPassengersBackseat { get; set; }
     public int Price { get; set; }
-    public string Travel_Info { get; set; }
-    public int Max_Passenger_No { get; set; }
+    public string TravelInfo { get; set; }
+    public int MaxPassengerNo { get; set; }
 
     public void SetID(int id)
     {
@@ -64,31 +64,31 @@ public class Travel
     }
     public void SetFromCityID(int fromCityID)
     {
-        From_CityID = fromCityID;
+        FromCityID = fromCityID;
     }
     public void SetToCityID(int toCityID)
     {
-        To_CityID = toCityID;
+        ToCityID = toCityID;
     }
     public void SetTravelDate(DateTime travelDate)
     {
-        Travel_Date = travelDate;
+        TravelDate = travelDate;
     }
     public void SetCreateDate(DateTime createDate)
     {
-        Create_Date = createDate;
+        CreateDate = createDate;
     }
     public void SetLastUpdate(DateTime lastUpdate)
     {
-        Last_Update = lastUpdate;
+        LastUpdate = lastUpdate;
     }
     public void SetIsCanceled(bool isCanceled)
     {
-        Is_Canceled = isCanceled;
+        IsCanceled = isCanceled;
     }
     public void SetTwoPassengersBackseat(bool twoPassengersBackseat)
     {
-        Two_Passengers_Backseat = twoPassengersBackseat;
+        TwoPassengersBackseat = twoPassengersBackseat;
     }
     public void SetPrice(int price)
     {
@@ -96,11 +96,11 @@ public class Travel
     }
     public void SetTravelInfo(string travelInfo)
     {
-        Travel_Info = travelInfo;
+        TravelInfo = travelInfo;
     }
     public void SetMaxPassengerNo(int maxPassengerNo)
     {
-        Max_Passenger_No = maxPassengerNo;
+        MaxPassengerNo = maxPassengerNo;
     }
 
 }
