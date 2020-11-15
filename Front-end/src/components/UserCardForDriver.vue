@@ -26,6 +26,7 @@ import PostService from '@/services/PostService.js';
 import UserService from '@/services/UserService.js';
 
 export default {
+  name: 'UserCardForDriver',
   props: ['passengerID', 'post'],
   components: {
     Avatar,

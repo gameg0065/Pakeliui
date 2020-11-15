@@ -29,6 +29,7 @@ import FeedbackService from '@/services/FeedbackService.js';
 import UserService from '@/services/UserService.js';
 
 export default {
+  name: 'DriverFeedbackCard',
   props: ['passenger'],
   components: {
     Avatar,

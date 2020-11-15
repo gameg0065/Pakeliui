@@ -19,6 +19,7 @@ import Rating from '@/components/Rating.vue';
 import UserService from '@/services/UserService.js';
 
 export default {
+  name: 'CommentCard',
   props: {
     comment: {
       type: Object,

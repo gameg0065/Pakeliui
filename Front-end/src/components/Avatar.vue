@@ -4,6 +4,7 @@
 
 <script>
 export default {
+  name: 'Avatar',
   props: {
     path: {
       type: String,

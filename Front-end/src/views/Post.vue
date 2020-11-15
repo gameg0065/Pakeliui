@@ -74,6 +74,7 @@ import UserCardInPost from '@/components/UserCardInPost.vue';
 import PostService from '@/services/PostService.js';
 
 export default {
+  name: 'Post',
   props: ['id'],
   components: {
     Comments,

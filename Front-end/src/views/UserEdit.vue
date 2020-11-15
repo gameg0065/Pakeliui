@@ -156,6 +156,7 @@ import UserService from '@/services/UserService.js';
 import { mapGetters } from 'vuex';
 
 export default {
+  name: 'UserEdit',
   components: {
     Avatar,
     Button,

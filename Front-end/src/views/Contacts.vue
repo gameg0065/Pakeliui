@@ -41,6 +41,7 @@
 import Button from '@/components/Button.vue';
 
 export default {
+  name: 'Contacts',
   components: {
     Button,
   },

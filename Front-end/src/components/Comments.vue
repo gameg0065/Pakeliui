@@ -31,6 +31,7 @@ import Button from '@/components/Button.vue';
 import CommentCard from '@/components/CommentCard.vue';
 
 export default {
+  name: 'Comments',
   props: {
     comments: Array,
     isActive: Boolean,

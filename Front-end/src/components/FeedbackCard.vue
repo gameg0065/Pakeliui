@@ -39,6 +39,7 @@ import UserService from '@/services/UserService.js';
 import { mapGetters } from 'vuex';
 
 export default {
+  name: 'FeedbackCard',
   props: ['trip'],
   components: {
     Avatar,

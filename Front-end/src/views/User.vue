@@ -139,6 +139,7 @@ import PostService from '@/services/PostService.js';
 import UserService from '@/services/UserService.js';
 
 export default {
+  name: 'User',
   props: ['id'],
   components: {
     Avatar,

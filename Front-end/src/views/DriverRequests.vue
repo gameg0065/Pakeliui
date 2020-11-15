@@ -32,6 +32,7 @@ import UserService from '@/services/UserService.js';
 import { mapGetters } from 'vuex';
 
 export default {
+  name: 'DriverRequests',
   components: {
     Button,
     UserCardForDriver,

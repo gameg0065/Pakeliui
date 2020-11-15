@@ -26,6 +26,7 @@ import ModalRegister from '@/components/ModalRegister.vue';
 import ProfileDropdown from '@/components/ProfileDropdown.vue';
 
 export default {
+  name: 'App',
   components: {
     Header,
     Footer,

@@ -28,6 +28,7 @@
 import DriverFeedbackCard from '@/components/DriverFeedbackCard.vue';
 
 export default {
+  name: 'DriverExpiredPostCard',
   props: ['post'],
   components: {
     DriverFeedbackCard,

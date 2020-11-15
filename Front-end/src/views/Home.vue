@@ -39,6 +39,7 @@ import Button from '@/components/Button.vue';
 
 import { mapGetters } from 'vuex';
 export default {
+  name: 'Home',
   components: {
     Button,
   },

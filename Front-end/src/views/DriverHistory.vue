@@ -42,6 +42,7 @@ import UserService from '@/services/UserService.js';
 import { mapGetters } from 'vuex';
 
 export default {
+  name: 'DriverHistory',
   components: {
     DriverActivePostCard,
     DriverExpiredPostCard,

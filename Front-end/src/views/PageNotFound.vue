@@ -20,6 +20,7 @@
 <script>
 import Button from '@/components/Button.vue';
 export default {
+  name: 'PageNotFound',
   components: {
     Button,
   },

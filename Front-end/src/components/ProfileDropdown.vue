@@ -71,6 +71,7 @@
 import { mapGetters } from 'vuex';
 
 export default {
+  name: 'ProfileDropdown',
   computed: {
     ...mapGetters(['isLoggedIn', 'isDriver', 'userID']),
   },

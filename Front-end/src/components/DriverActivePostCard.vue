@@ -80,6 +80,7 @@ import Button from '@/components/Button.vue';
 import UserService from '@/services/UserService.js';
 
 export default {
+  name: 'DriverActivePostCard',
   props: ['post'],
   components: {
     Avatar,

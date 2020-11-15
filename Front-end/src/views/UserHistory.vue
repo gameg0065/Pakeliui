@@ -45,6 +45,7 @@ import UserService from '@/services/UserService.js';
 import { mapGetters } from 'vuex';
 
 export default {
+  name: 'UserHistory',
   components: {
     Button,
     FeedbackCard,

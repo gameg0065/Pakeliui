@@ -34,6 +34,7 @@ import Button from '@/components/Button.vue';
 import UserService from '@/services/UserService.js';
 
 export default {
+  name: 'PostCard',
   props: {
     isPending: Boolean,
     post: Object,

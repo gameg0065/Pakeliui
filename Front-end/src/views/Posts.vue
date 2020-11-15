@@ -13,6 +13,7 @@ import PostFilter from '@/components/PostFilter.vue';
 import PostService from '@/services/PostService.js';
 
 export default {
+  name: 'Posts',
   components: {
     PostCard,
     PostFilter,

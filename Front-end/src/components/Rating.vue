@@ -10,6 +10,7 @@
 
 <script>
 export default {
+  name: 'Rating',
   props: {
     rating: {
       type: [Number, String],

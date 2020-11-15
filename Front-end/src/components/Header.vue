@@ -49,6 +49,7 @@ import UserService from '@/services/UserService.js';
 import { mapGetters } from 'vuex';
 
 export default {
+  name: 'Header',
   components: {
     Avatar,
     Button,
