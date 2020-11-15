@@ -153,7 +153,6 @@ import Button from '@/components/Button.vue';
 
 import Datepicker from 'vuejs-datepicker';
 import UserService from '@/services/UserService.js';
-import { mapGetters } from 'vuex';
 
 export default {
   name: 'UserEdit',
@@ -163,16 +162,14 @@ export default {
     Datepicker,
   },
   computed: {
-    ...mapGetters(['isLoggedIn', 'isDriver', 'userID']),
+    user() {
+      return this.$store.getters.getUser;
+    },
   },
   data() {
     return {
       contactOptions: ['email', 'facebook', 'phone'],
-      user: Object,
     };
-  },
-  created() {
-    this.user = UserService.getUser(this.userID);
   },
   methods: {
     changeCarPhoto() {
