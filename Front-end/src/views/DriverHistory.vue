@@ -39,8 +39,6 @@ import DriverExpiredPostCard from '@/components/DriverExpiredPostCard.vue';
 import PostService from '@/services/PostService.js';
 import UserService from '@/services/UserService.js';
 
-import { mapGetters } from 'vuex';
-
 export default {
   name: 'DriverHistory',
   components: {
@@ -48,18 +46,17 @@ export default {
     DriverExpiredPostCard,
   },
   computed: {
-    ...mapGetters(['isLoggedIn', 'isDriver', 'userID']),
+    user() {
+      return this.$store.getters.getUser;
+    },
   },
   data() {
     return {
       activePosts: [],
       expiredPosts: [],
-      user: Object,
     };
   },
   created() {
-    this.user = UserService.getUser(this.userID);
-
     const activePosts = this.activePosts;
     const expiredPosts = this.expiredPosts;
     const now = new Date();
