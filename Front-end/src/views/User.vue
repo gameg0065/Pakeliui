@@ -33,11 +33,6 @@
     </div>
 
     <div>
-      <small>Preferencijos</small>
-      <p>TODO</p>
-    </div>
-
-    <div>
       <small>Apie name</small>
       <p>{{ user.about }}</p>
     </div>
