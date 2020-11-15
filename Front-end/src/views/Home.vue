@@ -5,16 +5,16 @@
       Pakeliui - tai platforma, skirta žmonėms lengvai keliauti bei pavežėti
       kitus
     </h3>
-    <div v-if="isLoggedIn">
+    <div v-if="user">
       <router-link :to="{ name: 'posts' }">
         <Button text="skelbimai" :isLarge="true" />
       </router-link>
 
-      <router-link v-if="isDriver" :to="{ name: 'post-create' }">
+      <router-link v-if="user.isDriver" :to="{ name: 'post-create' }">
         <Button text="sukurk skelbimą" :isSecondary="true" :isLarge="true" />
       </router-link>
     </div>
-    <div v-if="!isLoggedIn">
+    <div v-if="!user">
       <Button
         :click="openModalLogin"
         text="prisijungti"
@@ -34,17 +34,17 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script>
 import Button from '@/components/Button.vue';
-
-import { mapGetters } from 'vuex';
 export default {
   name: 'Home',
   components: {
     Button,
   },
   computed: {
-    ...mapGetters(['isLoggedIn', 'isDriver']),
+    user() {
+      return this.$store.getters.getUser;
+    },
   },
   methods: {
     openModalLogin() {
