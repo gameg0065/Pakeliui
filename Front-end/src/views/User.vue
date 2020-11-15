@@ -143,17 +143,13 @@ export default {
   props: ['id'],
   components: {
     Avatar,
-    Rating,
     CommentCard,
+    Rating,
   },
-  data() {
-    return {
-      user: Object,
-    };
-  },
-  created() {
-    const id = parseInt(this.id);
-    this.user = UserService.getUser(id);
+  computed: {
+    user() {
+      return this.$store.getters.getUser;
+    },
   },
   methods: {
     countDistance(trips) {
