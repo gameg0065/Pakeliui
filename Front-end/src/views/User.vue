@@ -13,11 +13,6 @@
     </div>
 
     <div>
-      <small>Buvo prisijungęs</small>
-      <p>TODO</p>
-    </div>
-
-    <div>
       <small>Kelionių skaičius</small>
       <p>{{ user.trips.length }}</p>
     </div>
