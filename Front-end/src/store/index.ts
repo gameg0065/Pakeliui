@@ -9,9 +9,13 @@ export default new Vuex.Store({
 			id: 110,
 			isDriver: false,
 			isLoggedIn: false
-		}
+		},
+		user2: null
 	},
 	getters: {
+		loggedIn(state) {
+			return !!state.user2;
+		},
 		isDriver: state => {
 			return state.user.isDriver;
 		},
@@ -20,6 +24,12 @@ export default new Vuex.Store({
 		},
 		userID: state => {
 			return state.user.id;
+		},
+
+		/////
+
+		getUser: state => {
+			return state.user2;
 		}
 	},
 	mutations: {
@@ -36,8 +46,24 @@ export default new Vuex.Store({
 		},
 		SET_USER_ID(state, id) {
 			state.user.id = id;
+		},
+
+		/////
+
+		CLEAR_USER_DATA(state) {
+			state.user2 = null;
+		},
+		SET_USER(state, user) {
+			state.user2 = user;
 		}
 	},
-	actions: {},
+	actions: {
+		login({ commit }, user) {
+			commit('SET_USER', user);
+		},
+		logout({ commit }) {
+			commit('CLEAR_USER_DATA');
+		}
+	},
 	modules: {}
 });
