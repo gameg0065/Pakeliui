@@ -42,8 +42,6 @@ import PostCard from '@/components/PostCard.vue';
 import PostService from '@/services/PostService.js';
 import UserService from '@/services/UserService.js';
 
-import { mapGetters } from 'vuex';
-
 export default {
   name: 'UserHistory',
   components: {
@@ -52,22 +50,22 @@ export default {
     PostCard,
   },
   computed: {
-    ...mapGetters(['isLoggedIn', 'isDriver', 'userID']),
+    user() {
+      return this.$store.getters.getUser;
+    },
   },
   data() {
     return {
       nonPendingTrips: [],
       pendingTrips: [],
-      user: Object,
     };
   },
   created() {
     const getPost = this.getPost;
     const nonPendingTrips = this.nonPendingTrips;
     const pendingTrips = this.pendingTrips;
-    const userID = this.userID;
+    const userID = this.user.id;
 
-    this.user = UserService.getUser(userID);
     this.user.trips.forEach((trip) => {
       const post = getPost(trip.post.id);
       const passenger = post.passengers.find(
