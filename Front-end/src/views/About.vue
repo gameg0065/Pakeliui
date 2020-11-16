@@ -12,6 +12,9 @@
         todėl užsibrėžėme tikslą sukurti internetinę platformą, kuri šį
         keliavimo būdą paverstu jaukiu ir saugiu.
       </p>
+      <p>
+        „Pakeliui" Jums siūlo pigesnį, lengvesnį bei patogesnį keliavimo būdą. Važiavimas kartu su pakeleiviais skirtas ne tik studentams, bet visiems, norintiems iš taško A nukeliauti į tašką B greitai, saugiai ir pigiai. Mūsų komandos sukurta platforma – tarpininkas tarp vairuotojo ir keleivio, užtikrinantis sklandų bendradarbiavimą.
+      </p>
       <h4>Mūsų tikslas – užtikrinti keliavimo būdą, kuris būtų:</h4>
       <p>
         <ul>
@@ -23,6 +26,9 @@
         </ul>
       </p>
       <h4>„Pakeliui“ komanda </h4>
+      <p>
+        „Pakeliui“ įkūrėjai – tai jauna komanda, kurią sudaro ambicingi, veržlūs ir nuolat tobulėjantys studentai. Tai yra pelno siekianti organizacija, kurios pagrindinis tikslas – teikti kokybišką pavėžėjimo tarpininkavimo paslaugą. Mūsų komandos vertybes sudaro profesionalumas, kokybė, atsakomybė ir inovatyvumas. 
+      </p>
 
       <div class="profiles">
         <div class="profile">
