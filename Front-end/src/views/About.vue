@@ -18,11 +18,11 @@
       <h4>Mūsų tikslas – užtikrinti keliavimo būdą, kuris būtų:</h4>
       <p>
         <ul>
-          <li>Saugus – visa informacija apie vartotojus bei keliones yra saugoma</li>
-          <li>Greitas- skelbimus norimu laiku rasti padeda platformoje esantys filtrai. </li>
-          <li>Pigus- sutaupyti padeda kelionės kaštų dalijimasis su pakeleiviais.</li>
-          <li>Patogus – platforma leidžia rasti bendrakeleivių visoje Lietuvoje. </li>
-          <li>Pilnas galimybių – pakeliui gali sutikti begalės unikalių žmonių</li>
+          <li><strong> Saugus</strong> - visa informacija apie vartotojus bei keliones yra saugoma</li>
+          <li><strong>Greitas</strong> - skelbimus norimu laiku rasti padeda platformoje esantys filtrai. </li>
+          <li><strong>Pigus</strong> - sutaupyti padeda kelionės kaštų dalijimasis su pakeleiviais.</li>
+          <li><strong>Patogus </strong> - platforma leidžia rasti bendrakeleivių visoje Lietuvoje. </li>
+          <li><strong>Pilnas galimybių</strong> - pakeliui gali sutikti begalės unikalių žmonių</li>
         </ul>
       </p>
       <h4>„Pakeliui“ komanda </h4>
