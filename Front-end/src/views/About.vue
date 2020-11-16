@@ -2,6 +2,7 @@
   <div class="about">
     <div class="body">
       <h2>Apie mus</h2>
+      <p>Pakeliui – lengvesnis būdas keliauti. </p>
       <h4>Kas yra „Pakeliui“?</h4>
       <p>Tai lietuviška platforma, skirta visiems, norintiems keliauti kartu su pakeleiviais.
       </p>
