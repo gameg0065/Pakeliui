@@ -148,7 +148,8 @@ export default {
   },
   computed: {
     user() {
-      return this.$store.getters.getUser;
+      const id = parseInt(this.id);
+      return UserService.getUser(id);
     },
   },
   methods: {
