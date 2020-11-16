@@ -3,11 +3,10 @@
     <div class="body">
       <h2>Apie mus</h2>
       <h4>Kas yra „Pakeliui“?</h4>
-      <p>Tai lietuviška platforma, skirta visiems, norintiems keliauti kartu su
-        pakeleiviais.
+      <p>Tai lietuviška platforma, skirta visiems, norintiems keliauti kartu su pakeleiviais.
       </p>
       <p>
-        Pakeliui“ įkūrėjai – tai jauna komanda, kurią sudaro ambicingi, veržlūs ir nuolat tobulėjantys studentai. Tai yra pelno siekianti organizacija, kurios pagrindinis tikslas – teikti kokybišką pavėžėjimo tarpininkavimo paslaugą. Mūsų komandos vertybes sudaro profesionalumas, kokybė, atsakomybė ir inovatyvumas. 
+        „Pakeliui“ įkūrėjai – tai jauna komanda, kurią sudaro ambicingi, veržlūs ir nuolat tobulėjantys studentai. Tai yra pelno siekianti organizacija, kurios pagrindinis tikslas – teikti kokybišką pavėžėjimo tarpininkavimo paslaugą. Mūsų komandos vertybes sudaro profesionalumas, kokybė, atsakomybė ir inovatyvumas. 
       </p>
 
       <p>
@@ -22,15 +21,14 @@
         „Pakeliui" Jums siūlo pigesnį, lengvesnį bei patogesnį keliavimo būdą. Važiavimas kartu su pakeleiviais skirtas ne tik studentams, bet visiems, norintiems iš taško A nukeliauti į tašką B greitai, saugiai ir pigiai. Mūsų komandos sukurta platforma – tarpininkas tarp vairuotojo ir keleivio, užtikrinantis sklandų bendradarbiavimą.
       </p>
       <h4>Mūsų tikslas – užtikrinti keliavimo būdą, kuris būtų:</h4>
-      <p>
-        <ul>
-          <li><strong>Saugus</strong> - visa informacija apie vartotojus bei keliones yra saugoma.</li>
-          <li><strong>Greitas</strong> - skelbimus norimu laiku rasti padeda platformoje esantys filtrai. </li>
-          <li><strong>Pigus</strong> - sutaupyti padeda kelionės kaštų dalijimasis su pakeleiviais.</li>
-          <li><strong>Patogus </strong> - platforma leidžia rasti bendrakeleivių visoje Lietuvoje. </li>
-          <li><strong>Pilnas galimybių</strong> - pakeliui gali sutikti begalės unikalių žmonių.</li>
-        </ul>
-      </p>
+      <ul>
+        <li><strong>Saugus</strong> - visa informacija apie vartotojus bei keliones yra saugoma.</li>
+        <li><strong>Greitas</strong> - skelbimus norimu laiku rasti padeda platformoje esantys filtrai. </li>
+        <li><strong>Pigus</strong> - sutaupyti padeda kelionės kaštų dalijimasis su pakeleiviais.</li>
+        <li><strong>Patogus </strong> - platforma leidžia rasti bendrakeleivių visoje Lietuvoje. </li>
+        <li><strong>Pilnas galimybių</strong> - pakeliui gali sutikti begalės unikalių žmonių.</li>
+      </ul>
+    
       <h4>„Pakeliui“ komanda </h4>
 
       <div class="profiles">
