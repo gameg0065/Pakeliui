@@ -10,10 +10,7 @@
     <ol>
       <li>APIBRĖŽIMAI</li>
       <ol>
-        <li>
-          „Pakeliui“ - tai tinklapis: www.pakeliui.eu, toliau vadinami
-          „Tinklapiu“ arba „Platforma“.
-        </li>
+        <li>„Pakeliui“ - tai tinklapis: www.pakeliui.eu, toliau vadinami „Tinklapiu“ arba „Platforma“. </li>
         <li>
           „Pakeliui komanda“ (taip pat vadinami „mes“, „mūsų“, arba „mus“) –
           Platformos „Pakeliui“ įkūrėjai.
