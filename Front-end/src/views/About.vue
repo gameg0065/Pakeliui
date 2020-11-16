@@ -4,23 +4,11 @@
       <h2>Apie mus</h2>
       <p>Pakeliui – lengvesnis būdas keliauti. </p>
       <h4>Kas yra „Pakeliui“?</h4>
-      <p>Tai lietuviška platforma, skirta visiems, norintiems keliauti kartu su pakeleiviais.
-      </p>
-      <p>
-        „Pakeliui“ įkūrėjai – tai jauna komanda, kurią sudaro ambicingi, veržlūs ir nuolat tobulėjantys studentai. Tai yra pelno siekianti organizacija, kurios pagrindinis tikslas – teikti kokybišką pavėžėjimo tarpininkavimo paslaugą. Mūsų komandos vertybes sudaro profesionalumas, kokybė, atsakomybė ir inovatyvumas. 
-      </p>
+      <p>Tai lietuviška platforma, skirta visiems, norintiems keliauti kartu su pakeleiviais.</p>
+      <p>„Pakeliui“ įkūrėjai – tai jauna komanda, kurią sudaro ambicingi, veržlūs ir nuolat tobulėjantys studentai. Tai yra pelno siekianti organizacija, kurios pagrindinis tikslas – teikti kokybišką pavėžėjimo tarpininkavimo paslaugą. Mūsų komandos vertybes sudaro profesionalumas, kokybė, atsakomybė ir inovatyvumas.  </p>
 
-      <p>
-        Projekto idėja gimė iš studentiško gyvenimo patirties.
-        Važiavimas tarpmiestiniu transportu gali prailgti, tapti varginančiu bei
-        gerokai ištuštinti piniginę. Kelionės kartu su nepažįstamais
-        vairuotojais atrodė patogesnė, tačiau mažiau saugi alternatyva. Būtent
-        todėl užsibrėžėme tikslą sukurti internetinę platformą, kuri šį
-        keliavimo būdą paverstu jaukiu ir saugiu.
-      </p>
-      <p>
-        „Pakeliui" Jums siūlo pigesnį, lengvesnį bei patogesnį keliavimo būdą. Važiavimas kartu su pakeleiviais skirtas ne tik studentams, bet visiems, norintiems iš taško A nukeliauti į tašką B greitai, saugiai ir pigiai. Mūsų komandos sukurta platforma – tarpininkas tarp vairuotojo ir keleivio, užtikrinantis sklandų bendradarbiavimą.
-      </p>
+      <p>Projekto idėja gimė iš studentiško gyvenimo patirties. Važiavimas tarpmiestiniu transportu gali prailgti, tapti varginančiu bei gerokai ištuštinti piniginę. Kelionės kartu su nepažįstamais vairuotojais atrodė patogesnė, tačiau mažiau saugi alternatyva. Būtent todėl užsibrėžėme tikslą sukurti internetinę platformą, kuri šį keliavimo būdą paverstu jaukiu ir saugiu. </p>
+      <p>„Pakeliui" Jums siūlo pigesnį, lengvesnį bei patogesnį keliavimo būdą. Važiavimas kartu su pakeleiviais skirtas ne tik studentams, bet visiems, norintiems iš taško A nukeliauti į tašką B greitai, saugiai ir pigiai. Mūsų komandos sukurta platforma – tarpininkas tarp vairuotojo ir keleivio, užtikrinantis sklandų bendradarbiavimą. </p>
       <h4>Mūsų tikslas – užtikrinti keliavimo būdą, kuris būtų:</h4>
       <ul>
         <li><strong>Saugus</strong> - visa informacija apie vartotojus bei keliones yra saugoma.</li>
