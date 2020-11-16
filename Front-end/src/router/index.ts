@@ -1,4 +1,3 @@
-import store from '../store/index';
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 
@@ -113,9 +112,9 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-	const isLoggedIn = store.getters.getUser;
+	const isLoggedIn = localStorage.getItem('user');
 	if (to.matched.some(record => record.meta.requiresAuth) && !isLoggedIn) {
-		console.log('This router requires authentication');
+		console.log('401. This router requires authentication');
 		next('/');
 	}
 	next();
