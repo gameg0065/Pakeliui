@@ -2,12 +2,28 @@
   <div class="about">
     <div class="body">
       <h2>Apie mus</h2>
+      <h4>Kas yra „Pakeliui“?</h4>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere est
-        quisquam, illo doloribus tempore numquam blanditiis, velit eligendi
-        accusantium doloremque aspernatur! Nulla veniam molestias pariatur,
-        explicabo doloremque hic veli consequatur.
+        Tai lietuviška platforma, skirta visiems, norintiems keliauti kartu su
+        pakeleiviais. Projekto idėja gimė iš studentiško gyvenimo patirties.
+        Važiavimas tarpmiestiniu transportu gali prailgti, tapti varginančiu bei
+        gerokai ištuštinti piniginę. Kelionės kartu su nepažįstamais
+        vairuotojais atrodė patogesnė, tačiau mažiau saugi alternatyva. Būtent
+        todėl užsibrėžėme tikslą sukurti internetinę platformą, kuri šį
+        keliavimo būdą paverstu jaukiu ir saugiu.
       </p>
+      <h4>Mūsų tikslas – užtikrinti keliavimo būdą, kuris būtų:</h4>
+      <p>
+        <ul>
+          <li>Saugus – visa informacija apie vartotojus bei keliones yra saugoma</li>
+          <li>Greitas- skelbimus norimu laiku rasti padeda platformoje esantys filtrai. </li>
+          <li>Pigus- sutaupyti padeda kelionės kaštų dalijimasis su pakeleiviais.</li>
+          <li>Patogus – platforma leidžia rasti bendrakeleivių visoje Lietuvoje. </li>
+          <li>Pilnas galimybių – pakeliui gali sutikti begalės unikalių žmonių</li>
+        </ul>
+      </p>
+      <h4>„Pakeliui“ komanda </h4>
+
       <div class="profiles">
         <div class="profile">
           <Avatar
