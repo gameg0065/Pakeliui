@@ -37,35 +37,41 @@ const routes: Array<RouteConfig> = [
 		path: '/user/:id/driver/history',
 		name: 'driver-history',
 		component: DriverHistory,
+		meta: { requiresAuth: true },
 		props: true
 	},
 	{
 		path: '/user/:id/driver/requests',
 		name: 'driver-requests',
 		component: DriverRequests,
+		meta: { requiresAuth: true },
 		props: true
 	},
 	{
 		path: '/post/:id',
 		name: 'post',
 		component: Post,
-		props: true
+		props: true,
+		meta: { requiresAuth: true }
 	},
 	{
 		path: '/postcreate',
 		name: 'post-create',
-		component: PostCreate
+		component: PostCreate,
+		meta: { requiresAuth: true }
 	},
 	{
 		path: '/post/:id/edit',
 		name: 'post-edit',
 		component: PostCreate,
-		props: true
+		props: true,
+		meta: { requiresAuth: true }
 	},
 	{
 		path: '/posts',
 		name: 'posts',
-		component: Posts
+		component: Posts,
+		meta: { requiresAuth: true }
 	},
 	{
 		path: '/terms',
@@ -76,18 +82,21 @@ const routes: Array<RouteConfig> = [
 		path: '/user/:id',
 		name: 'user',
 		component: User,
+		meta: { requiresAuth: true },
 		props: true
 	},
 	{
 		path: '/user/:id/edit',
 		name: 'user-edit',
 		component: UserEdit,
+		meta: { requiresAuth: true },
 		props: true
 	},
 	{
 		path: '/user/:id/history',
 		name: 'user-history',
 		component: UserHistory,
+		meta: { requiresAuth: true },
 		props: true
 	},
 	{
@@ -100,6 +109,15 @@ const routes: Array<RouteConfig> = [
 const router = new VueRouter({
 	mode: 'history',
 	routes
+});
+
+router.beforeEach((to, from, next) => {
+	const isLoggedIn = localStorage.getItem('user');
+	if (to.matched.some(record => record.meta.requiresAuth) && !isLoggedIn) {
+		console.log('401. This router requires authentication');
+		next('/');
+	}
+	next();
 });
 
 export default router;

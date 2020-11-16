@@ -148,7 +148,9 @@ export default {
   },
   computed: {
     user() {
-      return this.$store.getters.getUser;
+      const currentUser = this.$store.getters.getUser;
+      const id = parseInt(this.id);
+      return currentUser.id === id ? currentUser : UserService.getUser(id);
     },
   },
   methods: {

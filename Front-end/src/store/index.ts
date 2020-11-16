@@ -14,9 +14,11 @@ export default new Vuex.Store({
 	},
 	mutations: {
 		CLEAR_USER_DATA(state) {
+			localStorage.removeItem('user');
 			state.user = null;
 		},
 		SET_USER(state, user) {
+			localStorage.setItem('user', JSON.stringify(user));
 			state.user = user;
 		}
 	},
