@@ -19,19 +19,29 @@
         <form>
           <div>
             <label for="name"> Vardas, pavardė </label>
-            <input type="text" id="name" />
+            <input type="text" id="name" v-model.trim="credentials.name" />
           </div>
           <div>
             <label for="email"> Elektroninis paštas </label>
-            <input type="email" id="email" ref="email" />
+            <input
+              type="email"
+              id="email"
+              ref="email"
+              v-model.trim="credentials.email"
+            />
           </div>
           <div>
             <label for="password"> Slaptažodis </label>
-            <input type="password" id="password" />
+            <input
+              type="password"
+              id="password"
+              v-model.trim="credentials.password"
+            />
           </div>
           <div>
             <label
-              ><input type="checkbox" /> Sutinku su Vartojimo Sąlygom
+              ><input type="checkbox" v-model="credentials.TOCEnabled" />
+              Sutinku su Vartojimo Sąlygom
             </label>
           </div>
           <div>
@@ -53,6 +63,16 @@ export default {
   name: 'ModalRegister',
   components: {
     Button,
+  },
+  data() {
+    return {
+      credentials: {
+        email: null,
+        name: null,
+        password: null,
+        TOCEnabled: null,
+      },
+    };
   },
   methods: {
     hide() {
