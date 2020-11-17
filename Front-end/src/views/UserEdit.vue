@@ -14,7 +14,7 @@
 
       <div>
         <label for="user-name">Vardas, pavardė*</label>
-        <input type="text" id="user-name" v-model="user.name" />
+        <input type="text" id="user-name" v-model.trim="user.name" />
       </div>
 
       <div>
@@ -29,17 +29,25 @@
 
       <div>
         <label for="contacts-city">Miestas</label>
-        <input type="text" id="city" v-model="user.contacts.city" />
+        <input type="text" id="city" v-model.trim="user.contacts.city" />
       </div>
 
       <div>
         <label for="contacts-phone">Telefonas</label>
-        <input type="text" id="contacts-phone" v-model="user.contacts.phone" />
+        <input
+          type="text"
+          id="contacts-phone"
+          v-model.trim="user.contacts.phone"
+        />
       </div>
 
       <div>
         <label for="contacts-email">Elektroninis paštas</label>
-        <input type="text" id="contacts-email" v-model="user.contacts.email" />
+        <input
+          type="text"
+          id="contacts-email"
+          v-model.trim="user.contacts.email"
+        />
       </div>
 
       <div>
@@ -47,7 +55,7 @@
         <input
           type="text"
           id="contacts-facebook"
-          v-model="user.contacts.facebook"
+          v-model.trim="user.contacts.facebook"
         />
       </div>
 
@@ -66,7 +74,7 @@
 
       <div>
         <label for="user-about">Apie mane</label>
-        <textarea id="user-about" rows="3" v-model="user.about" />
+        <textarea id="user-about" rows="3" v-model.trim="user.about" />
       </div>
 
       <label
@@ -103,7 +111,11 @@
 
       <div>
         <label for="car-model">Transporto priemonė*</label>
-        <input type="text" id="car-model" v-model="user.driver.car.model" />
+        <input
+          type="text"
+          id="car-model"
+          v-model.trim="user.driver.car.model"
+        />
       </div>
 
       <div>
@@ -131,7 +143,7 @@
 
       <div>
         <label for="driver-about">Apie mane</label>
-        <textarea id="driver-about" rows="3" v-model="user.driver.about" />
+        <textarea id="driver-about" rows="3" v-model.trim="user.driver.about" />
       </div>
 
       <div>
