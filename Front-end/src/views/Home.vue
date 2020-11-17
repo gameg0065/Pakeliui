@@ -8,7 +8,7 @@
       </h3>
       <div v-if="user">
         <router-link :to="{ name: 'posts' }">
-          <Button class="home-buttons" text="skelbimai" :isLarge="true" />
+          <Button  text="skelbimai" :isLarge="true" />
         </router-link>
 
         <router-link v-if="user.isDriver" :to="{ name: 'post-create' }">
@@ -22,7 +22,6 @@
       </div>
       <div v-if="!user">
         <Button
-          class="home-buttons"
           :click="openModalLogin"
           text="prisijungti"
           :isSecondary="false"
