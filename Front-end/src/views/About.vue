@@ -20,14 +20,6 @@
         <div class="profile">
           <Avatar
             size="big"
-            :path="require('../assets/images/team/ignas-pangonis.png')"
-          />
-          <p>Ignas Pangonis</p>
-        </div>
-
-        <div class="profile">
-          <Avatar
-            size="big"
             :path="require('../assets/images/team/benjaminas-racas.png')"
           />
           <p>Benjaminas Račas</p>
@@ -36,9 +28,9 @@
         <div class="profile">
           <Avatar
             size="big"
-            :path="require('../assets/images/team/vadimas-kozemiakinas.png')"
+            :path="require('../assets/images/team/ignas-pangonis.png')"
           />
-          <p>Vadimas Kožemiakinas</p>
+          <p>Ignas Pangonis</p>
         </div>
 
         <div class="profile">
@@ -55,6 +47,14 @@
             :path="require('../assets/images/team/tomas-sinkunas.png')"
           />
           <p>Tomas Šinkūnas</p>
+        </div>
+
+        <div class="profile">
+          <Avatar
+            size="big"
+            :path="require('../assets/images/team/vadimas-kozemiakinas.png')"
+          />
+          <p>Vadimas Kožemiakinas</p>
         </div>
       </div>
     </div>
