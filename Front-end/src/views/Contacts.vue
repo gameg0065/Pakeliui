@@ -2,6 +2,7 @@
   <div class="body">
     <h2>Kontaktai</h2>
     <form>
+      <p>Turite klausimų ar nusiskundimų? Užpildykite formą ir mes su Jumis susisieksime.</p>
       <div>
         <label for="full-name">Vardas, pavardė*</label>
         <input type="text" id="full-name" />
