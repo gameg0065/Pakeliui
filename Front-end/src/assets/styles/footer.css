@@ -7,26 +7,25 @@
 	padding: 0 120px;
 }
 
-ul {
+.footer ul {
 	display: flex;
 	list-style-type: none;
 }
 
-li {
+.footer li {
 	padding-left: 60px;
 }
 
-p,
-a {
+.footer p,a {
 	font-family: 'Montserrat-Regular';
 	font-size: 18px;
 	color: var(--color-black);
 }
 
-a {
+.footer a {
 	text-decoration: none;
 }
 
-a:hover {
+.footer a:hover {
 	color: white;
 }
