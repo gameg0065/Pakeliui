@@ -2,12 +2,12 @@
   <div class="filter card shadow">
     <div>
       <label for="route-from">Iš miesto</label>
-      <input type="text" id="route-from" v-model="route.from" />
+      <input type="text" id="route-from" v-model.trim="route.from" />
     </div>
 
     <div>
       <label for="route-to">Į miestą</label>
-      <input type="text" id="route-to" v-model="route.to" />
+      <input type="text" id="route-to" v-model.trim="route.to" />
     </div>
 
     <div>

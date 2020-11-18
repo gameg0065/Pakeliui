@@ -20,37 +20,41 @@
 
     <div>
       <label for="route-from">Iš miesto*</label>
-      <input type="text" id="route-from" v-model="post.route.from" />
+      <input type="text" id="route-from" v-model.trim="post.route.from" />
     </div>
 
     <div>
       <label for="route-pickup">Paėmimo vieta</label>
-      <input type="text" id="route-pickup" v-model="post.route.pickup" />
+      <input type="text" id="route-pickup" v-model.trim="post.route.pickup" />
     </div>
 
     <div>
       <label for="route-to">Į miestą*</label>
-      <input type="text" id="route-to" v-model="post.route.to" />
+      <input type="text" id="route-to" v-model.trim="post.route.to" />
     </div>
 
     <div>
       <label for="route-dropoff">Pristatymo vieta</label>
-      <input type="text" id="route-dropoff" v-model="post.route.dropoff" />
+      <input type="text" id="route-dropoff" v-model.trim="post.route.dropoff" />
     </div>
 
     <div>
       <label for="post-seetCount">Keleivių skaičius</label>
-      <input type="number" id="post-seetCount" v-model="post.seetCount" />
+      <input
+        type="number"
+        id="post-seetCount"
+        v-model.number="post.seetCount"
+      />
     </div>
 
     <div>
       <label for="post-price">Kelionės kaina</label>
-      <input type="number" id="post-price" v-model="post.price" />
+      <input type="number" id="post-price" v-model.number="post.price" />
     </div>
 
     <div>
       <label for="post-info">Papildoma informacija</label>
-      <textarea id="post-info" rows="3" v-model="post.info" />
+      <textarea id="post-info" rows="3" v-model.trim="post.info" />
     </div>
 
     <Button :click="submit" text="išsaugoti" :isOutlined="true" />

@@ -1,7 +1,12 @@
 <template>
-  <a @click="onClick" class="button" :class="computeClass">
+  <button
+    @click="onClick"
+    class="button"
+    :class="computeClass"
+    :disabled="isDisabled"
+  >
     {{ text }}
-  </a>
+  </button>
 </template>
 
 <script>
@@ -11,6 +16,11 @@ export default {
     click: {
       required: false,
       type: Function,
+    },
+    isDisabled: {
+      default: false,
+      required: false,
+      type: Boolean,
     },
     isLarge: {
       required: false,
