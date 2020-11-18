@@ -10,7 +10,7 @@
 			:focusTrap="true"
 		>
 			<div class="container">
-				<h3>Užsiregistruok</h3>
+				<h3>Registruotis</h3>
 				<small>
 					Jau turi paskyrą?
 					<a href="#" @click.prevent="showModalLogin"> Prisijunk </a>
@@ -30,7 +30,13 @@
 						<input type="password" id="password" v-model.trim="credentials.password" />
 					</div>
 					<div>
-						<label><input type="checkbox" v-model="credentials.TOCEnabled" /> Sutinku su <a href="/terms">Vartojimo sąlygomis</a> </label>
+						<label><input type="checkbox" v-model="credentials.TOCEnabled" /> Sutinku su 
+              <span @click="hide">
+                <router-link :to="{ name: 'terms' }">
+                  Sąlygomis
+                </router-link> 
+              </span>
+            </label>
 					</div>
 					<div>
 						<Button :click="submit" text="Sukurti paskyrą" :isOutlined="true" />
