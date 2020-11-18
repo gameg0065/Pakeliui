@@ -30,7 +30,7 @@
 						<input type="password" id="password" v-model.trim="credentials.password" />
 					</div>
 					<div>
-						<label><input type="checkbox" v-model="credentials.TOCEnabled" /> Sutinku su <a href="/terms">Vartojimo Sąlygomis</a> </label>
+						<label><input type="checkbox" v-model="credentials.TOCEnabled" /> Sutinku su <a href="/terms">Vartojimo sąlygomis</a> </label>
 					</div>
 					<div>
 						<Button :click="submit" text="Sukurti paskyrą" :isOutlined="true" />
