@@ -41,7 +41,12 @@
           <div>
             <label
               ><input type="checkbox" v-model="credentials.TOCEnabled" />
-              Sutinku su Vartojimo Sąlygom
+              Sutinku su 
+              <span @click="hide">
+                <router-link :to="{ name: 'terms' }">
+                  Sąlygomis
+                </router-link> 
+              </span>
             </label>
           </div>
           <div>
