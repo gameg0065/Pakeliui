@@ -12,10 +12,15 @@
 
     <div v-if="isActive">
       <div>
-        <textarea rows="4">Mano komentaras goes here</textarea>
+        <textarea rows="4" v-model.trim="text">
+          Mano komentaras goes here </textarea
+        >
       </div>
 
-      <label><input type="checkbox" /> Informuoti mane apie komentarus </label>
+      <label
+        ><input type="checkbox" v-model="receiveEmail" /> Informuoti mane apie
+        komentarus
+      </label>
 
       <small>Rašydami komentarą, sutinkate su portalo taisyklėmis.</small>
 
@@ -39,6 +44,12 @@ export default {
   components: {
     Button,
     CommentCard,
+  },
+  data() {
+    return {
+      receiveEmail: null,
+      text: null,
+    };
   },
   methods: {
     submit() {

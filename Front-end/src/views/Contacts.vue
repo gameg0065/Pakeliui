@@ -5,27 +5,32 @@
       <p>Turite klausimų ar nusiskundimų? Užpildykite formą ir mes su Jumis susisieksime.</p>
       <div>
         <label for="full-name">Vardas, pavardė*</label>
-        <input type="text" id="full-name" />
+        <input type="text" id="full-name" v-model.trim="name" />
       </div>
 
       <div>
         <label for="email">Elektroninis paštas*</label>
-        <input type="email" id="email" />
+        <input type="email" id="email" v-model.trim="email" />
       </div>
 
       <div>
         <label for="phone">Telefono numeris</label>
-        <input type="tel" id="phone" />
+        <input type="tel" id="phone" v-model.trim="phone" />
       </div>
 
       <div>
         <label for="city">Miestas</label>
-        <input type="text" id="city" />
+        <input type="text" id="city" v-model.trim="city" />
       </div>
 
       <div>
-        <label for="agenda">Dėstyk savo reikalus čia</label>
-        <textarea id="agenda" cols="30" rows="3"></textarea>
+        <label for="message">Dėstyk savo reikalus čia</label>
+        <textarea
+          id="message"
+          cols="30"
+          rows="3"
+          v-model.trim="message"
+        ></textarea>
       </div>
 
       <Button :click="submit" text="Siųsti" :isOutlined="true" />
@@ -45,6 +50,15 @@ export default {
   name: 'Contacts',
   components: {
     Button,
+  },
+  data() {
+    return {
+      city: null,
+      email: null,
+      message: null,
+      name: null,
+      phone: null,
+    };
   },
   methods: {
     submit() {
