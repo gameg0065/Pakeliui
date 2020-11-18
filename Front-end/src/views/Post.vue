@@ -9,9 +9,9 @@
     <div>
       <UserCardInPost :post="post" />
       <Button
-        v-if="isActive"
         text="rezervuoti"
         :click="reserve"
+        :isDisabled="!isActive || userIsAuthor"
         :isOutlined="true"
       />
     </div>
@@ -61,7 +61,11 @@
 
     <img src="https://i.stack.imgur.com/yEshb.gif" alt="map" />
 
-    <Button v-if="isActive" text="rezervuoti" :click="reserve" />
+    <Button
+      text="rezervuoti"
+      :click="reserve"
+      :isDisabled="!isActive || userIsAuthor"
+    />
     <Comments :comments="post.comments" :isActive="isActive" />
   </div>
 </template>
@@ -86,6 +90,14 @@ export default {
       isActive: Boolean,
       post: Object,
     };
+  },
+  computed: {
+    user() {
+      return this.$store.getters.getUser;
+    },
+    userIsAuthor() {
+      return this.user ? this.post.driver.id === this.user.id : false;
+    },
   },
   created() {
     this.post = PostService.getPost(parseInt(this.id));
