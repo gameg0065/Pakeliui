@@ -27,8 +27,8 @@
             >registruotis</a
           >
         </li>
-        <li v-if="user">
-          <a href="#" @click.prevent="$emit('on-profile-button-click')">
+        <li v-if="user" >
+          <a href="#" @click.prevent="$emit('on-profile-button-click')" class="profile-button">
             profilis
             <Avatar :path="user.photo" size="small" />
           </a>
