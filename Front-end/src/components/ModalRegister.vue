@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
 	<div>
 		<modal
 			name="modal-register"
@@ -42,56 +41,6 @@
 					<div>
 						<Button :click="submit" text="Sukurti paskyrą" :isOutlined="true" />
 						<!-- <button @click.prevent="submit">
-=======
-  <div>
-    <modal
-      name="modal-register"
-      @opened="onOpen"
-      :adaptive="true"
-      :height="270"
-      :width="400"
-      :styles="{ 'border-radius': '10px' }"
-      :focusTrap="true"
-    >
-      <div class="container">
-        <h3>Užsiregistruok</h3>
-        <small>
-          Jau turi paskyrą?
-          <a href="#" @click.prevent="showModalLogin"> Prisijunk </a>
-        </small>
-
-        <form>
-          <div>
-            <label for="name"> Vardas, pavardė </label>
-            <input type="text" id="name" v-model.trim="credentials.name" />
-          </div>
-          <div>
-            <label for="email"> Elektroninis paštas </label>
-            <input
-              type="email"
-              id="email"
-              ref="email"
-              v-model.trim="credentials.email"
-            />
-          </div>
-          <div>
-            <label for="password"> Slaptažodis </label>
-            <input
-              type="password"
-              id="password"
-              v-model.trim="credentials.password"
-            />
-          </div>
-          <div>
-            <label
-              ><input type="checkbox" v-model="credentials.TOCEnabled" />
-              Sutinku su Vartojimo Sąlygom
-            </label>
-          </div>
-          <div>
-            <Button :click="submit" text="Sukurti paskyrą" :isOutlined="true" />
-            <!-- <button @click.prevent="submit">
->>>>>>> parent of 88a09bf... add a link to terms page
               Sukurti paskyrą
             </button> -->
           </div>
