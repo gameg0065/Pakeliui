@@ -1,8 +1,9 @@
 .home {
     background-image: url('../assets/images/hero-image.png'); 
     align-items: flex-start;
-    background-repeat: no-repeat, no-repeat;
+    background-repeat: no-repeat;
     background-position: right;
+    background-origin: content-box;
     padding: 0 120px;
 
     h3 {
