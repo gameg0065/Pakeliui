@@ -41,11 +41,9 @@
           <div>
             <label
               ><input type="checkbox" v-model="credentials.TOCEnabled" />
-              Sutinku su 
+              Sutinku su
               <span @click="hide">
-                <router-link :to="{ name: 'terms' }">
-                  Sąlygomis
-                </router-link> 
+                <router-link :to="{ name: 'terms' }"> Sąlygomis </router-link>
               </span>
             </label>
           </div>
