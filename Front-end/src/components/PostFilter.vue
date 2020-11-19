@@ -9,7 +9,7 @@
         :monday-first="true"
       />
     </div>
-    
+
     <div>
       <label for="route-from">Iš miesto</label>
       <input type="text" id="route-from" v-model.trim="route.from" />
@@ -22,7 +22,7 @@
 
     <Button text="ieškoti" :click="applyFilter" :isOutlined="true" />
     <Button
-      text="reset"
+      text="atstatyti"
       :click="resetFilter"
       :isOutlined="true"
       :isSecondary="true"

@@ -24,7 +24,7 @@
 
       <Button
         :click="openModalRegister"
-        text="užsiregistruoti"
+        text="registruotis"
         :isSecondary="true"
         :isLarge="true"
       />

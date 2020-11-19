@@ -6,7 +6,7 @@
       <div>
         <Avatar :path="user.photo" size="big" />
         <Button
-          text="įkelk nuotrauką"
+          text="įkelti nuotrauką"
           :click="changeUserPhoto"
           :isOutlined="true"
         />
@@ -104,7 +104,7 @@
         <Avatar :path="user.driver.car.photo" size="big" />
         <Button
           :click="changeCarPhoto"
-          text="įkelk nuotrauką"
+          text="įkelti nuotrauką"
           :isOutlined="true"
         />
       </div>
