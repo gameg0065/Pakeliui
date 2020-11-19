@@ -24,7 +24,7 @@
       </div>
 
       <div>
-        <label for="message">Dėstyk savo reikalus čia</label>
+        <label for="message">Žinutė</label>
         <textarea
           id="message"
           cols="30"

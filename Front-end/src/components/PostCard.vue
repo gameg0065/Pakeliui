@@ -14,10 +14,10 @@
       <p>Laisvų vietų: {{ post.seetCount - post.passengers.length }}</p>
     </div>
 
-    <p v-if="hasExpired()" class="expired">EXPIRED</p>
+    <p v-if="hasExpired()" class="expired">NEBEGALIOJANTIS</p>
 
     <div v-if="isPending">
-      <p class="request-status">PENDING</p>
+      <p class="request-status">LAUKIAMA PATVIRTINIMO</p>
       <Button
         text="Atšaukti rezervaciją"
         :click="cancelReservation"

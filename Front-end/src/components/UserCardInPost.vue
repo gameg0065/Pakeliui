@@ -6,9 +6,9 @@
       <h4 class="link">{{ user.name }}</h4>
     </router-link>
 
-    <small> Pavežimų skaičius: {{ this.user.driver.posts.length }}</small>
+    <small> Pavežėjimų skaičius: {{ this.user.driver.posts.length }}</small>
 
-    <p>Susisiek su main: {{ getContactInfo() }}</p>
+    <p>Susisiekite su manimi: {{ getContactInfo() }}</p>
 
     <Rating :rating="user.driver.rating" />
   </div>

@@ -6,7 +6,7 @@
       <div>
         <Avatar :path="user.photo" size="big" />
         <Button
-          text="įkelk nuotrauką"
+          text="įkelti nuotrauką"
           :click="changeUserPhoto"
           :isOutlined="true"
         />
@@ -51,7 +51,7 @@
       </div>
 
       <div>
-        <label for="contacts-facebook">Facebook</label>
+        <label for="contacts-facebook">Facebook paskyra</label>
         <input
           type="text"
           id="contacts-facebook"
@@ -60,7 +60,7 @@
       </div>
 
       <div>
-        <label for="user-contact">Susisiek su manim*</label>
+        <label for="user-contact">Susisiekite su manimi*</label>
         <select id="user-contact" v-model="user.contactMethod">
           <option
             v-for="(option, index) in contactOptions"
@@ -104,7 +104,7 @@
         <Avatar :path="user.driver.car.photo" size="big" />
         <Button
           :click="changeCarPhoto"
-          text="įkelk nuotrauką"
+          text="įkelti nuotrauką"
           :isOutlined="true"
         />
       </div>
@@ -129,7 +129,7 @@
       </div>
 
       <div>
-        <label for="driver-contact">Susisiek su manim*</label>
+        <label for="driver-contact">Susisiekite su manimi*</label>
         <select id="driver-contact" v-model="user.driver.contactMethod">
           <option
             v-for="(option, index) in contactOptions"
@@ -142,7 +142,7 @@
       </div>
 
       <div>
-        <label for="driver-about">Apie mane</label>
+        <label for="driver-about">Vairavimo įgūdžiai</label>
         <textarea id="driver-about" rows="3" v-model.trim="user.driver.about" />
       </div>
 

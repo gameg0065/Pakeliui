@@ -18,7 +18,7 @@
     </div>
 
     <div>
-      <small>Nukeliauta kilometrų</small>
+      <small>Nukeliauta</small>
       <p>{{ countDistance(this.user.trips) + ' km' }}</p>
     </div>
 
@@ -28,7 +28,7 @@
     </div>
 
     <div>
-      <small>Apie name</small>
+      <small>Apie mane</small>
       <p>{{ user.about }}</p>
     </div>
 
@@ -48,7 +48,7 @@
     </div>
 
     <div>
-      <small>Facebook'as</small>
+      <small>Facebook paskyra</small>
       <p>{{ user.contacts.facebook }}</p>
     </div>
 
@@ -57,17 +57,17 @@
       <Avatar :path="user.driver.car.photo" size="big" />
 
       <div>
-        <small>Pavežimų skaičius</small>
+        <small>Pavežėjimų skaičius</small>
         <p>{{ user.driver.posts.length }}</p>
       </div>
 
       <div>
-        <small>Pavežta kilometrų</small>
+        <small>Nukeliauta</small>
         <p>{{ countDistance(this.user.driver.posts) + ' km' }}</p>
       </div>
 
       <div>
-        <small>Pavežta keleivių</small>
+        <small>Pavežėtų keleivių skaičius</small>
         <p>{{ countPassangers() }}</p>
       </div>
 
@@ -87,12 +87,12 @@
       </div>
 
       <div>
-        <small>Susisiek su manim</small>
+        <small>Susisiekite su manimi</small>
         <p>{{ user.contacts[user.driver.contact] }}</p>
       </div>
 
       <div>
-        <small>Kaip aš vairuoju</small>
+        <small>Vairavimo įgūdžiai</small>
         <p>{{ user.driver.about }}</p>
       </div>
     </div>
