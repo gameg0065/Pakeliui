@@ -13,8 +13,8 @@
         <div>
           <h3>Prisijunk</h3>
           <small>
-            Neturi paskyros?
-            <a href="#" @click.prevent="showModalRegister">Užsiregistruok</a>
+            Neturite paskyros?
+            <a href="#" @click.prevent="showModalRegister">Registruokitės</a>
           </small>
         </div>
 
@@ -28,15 +28,15 @@
             <input type="password" id="password" v-model="credentials.password"/>
           </div>
           <div>
-            <label><input type="checkbox" v-model="credentials.rememberMe" /> Prisimink mane </label>
+            <label><input type="checkbox" v-model="credentials.rememberMe" /> Prisiminkite mane </label>
           </div>
           <small>
             <a href="#" @click.prevent="remindPassword">
-              Pamiršai slaptažodį?
+              Pamiršote slaptažodį?
             </a>
           </small>
           <div>
-            <Button :click="submit" text="prisijungti" :isOutlined="true" />
+            <Button :click="submit" text="Prisijungti" :isOutlined="true" />
           </div>
 
           <div>

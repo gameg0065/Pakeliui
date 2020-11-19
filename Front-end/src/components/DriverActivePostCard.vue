@@ -31,7 +31,7 @@
     </div>
 
     <div>
-      <small>Kiek gali paimti keleivių</small>
+      <small>Galimas keleivių skaičius</small>
       <p>{{ post.seetCount }}</p>
     </div>
 

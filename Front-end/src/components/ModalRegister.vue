@@ -10,10 +10,10 @@
       :focusTrap="true"
     >
       <div class="container">
-        <h3>Užsiregistruok</h3>
+        <h3>Registracija</h3>
         <small>
-          Jau turi paskyrą?
-          <a href="#" @click.prevent="showModalLogin"> Prisijunk </a>
+          Jau turite paskyrą?
+          <a href="#" @click.prevent="showModalLogin"> Prisijunkite </a>
         </small>
 
         <form>
@@ -48,7 +48,7 @@
             </label>
           </div>
           <div>
-            <Button :click="submit" text="Sukurti paskyrą" :isOutlined="true" />
+            <Button :click="submit" text="Registruotis" :isOutlined="true" />
             <!-- <button @click.prevent="submit">
               Sukurti paskyrą
             </button> -->

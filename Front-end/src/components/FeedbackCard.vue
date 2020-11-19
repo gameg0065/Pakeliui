@@ -15,7 +15,7 @@
       </div>
       <Button
         v-else
-        text="parašyk atsiliepimą"
+        text="rašyti atsiliepimą"
         :click="writeFeedback"
         :isOutlined="true"
       />
