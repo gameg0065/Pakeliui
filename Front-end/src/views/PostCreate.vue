@@ -39,7 +39,7 @@
     </div>
 
     <div>
-      <label for="post-seetCount">Keleivių skaičius</label>
+      <label for="post-seetCount">Galimas keleivių skaičius*</label>
       <input
         type="number"
         id="post-seetCount"

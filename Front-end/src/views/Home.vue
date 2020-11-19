@@ -11,7 +11,7 @@
       </router-link>
 
       <router-link v-if="user.isDriver" :to="{ name: 'post-create' }">
-        <Button text="sukurk skelbimą" :isSecondary="true" :isLarge="true" />
+        <Button text="įkelti skelbimą" :isSecondary="true" :isLarge="true" />
       </router-link>
     </div>
     <div v-if="!user">

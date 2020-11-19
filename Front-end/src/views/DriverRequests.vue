@@ -1,5 +1,6 @@
 <template>
   <div>
+		<h2>Rezervacijos, laukiančios patvirtinimo</h2>
     <div v-if="pendingPosts.length > 0">
       <div v-for="post in pendingPosts" :key="post.id">
         <div v-for="passenger in post.passengers" :key="passenger.id">
@@ -17,7 +18,7 @@
       </div>
     </div>
     <div v-else>
-      <p>No requests</p>
+      <p>Rezervacijų nėra</p>
     </div>
   </div>
 </template>

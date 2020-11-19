@@ -1,7 +1,7 @@
 <template>
   <div class="pageNotFound">
     <h1>404</h1>
-    <p>Ups, pataikei kur nereikia - toks puslapis neegzistuoja</p>
+    <p>Ups, pataikei kur nereikia - toks puslapis neegzistuoja!</p>
     <div>
       <router-link :to="{ name: 'home' }">
         <Button
