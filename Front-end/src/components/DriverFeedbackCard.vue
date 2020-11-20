@@ -38,7 +38,7 @@ export default {
   },
   data() {
     return {
-      user: [],
+      user: null,
       feedback: null,
     };
   },
@@ -50,7 +50,20 @@ export default {
   },
   methods: {
     rateUser() {
-      alert('TODO');
+      const modal = this.$modal;
+      modal.show('modal-feedback', {
+        title: 'Atsiliepimas',
+        text: 'Atsiliepimo pakeisti nebus galima.',
+        ratingTitle: 'Įvertinkite keleivį',
+        user: this.user,
+        button: {
+          title: 'skelbti atsiliepimą',
+          action(data) {
+            alert('TODO');
+            modal.hide('modal-feedback');
+          },
+        },
+      });
     },
   },
 };
