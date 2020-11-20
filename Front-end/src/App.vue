@@ -2,6 +2,7 @@
   <div id="app">
     <!-- MODAL DIALOGS -->
     <ModalLogin />
+    <ModalMessaging />
     <ModalNotification />
     <ModalRegister />
 
@@ -23,6 +24,7 @@ import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 
 import ModalLogin from '@/components/ModalLogin.vue';
+import ModalMessaging from '@/components/ModalMessaging.vue';
 import ModalNotification from '@/components/ModalNotification.vue';
 import ModalRegister from '@/components/ModalRegister.vue';
 import ProfileDropdown from '@/components/ProfileDropdown.vue';
@@ -33,6 +35,7 @@ export default {
     Header,
     Footer,
     ModalLogin,
+    ModalMessaging,
     ModalNotification,
     ModalRegister,
     ProfileDropdown,
