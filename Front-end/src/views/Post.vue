@@ -109,7 +109,19 @@ export default {
   },
   methods: {
     reserve() {
-      alert('TODO');
+      const modal = this.$modal;
+      modal.show('modal-messaging', {
+        title: 'Kelionės rezervacija',
+        text:
+          'Žinutė apie Jūsų rezervaciją bus išsiųsta vairuotojui, kai paspausite mygtuką „REZERVUOTI“. Žemiau esančiame laukelyje palikite žinutę vairuotojui.',
+        button: {
+          title: 'rezervuoti',
+          action(data) {
+            alert('TODO');
+            modal.hide('modal-messaging');
+          },
+        },
+      });
     },
   },
 };
