@@ -51,10 +51,31 @@ export default {
   },
   methods: {
     approve() {
-      alert('TODO');
+      this.$modal.show('modal-messaging', {
+        title: 'Rezervacijos patvirtinimas',
+        text: 'Žemiau esančiame laukelyje palikite žinutę keleiviui.',
+        button: {
+          title: 'patvirtinti',
+          action() {
+            alert('TODO');
+            this.$modal.hide('modal-messaging');
+          },
+        },
+      });
     },
     dismiss() {
-      alert('TODO');
+      this.$modal.show('modal-messaging', {
+        title: 'Rezervacijos atmetimas',
+        text:
+          'Ar tikrai norite atšaukti vartotojo rezervaciją? Mes apie tai informuosime vartotoją. Žemiau esančiame laukelyje palikite žinutę.',
+        button: {
+          title: 'atmesti',
+          action() {
+            alert('TODO');
+            this.$modal.hide('modal-messaging');
+          },
+        },
+      });
     },
     getDriverPostsWithPassengersWithStatus(status) {
       const postHasPassengersWithStatus = this.postHasPassengersWithStatus;
