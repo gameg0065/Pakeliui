@@ -51,28 +51,30 @@ export default {
   },
   methods: {
     approve() {
-      this.$modal.show('modal-messaging', {
+      const modal = this.$modal;
+      modal.show('modal-messaging', {
         title: 'Rezervacijos patvirtinimas',
         text: 'Žemiau esančiame laukelyje palikite žinutę keleiviui.',
         button: {
           title: 'patvirtinti',
-          action() {
+          action(data) {
             alert('TODO');
-            this.$modal.hide('modal-messaging');
+            modal.hide('modal-messaging');
           },
         },
       });
     },
     dismiss() {
-      this.$modal.show('modal-messaging', {
+      const modal = this.$modal;
+      modal.show('modal-messaging', {
         title: 'Rezervacijos atmetimas',
         text:
           'Ar tikrai norite atšaukti vartotojo rezervaciją? Mes apie tai informuosime vartotoją. Žemiau esančiame laukelyje palikite žinutę.',
         button: {
           title: 'atmesti',
-          action() {
+          action(data) {
             alert('TODO');
-            this.$modal.hide('modal-messaging');
+            modal.hide('modal-messaging');
           },
         },
       });
