@@ -13,10 +13,10 @@
       <p>{{ params.text }}</p>
 
       <div>
-        <textarea cols="30" rows="3"></textarea>
+        <textarea rows="3" v-model="data.text"></textarea>
       </div>
 
-      <Button :text="button.title" :click="button.action" :isOutlined="true" />
+      <Button :text="button.title" :click="submit" :isOutlined="true" />
     </div>
   </modal>
 </template>
@@ -32,6 +32,7 @@ export default {
   data() {
     return {
       params: {},
+      data: this.resetToDefaults(),
     };
   },
   computed: {
@@ -40,14 +41,23 @@ export default {
     },
   },
   methods: {
+    beforeOpen(event) {
+      this.params = event.params || {};
+    },
     hide() {
       this.$modal.hide('modal-messaging');
     },
     show() {
       this.$modal.show('modal-messaging');
     },
-    beforeOpen(event) {
-      this.params = event.params || {};
+    submit() {
+      this.button.action(this.data);
+      this.data = this.resetToDefaults();
+    },
+    resetToDefaults() {
+      return {
+        text: '',
+      };
     },
   },
   mount() {
