@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <!-- MODAL DIALOGS -->
+    <ModalFeedback />
     <ModalLogin />
     <ModalMessaging />
     <ModalNotification />
@@ -23,6 +24,7 @@
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 
+import ModalFeedback from '@/components/ModalFeedback.vue';
 import ModalLogin from '@/components/ModalLogin.vue';
 import ModalMessaging from '@/components/ModalMessaging.vue';
 import ModalNotification from '@/components/ModalNotification.vue';
@@ -34,6 +36,7 @@ export default {
   components: {
     Header,
     Footer,
+    ModalFeedback,
     ModalLogin,
     ModalMessaging,
     ModalNotification,
