@@ -2,8 +2,8 @@
   <modal
     name="modal-notification"
     :adaptive="true"
-    :height="270"
-    :width="400"
+    :height="400"
+    :width="600"
     :styles="{ 'border-radius': '10px' }"
     :focusTrap="true"
     @before-open="beforeOpen"
