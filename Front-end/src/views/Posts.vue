@@ -1,8 +1,12 @@
 <template>
-  <div>
+  <div class="posts">
     <h2>Skelbimai</h2>
-    <PostFilter @on-post-filter-changed="onPostFilterChanged" />
-    <PostCard v-for="post in posts" :key="post.id" :post="post" />
+    <div class="posts-container">
+      <PostFilter @on-post-filter-changed="onPostFilterChanged" />
+      <div class="posts-list">
+        <PostCard v-for="post in posts" :key="post.id" :post="post" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -61,3 +65,8 @@ export default {
   },
 };
 </script>
+
+
+<style lang="scss">
+@import '../assets/styles/posts.scss';
+</style>

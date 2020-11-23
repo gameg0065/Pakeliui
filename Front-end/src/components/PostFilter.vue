@@ -1,5 +1,5 @@
 <template>
-  <div class="filter card shadow">
+  <div class="post-filter shadow">
     <div>
       <label for="date">Kelionės data</label>
       <Datepicker
@@ -20,13 +20,10 @@
       <input type="text" id="route-to" v-model.trim="route.to" />
     </div>
 
-    <Button text="ieškoti" :click="applyFilter" :isOutlined="true" />
-    <Button
-      text="atstatyti"
-      :click="resetFilter"
-      :isOutlined="true"
-      :isSecondary="true"
-    />
+    <Button text="ieškoti" :click="applyFilter" class="button" />
+    <small>
+      <a href="#" @click.prevent="resetFilter"> Išvalyti filtrą </a>
+    </small>
   </div>
 </template>
 
@@ -66,8 +63,6 @@ export default {
 };
 </script>
 
-<style>
-.filter {
-  width: 260px;
-}
+<style lang="scss">
+@import '../assets/styles/post-filter.scss';
 </style>

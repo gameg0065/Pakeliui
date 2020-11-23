@@ -1,11 +1,13 @@
 <template>
-  <div class="card shadow">
-    <div>
+  <div class="card shadow post-card">
+    <div class="column center user">
       <Avatar :path="driver.photo" />
-      <img src="../assets/icons/star.svg" alt="star" />
-      <small>{{ driver.driver.rating }} / 5</small>
+      <div class="rating">
+        <img src="../assets/icons/star.svg" alt="star" />
+        <small>{{ driver.driver.rating }} / 5</small>
+      </div>
     </div>
-    <div>
+    <div class="column">
       <router-link :to="{ name: 'post', params: { id: post.id } }">
         <h4>{{ post.route.from + ' - ' + post.route.to }}</h4>
       </router-link>
@@ -14,16 +16,18 @@
       <p>Laisvų vietų: {{ post.seetCount - post.passengers.length }}</p>
     </div>
 
-    <p v-if="hasExpired()" class="expired">NEBEGALIOJANTIS</p>
+    <div class="right">
+      <p v-if="hasExpired()" class="danger">NEBEGALIOJANTIS</p>
 
-    <div v-if="isPending">
-      <p class="request-status">LAUKIAMA PATVIRTINIMO</p>
-      <Button
-        text="Atšaukti rezervaciją"
-        :click="cancelReservation"
-        :isSecondary="true"
-        :isOutlined="true"
-      />
+      <div v-if="isPending" class="right">
+        <p class="request-status">LAUKIAMA PATVIRTINIMO</p>
+        <Button
+          text="Atšaukti rezervaciją"
+          :click="cancelReservation"
+          :isSecondary="true"
+          :isOutlined="true"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -77,33 +81,7 @@ export default {
 };
 </script>
 
-<style scoped>
-.card {
-  transition: all 0.2s linear;
-  margin: 20px;
-  padding: 20px;
-}
-
-.card:hover {
-  transform: scale(1.01);
-}
-
-.shadow {
-  -webkit-box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25); /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-  -moz-box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25); /* Firefox 3.5 - 3.6 */
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25); /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
-}
-
-h4,
-.request-status {
-  color: var(--color-primary);
-}
-
-a {
-  text-decoration: none;
-}
-
-p.expired {
-  color: var(--color-secondary);
-}
+<style lang="scss">
+@import '../assets/styles/card.scss';
+@import '../assets/styles/post-card.scss';
 </style>
