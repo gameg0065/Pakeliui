@@ -1,18 +1,25 @@
 .posts {
 	justify-content: flex-start;
 
+	display: flex;
+	margin-left: auto;
+	margin-right: auto;
+	width: 900px;
+
 	h2 {
+		align-self: flex-start;
+		margin-left: -50px;
 		padding-bottom: 50px;
 		padding-top: 40px;
 	}
 
 	.posts-container {
 		display: flex;
-		min-width: 1200px;
+		width: 100%;
 	}
 
 	.posts-list {
-		flex: 1;
+		flex-grow: 1;
 		margin-left: 20px;
 	}
 }
