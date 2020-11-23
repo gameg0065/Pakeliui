@@ -46,16 +46,13 @@ p {
 	line-height: 30px;
 }
 
-input {
+input,
+textarea {
     font-family: "Montserrat-Regular";
     font-size: 18px;
 }
 
-label {
-    font-family: "Montserrat-Regular";
-    font-size: 13px;
-}
-
+label, 
 small {
 	font-family: 'Montserrat-Regular';
 	font-size: 13px;
