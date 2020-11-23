@@ -202,7 +202,17 @@ export default {
       }
     },
     deleteProfile() {
-      alert('TODO');
+      this.$modal.show('modal-notification', {
+        title: 'Patvirtinimas',
+        text: 'Ar tikrai norite ištrinti profilį? Kelio atgal nėra.',
+        button: {
+          title: 'ištrinti',
+          action() {
+            alert('TODO');
+            this.$modal.hide('modal-notification');
+          },
+        },
+      });
     },
     saveProfile() {
       alert('TODO');
