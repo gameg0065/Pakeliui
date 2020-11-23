@@ -57,3 +57,7 @@ small {
 	font-family: 'Montserrat-Regular';
 	font-size: 13px;
 }
+
+strong {
+	font-family: 'Montserrat-Medium';
+}

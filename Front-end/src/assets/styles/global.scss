@@ -34,6 +34,10 @@ input {
     }
 }
 
+::selection {
+    background: var(--color-tertiary);
+}
+
 .page {
     align-items: center;
     display: flex;
