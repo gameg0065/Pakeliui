@@ -1,0 +1,35 @@
+.post-card {
+	display: flex;
+	min-width: 700px;
+
+	h4,
+	.request-status {
+		color: var(--color-primary);
+	}
+
+	h4 {
+		padding-bottom: 10px;
+	}
+
+	.center {
+		align-items: center;
+	}
+
+	.column {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.rating {
+		padding-top: 10px;
+	}
+
+	.right {
+		margin-left: auto;
+		text-align: right;
+	}
+
+	.user {
+		padding-right: 20px;
+	}
+}

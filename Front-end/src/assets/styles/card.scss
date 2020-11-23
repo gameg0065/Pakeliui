@@ -1,0 +1,13 @@
+.card {
+	transition: all 0.2s linear;
+	margin-bottom: 20px;
+	padding: 20px;
+
+	&:hover {
+		transform: scale(1.01);
+	}
+
+	.danger {
+		color: var(--color-secondary);
+	}
+}

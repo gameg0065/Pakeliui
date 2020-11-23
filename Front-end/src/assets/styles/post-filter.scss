@@ -1,0 +1,24 @@
+.post-filter {
+	align-items: center;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	padding: 30px;
+	width: 260px;
+
+	align-self: flex-start;
+
+	a {
+		color: var(--color-secondary);
+	}
+
+	input {
+		margin-top: 0;
+		width: 100%;
+	}
+
+	.button {
+		margin: 20px 0;
+		width: 100%;
+	}
+}

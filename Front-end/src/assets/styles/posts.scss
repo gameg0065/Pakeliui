@@ -1,0 +1,18 @@
+.posts {
+	justify-content: flex-start;
+
+	h2 {
+		padding-bottom: 50px;
+		padding-top: 40px;
+	}
+
+	.posts-container {
+		display: flex;
+		min-width: 1200px;
+	}
+
+	.posts-list {
+		flex: 1;
+		margin-left: 20px;
+	}
+}
