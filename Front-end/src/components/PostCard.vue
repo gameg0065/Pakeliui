@@ -14,10 +14,10 @@
       <p>Laisvų vietų: {{ post.seetCount - post.passengers.length }}</p>
     </div>
 
-    <p v-if="hasExpired()" class="expired">EXPIRED</p>
+    <p v-if="hasExpired()" class="expired">NEBEGALIOJANTIS</p>
 
     <div v-if="isPending">
-      <p class="request-status">PENDING</p>
+      <p class="request-status">LAUKIAMA PATVIRTINIMO</p>
       <Button
         text="Atšaukti rezervaciją"
         :click="cancelReservation"
@@ -53,7 +53,19 @@ export default {
   },
   methods: {
     cancelReservation() {
-      alert('TODO');
+      const modal = this.$modal;
+      modal.show('modal-messaging', {
+        title: 'Rezervacijos atšaukimas',
+        text:
+          'Ar tikrai norite atšaukti rezervaciją? Mes apie tai informuosime vairuotoją. Žemiau esančiame laukelyje palikite žinutę vairuotojui.',
+        button: {
+          title: 'atšaukti rezervaciją',
+          action(data) {
+            alert('TODO');
+            modal.hide('modal-messaging');
+          },
+        },
+      });
     },
     hasExpired() {
       const now = new Date();

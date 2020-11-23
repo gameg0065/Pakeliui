@@ -18,11 +18,10 @@
       </div>
 
       <label
-        ><input type="checkbox" v-model="receiveEmail" /> Informuoti mane apie
-        komentarus
+        ><input type="checkbox" v-model="receiveEmail" /> Informuoti mane apie komentarus el. paštu
       </label>
 
-      <small>Rašydami komentarą, sutinkate su portalo taisyklėmis.</small>
+      <small>Rašydami komentarą, sutinkate su Sąlygomis.</small>
 
       <div>
         <Button text="komentuoti" :click="submit" :isOutlined="true" />

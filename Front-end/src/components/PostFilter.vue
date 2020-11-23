@@ -1,16 +1,6 @@
 <template>
   <div class="filter card shadow">
     <div>
-      <label for="route-from">Iš miesto</label>
-      <input type="text" id="route-from" v-model.trim="route.from" />
-    </div>
-
-    <div>
-      <label for="route-to">Į miestą</label>
-      <input type="text" id="route-to" v-model.trim="route.to" />
-    </div>
-
-    <div>
       <label for="date">Kelionės data</label>
       <Datepicker
         id="date"
@@ -20,9 +10,19 @@
       />
     </div>
 
+    <div>
+      <label for="route-from">Iš miesto</label>
+      <input type="text" id="route-from" v-model.trim="route.from" />
+    </div>
+
+    <div>
+      <label for="route-to">Į miestą</label>
+      <input type="text" id="route-to" v-model.trim="route.to" />
+    </div>
+
     <Button text="ieškoti" :click="applyFilter" :isOutlined="true" />
     <Button
-      text="reset"
+      text="atstatyti"
       :click="resetFilter"
       :isOutlined="true"
       :isSecondary="true"

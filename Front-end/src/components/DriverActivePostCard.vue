@@ -31,7 +31,7 @@
     </div>
 
     <div>
-      <small>Kiek gali paimti keleivių</small>
+      <small>Galimas keleivių skaičius</small>
       <p>{{ post.seetCount }}</p>
     </div>
 
@@ -88,7 +88,17 @@ export default {
   },
   methods: {
     deletePost() {
-      alert('TODO');
+      this.$modal.show('modal-notification', {
+        title: 'Patvirtinimas',
+        text: 'Ar tikrai norite ištrinti skelbimą? Kelio atgal nėra.',
+        button: {
+          title: 'ištrinti',
+          action() {
+            alert('TODO');
+            this.$modal.hide('modal-notification');
+          },
+        },
+      });
     },
     getApprovedPassengers(post, status) {
       const users = [];

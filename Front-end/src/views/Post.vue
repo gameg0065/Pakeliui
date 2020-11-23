@@ -3,7 +3,7 @@
     <div>
       <h2>Skelbimas</h2>
       <p v-if="isActive" class="post-active">Skelbimo būsena: aktyvus</p>
-      <p v-else class="post-expired">Skelbimo būsena: pasibaigęs</p>
+      <p v-else class="post-expired">Skelbimo būsena: nebegaliojantis</p>
     </div>
 
     <div>
@@ -30,7 +30,7 @@
         <p>{{ post.route.from }}</p>
       </div>
       <div>
-        <small>Paėmimo adresas</small>
+        <small>Paėmimo vieta</small>
         <p>{{ post.route.pickup }}</p>
       </div>
       <div>
@@ -42,11 +42,11 @@
         <p>{{ post.route.dropoff }}</p>
       </div>
       <div>
-        <small>Kiek gali paimti keleivių</small>
+        <small>Galimas keleivių skaičius</small>
         <p>{{ post.seetCount }}</p>
       </div>
       <div>
-        <small>Liko laisvų vietų</small>
+        <small>Laisvų vietų skaičius</small>
         <p>paskaičiuoti</p>
       </div>
       <div>
@@ -109,7 +109,19 @@ export default {
   },
   methods: {
     reserve() {
-      alert('TODO');
+      const modal = this.$modal;
+      modal.show('modal-messaging', {
+        title: 'Kelionės rezervacija',
+        text:
+          'Žinutė apie Jūsų rezervaciją bus išsiųsta vairuotojui, kai paspausite mygtuką „REZERVUOTI“. Žemiau esančiame laukelyje palikite žinutę vairuotojui.',
+        button: {
+          title: 'rezervuoti',
+          action(data) {
+            alert('TODO');
+            modal.hide('modal-messaging');
+          },
+        },
+      });
     },
   },
 };

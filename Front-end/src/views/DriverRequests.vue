@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h2>Rezervacijos, laukiančios patvirtinimo</h2>
     <div v-if="pendingPosts.length > 0">
       <div v-for="post in pendingPosts" :key="post.id">
         <div v-for="passenger in post.passengers" :key="passenger.id">
@@ -17,7 +18,7 @@
       </div>
     </div>
     <div v-else>
-      <p>No requests</p>
+      <p>Rezervacijų nėra</p>
     </div>
   </div>
 </template>
@@ -50,10 +51,33 @@ export default {
   },
   methods: {
     approve() {
-      alert('TODO');
+      const modal = this.$modal;
+      modal.show('modal-messaging', {
+        title: 'Rezervacijos patvirtinimas',
+        text: 'Žemiau esančiame laukelyje palikite žinutę keleiviui.',
+        button: {
+          title: 'patvirtinti',
+          action(data) {
+            alert('TODO');
+            modal.hide('modal-messaging');
+          },
+        },
+      });
     },
     dismiss() {
-      alert('TODO');
+      const modal = this.$modal;
+      modal.show('modal-messaging', {
+        title: 'Rezervacijos atmetimas',
+        text:
+          'Ar tikrai norite atšaukti vartotojo rezervaciją? Mes apie tai informuosime vartotoją. Žemiau esančiame laukelyje palikite žinutę.',
+        button: {
+          title: 'atmesti',
+          action(data) {
+            alert('TODO');
+            modal.hide('modal-messaging');
+          },
+        },
+      });
     },
     getDriverPostsWithPassengersWithStatus(status) {
       const postHasPassengersWithStatus = this.postHasPassengersWithStatus;

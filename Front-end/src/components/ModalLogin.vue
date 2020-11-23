@@ -36,20 +36,26 @@
               v-model="credentials.password"
             />
           </div>
+
           <div class="line">
             <label
               ><input type="checkbox" v-model="credentials.rememberMe" />
-              Prisimink mane
+              Prisiminkite mane
             </label>
             <small>
               <a href="#" @click.prevent="remindPassword">
-                Pamiršai slaptažodį?
+                Pamiršote slaptažodį?
               </a>
             </small>
           </div>
 
           <div>
-            <Button class="button" :click="submit" text="prisijungti" :isOutlined="true" />
+            <Button
+              class="button"
+              :click="submit"
+              text="prisijungti"
+              :isOutlined="true"
+            />
           </div>
 
           <div class="line">

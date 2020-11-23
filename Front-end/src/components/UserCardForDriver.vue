@@ -7,7 +7,7 @@
     </router-link>
 
     <small> Kelionių skaičius: {{ countTrips() }} </small>
-    <p>Susisiek su manim: {{ getContactInfo() }}</p>
+    <p>Susisiekite su manimi: {{ getContactInfo() }}</p>
 
     <Rating :rating="user.rating" />
 

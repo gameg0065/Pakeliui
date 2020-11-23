@@ -7,36 +7,36 @@
         kitus
       </h3>
     </div>
-      <div v-if="user">
-        <router-link :to="{ name: 'posts' }">
-          <Button  text="skelbimai" :isLarge="true" />
-        </router-link>
+    <div v-if="user">
+      <router-link :to="{ name: 'posts' }">
+        <Button text="skelbimai" :isLarge="true" />
+      </router-link>
 
-        <router-link v-if="user.isDriver" :to="{ name: 'post-create' }">
-          <Button
-            class="home-button"
-            text="sukurk skelbimą"
-            :isSecondary="true"
-            :isLarge="true"
-          />
-        </router-link>
-      </div>
-      <div v-if="!user">
-        <Button
-          :click="openModalLogin"
-          text="prisijungti"
-          :isSecondary="false"
-          :isLarge="true"
-        />
-
+      <router-link v-if="user.isDriver" :to="{ name: 'post-create' }">
         <Button
           class="home-button"
-          :click="openModalRegister"
-          text="užsiregistruoti"
+          text="sukurk skelbimą"
           :isSecondary="true"
           :isLarge="true"
         />
-      </div>
+      </router-link>
+    </div>
+    <div v-if="!user">
+      <Button
+        :click="openModalLogin"
+        text="prisijungti"
+        :isSecondary="false"
+        :isLarge="true"
+      />
+
+      <Button
+        class="home-button"
+        :click="openModalRegister"
+        text="registruotis"
+        :isSecondary="true"
+        :isLarge="true"
+      />
+    </div>
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2 v-if="isEditMode">Redaguok skelbimą</h2>
-    <h2 v-else>Sukurk skelbimą</h2>
+    <h2 v-if="isEditMode">Redaguoti skelbimą</h2>
+    <h2 v-else>Sukurti skelbimą</h2>
 
     <div>
       <label for="post-date">Kelionės data*</label>
@@ -39,7 +39,7 @@
     </div>
 
     <div>
-      <label for="post-seetCount">Keleivių skaičius</label>
+      <label for="post-seetCount">Galimas keleivių skaičius*</label>
       <input
         type="number"
         id="post-seetCount"
