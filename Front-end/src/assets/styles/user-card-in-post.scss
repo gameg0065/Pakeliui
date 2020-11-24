@@ -1,0 +1,16 @@
+.user-card-in-post {
+	display: flex;
+
+    .flex-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .grow {
+        flex: 1;
+    }
+
+    .user {
+        margin-right: 20px;
+    }
+}

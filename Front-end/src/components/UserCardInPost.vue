@@ -1,14 +1,16 @@
 <template>
-  <div class="card shadow">
-    <Avatar :path="user.photo" />
+  <div class="card shadow user-card-in-post">
+    <Avatar class="user" :path="user.photo" />
 
-    <router-link :to="{ name: 'user', params: { id: user.id } }">
-      <h4 class="link">{{ user.name }}</h4>
-    </router-link>
+    <div class="flex-column grow">
+      <router-link :to="{ name: 'user', params: { id: user.id } }">
+        <h4 class="link">{{ user.name }}</h4>
+      </router-link>
 
-    <small> Pavežėjimų skaičius: {{ this.user.driver.posts.length }}</small>
+      <small> Pavežėjimų skaičius: {{ this.user.driver.posts.length }}</small>
 
-    <p>Susisiekite su manimi: {{ getContactInfo() }}</p>
+      <p>Susisiekite su manimi: {{ getContactInfo() }}</p>
+    </div>
 
     <Rating :rating="user.driver.rating" />
   </div>
@@ -45,8 +47,6 @@ export default {
 };
 </script>
 
-<style scoped>
-h4.link {
-  color: var(--color-primary);
-}
+<style lang="scss">
+@import '../assets/styles/user-card-in-post.scss';
 </style>
