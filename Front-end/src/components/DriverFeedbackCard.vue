@@ -1,22 +1,26 @@
 <template>
-  <div>
-    <Avatar :path="user.photo" />
-    <router-link :to="{ name: 'user', params: { id: user.id } }">
-      <p class="link">{{ user.name }}</p>
-    </router-link>
+  <div class="driver-feedback-card">
+    <div class="flex-row">
+      <Avatar :path="user.photo" size="small" class="user" />
 
-    <div v-if="feedback">
-      <small> Įvertinimo data: {{ feedback.date }} </small>
-      <p>{{ feedback.text }}</p>
-      <Rating :rating="feedback.rating" />
+      <div class="flex-column grow">
+        <router-link :to="{ name: 'user', params: { id: user.id } }">
+          {{ user.name }}
+        </router-link>
+        <small v-if="feedback"> Įvertinimo data: {{ feedback.date }} </small>
+      </div>
+
+      <Rating v-if="feedback" :rating="feedback.rating" />
+      <Button
+        v-else
+        text="įvertink keleivį"
+        :click="rateUser"
+        :isOutlined="true"
+        :isLarge="false"
+      />
     </div>
 
-    <Button
-      v-else
-      text="įvertink keleivį"
-      :click="rateUser"
-      :isOutlined="true"
-    />
+    <p v-if="feedback">{{ feedback.text }}</p>
   </div>
 </template>
 
@@ -69,8 +73,6 @@ export default {
 };
 </script>
 
-<style>
-p.link {
-  color: var(--color-primary);
-}
+<style lang="scss">
+@import '../assets/styles/driver-feedback-card.scss';
 </style>

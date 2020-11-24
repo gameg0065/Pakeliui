@@ -1,0 +1,21 @@
+.driver-feedback-card {
+	padding: 10px 0;
+
+	.flex-column {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.flex-row {
+		display: flex;
+		align-items: flex-start;
+	}
+
+	.grow {
+		flex: 1;
+	}
+
+	.user {
+		margin-right: 10px;
+	}
+}
