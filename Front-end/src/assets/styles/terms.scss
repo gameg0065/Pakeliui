@@ -1,12 +1,4 @@
 .terms {
-	justify-content: flex-start;
-
-	align-items: center;
-	display: flex;
-	margin-left: auto;
-	margin-right: auto;
-	width: 900px;
-
 	ol {
 		counter-reset: item;
 		list-style-type: none;
@@ -32,13 +24,6 @@
 		font-family: 'Montserrat-Regular';
 		font-size: 18px;
 		line-height: 30px;
-	}
-	
-	h2 {
-		align-self: flex-start;
-		margin-left: -50px;
-		padding-bottom: 50px;
-		padding-top: 40px;
 	}
 
 	p {

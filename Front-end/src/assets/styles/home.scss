@@ -4,7 +4,9 @@
     background-origin: content-box;
     background-position: right;
     background-repeat: no-repeat;
+    justify-content: center;
     padding: var(--page-padding);
+    width: auto;
 
     h3 {
         padding-bottom: 100px;

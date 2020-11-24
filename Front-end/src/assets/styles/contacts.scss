@@ -1,24 +1,9 @@
 .contacts {
-	justify-content: flex-start;
-
-	align-items: center;
-	display: flex;
-	margin-left: auto;
-	margin-right: auto;
-	width: 900px;
-
 	form {
 		align-self: flex-end;
 		display: flex;
 		flex-direction: column;
 		padding-top: 20px;
-	}
-
-	h2 {
-		align-self: flex-start;
-		margin-left: -50px;
-		padding-bottom: 50px;
-		padding-top: 40px;
 	}
 
 	p {

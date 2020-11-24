@@ -1,6 +1,6 @@
 <template>
   <div class="terms">
-    <h2>Vartojimo sąlygos</h2>
+    <h2 class="page-title">Vartojimo sąlygos</h2>
     <p>Naudodamiesi „Pakeliui“ teikiamomis paslaugomis, Jūs sutinkate būti saistomas šių sąlygų („Sąlygos“).</p>
     <p>Prieš naudojantis „Pakeliui“ paslaugomis, prašome atidžiai perskaityti toliau išdėstytas Sąlygas. Jei jūs nesutinkate su Sąlygomis, prašome nesinaudoti „Pakeliui“.</p>
     <ol>

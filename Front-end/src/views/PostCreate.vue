@@ -1,7 +1,7 @@
 <template>
   <div class="post-create">
-    <h2 v-if="isEditMode">Redaguoti skelbimą</h2>
-    <h2 v-else>Sukurti skelbimą</h2>
+    <h2 class="page-title" v-if="isEditMode">Redaguoti skelbimą</h2>
+    <h2 class="page-title" v-else>Sukurti skelbimą</h2>
 
     <div class="line">
       <label for="post-date">Kelionės data*</label>

@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h2>Apie mus</h2>
+    <h2 class="page-title">Apie mus</h2>
     <p>Pakeliui – geresnis būdas keliauti!</p>
     <h4>Kas yra „Pakeliui“?</h4>
     <p>Tai lietuviška platforma, skirta visiems, norintiems keliauti kartu su pakeleiviais</p>

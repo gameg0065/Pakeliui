@@ -1,6 +1,6 @@
 <template>
   <div class="posts">
-    <h2>Skelbimai</h2>
+    <h2 class="page-title">Skelbimai</h2>
     <div class="posts-container">
       <PostFilter @on-post-filter-changed="onPostFilterChanged" />
       <div class="posts-list">

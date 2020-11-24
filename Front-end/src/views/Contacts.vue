@@ -1,6 +1,6 @@
 <template>
   <div class="contacts">
-    <h2>Kontaktai</h2>
+    <h2 class="page-title">Kontaktai</h2>
     <p>Turite klausimų ar nusiskundimų? Užpildykite formą ir mes su Jumis susisieksime.</p>
     <form>
       <div class="line">
