@@ -1,41 +1,47 @@
 <template>
-  <div class="card shadow">
-    <div>
+  <div class="card shadow driver-active-post-card">
+    <router-link :to="{ name: 'post', params: { id: post.id } }">
+      <h4 class="link">
+        {{ post.route.from + ' - ' + post.route.to }}
+      </h4>
+    </router-link>
+
+    <div class="flex-row align-baseline">
       <small>Kelionės data</small>
       <p>{{ post.date }}</p>
     </div>
 
-    <div>
+    <div class="flex-row align-baseline">
       <small>Kelionės laikas</small>
       <p>{{ post.time }}</p>
     </div>
 
-    <div>
+    <div class="flex-row align-baseline">
       <small>Iš miesto</small>
       <p>{{ post.route.from }}</p>
     </div>
 
-    <div>
+    <div class="flex-row align-baseline">
       <small>Paėmimo vieta</small>
       <p>{{ post.route.pickup }}</p>
     </div>
 
-    <div>
+    <div class="flex-row align-baseline">
       <small>Į miestą</small>
       <p>{{ post.route.to }}</p>
     </div>
 
-    <div>
+    <div class="flex-row align-baseline">
       <small>Pristatymo vieta</small>
       <p>{{ post.route.dropoff }}</p>
     </div>
 
-    <div>
+    <div class="flex-row align-baseline">
       <small>Galimas keleivių skaičius</small>
       <p>{{ post.seetCount }}</p>
     </div>
 
-    <div>
+    <div class="flex-row align-baseline">
       <small>Patvirtinti keleiviai</small>
       <div v-for="user in getApprovedPassengers(post, 'TAKEN')" :key="user.id">
         <router-link :to="{ name: 'user', params: { id: user.id } }">
@@ -44,7 +50,7 @@
       </div>
     </div>
 
-    <div>
+    <div class="flex-row align-baseline">
       <small>Keleiviai, laukiantys patvirtinimo</small>
       <div
         v-for="user in getApprovedPassengers(post, 'PENDING')"
@@ -56,20 +62,18 @@
       </div>
     </div>
 
-    <router-link :to="{ name: 'post', params: { id: post.id } }">
-      <Button text="peržiūrėti skelbimą" :isOutlined="true" />
-    </router-link>
+    <div class="flex-row button-line">
+      <Button
+        text="ištrinti"
+        :click="deletePost"
+        :isOutlined="true"
+        :isSecondary="true"
+      />
 
-    <Button
-      text="ištrinti"
-      :click="deletePost"
-      :isOutlined="true"
-      :isSecondary="true"
-    />
-
-    <router-link :to="{ name: 'post-edit', params: { id: post.id } }">
-      <Button text="redaguoti" :isOutlined="true" />
-    </router-link>
+      <router-link :to="{ name: 'post-edit', params: { id: post.id } }">
+        <Button text="redaguoti" :isOutlined="true" />
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -115,3 +119,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import '../assets/styles/driver-active-post-card.scss';
+</style>

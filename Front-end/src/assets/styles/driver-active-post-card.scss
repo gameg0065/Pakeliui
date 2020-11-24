@@ -1,0 +1,26 @@
+.driver-active-post-card {
+	// background-color: red;
+
+	.flex-row {
+		display: flex;
+	}
+
+	.align-baseline {
+		align-items: baseline;
+	}
+
+	.button-line {
+		justify-content: flex-end;
+		margin-top: 50px;
+	}
+
+	.grow {
+		flex: 1;
+	}
+
+	small {
+		width: 220px;
+		text-align: right;
+		padding-right: 20px;
+	}
+}
