@@ -20,7 +20,6 @@
             text="skelbimai"
             :isSecondary="true"
             :isLarge="true"
-            class="button"
           />
         </router-link>
       </div>

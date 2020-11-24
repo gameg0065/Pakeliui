@@ -1,26 +1,26 @@
 <template>
-  <div class="card shadow post-card">
-    <div class="column center user">
-      <Avatar :path="driver.photo" />
-      <div class="rating">
+  <div class="card shadow flex">
+    <div class="flex direction-column align-center mr-20">
+      <Avatar :path="driver.photo"/>
+      <div class="flex align-center pt-10">
         <img src="../assets/icons/star.svg" alt="star" />
         <small>{{ driver.driver.rating }} / 5</small>
       </div>
     </div>
-    <div class="column">
+    <div class="flex direction-column grow">
       <router-link :to="{ name: 'post', params: { id: post.id } }">
-        <h4>{{ post.route.from + ' - ' + post.route.to }}</h4>
+        <h4 class="text-color-primary">{{ post.route.from + ' - ' + post.route.to }}</h4>
       </router-link>
       <p>{{ post.date + ', ' + post.time }}</p>
       <small>{{ driver.name }}</small>
       <p>Laisvų vietų: {{ post.seetCount - post.passengers.length }}</p>
     </div>
 
-    <div class="right">
-      <p v-if="hasExpired()" class="danger">NEBEGALIOJANTIS</p>
+    <div>
+      <p v-if="hasExpired()" class="text-color-secondary">NEBEGALIOJANTIS</p>
 
-      <div v-if="isPending" class="right">
-        <p class="request-status">LAUKIAMA PATVIRTINIMO</p>
+      <div v-if="isPending" class="flex direction-column align-end">
+        <p class="text-color-primary">LAUKIAMA PATVIRTINIMO</p>
         <Button
           text="Atšaukti rezervaciją"
           :click="cancelReservation"
@@ -83,5 +83,4 @@ export default {
 
 <style lang="scss">
 @import '../assets/styles/card.scss';
-@import '../assets/styles/post-card.scss';
 </style>

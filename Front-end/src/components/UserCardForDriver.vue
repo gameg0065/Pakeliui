@@ -1,23 +1,21 @@
 <template>
-  <div class="card shadow user-card-for-driver">
-    <div class="flex-row">
-      <Avatar :path="user.photo" class="user" />
+  <div class="card shadow flex direction-column align-end">
+    <div class="flex">
+      <Avatar :path="user.photo" class="mr-20" />
 
-      <div class="flex-column grow">
+      <div class="flex direction-column grow">
         <router-link :to="{ name: 'user', params: { id: user.id } }">
-          <h4 class="link">{{ user.name }}</h4>
+          <h4 class="text-color-primary">{{ user.name }}</h4>
         </router-link>
 
         <small> Kelionių skaičius: {{ countTrips() }} </small>
         <p>Susisiekite su manimi: {{ getContactInfo() }}</p>
       </div>
 
-      <div class="flex-column align-end">
-        <Rating :rating="user.rating" />
-      </div>
+      <Rating :rating="user.rating" />
     </div>
     <router-link :to="{ name: 'post', params: { id: post.id } }">
-      <Button text="atidaryti skelbimą" :isOutlined="true" />
+      <Button text="atidaryti skelbimą" :isOutlined="true"/>
     </router-link>
   </div>
 </template>
@@ -70,7 +68,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import '../assets/styles/user-card-for-driver.scss';
-</style>

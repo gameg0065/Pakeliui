@@ -1,47 +1,47 @@
 <template>
-  <div class="card shadow driver-active-post-card">
+  <div class="card shadow flex direction-column">
     <router-link :to="{ name: 'post', params: { id: post.id } }">
-      <h4 class="link">
+      <h4 class="text-color-primary">
         {{ post.route.from + ' - ' + post.route.to }}
       </h4>
     </router-link>
 
-    <div class="flex-row align-baseline">
+    <div class="flex align-baseline">
       <small>Kelionės data</small>
       <p>{{ post.date }}</p>
     </div>
 
-    <div class="flex-row align-baseline">
+    <div class="flex align-baseline">
       <small>Kelionės laikas</small>
       <p>{{ post.time }}</p>
     </div>
 
-    <div class="flex-row align-baseline">
+    <div class="flex align-baseline">
       <small>Iš miesto</small>
       <p>{{ post.route.from }}</p>
     </div>
 
-    <div class="flex-row align-baseline">
+    <div class="flex align-baseline">
       <small>Paėmimo vieta</small>
       <p>{{ post.route.pickup }}</p>
     </div>
 
-    <div class="flex-row align-baseline">
+    <div class="flex align-baseline">
       <small>Į miestą</small>
       <p>{{ post.route.to }}</p>
     </div>
 
-    <div class="flex-row align-baseline">
+    <div class="flex align-baseline">
       <small>Pristatymo vieta</small>
       <p>{{ post.route.dropoff }}</p>
     </div>
 
-    <div class="flex-row align-baseline">
+    <div class="flex align-baseline">
       <small>Galimas keleivių skaičius</small>
       <p>{{ post.seetCount }}</p>
     </div>
 
-    <div class="flex-row align-baseline">
+    <div class="flex align-baseline">
       <small>Patvirtinti keleiviai</small>
       <div v-for="user in getApprovedPassengers(post, 'TAKEN')" :key="user.id">
         <router-link :to="{ name: 'user', params: { id: user.id } }">
@@ -50,7 +50,7 @@
       </div>
     </div>
 
-    <div class="flex-row align-baseline">
+    <div class="flex align-baseline">
       <small>Keleiviai, laukiantys patvirtinimo</small>
       <div
         v-for="user in getApprovedPassengers(post, 'PENDING')"
@@ -62,7 +62,7 @@
       </div>
     </div>
 
-    <div class="flex-row button-line">
+    <div class="flex justify-end buttons">
       <Button
         text="ištrinti"
         :click="deletePost"
@@ -120,6 +120,14 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import '../assets/styles/driver-active-post-card.scss';
+<style lang="scss" scoped>
+.buttons {
+  margin-top: 50px;
+}
+
+small {
+  padding-right: 20px;
+  text-align: right;
+  width: 220px;
+}
 </style>

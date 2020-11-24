@@ -1,11 +1,11 @@
 <template>
-  <div class="card shadow comment-card">
-    <div class="flex-row">
-      <Avatar class="user" :path="comentator.photo" />
+  <div class="card shadow flex direction-column">
+    <div class="flex">
+      <Avatar :path="comentator.photo" class="mr-20" />
 
-      <div class="flex-column grow">
+      <div class="flex direction-column grow">
         <router-link :to="{ name: 'user', params: { id: comentator.id } }">
-          <p class="link">{{ comentator.name }}</p>
+          <p class="text-color-primary">{{ comentator.name }}</p>
         </router-link>
 
         <small>{{ comment.date }}</small>
@@ -44,7 +44,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import '../assets/styles/comment-card.scss';
-</style>

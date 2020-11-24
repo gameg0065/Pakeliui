@@ -1,11 +1,10 @@
 <template>
-  <div class="driver-feedback-card">
-    <div class="flex-row">
-      <Avatar :path="user.photo" size="small" class="user" />
-
-      <div class="flex-column grow">
+  <div class="flex direction-column">
+    <div class="flex align-start">
+      <Avatar :path="user.photo" size="small" class="mr-10" />
+      <div class="flex direction-column grow">
         <router-link :to="{ name: 'user', params: { id: user.id } }">
-          {{ user.name }}
+          <p class="text-color-primary">{{ user.name }}</p>
         </router-link>
         <small v-if="feedback"> Įvertinimo data: {{ feedback.date }} </small>
       </div>
@@ -72,7 +71,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import '../assets/styles/driver-feedback-card.scss';
-</style>

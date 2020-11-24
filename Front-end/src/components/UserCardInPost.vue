@@ -1,8 +1,8 @@
 <template>
-  <div class="card shadow user-card-in-post">
-    <Avatar class="user" :path="user.photo" />
+  <div class="card shadow flex">
+    <Avatar :path="user.photo" class="mr-20"/>
 
-    <div class="flex-column grow">
+    <div class="flex direction-column grow">
       <router-link :to="{ name: 'user', params: { id: user.id } }">
         <h4 class="link">{{ user.name }}</h4>
       </router-link>
@@ -46,7 +46,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import '../assets/styles/user-card-in-post.scss';
-</style>
