@@ -1,16 +1,21 @@
 <template>
-  <div class="card shadow">
-    <Avatar :path="user.photo" />
+  <div class="card shadow user-card-for-driver">
+    <div class="flex-row">
+      <Avatar :path="user.photo" class="user" />
 
-    <router-link :to="{ name: 'user', params: { id: user.id } }">
-      <h4 class="link">{{ user.name }}</h4>
-    </router-link>
+      <div class="flex-column grow">
+        <router-link :to="{ name: 'user', params: { id: user.id } }">
+          <h4 class="link">{{ user.name }}</h4>
+        </router-link>
 
-    <small> Kelionių skaičius: {{ countTrips() }} </small>
-    <p>Susisiekite su manimi: {{ getContactInfo() }}</p>
+        <small> Kelionių skaičius: {{ countTrips() }} </small>
+        <p>Susisiekite su manimi: {{ getContactInfo() }}</p>
+      </div>
 
-    <Rating :rating="user.rating" />
-
+      <div class="flex-column align-end">
+        <Rating :rating="user.rating" />
+      </div>
+    </div>
     <router-link :to="{ name: 'post', params: { id: post.id } }">
       <Button text="atidaryti skelbimą" :isOutlined="true" />
     </router-link>
@@ -66,8 +71,6 @@ export default {
 };
 </script>
 
-<style scoped>
-h4.link {
-  color: var(--color-primary);
-}
+<style lang="scss">
+@import '../assets/styles/user-card-for-driver.scss';
 </style>
