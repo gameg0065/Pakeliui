@@ -1,0 +1,32 @@
+.user-history {
+	align-items: stretch;
+
+	h3 {
+		align-self: flex-start;
+		margin-left: -50px;
+		padding-bottom: 30px;
+		padding-top: 30px;
+	}
+
+	.bleed-width {
+		background-color: var(--color-gray-2);
+		flex: 1;
+		margin: 0 -9999rem;
+		padding: 0 9999rem;
+	}
+	
+	.block {
+		padding-bottom: 50px;
+	}
+
+	.button {
+		margin-bottom: 50px;
+		margin-top: 50px;
+	}
+
+	.no-reservations {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+	}
+}
