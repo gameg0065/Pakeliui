@@ -8,9 +8,11 @@ namespace BackEnd.Models
     public class Car
     {
         [Key]
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Index(IsUnique = true)]
         public int ID { get; set; }
-        public int Model { get; set; }
+        public string Model { get; set; }
         public string Manufacturer { get; set; }
         public int Year { get; set; }
         public string Color { get; set; }
