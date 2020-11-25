@@ -40,10 +40,6 @@
   </div>
 </template>
 
-<style lang="scss">
-@import '../assets/styles/home.scss';
-</style>
-
 <script>
 import Button from '@/components/Button.vue';
 export default {
@@ -67,3 +63,6 @@ export default {
 };
 </script>
 
+<style lang="scss">
+@import '../assets/styles/home.scss';
+</style>
