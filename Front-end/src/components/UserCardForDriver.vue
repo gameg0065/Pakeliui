@@ -1,5 +1,5 @@
 <template>
-  <div class="card shadow flex direction-column align-end">
+  <div class="card shadow flex direction-column">
     <div class="flex">
       <Avatar :path="user.photo" class="mr-20" />
 
@@ -15,7 +15,7 @@
       <Rating :rating="user.rating" />
     </div>
     <router-link :to="{ name: 'post', params: { id: post.id } }">
-      <Button text="atidaryti skelbimą" :isOutlined="true"/>
+      <Button text="atidaryti skelbimą" :isOutlined="true" class="mt-10"/>
     </router-link>
   </div>
 </template>
