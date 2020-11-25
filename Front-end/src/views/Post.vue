@@ -1,12 +1,12 @@
 <template>
   <div class="post">
-    <div>
+    <div class="skelbimas">
       <h2>Skelbimas</h2>
       <p v-if="isActive" class="post-active">Skelbimo būsena: aktyvus</p>
       <p v-else class="post-expired">Skelbimo būsena: nebegaliojantis</p>
     </div>
 
-    <div>
+    <div class="user">
       <UserCardInPost :post="post" />
       <Button
         text="rezervuoti"
@@ -16,14 +16,14 @@
       />
     </div>
 
-    <div>
+    <div class="info">
       <div>
         <small>Kelionės data </small>
         <p>{{ post.date }}</p>
       </div>
       <div>
         <small>Kelionės laikas </small>
-        {{ post.time }}
+        <p>{{ post.time }}</p> 
       </div>
       <div>
         <small>Iš miesto </small>
@@ -53,13 +53,14 @@
         <small>Kelionės kaina</small>
         <p>{{ post.price }}€</p>
       </div>
-      <div>
+      <div class="extra">
         <small>Papildoma informacija</small>
         <p>{{ post.info }}</p>
       </div>
+
+      <img src="https://i.stack.imgur.com/yEshb.gif" alt="map" />
     </div>
 
-    <img src="https://i.stack.imgur.com/yEshb.gif" alt="map" />
 
     <Button
       text="rezervuoti"
@@ -127,7 +128,10 @@ export default {
 };
 </script>
 
-<style scoped>
+
+<style lang="scss">
+@import '../assets/styles/post.scss';
+
 p.post-active {
   color: var(--color-primary);
 }
