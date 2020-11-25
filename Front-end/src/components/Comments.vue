@@ -11,9 +11,7 @@
     </div>
 
     <div v-if="isActive">
-      <!-- <div> -->
-        <textarea v-model.trim="text"></textarea>
-      <!-- </div> -->
+      <textarea v-model.trim="text"></textarea>
 
       <div class="flex justify-between">
         <label
