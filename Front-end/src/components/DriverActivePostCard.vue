@@ -62,7 +62,7 @@
       </div>
     </div>
 
-    <div class="flex justify-end buttons">
+    <div class="flex justify-end mt-50">
       <Button
         text="ištrinti"
         :click="deletePost"
@@ -121,10 +121,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.buttons {
-  margin-top: 50px;
-}
-
 small {
   padding-right: 20px;
   text-align: right;
