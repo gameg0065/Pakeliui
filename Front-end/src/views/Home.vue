@@ -9,30 +9,25 @@
     </div>
     <div v-if="user">
       <router-link :to="{ name: 'posts' }">
-        <Button text="skelbimai" :isLarge="true" />
+        <Button text="skelbimai" :isLarge="true" class="mr-50" />
       </router-link>
 
       <router-link v-if="user.isDriver" :to="{ name: 'post-create' }">
-        <Button
-          class="home-button"
-          text="sukurk skelbimą"
-          :isSecondary="true"
-          :isLarge="true"
-        />
+        <Button text="sukurk skelbimą" :isSecondary="true" :isLarge="true" />
       </router-link>
     </div>
-    <div v-if="!user">
+    <div v-else>
       <Button
-        :click="openModalLogin"
         text="prisijungti"
+        :click="openModalLogin"
         :isSecondary="false"
         :isLarge="true"
+        class="mr-50"
       />
 
       <Button
-        class="home-button"
-        :click="openModalRegister"
         text="registruotis"
+        :click="openModalRegister"
         :isSecondary="true"
         :isLarge="true"
       />
