@@ -38,6 +38,13 @@ input {
     background: var(--color-tertiary);
 }
 
+.bleed-width {
+    background-color: var(--color-gray-1);
+    flex: 1;
+    margin: 0 -9999rem;
+    padding: 0 9999rem;
+}
+
 .page {
     align-items: center;
     display: flex;
@@ -54,6 +61,13 @@ input {
     margin-left: -50px;
     padding-bottom: 50px;
     padding-top: 40px;
+}
+
+.section-title {
+    align-self: flex-start;
+    margin-left: -50px;
+    padding-bottom: 30px;
+    padding-top: 30px;
 }
 
 .shadow {
@@ -75,12 +89,16 @@ input {
     align-items: center;
 }
 
+.align-end {
+    align-items: flex-end;
+}
+
 .align-start {
     align-items: flex-start;
 }
 
-.align-end {
-    align-items: flex-end;
+.align-stretch {
+    align-items: stretch;
 }
 
 .flex {
@@ -109,6 +127,14 @@ input {
 
 .mr-20 {
     margin-right: 20px;
+}
+
+.mt-50 {
+    margin-top: 50px;
+}
+
+.pb-50 {
+    padding-bottom: 50px;
 }
 
 .pt-10 {
