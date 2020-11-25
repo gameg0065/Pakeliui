@@ -1,6 +1,6 @@
 <template>
-  <div class="user-history">
-    <div class="block">
+  <div class="align-stretch">
+    <div class="pb-50">
       <h2 class="page-title">Mano rezervacijos</h2>
       <div v-if="pendingTrips && pendingTrips.length > 0">
         <PostCard
@@ -10,7 +10,8 @@
           :isPending="true"
         />
       </div>
-      <div class="no-reservations" v-else>
+
+      <div class="flex direction-column align-center" v-else>
         <p>
           Jūs neturite rezervuotų kelionių. Rezervuokite vieną peržiūrėdami
           skelbimus
@@ -25,7 +26,7 @@
       </div>
     </div>
     <div class="bleed-width">
-      <h3>Rezervacijų istorija</h3>
+      <h3 class="section-title">Rezervacijų istorija</h3>
       <div v-if="nonPendingTrips && nonPendingTrips.length > 0">
         <FeedbackCard
           v-for="trip in nonPendingTrips"
@@ -90,7 +91,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import '../assets/styles/user-history.scss';
-</style>
