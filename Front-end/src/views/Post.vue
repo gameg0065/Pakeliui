@@ -1,18 +1,19 @@
 <template>
-  <div class="post">
-    <div class="skelbimas">
+  <div class="post align-stretch">
+    <div class="page-title flex align-baseline">
       <h2>Skelbimas</h2>
-      <p v-if="isActive" class="post-active">Skelbimo būsena: aktyvus</p>
-      <p v-else class="post-expired">Skelbimo būsena: nebegaliojantis</p>
+      <p v-if="isActive" class="text-color-primary">Skelbimo būsena: aktyvus</p>
+      <p v-else class="text-color-secondary">Skelbimo būsena: nebegaliojantis</p>
     </div>
 
-    <div class="user">
-      <UserCardInPost :post="post" />
+    <div class="flex direction-column pb-50">
+      <UserCardInPost :post="post"/>
       <Button
         text="rezervuoti"
         :click="reserve"
         :isDisabled="!isActive || userIsAuthor"
         :isOutlined="true"
+        class="align-self-center"
       />
     </div>
 
@@ -58,7 +59,7 @@
         <p>{{ post.info }}</p>
       </div>
 
-      <img src="https://i.stack.imgur.com/yEshb.gif" alt="map" />
+      <img src="https://i.stack.imgur.com/yEshb.gif" alt="map" class="map"/>
     </div>
 
 
@@ -67,7 +68,7 @@
       :click="reserve"
       :isDisabled="!isActive || userIsAuthor"
     />
-    <Comments :comments="post.comments" :isActive="isActive" />
+    <Comments :comments="post.comments" :isActive="isActive" class="pb-50"/>
   </div>
 </template>
 
@@ -131,12 +132,4 @@ export default {
 
 <style lang="scss">
 @import '../assets/styles/post.scss';
-
-p.post-active {
-  color: var(--color-primary);
-}
-
-p.post-expired {
-  color: var(--color-secondary);
-}
 </style>
