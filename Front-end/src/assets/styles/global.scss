@@ -113,6 +113,10 @@ input {
     flex-grow: 1;
 }
 
+.justify-center {
+    justify-content: center;
+}
+
 .justify-end {
     justify-content: flex-end;
 }
@@ -127,6 +131,10 @@ input {
 
 .mr-20 {
     margin-right: 20px;
+}
+
+.mt-10 {
+    margin-top: 10px;
 }
 
 .mt-50 {
