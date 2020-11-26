@@ -1,9 +1,9 @@
 <template>
-  <div class="posts">
+  <div class="posts align-stretch">
     <h2 class="page-title">Skelbimai</h2>
-    <div class="posts-container">
-      <PostFilter @on-post-filter-changed="onPostFilterChanged" />
-      <div class="posts-list">
+    <div class="posts-container flex">
+      <PostFilter @on-post-filter-changed="onPostFilterChanged" class="mr-20"/>
+      <div class="flex direction-column grow">
         <PostCard v-for="post in posts" :key="post.id" :post="post" />
       </div>
     </div>
@@ -65,8 +65,3 @@ export default {
   },
 };
 </script>
-
-
-<style lang="scss">
-@import '../assets/styles/posts.scss';
-</style>

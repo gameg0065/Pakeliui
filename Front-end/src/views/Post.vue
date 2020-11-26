@@ -67,8 +67,12 @@
       text="rezervuoti"
       :click="reserve"
       :isDisabled="!isActive || userIsAuthor"
+      class="mb-50"
     />
-    <Comments :comments="post.comments" :isActive="isActive" class="pb-50"/>
+
+    <div class="bleed-width pb-50">
+      <Comments :comments="post.comments" :isActive="isActive"/>
+    </div>
   </div>
 </template>
 

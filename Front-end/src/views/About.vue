@@ -2,7 +2,7 @@
   <div class="about">
     <h2 class="page-title">Apie mus</h2>
     <p>Pakeliui – geresnis būdas keliauti!</p>
-    <h4>Kas yra „Pakeliui“?</h4>
+    <h4 class="section-title">Kas yra „Pakeliui“?</h4>
     <p>Tai lietuviška platforma, skirta visiems, norintiems keliauti kartu su pakeleiviais</p>
     <p>„Pakeliui“ įkūrėjai – tai jauna komanda, kurią sudaro ambicingi, veržlūs ir nuolat tobulėjantys studentai. Tai yra pelno siekianti organizacija, kurios pagrindinis tikslas – teikti kokybišką pavėžėjimo tarpininkavimo paslaugą. Mūsų komandos vertybes sudaro profesionalumas, kokybė, atsakomybė ir inovatyvumas.</p>
     <p>Projekto idėja gimė iš studentiško gyvenimo patirties. Važiavimas tarpmiestiniu transportu gali prailgti, tapti varginančiu bei gerokai ištuštinti piniginę. Kelionės kartu su nepažįstamais vairuotojais atrodo patogesnė, tačiau mažiau saugi alternatyva. Būtent todėl užsibrėžėme tikslą sukurti internetinę platformą, kuri šį keliavimo būdą paverstų jaukiu ir visiškai saugiu.</p>
@@ -15,7 +15,7 @@
       <li><strong>Pilnas galimybių</strong> - pakeliui gali sutikti begales unikalių žmonių</li>
     </ul>
 
-    <h4>„Pakeliui“ komanda:</h4>
+    <h4 class="section-title">„Pakeliui“ komanda:</h4>
 
     <div class="profiles">
       <div class="profile">

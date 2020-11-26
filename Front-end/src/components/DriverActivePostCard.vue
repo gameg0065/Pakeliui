@@ -1,7 +1,7 @@
 <template>
   <div class="card shadow flex direction-column">
     <router-link :to="{ name: 'post', params: { id: post.id } }">
-      <h4 class="text-color-primary">
+      <h4 class="text-color-primary mb-10">
         {{ post.route.from + ' - ' + post.route.to }}
       </h4>
     </router-link>

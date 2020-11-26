@@ -9,7 +9,7 @@
     </div>
     <div class="flex direction-column grow">
       <router-link :to="{ name: 'post', params: { id: post.id } }">
-        <h4 class="text-color-primary">{{ post.route.from + ' - ' + post.route.to }}</h4>
+        <h4 class="text-color-primary mb-10">{{ post.route.from + ' - ' + post.route.to }}</h4>
       </router-link>
       <p>{{ post.date + ', ' + post.time }}</p>
       <small>{{ driver.name }}</small>
@@ -80,7 +80,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import '../assets/styles/card.scss';
-</style>

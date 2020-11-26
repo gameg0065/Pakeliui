@@ -45,6 +45,17 @@ input {
     padding: 0 9999rem;
 }
 
+.card {
+	background-color: white;
+	transition: all 0.2s linear;
+	margin-bottom: 20px;
+	padding: 20px;
+
+	&:hover {
+		transform: scale(1.01);
+	}
+}
+
 .page {
     align-items: center;
     display: flex;
@@ -132,6 +143,14 @@ input {
 
 
 // MARGINS
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-50 {
+    margin-bottom: 50px;
+}
 
 .mr-10 {
     margin-right: 10px;

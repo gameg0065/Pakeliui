@@ -5,7 +5,7 @@
 
       <div class="flex direction-column grow">
         <router-link :to="{ name: 'user', params: { id: user.id } }">
-          <h4 class="text-color-primary">{{ user.name }}</h4>
+          <h4 class="text-color-primary mb-10">{{ user.name }}</h4>
         </router-link>
 
         <small> Kelionių skaičius: {{ countTrips() }} </small>

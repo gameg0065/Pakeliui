@@ -1,7 +1,7 @@
 <template>
   <div class="card shadow">
     <router-link :to="{ name: 'post', params: { id: post.id } }">
-      <h4 class="link">
+      <h4 class="text-color-primary">
         {{
           post.date +
           ', ' +
@@ -42,9 +42,3 @@ export default {
   },
 };
 </script>
-
-<style>
-h4.link {
-  color: var(--color-primary);
-}
-</style>
