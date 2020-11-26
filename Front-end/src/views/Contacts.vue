@@ -1,29 +1,29 @@
 <template>
-  <div class="body">
-    <h2>Kontaktai</h2>
+  <div class="contacts">
+    <h2 class="page-title">Kontaktai</h2>
+    <p>Turite klausimų ar nusiskundimų? Užpildykite formą ir mes su Jumis susisieksime.</p>
     <form>
-      <p>Turite klausimų ar nusiskundimų? Užpildykite formą ir mes su Jumis susisieksime.</p>
-      <div>
+      <div class="line">
         <label for="full-name">Vardas, pavardė*</label>
         <input type="text" id="full-name" v-model.trim="name" />
       </div>
 
-      <div>
+      <div class="line">
         <label for="email">Elektroninis paštas*</label>
         <input type="email" id="email" v-model.trim="email" />
       </div>
 
-      <div>
+      <div class="line">
         <label for="phone">Telefono numeris</label>
         <input type="tel" id="phone" v-model.trim="phone" />
       </div>
 
-      <div>
+      <div class="line">
         <label for="city">Miestas</label>
         <input type="text" id="city" v-model.trim="city" />
       </div>
 
-      <div>
+      <div class="line">
         <label for="message">Žinutė</label>
         <textarea
           id="message"
@@ -35,11 +35,6 @@
 
       <Button :click="submit" text="Siųsti" :isOutlined="true" />
     </form>
-
-    <img
-      src="https://i1.alfi.lt/21081/76/48.png"
-      alt="map Lietuva, Vilnius, Naugarduko g 141"
-    />
   </div>
 </template>
 
@@ -69,3 +64,6 @@ export default {
 </script>
 
 
+<style lang="scss">
+@import '../assets/styles/contacts.scss';
+</style>

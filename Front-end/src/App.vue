@@ -59,17 +59,5 @@ export default {
 <style lang="scss">
 @import './assets/styles/_typography.css';
 @import './assets/styles/_variables.css';
-
-.page {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: calc(100vh - 200px);
-}
-
-* {
-  padding: 0;
-  margin: 0;
-}
+@import './assets/styles/global.scss';
 </style>

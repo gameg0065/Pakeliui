@@ -1,0 +1,36 @@
+.terms {
+	align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+
+	ol {
+		counter-reset: item;
+		list-style-type: none;
+		padding-bottom: 20px;
+	}
+
+	ol > li {
+		counter-increment: item;
+		display: table;
+	}
+
+	ol > li:before {
+		content: counters(item, '.') '. ';
+		display: table-cell;
+		padding-right: 0.6em;
+	}
+
+	li ol > li:before {
+		content: counters(item, '.') ' ';
+	}
+
+	li {
+		font-family: 'Montserrat-Regular';
+		font-size: 18px;
+		line-height: 30px;
+	}
+
+	p {
+		margin-bottom: 1em;
+	}
+}

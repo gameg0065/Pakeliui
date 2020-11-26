@@ -1,18 +1,22 @@
 <template>
-  <div>
-		<h2>Rezervacijos, laukiančios patvirtinimo</h2>
+  <div class="align-stretch">
+    <h2 class="page-title">Rezervacijos, laukiančios patvirtinimo</h2>
     <div v-if="pendingPosts.length > 0">
       <div v-for="post in pendingPosts" :key="post.id">
         <div v-for="passenger in post.passengers" :key="passenger.id">
           <div v-if="passenger.status === 'PENDING'">
             <UserCardForDriver :passengerID="passenger.id" :post="post" />
-            <Button
-              text="atmesti"
-              :click="dismiss"
-              :isOutlined="true"
-              :isSecondary="true"
-            />
-            <Button text="patvirtinti" :click="approve" :isOutlined="true" />
+
+            <div class="flex justify-center">
+              <Button
+                text="atmesti"
+                :click="dismiss"
+                :isOutlined="true"
+                :isSecondary="true"
+                class="mr-20"
+              />
+              <Button text="patvirtinti" :click="approve" :isOutlined="true" />
+            </div>
           </div>
         </div>
       </div>

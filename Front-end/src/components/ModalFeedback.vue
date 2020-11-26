@@ -1,30 +1,38 @@
 <template>
-  <modal
-    name="modal-feedback"
-    :adaptive="true"
-    :height="400"
-    :width="600"
-    :styles="{ 'border-radius': '10px' }"
-    :focusTrap="true"
-    @before-open="beforeOpen"
-  >
-    <div class="container">
-      <h3>{{ params.title }}</h3>
-      <Avatar :path="user.photo" />
-      <p>{{ params.text }}</p>
+  <div class="modal">
+    <modal
+      name="modal-feedback"
+      :adaptive="true"
+      height="auto"
+      :width="600"
+      :styles="{ 'border-radius': '10px' }"
+      :focusTrap="true"
+      @before-open="beforeOpen"
+    >
+      <div class="container">
+        <div class="line" style="align-items: unset;">
+          <div>
+            <h3>{{ params.title }}</h3>
+            <p>{{ params.text }}</p>
+          </div>
+          <Avatar :path="user.photo" />
+        </div>
 
-      <label for="rating">{{ params.ratingTitle }}</label>
-      <select v-model="data.ratingValue" id="rating">
-        <option v-for="index in 5" :key="index">{{ 5 - index + 1 }}</option>
-      </select>
+        <div class="line" style="padding-top: 20px">
+          <label for="rating">{{ params.ratingTitle }}</label>
+          <select v-model="data.ratingValue" id="rating">
+            <option v-for="index in 5" :key="index">{{ 5 - index + 1 }}</option>
+          </select>
+        </div>
 
-      <div>
-        <textarea rows="3" v-model="data.text"></textarea>
+        <div>
+          <textarea v-model="data.text"></textarea>
+        </div>
+
+        <Button :text="button.title" :click="submit" :isOutlined="true" />
       </div>
-
-      <Button :text="button.title" :click="submit" :isOutlined="true" />
-    </div>
-  </modal>
+    </modal>
+  </div>
 </template>
 
 <script>
@@ -78,8 +86,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-  padding: 20px;
-}
+<style lang="scss">
+@import '../assets/styles/modal.scss';
 </style>

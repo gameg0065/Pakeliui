@@ -1,36 +1,37 @@
 <template>
   <div class="home">
-    <h1>Geresnis būdas keliauti</h1>
-    <h3>
-      Pakeliui - tai platforma, skirta žmonėms lengvai keliauti bei pavežėti
-      kitus
-    </h3>
+    <div class="hero-text">
+      <h1>Geresnis būdas keliauti</h1>
+      <h3>
+        Pakeliui - tai platforma, skirta žmonėms lengvai keliauti bei pavežėti
+        kitus
+      </h3>
+    </div>
     <div v-if="user">
       <router-link :to="{ name: 'posts' }">
-        <Button text="skelbimai" :isLarge="true" />
+        <Button text="skelbimai" :isLarge="true" class="mr-50" />
       </router-link>
 
       <router-link v-if="user.isDriver" :to="{ name: 'post-create' }">
-        <Button text="įkelti skelbimą" :isSecondary="true" :isLarge="true" />
+        <Button text="sukurk skelbimą" :isSecondary="true" :isLarge="true" />
       </router-link>
     </div>
-    <div v-if="!user">
+    <div v-else>
       <Button
-        :click="openModalLogin"
         text="prisijungti"
+        :click="openModalLogin"
         :isSecondary="false"
         :isLarge="true"
+        class="mr-50"
       />
 
       <Button
-        :click="openModalRegister"
         text="registruotis"
+        :click="openModalRegister"
         :isSecondary="true"
         :isLarge="true"
       />
     </div>
-
-    <img src="../assets/images/hero-image.png" alt="hero" />
   </div>
 </template>
 
@@ -57,3 +58,6 @@ export default {
 };
 </script>
 
+<style lang="scss">
+@import '../assets/styles/home.scss';
+</style>

@@ -1,29 +1,35 @@
 <template>
-  <div class="feedback card shadow">
-    <Avatar :path="driver.photo" size="small" />
-    <router-link :to="{ name: 'post', params: { id: post.id } }">
-      <p class="link">
-        {{ post.route.from + ' - ' + post.route.to }}
-      </p>
-    </router-link>
-    <small> {{ post.date + ', ' + post.time }}</small>
+  <div class="card shadow flex direction-column">
+    <div class="flex">
+      <Avatar :path="driver.photo" size="small" class="mr-20" />
 
-    <div v-if="passenger.status === 'TAKEN'">
-      <div v-if="trip.feedback">
-        <p>{{ feedback.text }}</p>
-        <Rating :rating="feedback.rating" />
+      <div class="flex direction-column grow">
+        <router-link :to="{ name: 'post', params: { id: post.id } }">
+          <p class="text-color-primary">
+            {{ post.route.from + ' - ' + post.route.to }}
+          </p>
+        </router-link>
+        <small> {{ post.date + ', ' + post.time }}</small>
       </div>
-      <Button
-        v-else
-        text="rašyti atsiliepimą"
-        :click="writeFeedback"
-        :isOutlined="true"
-      />
+
+      <div v-if="passenger.status === 'TAKEN'">
+        <div v-if="trip.feedback">
+          <Rating :rating="feedback.rating" />
+        </div>
+
+        <Button
+          v-else
+          text="rašyti atsiliepimą"
+          :click="writeFeedback"
+          :isOutlined="true"
+        />
+      </div>
+      <p v-else class="text-color-secondary">
+        {{ passenger.status }}
+      </p>
     </div>
 
-    <div v-else>
-      <p class="tripStatus">{{ passenger.status }}</p>
-    </div>
+    <p v-if="trip.feedback" class="mt-10">{{ feedback.text }}</p>
   </div>
 </template>
 
@@ -79,13 +85,3 @@ export default {
   },
 };
 </script>
-
-<style>
-p.tripStatus {
-  color: var(--color-secondary);
-}
-
-p.link {
-  color: var(--color-primary);
-}
-</style>

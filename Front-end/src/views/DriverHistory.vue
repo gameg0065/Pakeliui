@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <div>
-      <h2>Aktyvūs skelbimai</h2>
+  <div class="align-stretch">
+    <div class="pb-50">
+      <h2 class="page-title">Aktyvūs skelbimai</h2>
       <div v-if="activePosts.length > 0">
         <DriverActivePostCard
           v-for="post in activePosts"
@@ -16,8 +16,8 @@
         </router-link>
       </div>
     </div>
-    <div>
-      <h3>Skelbimų istorija</h3>
+    <div class="bleed-width">
+      <h3 class="section-title">Skelbimų istorija</h3>
       <div v-if="expiredPosts.length > 0">
         <DriverExpiredPostCard
           v-for="post in expiredPosts"

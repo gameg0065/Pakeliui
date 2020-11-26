@@ -1,18 +1,21 @@
 <template>
-  <div class="card shadow">
-    <Avatar :path="user.photo" />
+  <div class="card shadow flex direction-column">
+    <div class="flex">
+      <Avatar :path="user.photo" class="mr-20" />
 
-    <router-link :to="{ name: 'user', params: { id: user.id } }">
-      <h4 class="link">{{ user.name }}</h4>
-    </router-link>
+      <div class="flex direction-column grow">
+        <router-link :to="{ name: 'user', params: { id: user.id } }">
+          <h4 class="text-color-primary mb-10">{{ user.name }}</h4>
+        </router-link>
 
-    <small> Kelionių skaičius: {{ countTrips() }} </small>
-    <p>Susisiekite su manimi: {{ getContactInfo() }}</p>
+        <small> Kelionių skaičius: {{ countTrips() }} </small>
+        <p>Susisiekite su manimi: {{ getContactInfo() }}</p>
+      </div>
 
-    <Rating :rating="user.rating" />
-
+      <Rating :rating="user.rating" />
+    </div>
     <router-link :to="{ name: 'post', params: { id: post.id } }">
-      <Button text="atidaryti skelbimą" :isOutlined="true" />
+      <Button text="atidaryti skelbimą" :isOutlined="true" class="mt-10"/>
     </router-link>
   </div>
 </template>
@@ -65,9 +68,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-h4.link {
-  color: var(--color-primary);
-}
-</style>

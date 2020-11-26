@@ -1,29 +1,33 @@
 <template>
-  <div class="card shadow">
-    <div>
-      <Avatar :path="driver.photo" />
-      <img src="../assets/icons/star.svg" alt="star" />
-      <small>{{ driver.driver.rating }} / 5</small>
+  <div class="card shadow flex">
+    <div class="flex direction-column align-center mr-20">
+      <Avatar :path="driver.photo"/>
+      <div class="flex align-center pt-10">
+        <img src="../assets/icons/star.svg" alt="star" class="mr-10"/>
+        <small>{{ driver.driver.rating }} / 5</small>
+      </div>
     </div>
-    <div>
+    <div class="flex direction-column grow">
       <router-link :to="{ name: 'post', params: { id: post.id } }">
-        <h4>{{ post.route.from + ' - ' + post.route.to }}</h4>
+        <h4 class="text-color-primary mb-10">{{ post.route.from + ' - ' + post.route.to }}</h4>
       </router-link>
       <p>{{ post.date + ', ' + post.time }}</p>
       <small>{{ driver.name }}</small>
       <p>Laisvų vietų: {{ post.seetCount - post.passengers.length }}</p>
     </div>
 
-    <p v-if="hasExpired()" class="expired">NEBEGALIOJANTIS</p>
+    <div>
+      <p v-if="hasExpired()" class="text-color-secondary">NEBEGALIOJANTIS</p>
 
-    <div v-if="isPending">
-      <p class="request-status">LAUKIAMA PATVIRTINIMO</p>
-      <Button
-        text="Atšaukti rezervaciją"
-        :click="cancelReservation"
-        :isSecondary="true"
-        :isOutlined="true"
-      />
+      <div v-if="isPending" class="flex direction-column align-end">
+        <p class="text-color-primary">LAUKIAMA PATVIRTINIMO</p>
+        <Button
+          text="Atšaukti rezervaciją"
+          :click="cancelReservation"
+          :isSecondary="true"
+          :isOutlined="true"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -76,34 +80,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.card {
-  transition: all 0.2s linear;
-  margin: 20px;
-  padding: 20px;
-}
-
-.card:hover {
-  transform: scale(1.01);
-}
-
-.shadow {
-  -webkit-box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25); /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-  -moz-box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25); /* Firefox 3.5 - 3.6 */
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25); /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
-}
-
-h4,
-.request-status {
-  color: var(--color-primary);
-}
-
-a {
-  text-decoration: none;
-}
-
-p.expired {
-  color: var(--color-secondary);
-}
-</style>

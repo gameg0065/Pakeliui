@@ -1,17 +1,17 @@
 <template>
-  <div>
+  <div class="modal">
     <modal
       name="modal-login"
       @opened="onOpen"
       :adaptive="true"
-      :height="270"
-      :width="400"
+      :height="360"
+      :width="600"
       :styles="{ 'border-radius': '10px' }"
       :focusTrap="true"
     >
       <div class="container">
-        <div>
-          <h3>Prisijunk</h3>
+        <div class="line">
+          <h3>Prisijungimas</h3>
           <small>
             Neturite paskyros?
             <a href="#" @click.prevent="showModalRegister">Registruokitės</a>
@@ -19,27 +19,46 @@
         </div>
 
         <form>
-          <div>
-            <label for="email"> Elektroninis paštas </label>
-            <input type="email" id="email" ref="email" v-model="credentials.id" />
+          <div class="line">
+            <label for="email" class="width130"> Elektroninis paštas </label>
+            <input
+              type="email"
+              id="email"
+              ref="email"
+              v-model="credentials.id"
+            />
           </div>
-          <div>
-            <label for="password"> Slaptažodis </label>
-            <input type="password" id="password" v-model="credentials.password"/>
+          <div class="line">
+            <label for="password" class="width130"> Slaptažodis </label>
+            <input
+              type="password"
+              id="password"
+              v-model="credentials.password"
+            />
           </div>
-          <div>
-            <label><input type="checkbox" v-model="credentials.rememberMe" /> Prisiminkite mane </label>
-          </div>
-          <small>
-            <a href="#" @click.prevent="remindPassword">
-              Pamiršote slaptažodį?
-            </a>
-          </small>
-          <div>
-            <Button :click="submit" text="Prisijungti" :isOutlined="true" />
+
+          <div class="line">
+            <label
+              ><input type="checkbox" v-model="credentials.rememberMe" />
+              Prisiminkite mane
+            </label>
+            <small>
+              <a href="#" @click.prevent="remindPassword">
+                Pamiršote slaptažodį?
+              </a>
+            </small>
           </div>
 
           <div>
+            <Button
+              class="button"
+              :click="submit"
+              text="prisijungti"
+              :isOutlined="true"
+            />
+          </div>
+
+          <div class="line">
             <p class="red">users: 100, 101</p>
             <p class="red">drivers: 110, 111</p>
           </div>
@@ -60,11 +79,11 @@ export default {
   },
   data() {
     return {
-      credentials:{
+      credentials: {
         id: 110,
         password: null,
         rememberMe: null,
-      }
+      },
     };
   },
   methods: {
@@ -103,12 +122,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-  padding: 20px;
-}
-
-.red {
-  color: red;
-}
+<style lang="scss">
+@import '../assets/styles/modal.scss';
 </style>

@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <h2 v-if="isEditMode">Redaguoti skelbimą</h2>
-    <h2 v-else>Sukurti skelbimą</h2>
+  <div class="post-create">
+    <h2 class="page-title" v-if="isEditMode">Redaguoti skelbimą</h2>
+    <h2 class="page-title" v-else>Sukurti skelbimą</h2>
 
-    <div>
+    <div class="line">
       <label for="post-date">Kelionės data*</label>
       <Datepicker
         id="post-date"
@@ -13,32 +13,32 @@
       />
     </div>
 
-    <div>
+    <div class="line">
       <label for="post-time">Kelionės laikas*</label>
       <input type="text" id="post-time" v-model="post.time" />
     </div>
 
-    <div>
+    <div class="line">
       <label for="route-from">Iš miesto*</label>
       <input type="text" id="route-from" v-model.trim="post.route.from" />
     </div>
 
-    <div>
+    <div class="line">
       <label for="route-pickup">Paėmimo vieta</label>
       <input type="text" id="route-pickup" v-model.trim="post.route.pickup" />
     </div>
 
-    <div>
+    <div class="line">
       <label for="route-to">Į miestą*</label>
       <input type="text" id="route-to" v-model.trim="post.route.to" />
     </div>
 
-    <div>
+    <div class="line">
       <label for="route-dropoff">Pristatymo vieta</label>
       <input type="text" id="route-dropoff" v-model.trim="post.route.dropoff" />
     </div>
 
-    <div>
+    <div class="line">
       <label for="post-seetCount">Galimas keleivių skaičius*</label>
       <input
         type="number"
@@ -47,17 +47,22 @@
       />
     </div>
 
-    <div>
+    <div class="line">
       <label for="post-price">Kelionės kaina</label>
       <input type="number" id="post-price" v-model.number="post.price" />
     </div>
 
-    <div>
+    <div class="line">
       <label for="post-info">Papildoma informacija</label>
-      <textarea id="post-info" rows="3" v-model.trim="post.info" />
+      <textarea id="post-info" v-model.trim="post.info" />
     </div>
 
-    <Button :click="submit" text="išsaugoti" :isOutlined="true" />
+    <Button
+      :click="submit"
+      text="išsaugoti"
+      :isOutlined="true"
+      class="button"
+    />
   </div>
 </template>
 
@@ -102,3 +107,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import '../assets/styles/post-create.scss';
+</style>

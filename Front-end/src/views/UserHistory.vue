@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <div>
-      <h2>Mano rezervacijos</h2>
+  <div class="align-stretch">
+    <div class="pb-50">
+      <h2 class="page-title">Mano rezervacijos</h2>
       <div v-if="pendingTrips && pendingTrips.length > 0">
         <PostCard
           v-for="trip in pendingTrips"
@@ -10,18 +10,23 @@
           :isPending="true"
         />
       </div>
-      <div v-else>
+
+      <div v-else class="flex direction-column align-center">
         <p>
           Jūs neturite rezervuotų kelionių. Rezervuokite vieną peržiūrėdami
           skelbimus
         </p>
         <router-link :to="{ name: 'posts' }">
-          <Button text="skelbimai" :isSecondary="true" :isLarge="true" />
+          <Button
+            text="skelbimai"
+            :isSecondary="true"
+            :isLarge="true"
+          />
         </router-link>
       </div>
     </div>
-    <div>
-      <h3>Rezervacijų istorija</h3>
+    <div class="bleed-width">
+      <h3 class="section-title">Rezervacijų istorija</h3>
       <div v-if="nonPendingTrips && nonPendingTrips.length > 0">
         <FeedbackCard
           v-for="trip in nonPendingTrips"

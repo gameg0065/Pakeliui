@@ -1,37 +1,39 @@
 <template>
-  <div>
+  <div class="modal">
     <modal
       name="modal-register"
       @opened="onOpen"
       :adaptive="true"
-      :height="270"
-      :width="400"
+      :height="400"
+      :width="600"
       :styles="{ 'border-radius': '10px' }"
       :focusTrap="true"
     >
       <div class="container">
-        <h3>Registracija</h3>
-        <small>
-          Jau turite paskyrą?
-          <a href="#" @click.prevent="showModalLogin"> Prisijunkite </a>
-        </small>
+        <div class="line">
+          <h3>Registracija</h3>
+          <small>
+            Jau turite paskyrą?
+            <a href="#" @click.prevent="showModalLogin"> Prisijunkite </a>
+          </small>
+        </div>
 
         <form>
-          <div>
-            <label for="name"> Vardas, pavardė </label>
-            <input type="text" id="name" v-model.trim="credentials.name" />
-          </div>
-          <div>
-            <label for="email"> Elektroninis paštas </label>
+          <div class="line">
+            <label for="name" class="width130"> Vardas, pavardė </label>
             <input
-              type="email"
-              id="email"
-              ref="email"
-              v-model.trim="credentials.email"
+              type="text"
+              id="name"
+              ref="name"
+              v-model.trim="credentials.name"
             />
           </div>
-          <div>
-            <label for="password"> Slaptažodis </label>
+          <div class="line">
+            <label for="email" class="width130"> Elektroninis paštas </label>
+            <input type="email" id="email" v-model.trim="credentials.email" />
+          </div>
+          <div class="line">
+            <label for="password" class="width130"> Slaptažodis </label>
             <input
               type="password"
               id="password"
@@ -82,7 +84,7 @@ export default {
       this.$modal.hide('modal-register');
     },
     onOpen() {
-      this.$refs.email.focus();
+      this.$refs.name.focus();
     },
     show() {
       this.$modal.show('modal-register');
@@ -102,8 +104,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-  padding: 20px;
-}
+<style lang="scss">
+@import '../assets/styles/modal.scss';
 </style>

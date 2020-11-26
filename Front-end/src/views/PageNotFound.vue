@@ -5,11 +5,11 @@
     <div>
       <router-link :to="{ name: 'home' }">
         <Button
-          class="button"
           text="grįžti į pagrindinį"
           :isSecondary="false"
           :isLarge="true"
           :isOutlined="true"
+          class="button"
         />
       </router-link>
     </div>
@@ -28,15 +28,11 @@ export default {
 </script>
 
 <style>
-.pageNotFound {
-  margin: 0 auto;
-  text-align: center;
-}
-
 .pageNotFound h1 {
   color: var(--color-secondary);
   font-size: 100px;
 }
+
 .pageNotFound .button {
   margin: 20px;
 }
