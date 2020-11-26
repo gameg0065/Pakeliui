@@ -3,7 +3,7 @@
     <div class="flex direction-column align-center mr-20">
       <Avatar :path="driver.photo"/>
       <div class="flex align-center pt-10">
-        <img src="../assets/icons/star.svg" alt="star" />
+        <img src="../assets/icons/star.svg" alt="star" class="mr-10"/>
         <small>{{ driver.driver.rating }} / 5</small>
       </div>
     </div>

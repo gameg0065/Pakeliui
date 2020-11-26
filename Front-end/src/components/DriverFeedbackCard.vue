@@ -1,6 +1,6 @@
 <template>
   <div class="flex direction-column">
-    <div class="flex align-start">
+    <div class="flex align-start mt-20">
       <Avatar :path="user.photo" size="small" class="mr-10" />
       <div class="flex direction-column grow">
         <router-link :to="{ name: 'user', params: { id: user.id } }">

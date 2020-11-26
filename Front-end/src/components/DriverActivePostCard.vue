@@ -68,6 +68,7 @@
         :click="deletePost"
         :isOutlined="true"
         :isSecondary="true"
+        class="mr-20"
       />
 
       <router-link :to="{ name: 'post-edit', params: { id: post.id } }">

@@ -11,7 +11,7 @@
         />
       </div>
 
-      <div class="flex direction-column align-center" v-else>
+      <div v-else class="flex direction-column align-center">
         <p>
           Jūs neturite rezervuotų kelionių. Rezervuokite vieną peržiūrėdami
           skelbimus
