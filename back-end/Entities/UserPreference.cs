@@ -1,27 +1,17 @@
 using System;
-using System.Linq;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-public class UserPreference
+namespace BackEnd.Models
 {
 
-    public UserPreference(
-        int userID,
-        int preferencesID)
-    { 
-        UserID = userID;
-        PreferencesID = preferencesID;
-    } 
-    public int UserID { get; set; }
-    public int PreferencesID { get; set; }
-    
-    public void SetUserID(int userID)
+    public class UserPreference
     {
-        UserID = userID;
-    }
-    public void SetPreferencesID(int preferencesID)
-    {
-        PreferencesID = preferencesID;
+        [Key]
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Index(IsUnique = true)]
+        public int UserID { get; set; }
+        public int PreferencesID { get; set; }
     }
 }
