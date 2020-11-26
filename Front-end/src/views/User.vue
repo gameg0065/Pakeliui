@@ -1,99 +1,107 @@
 <template>
-  <div>
-    <h2>Profilis</h2>
-    <Avatar :path="user.photo" size="big" />
-    <div>
-      <small>Vardas, pavardė</small>
-      <p>{{ user.name }}</p>
-    </div>
+  <div class="user align-stretch">
+    <h2 class="page-title">Profilis</h2>
+    <div class="flex pb-50">
+      <Avatar :path="user.photo" size="big" />
+      <div>
+        <div class="flex align-baseline">
+          <small class="fixed-width">Vardas, pavardė</small>
+          <p>{{ user.name }}</p>
+        </div>
 
-    <div>
-      <small>Registracijos data</small>
-      <p>{{ user.registrationDate }}</p>
-    </div>
+        <div class="flex align-baseline">
+          <small class="fixed-width">Registracijos data</small>
+          <p>{{ user.registrationDate }}</p>
+        </div>
 
-    <div>
-      <small>Kelionių skaičius</small>
-      <p>{{ user.trips.length }}</p>
-    </div>
+        <div class="flex align-baseline">
+          <small class="fixed-width">Kelionių skaičius</small>
+          <p>{{ user.trips.length }}</p>
+        </div>
 
-    <div>
-      <small>Nukeliauta</small>
-      <p>{{ countDistance(this.user.trips) + ' km' }}</p>
-    </div>
+        <div class="flex align-baseline">
+          <small class="fixed-width">Nukeliauta</small>
+          <p>{{ countDistance(this.user.trips) + ' km' }}</p>
+        </div>
 
-    <div>
-      <small>Įvertinimas</small>
-      <Rating :rating="user.rating" />
-    </div>
+        <div class="flex align-baseline">
+          <small class="fixed-width">Įvertinimas</small>
+          <Rating :rating="user.rating" />
+        </div>
 
-    <div>
-      <small>Apie mane</small>
-      <p>{{ user.about }}</p>
-    </div>
+        <div class="flex align-baseline">
+          <small class="fixed-width">Apie mane</small>
+          <p>{{ user.about }}</p>
+        </div>
 
-    <div>
-      <small>Miestas</small>
-      <p>{{ user.contacts.city }}</p>
-    </div>
+        <div class="flex align-baseline">
+          <small class="fixed-width">Miestas</small>
+          <p>{{ user.contacts.city }}</p>
+        </div>
 
-    <div>
-      <small>Elektroninis paštas</small>
-      <p>{{ user.contacts.email }}</p>
-    </div>
+        <div class="flex align-baseline">
+          <small class="fixed-width">Elektroninis paštas</small>
+          <p>{{ user.contacts.email }}</p>
+        </div>
 
-    <div>
-      <small>Telefono numeris</small>
-      <p>{{ user.contacts.phone }}</p>
-    </div>
+        <div class="flex align-baseline">
+          <small class="fixed-width">Telefono numeris</small>
+          <p>{{ user.contacts.phone }}</p>
+        </div>
 
-    <div>
-      <small>Facebook paskyra</small>
-      <p>{{ user.contacts.facebook }}</p>
+        <div class="flex align-baseline">
+          <small class="fixed-width">Facebook paskyra</small>
+          <p>{{ user.contacts.facebook }}</p>
+        </div>
+      </div>
     </div>
 
     <div v-if="user.isDriver">
-      <h3>Vairuotojo profilis</h3>
-      <Avatar :path="user.driver.car.photo" size="big" />
+      <h3 class="section-title">Vairuotojo profilis</h3>
+      <div class="flex pb-50">
+        <Avatar :path="user.driver.car.photo" size="big" />
 
-      <div>
-        <small>Pavežėjimų skaičius</small>
-        <p>{{ user.driver.posts.length }}</p>
-      </div>
+        <div>
+          <div class="flex align-baseline">
+            <small class="fixed-width">Pavežėjimų skaičius</small>
+            <p>{{ user.driver.posts.length }}</p>
+          </div>
 
-      <div>
-        <small>Nukeliauta</small>
-        <p>{{ countDistance(this.user.driver.posts) + ' km' }}</p>
-      </div>
+          <div class="flex align-baseline">
+            <small class="fixed-width">Nukeliauta</small>
+            <p>{{ countDistance(this.user.driver.posts) + ' km' }}</p>
+          </div>
 
-      <div>
-        <small>Pavežėtų keleivių skaičius</small>
-        <p>{{ countPassangers() }}</p>
-      </div>
+          <div class="flex align-baseline">
+            <small class="fixed-width">Pavežėtų keleivių skaičius</small>
+            <p>{{ countPassangers() }}</p>
+          </div>
 
-      <div>
-        <small>Vairuotojo įvertinimas</small>
-        <Rating :rating="user.driver.rating" />
-      </div>
+          <div class="flex align-baseline">
+            <small class="fixed-width">Vairuotojo įvertinimas</small>
+            <Rating :rating="user.driver.rating" />
+          </div>
 
-      <div>
-        <small>Transporto priemonė</small>
-        <p>{{ user.driver.car.model }}</p>
-      </div>
+          <div class="flex align-baseline">
+            <small class="fixed-width">Transporto priemonė</small>
+            <p>{{ user.driver.car.model }}</p>
+          </div>
 
-      <div>
-        <small>Pagaminimo metai</small>
-        <p>{{ user.driver.car.date }}</p>
-      </div>
+          <div class="flex align-baseline">
+            <small class="fixed-width">Pagaminimo metai</small>
+            <p>{{ user.driver.car.date }}</p>
+          </div>
 
-      <div>
-        <small>Susisiekite su manimi</small>
-        <p>{{ user.contacts[user.driver.contact] }}</p>
-      </div>
+          <div class="flex align-baseline">
+            <small class="fixed-width">Susisiekite su manimi</small>
+            <p>{{ user.contacts[user.driver.contactMethod] }}</p>
+          </div>
 
-      <div>
-        <small>Vairavimo įgūdžiai</small>
-        <p>{{ user.driver.about }}</p>
+          <div class="flex align-baseline">
+            <small class="fixed-width">Vairavimo įgūdžiai</small>
+            <p>{{ user.driver.about }}</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -104,13 +112,14 @@
         user.feedbacks.received.length > 0
       "
     >
-      <h3>Atsiliepimai apie mane kaip keleivį</h3>
-
-      <CommentCard
-        v-for="feedback in getFeedbacks(user.feedbacks.received)"
-        :key="feedback.id"
-        :comment="feedback"
-      />
+      <h3 class="section-title">Atsiliepimai apie mane kaip keleivį</h3>
+      <div class="pb-50">
+        <CommentCard
+          v-for="feedback in getFeedbacks(user.feedbacks.received)"
+          :key="feedback.id"
+          :comment="feedback"
+        />
+      </div>
     </div>
     <div
       v-if="
@@ -119,12 +128,14 @@
         user.driver.feedbacks.received.length > 0
       "
     >
-      <h3>Atsiliepimai apie mane kaip vairuotoją</h3>
-      <CommentCard
-        v-for="feedback in getFeedbacks(user.driver.feedbacks.received)"
-        :key="feedback.id"
-        :comment="feedback"
-      />
+      <h3 class="section-title">Atsiliepimai apie mane kaip vairuotoją</h3>
+      <div class="pb-50">
+        <CommentCard
+          v-for="feedback in getFeedbacks(user.driver.feedbacks.received)"
+          :key="feedback.id"
+          :comment="feedback"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -183,3 +194,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import '../assets/styles/user.scss';
+</style>
