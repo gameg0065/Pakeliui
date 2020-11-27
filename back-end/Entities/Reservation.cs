@@ -14,8 +14,8 @@ namespace BackEnd.Models
         public int ID { get; set; }
         public int PassengerID { get; set; }
         public int TravelID { get; set; }
+        public bool IsAccepted { get; set; }
         public bool IsVerified { get; set; }
-        public bool IsCanceled { get; set; }
         public string ReservationInfo { get; set; }
         public DateTime ReservationDate { get; set; }
         public int PassengerRating { get; set; }

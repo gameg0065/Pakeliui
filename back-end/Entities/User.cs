@@ -11,15 +11,17 @@ namespace BackEnd.Models
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Index(IsUnique = true)]
-        public int UserId { get; set; }
+        public int ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
         public string CreateDate { get; set; }
-        public string LastUpdate { get; set; }
+        public int CityID { get; set; }
+        public int CarID { get; set; }
         public string UserInfo { get; set; }
+        public string DriverInfo { get; set; }
         public int Rating { get; set; }
         public string FacebookLink { get; set; }
         public string PicturePath { get; set; }

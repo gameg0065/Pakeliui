@@ -13,6 +13,7 @@ namespace BackEnd.Models
         public int ID { get; set; }
         public int UserID { get; set; }
         public int TravelID { get; set; }
-        public string Content { get; set; }
+        public DateTime Date { get; set; }
+        public string Text { get; set; }
     }
 }

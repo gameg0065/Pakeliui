@@ -29,7 +29,7 @@ namespace BackEnd.Controllers
         [HttpGet("AllCars")]
         public async Task<ActionResult<List<Car>>> Get()
         {
-            var carsDatabase = new CarstDataBase(_dbContext);
+            var carsDatabase = new CarsDataBase(_dbContext);
             var items = await carsDatabase.GetCars();
 
             if (items.Count < 1)
@@ -43,7 +43,7 @@ namespace BackEnd.Controllers
         public bool Create(Car model)
         {
 
-            var carsDatabase = new CarstDataBase(_dbContext);
+            var carsDatabase = new CarsDataBase(_dbContext);
             var items = carsDatabase.CreateCar(model);
 
             return items;
