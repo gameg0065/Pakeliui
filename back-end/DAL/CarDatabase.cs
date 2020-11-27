@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace BackEnd.DAL
 {
-    public class CarstDataBase
+    public class CarsDataBase
     {
         private readonly BackEndContext _dbContext;
 
-        public CarstDataBase(BackEndContext dbContext)
+        public CarsDataBase(BackEndContext dbContext)
         {
             _dbContext = dbContext;
         }

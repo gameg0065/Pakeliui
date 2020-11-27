@@ -3,14 +3,16 @@ using BackEnd.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BackEnd.Migrations
 {
     [DbContext(typeof(BackEndContext))]
-    partial class BackEndContextModelSnapshot : ModelSnapshot
+    [Migration("20201126154610_fixed_entities")]
+    partial class fixed_entities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,24 +45,6 @@ namespace BackEnd.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Cars");
-                });
-
-            modelBuilder.Entity("BackEnd.Models.City", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("CityName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CountryID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("BackEnd.Models.User", b =>
