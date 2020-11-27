@@ -11,11 +11,30 @@ a {
 
 input,
 textarea {
+    .error & {
+        border: 1px solid var(--color-secondary);    
+        background: url('../src/assets/icons/error.svg') no-repeat;
+        background-position: right 10px top 7px;
+    }
+}
+
+span {
+    .error & {
+        color: var(--color-secondary);
+        text-transform: uppercase;
+    }
+}
+
+input,
+textarea {
     color: var(--color-gray-4);
     border: 1px solid var(--color-gray-3);
     border-radius: 4px;
     box-sizing: border-box;
-    margin: 10px 0;
+    
+    // margin: 10px 0;
+    margin-bottom: 5px;
+
     outline: none;
     padding: 10px;
 

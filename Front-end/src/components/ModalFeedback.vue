@@ -10,23 +10,24 @@
       @before-open="beforeOpen"
     >
       <div class="container">
-        <div class="line" style="align-items: unset;">
-          <div>
+        <div class="flex">
+          <div class="flex direction-column grow">
             <h3>{{ params.title }}</h3>
             <p>{{ params.text }}</p>
           </div>
           <Avatar :path="user.photo" />
         </div>
 
-        <div class="line" style="padding-top: 20px">
+        <div>
           <label for="rating">{{ params.ratingTitle }}</label>
           <select v-model="data.ratingValue" id="rating">
             <option v-for="index in 5" :key="index">{{ 5 - index + 1 }}</option>
           </select>
         </div>
 
-        <div>
-          <textarea v-model="data.text"></textarea>
+        <div :class="{ error: data.text.error }">
+          <span class="mt-10">{{ data.text.error }}</span>
+          <textarea v-model="data.text.value"></textarea>
         </div>
 
         <Button :text="button.title" :click="submit" :isOutlined="true" />
@@ -70,13 +71,25 @@ export default {
       this.$modal.show('modal-feedback');
     },
     submit() {
-      this.button.action(this.data);
-      this.data = this.resetToDefaults();
+      const text = this.data.text;
+      if (!text.value) {
+        text.error = 'laukas negali būti tuščias';
+      } else {
+        text.error = '';
+      }
+
+      if (!text.error) {
+        this.button.action(this.data);
+        this.data = this.resetToDefaults();
+      }
     },
     resetToDefaults() {
       return {
         ratingValue: 5,
-        text: '',
+        text: {
+          value: '',
+          error: '',
+        },
       };
     },
   },

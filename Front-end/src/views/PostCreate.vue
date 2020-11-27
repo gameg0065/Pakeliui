@@ -13,10 +13,18 @@
       />
     </div>
 
-    <div class="line">
+    <div class="flex align-end" :class="{ error: timeError }">
+      <label for="post-time">Kelionės laikas*</label>
+      <div class="flex direction-column">
+        <span>{{ timeError }}</span>
+        <input type="text" id="post-time" v-model.trim="post.time" />
+      </div>
+    </div>
+
+    <!-- <div class="line">
       <label for="post-time">Kelionės laikas*</label>
       <input type="text" id="post-time" v-model="post.time" />
-    </div>
+    </div> -->
 
     <div class="line">
       <label for="route-from">Iš miesto*</label>
@@ -85,6 +93,7 @@ export default {
         type: Boolean,
         default: false,
       },
+      timeError: '',
     };
   },
   created() {
@@ -102,7 +111,12 @@ export default {
   },
   methods: {
     submit() {
-      alert('TODO');
+      if (!this.post.time) {
+        this.timeError = 'enter time';
+      } else {
+        this.timeError = '';
+      }
+      // alert('TODO');
     },
   },
 };

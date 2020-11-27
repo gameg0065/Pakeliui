@@ -4,13 +4,13 @@
       name="modal-login"
       @opened="onOpen"
       :adaptive="true"
-      :height="360"
+      height="auto"
       :width="600"
       :styles="{ 'border-radius': '10px' }"
       :focusTrap="true"
     >
       <div class="container">
-        <div class="line">
+        <div class="flex align-baseline justify-between">
           <h3>Prisijungimas</h3>
           <small>
             Neturite paskyros?
@@ -19,26 +19,39 @@
         </div>
 
         <form>
-          <div class="line">
-            <label for="email" class="width130"> Elektroninis paštas </label>
-            <input
-              type="email"
-              id="email"
-              ref="email"
-              v-model="credentials.id"
-            />
-          </div>
-          <div class="line">
-            <label for="password" class="width130"> Slaptažodis </label>
-            <input
-              type="password"
-              id="password"
-              v-model="credentials.password"
-            />
+          <div
+            class="flex align-end"
+            :class="{ error: credentials.email.error }"
+          >
+            <label for="email"> Elektroninis paštas* </label>
+            <div class="flex direction-column grow">
+              <span>{{ credentials.email.error }}</span>
+              <input
+                type="email"
+                id="email"
+                ref="email"
+                v-model.trim="credentials.email.text"
+              />
+            </div>
           </div>
 
-          <div class="line">
-            <label
+          <div
+            class="flex align-end"
+            :class="{ error: credentials.password.error }"
+          >
+            <label for="password"> Slaptažodis* </label>
+            <div class="flex direction-column grow">
+              <span>{{ credentials.password.error }}</span>
+              <input
+                type="password"
+                id="password"
+                v-model="credentials.password.text"
+              />
+            </div>
+          </div>
+
+          <div class="flex justify-between">
+            <label class="checkbox"
               ><input type="checkbox" v-model="credentials.rememberMe" />
               Prisiminkite mane
             </label>
@@ -49,18 +62,16 @@
             </small>
           </div>
 
-          <div>
+          <div
+            class="flex direction-column mt-50"
+            :class="{ error: generalError }"
+          >
+            <span class="align-self-center"> {{ generalError }}</span>
             <Button
-              class="button"
-              :click="submit"
               text="prisijungti"
+              @click.native.prevent="submit"
               :isOutlined="true"
             />
-          </div>
-
-          <div class="line">
-            <p class="red">users: 100, 101</p>
-            <p class="red">drivers: 110, 111</p>
           </div>
         </form>
       </div>
@@ -71,6 +82,7 @@
 <script>
 import Button from '@/components/Button.vue';
 import UserService from '@/services/UserService.js';
+import Utils from '@/assets/Utils.js';
 
 export default {
   name: 'ModalLogin',
@@ -79,11 +91,8 @@ export default {
   },
   data() {
     return {
-      credentials: {
-        id: 110,
-        password: null,
-        rememberMe: null,
-      },
+      credentials: this.resetToDefaults(),
+      generalError: '',
     };
   },
   methods: {
@@ -104,16 +113,46 @@ export default {
       this.$modal.show('modal-register');
     },
     submit() {
-      // validate here
-      const id = parseInt(this.credentials.id);
-      const user = UserService.getUser(id);
-      if (!user) {
-        return alert('Toks vartotojas neegzistuoja');
+      const email = this.credentials.email;
+      if (!email.text) {
+        email.error = 'prašom įvesti elektroninį paštą';
+      } else if (!Utils.validateEmail(email.text)) {
+        email.error = 'neteisinga forma';
+      } else {
+        email.error = '';
       }
 
-      this.$store.dispatch('login', user).then(() => {
-        this.hide();
-      });
+      const password = this.credentials.password;
+      if (!password.text) {
+        password.error = 'prašom įvesti slaptažodį';
+      } else {
+        password.error = '';
+      }
+
+      if (!email.error && !password.error) {
+        const id = parseInt(email.text);
+        const user = UserService.getUser(id);
+        if (!user) {
+          this.generalError = 'toks vartotojas neegzistuoja';
+        } else {
+          this.$store.dispatch('login', user).then(() => {
+            this.hide();
+          });
+        }
+      }
+    },
+    resetToDefaults() {
+      return {
+        email: {
+          text: '110@some.email',
+          error: '',
+        },
+        password: {
+          text: '',
+          error: '',
+        },
+        rememberMe: null,
+      };
     },
   },
   mount() {
