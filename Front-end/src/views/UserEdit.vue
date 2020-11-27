@@ -5,10 +5,16 @@
 
       <div>
         <Avatar :path="user.photo" size="big" />
+        <input
+          style="display: none"
+          type="file"
+          @change="changeUserPhoto"
+          ref="fileInput"
+        />
         <Button
           text="įkelti nuotrauką"
-          :click="changeUserPhoto"
           :isOutlined="true"
+          @click.native="$refs.fileInput.click()"
         />
       </div>
 
@@ -189,6 +195,8 @@ export default {
     },
     changeUserPhoto() {
       alert('TODO');
+      console.log(event);
+      this.selectedFile = event.target.files[0];
     },
     checkboxChanged() {
       const user = this.user;
