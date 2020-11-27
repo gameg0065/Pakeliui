@@ -3,16 +3,13 @@
 	display: flex;
 	flex-direction: column;
 
-
-	label:not(.checkbox) {
-		padding-bottom: 17px;
+	label {
 		padding-right: 20px;
 		text-align: right;
 		width: 220px;
 	}
 
 	input,
-	select,
 	textarea {
 		flex: 1;
 	}
