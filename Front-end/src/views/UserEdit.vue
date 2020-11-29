@@ -110,11 +110,18 @@
       <h3>Vairuotojo profilis</h3>
 
       <div>
-        <Avatar :path="user.driver.car.photo" size="big" />
+        <Avatar v-if="carPhotoUrl" :path="carPhotoUrl" size="big" />
+        <Avatar v-else :path="user.driver.car.photo" size="big" />
+        <input
+          style="display: none"
+          type="file"
+          @change="changeCarPhoto"
+          ref="carPhotoInput"
+        />
         <Button
-          :click="changeCarPhoto"
           text="įkelti nuotrauką"
           :isOutlined="true"
+          @click.native="$refs.carPhotoInput.click()"
         />
       </div>
 
@@ -201,14 +208,12 @@ export default {
   },
   methods: {
     changeCarPhoto() {
-      alert('changeCarPhoto() called');
       console.log(event);
       this.carPhotoChanged = true;
       this.carPhoto = event.target.files[0];
       this.carPhotoUrl = URL.createObjectURL(this.carPhoto);
     },
     changeUserPhoto() {
-      alert('changeUserPhoto() called');
       console.log(event);
       this.userPhotoChanged = true;
       this.userPhoto = event.target.files[0];
