@@ -4,20 +4,23 @@
       <h2>Profilio redagavimas</h2>
 
       <div>
-        <Avatar :path="user.photo" size="big" />
+        <Avatar v-if="userPhotoUrl" :path="userPhotoUrl" size="big" />
+        <Avatar v-else :path="user.photo" size="big" />
         <input
           style="display: none"
           type="file"
           @change="changeUserPhoto"
-          ref="fileInput"
+          ref="userPhotoInput"
         />
         <Button
           text="įkelti nuotrauką"
           :isOutlined="true"
-          @click.native="$refs.fileInput.click()"
+          @click.native="$refs.userPhotoInput.click()"
         />
       </div>
-
+      <div id="preview">
+        <img  style="max-width: 100%; max-height: 500px;" />
+      </div>
       <div>
         <label for="user-name">Vardas, pavardė*</label>
         <input type="text" id="user-name" v-model.trim="user.name" />
@@ -169,6 +172,7 @@
 import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
 
+import axios from 'axios'
 import Datepicker from 'vuejs-datepicker';
 import UserService from '@/services/UserService.js';
 
@@ -187,16 +191,42 @@ export default {
   data() {
     return {
       contactOptions: ['email', 'facebook', 'phone'],
+      userPhoto: null,
+      carPhoto: null,
+      userPhotoChanged: false,
+      carPhotoChanged: false,
+      userPhotoUrl: null,
+      carPhotoUrl: null
     };
   },
   methods: {
     changeCarPhoto() {
-      alert('TODO');
+      alert('changeCarPhoto() called');
+      console.log(event);
+      this.carPhotoChanged = true;
+      this.carPhoto = event.target.files[0];
+      this.carPhotoUrl = URL.createObjectURL(this.carPhoto);
     },
     changeUserPhoto() {
-      alert('TODO');
+      alert('changeUserPhoto() called');
       console.log(event);
-      this.selectedFile = event.target.files[0];
+      this.userPhotoChanged = true;
+      this.userPhoto = event.target.files[0];
+      this.userPhotoUrl = URL.createObjectURL(this.userPhoto);
+    },
+    onUpload() {
+      const formData = new FormData();
+      //formData.append('image', this.userPhoto, this.userPhoto.name)
+      formData.append("upload_preset", "vue-upload");
+      formData.append("file", this.userPhoto);
+      axios.post('https://api.couldinary.com/v1_1/ignaspan/upload', formData, {
+        onUploadProgress: uploadEvent => {
+          console.log('Upload progress: ' + Math.round(uploadEvent.loaded / uploadEvent.total * 100));
+        }
+      })
+        .then(res => {
+          console.log(res);
+        });
     },
     checkboxChanged() {
       const user = this.user;
