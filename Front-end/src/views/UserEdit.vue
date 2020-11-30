@@ -4,19 +4,18 @@
       <h2>Profilio redagavimas</h2>
 
       <div>
-        <Avatar v-if="userPhotoUrl" :path="userPhotoUrl" size="big" />
-        <Avatar v-else :path="user.photo" size="big" />
+        <Avatar :path="getUserPhotoPath()" size="big" />
         <input
           style="display: none"
           type="file"
-          accept="image/*"
+          accept="image/x-png,image/jpeg"
           @change="changeUserPhoto"
           ref="userPhotoInput"
         />
         <Button
           text="įkelti nuotrauką"
           :isOutlined="true"
-          @click.native="$refs.userPhotoInput.click()"
+          @click.native="$refs.userPhotoInput.click"
         />
       </div>
       <div>
@@ -108,19 +107,18 @@
       <h3>Vairuotojo profilis</h3>
 
       <div>
-        <Avatar v-if="carPhotoUrl" :path="carPhotoUrl" size="big" />
-        <Avatar v-else :path="user.driver.car.photo" size="big" />
+        <Avatar :path="getCarPhotoPath()" size="big" />
         <input
           style="display: none"
           type="file"
-          accept="image/*"
+          accept="image/x-png,image/jpeg"
           @change="changeCarPhoto"
           ref="carPhotoInput"
         />
         <Button
           text="įkelti nuotrauką"
           :isOutlined="true"
-          @click.native="$refs.carPhotoInput.click()"
+          @click.native="$refs.carPhotoInput.click"
         />
       </div>
 
@@ -178,7 +176,7 @@
 import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
 
-import axios from 'axios'
+import axios from 'axios';
 import Datepicker from 'vuejs-datepicker';
 import UserService from '@/services/UserService.js';
 
@@ -199,28 +197,34 @@ export default {
       contactOptions: ['email', 'facebook', 'phone'],
       userPhoto: null,
       carPhoto: null,
-      userPhotoUrl: null,
-      carPhotoUrl: null
     };
   },
   methods: {
     changeCarPhoto() {
-      console.log(event);
-      this.carPhoto = event.target.files[0];
-      this.carPhotoUrl = URL.createObjectURL(this.carPhoto);
+      if (event.target.files.length !== 0) {
+        this.carPhoto = event.target.files[0];
+      }
     },
     changeUserPhoto() {
-      console.log(event);
-      this.userPhoto = event.target.files[0];
-      this.userPhotoUrl = URL.createObjectURL(this.userPhoto);
+      if (event.target.files.length !== 0) {
+        this.userPhoto = event.target.files[0];
+      }
     },
-    uploadPhoto(formData) {
-      axios.post('https://api.cloudinary.com/v1_1/ignaspan/upload', formData, {
-        onUploadProgress: uploadEvent => {
-          console.log('Upload progress: ' + Math.round(uploadEvent.loaded / uploadEvent.total * 100));
-        }
-      })
-        .then(res => {
+    uploadPhoto(photo) {
+      const formData = new FormData();
+      formData.append('upload_preset', 'vue-upload');
+      formData.append('file', photo);
+
+      axios
+        .post('https://api.cloudinary.com/v1_1/ignaspan/upload', formData, {
+          onUploadProgress: (uploadEvent) => {
+            console.log(
+              'Upload progress: ' +
+                Math.round((uploadEvent.loaded / uploadEvent.total) * 100)
+            );
+          },
+        })
+        .then((res) => {
           console.log(res);
         });
     },
@@ -250,17 +254,23 @@ export default {
     },
     saveProfile() {
       if (this.userPhoto) {
-        const userFormData = new FormData();
-        userFormData.append("upload_preset", "vue-upload");
-        userFormData.append("file", this.userPhoto);
-        this.uploadPhoto(userFormData);
-      } 
-      if (this.carPhoto) {
-        const carFormData = new FormData();
-        carFormData.append("upload_preset", "vue-upload");
-        carFormData.append("file", this.carPhoto);
-        this.uploadPhoto(carFormData);
+        this.uploadPhoto(this.userPhoto);
       }
+      if (this.carPhoto) {
+        this.uploadPhoto(this.carPhoto);
+      }
+    },
+    getUserPhotoPath() {
+      if (this.userPhoto) {
+        return URL.createObjectURL(this.userPhoto);
+      }
+      return this.user.photo;
+    },
+    getCarPhotoPath() {
+      if (this.carPhoto) {
+        return URL.createObjectURL(this.carPhoto);
+      }
+      return this.user.driver.car.photo;
     },
   },
 };
