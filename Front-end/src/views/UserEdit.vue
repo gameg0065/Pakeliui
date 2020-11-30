@@ -200,14 +200,16 @@ export default {
     };
   },
   methods: {
-    changeCarPhoto() {
-      if (event.target.files.length !== 0) {
-        this.carPhoto = event.target.files[0];
+    changeCarPhoto(event) {
+      const carPhoto = event.target.files[0];
+      if (carPhoto) {
+        this.carPhoto = carPhoto;
       }
     },
-    changeUserPhoto() {
-      if (event.target.files.length !== 0) {
-        this.userPhoto = event.target.files[0];
+    changeUserPhoto(event) {
+      const userPhoto = event.target.files[0];
+      if (userPhoto) {
+        this.userPhoto = userPhoto;
       }
     },
     uploadPhoto(photo) {
@@ -261,16 +263,18 @@ export default {
       }
     },
     getUserPhotoPath() {
+      let photo = this.user.photo;
       if (this.userPhoto) {
-        return URL.createObjectURL(this.userPhoto);
+        photo = URL.createObjectURL(this.userPhoto);
       }
-      return this.user.photo;
+      return photo;
     },
     getCarPhotoPath() {
+      let photo = this.user.driver.car.photo;
       if (this.carPhoto) {
-        return URL.createObjectURL(this.carPhoto);
+        photo = URL.createObjectURL(this.carPhoto);
       }
-      return this.user.driver.car.photo;
+      return photo;
     },
   },
 };
