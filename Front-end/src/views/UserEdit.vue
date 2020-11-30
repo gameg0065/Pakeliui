@@ -202,8 +202,6 @@ export default {
       contactOptions: ['email', 'facebook', 'phone'],
       userPhoto: null,
       carPhoto: null,
-      userPhotoChanged: false,
-      carPhotoChanged: false,
       userPhotoUrl: null,
       carPhotoUrl: null
     };
@@ -211,13 +209,11 @@ export default {
   methods: {
     changeCarPhoto() {
       console.log(event);
-      this.carPhotoChanged = true;
       this.carPhoto = event.target.files[0];
       this.carPhotoUrl = URL.createObjectURL(this.carPhoto);
     },
     changeUserPhoto() {
       console.log(event);
-      this.userPhotoChanged = true;
       this.userPhoto = event.target.files[0];
       this.userPhotoUrl = URL.createObjectURL(this.userPhoto);
     },
@@ -256,13 +252,13 @@ export default {
       });
     },
     saveProfile() {
-      if (this.userPhotoChanged) {
+      if (this.userPhoto) {
         const userFormData = new FormData();
         userFormData.append("upload_preset", "vue-upload");
         userFormData.append("file", this.userPhoto);
         this.uploadPhoto(userFormData);
       } 
-      if (this.carPhotoChanged) {
+      if (this.carPhoto) {
         const carFormData = new FormData();
         carFormData.append("upload_preset", "vue-upload");
         carFormData.append("file", this.carPhoto);
