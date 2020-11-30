@@ -19,9 +19,6 @@
           @click.native="$refs.userPhotoInput.click()"
         />
       </div>
-      <div id="preview">
-        <img  style="max-width: 100%; max-height: 500px;" />
-      </div>
       <div>
         <label for="user-name">Vardas, pavardė*</label>
         <input type="text" id="user-name" v-model.trim="user.name" />
