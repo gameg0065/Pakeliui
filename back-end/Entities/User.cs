@@ -25,6 +25,7 @@ namespace BackEnd.Models
         public int Rating { get; set; }
         public string FacebookLink { get; set; }
         public string PicturePath { get; set; }
+        public bool IsDriver { get; set; }
 
     }
 }
