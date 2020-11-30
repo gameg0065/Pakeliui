@@ -19,7 +19,7 @@
         </div>
 
         <div class="flex align-baseline">
-          <label for="user-birthdate">Gimino metai*</label>
+          <label for="user-birthdate">Gimimo metai*</label>
           <Datepicker
             id="user-birthdate"
             v-model="user.birthDate"

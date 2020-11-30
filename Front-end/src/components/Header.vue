@@ -14,7 +14,7 @@
         </li>
         <li v-if="user">
           <router-link v-if="user.isDriver" :to="{ name: 'post-create' }">
-            <Button text="sukurk skelbimą" :isSecondary="true" />
+            <Button text="įkelti skelbimą" :isSecondary="true" />
           </router-link>
         </li>
       </ul>

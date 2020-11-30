@@ -2,8 +2,8 @@
   <div class="post align-stretch">
     <div class="page-title flex align-baseline">
       <h2>Skelbimas</h2>
-      <p v-if="isActive" class="text-color-primary">Skelbimo būsena: aktyvus</p>
-      <p v-else class="text-color-secondary">Skelbimo būsena: nebegaliojantis</p>
+      <h5 v-if="isActive" class="text-color-primary">Skelbimo būsena: aktyvus</h5>
+      <h5 v-else class="text-color-secondary">Skelbimo būsena: nebegaliojantis</h5>
     </div>
 
     <div class="flex direction-column pb-50">
@@ -48,7 +48,7 @@
       </div>
       <div>
         <small>Laisvų vietų skaičius</small>
-        <p>paskaičiuoti</p>
+        <p>TODO</p>
       </div>
       <div>
         <small>Kelionės kaina</small>
@@ -67,6 +67,7 @@
       text="rezervuoti"
       :click="reserve"
       :isDisabled="!isActive || userIsAuthor"
+      :isLarge="true"
       class="mb-50"
     />
 

@@ -3,7 +3,7 @@
     <div class="hero-text">
       <h1>Geresnis būdas keliauti</h1>
       <h3>
-        Pakeliui - tai platforma, skirta žmonėms lengvai keliauti bei pavežėti
+        Pakeliui - tai platforma, skirta žmonėms lengvai keliauti bei pavėžėti
         kitus
       </h3>
     </div>
@@ -13,7 +13,7 @@
       </router-link>
 
       <router-link v-if="user.isDriver" :to="{ name: 'post-create' }">
-        <Button text="sukurk skelbimą" :isSecondary="true" :isLarge="true" />
+        <Button text="ikelti skelbimą" :isSecondary="true" :isLarge="true" />
       </router-link>
     </div>
     <div v-else>
