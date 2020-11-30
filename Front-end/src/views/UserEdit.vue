@@ -9,6 +9,7 @@
         <input
           style="display: none"
           type="file"
+          accept="image/*"
           @change="changeUserPhoto"
           ref="userPhotoInput"
         />
@@ -115,6 +116,7 @@
         <input
           style="display: none"
           type="file"
+          accept="image/*"
           @change="changeCarPhoto"
           ref="carPhotoInput"
         />
@@ -224,7 +226,7 @@ export default {
       //formData.append('image', this.userPhoto, this.userPhoto.name)
       formData.append("upload_preset", "vue-upload");
       formData.append("file", this.userPhoto);
-      axios.post('https://api.couldinary.com/v1_1/ignaspan/upload', formData, {
+      axios.post('https://api.cloudinary.com/v1_1/ignaspan/upload', formData, {
         onUploadProgress: uploadEvent => {
           console.log('Upload progress: ' + Math.round(uploadEvent.loaded / uploadEvent.total * 100));
         }
@@ -258,7 +260,9 @@ export default {
       });
     },
     saveProfile() {
-      alert('TODO');
+      if (userPhotoChanged) {
+        this.onUpload();
+      }
     },
   },
 };
