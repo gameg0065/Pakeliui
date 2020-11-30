@@ -7,7 +7,7 @@
         <h4 class="text-color-primary mb-10">{{ user.name }}</h4>
       </router-link>
 
-      <small> Pavežėjimų skaičius: {{ this.user.driver.posts.length }}</small>
+      <small> Pavėžėjimų skaičius: {{ this.user.driver.posts.length }}</small>
 
       <p>Susisiekite su manimi: {{ getContactInfo() }}</p>
     </div>

@@ -34,7 +34,7 @@
       <router-link @click.native="emitClick" :to="{ name: 'post-create' }">
         <div class="dropbutton">
           <img src="../assets/icons/pen-tool.svg" />
-          <p>Sukurti skelbimą</p>
+          <p>Įkelti skelbimą</p>
         </div>
       </router-link>
 

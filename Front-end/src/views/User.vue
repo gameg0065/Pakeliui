@@ -63,7 +63,7 @@
 
         <div>
           <div class="flex align-baseline">
-            <small class="fixed-width">Pavežėjimų skaičius</small>
+            <small class="fixed-width">Pavėžėjimų skaičius</small>
             <p>{{ user.driver.posts.length }}</p>
           </div>
 
@@ -73,7 +73,7 @@
           </div>
 
           <div class="flex align-baseline">
-            <small class="fixed-width">Pavežėtų keleivių skaičius</small>
+            <small class="fixed-width">Pavėžėtų keleivių skaičius</small>
             <p>{{ countPassangers() }}</p>
           </div>
 

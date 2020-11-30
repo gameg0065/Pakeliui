@@ -15,14 +15,14 @@
 
       <div class="flex justify-between">
         <label
-          ><input type="checkbox" v-model="receiveEmail" /> Informuoti mane apie komentarus el. paštu
+          ><input type="checkbox" v-model="receiveEmail" /> Informuoti mane elektroniniu paštu apie komentarus
         </label>
 
         <small>Rašydami komentarą, sutinkate su Sąlygomis.</small>
       </div>
 
       <div class="flex justify-end">
-        <Button text="komentuoti" :click="submit" :isOutlined="true" />
+        <Button text="skelbti komentarą" :click="submit" :isOutlined="true" class="mt-20"/>
       </div>
     </div>
   </div>

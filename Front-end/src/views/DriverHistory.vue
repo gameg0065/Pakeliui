@@ -10,9 +10,9 @@
         />
       </div>
       <div v-else>
-        <p>Jūs neturite aktyvių skelbimų. Sukurkite vieną dabar!</p>
+        <p>Jūs neturite aktyvių skelbimų. Įkelkite vieną dabar!</p>
         <router-link :to="{ name: 'post-create' }">
-          <Button text="sukurti skelbimą" :isSecondary="true" :isLarge="true" />
+          <Button text="įkelti skelbimą" :isSecondary="true" :isLarge="true" />
         </router-link>
       </div>
     </div>
