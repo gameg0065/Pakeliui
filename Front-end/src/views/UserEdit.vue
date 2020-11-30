@@ -221,11 +221,7 @@ export default {
       this.userPhoto = event.target.files[0];
       this.userPhotoUrl = URL.createObjectURL(this.userPhoto);
     },
-    onUpload() {
-      const formData = new FormData();
-      //formData.append('image', this.userPhoto, this.userPhoto.name)
-      formData.append("upload_preset", "vue-upload");
-      formData.append("file", this.userPhoto);
+    uploadPhoto(formData) {
       axios.post('https://api.cloudinary.com/v1_1/ignaspan/upload', formData, {
         onUploadProgress: uploadEvent => {
           console.log('Upload progress: ' + Math.round(uploadEvent.loaded / uploadEvent.total * 100));
@@ -260,8 +256,17 @@ export default {
       });
     },
     saveProfile() {
-      if (userPhotoChanged) {
-        this.onUpload();
+      if (this.userPhotoChanged) {
+        const userFormData = new FormData();
+        userFormData.append("upload_preset", "vue-upload");
+        userFormData.append("file", this.userPhoto);
+        this.uploadPhoto(userFormData);
+      } 
+      if (this.carPhotoChanged) {
+        const carFormData = new FormData();
+        carFormData.append("upload_preset", "vue-upload");
+        carFormData.append("file", this.carPhoto);
+        this.uploadPhoto(carFormData);
       }
     },
   },
