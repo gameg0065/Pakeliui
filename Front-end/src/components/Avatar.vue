@@ -30,6 +30,7 @@ export default {
 <style scoped>
 .avatar {
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .big {

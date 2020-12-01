@@ -3,11 +3,18 @@
     <h2 class="page-title">Profilio redagavimas</h2>
     <div class="flex pb-50">
       <div class="flex direction-column align-center">
-        <Avatar :path="user.photo" size="big" />
+        <Avatar :path="getUserPhotoPath()" size="big" />
+        <input
+          style="display: none"
+          type="file"
+          accept="image/x-png,image/jpeg"
+          @change="changeUserPhoto"
+          ref="userPhotoInput"
+        />
         <Button
           text="įkelti nuotrauką"
-          :click="changeUserPhoto"
           :isOutlined="true"
+          @click.native="$refs.userPhotoInput.click"
           class="mt-20"
         />
       </div>
@@ -107,11 +114,18 @@
       <h3 class="section-title">Vairuotojo profilis</h3>
       <div class="flex pb-50">
         <div class="flex direction-column align-center">
-          <Avatar :path="user.driver.car.photo" size="big" />
+          <Avatar :path="getCarPhotoPath()" size="big" />
+          <input
+            style="display: none"
+            type="file"
+            accept="image/x-png,image/jpeg"
+            @change="changeCarPhoto"
+            ref="carPhotoInput"
+          />
           <Button
-            :click="changeCarPhoto"
             text="įkelti nuotrauką"
             :isOutlined="true"
+            @click.native="$refs.carPhotoInput.click"
             class="mt-20"
           />
         </div>
@@ -178,6 +192,7 @@
 import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
 
+import axios from 'axios';
 import Datepicker from 'vuejs-datepicker';
 import UserService from '@/services/UserService.js';
 
@@ -196,14 +211,22 @@ export default {
   data() {
     return {
       contactOptions: ['email', 'facebook', 'phone'],
+      userPhoto: null,
+      carPhoto: null,
     };
   },
   methods: {
-    changeCarPhoto() {
-      alert('TODO');
+    changeCarPhoto(event) {
+      const carPhoto = event.target.files[0];
+      if (carPhoto) {
+        this.carPhoto = carPhoto;
+      }
     },
-    changeUserPhoto() {
-      alert('TODO');
+    changeUserPhoto(event) {
+      const userPhoto = event.target.files[0];
+      if (userPhoto) {
+        this.userPhoto = userPhoto;
+      }
     },
     checkboxChanged() {
       const user = this.user;
@@ -229,8 +252,47 @@ export default {
         },
       });
     },
+    getUserPhotoPath() {
+      let photo = this.user.photo;
+      if (this.userPhoto) {
+        photo = URL.createObjectURL(this.userPhoto);
+      }
+      return photo;
+    },
+    getCarPhotoPath() {
+      let photo = this.user.driver.car.photo;
+      if (this.carPhoto) {
+        photo = URL.createObjectURL(this.carPhoto);
+      }
+      return photo;
+    },
     saveProfile() {
+      if (this.userPhoto) {
+        this.uploadPhoto(this.userPhoto);
+      }
+      if (this.carPhoto) {
+        this.uploadPhoto(this.carPhoto);
+      }
+
       alert('TODO');
+    },
+    uploadPhoto(photo) {
+      const formData = new FormData();
+      formData.append('upload_preset', 'vue-upload');
+      formData.append('file', photo);
+
+      axios
+        .post('https://api.cloudinary.com/v1_1/ignaspan/upload', formData, {
+          onUploadProgress: (uploadEvent) => {
+            console.log(
+              'Upload progress: ' +
+                Math.round((uploadEvent.loaded / uploadEvent.total) * 100)
+            );
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        });
     },
   },
 };
