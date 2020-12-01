@@ -1,22 +1,25 @@
 <template>
-  <div>
-    <Avatar :path="user.photo" />
-    <router-link :to="{ name: 'user', params: { id: user.id } }">
-      <p class="link">{{ user.name }}</p>
-    </router-link>
+  <div class="flex direction-column">
+    <div class="flex align-start mt-20">
+      <Avatar :path="user.photo" size="small" class="mr-10" />
+      <div class="flex direction-column grow">
+        <router-link :to="{ name: 'user', params: { id: user.id } }">
+          <p class="text-color-primary">{{ user.name }}</p>
+        </router-link>
+        <small v-if="feedback"> Įvertinimo data: {{ feedback.date }} </small>
+      </div>
 
-    <div v-if="feedback">
-      <small> Įvertinimo data: {{ feedback.date }} </small>
-      <p>{{ feedback.text }}</p>
-      <Rating :rating="feedback.rating" />
+      <Rating v-if="feedback" :rating="feedback.rating" />
+      <Button
+        v-else
+        text="įvertink keleivį"
+        :click="rateUser"
+        :isOutlined="true"
+        :isLarge="false"
+      />
     </div>
 
-    <Button
-      v-else
-      text="įvertink keleivį"
-      :click="rateUser"
-      :isOutlined="true"
-    />
+    <p v-if="feedback">{{ feedback.text }}</p>
   </div>
 </template>
 
@@ -68,9 +71,3 @@ export default {
   },
 };
 </script>
-
-<style>
-p.link {
-  color: var(--color-primary);
-}
-</style>

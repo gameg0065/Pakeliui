@@ -1,5 +1,5 @@
 <template>
-  <div class="dropdown shadow">
+  <div class="profile-dropdown shadow">
     <router-link
       @click.native="emitClick"
       :to="{ name: 'user', params: { id: user.id } }"
@@ -34,7 +34,7 @@
       <router-link @click.native="emitClick" :to="{ name: 'post-create' }">
         <div class="dropbutton">
           <img src="../assets/icons/pen-tool.svg" />
-          <p>Sukurti skelbimą</p>
+          <p>Įkelti skelbimą</p>
         </div>
       </router-link>
 
@@ -87,45 +87,6 @@ export default {
 };
 </script>
 
-<style>
-.dropdown {
-  background-color: white;
-  position: absolute;
-  right: 0px;
-  top: 100px;
-  width: 250px;
-}
-
-.dropbutton {
-  cursor: pointer;
-  height: 40px;
-}
-
-.dropbutton p {
-  color: var(--color-black);
-  padding-top: 5px;
-}
-
-.dropbutton img {
-  float: left;
-  padding: 8px;
-}
-
-.dropbutton:hover {
-  background-color: var(--color-primary-light-1);
-}
-
-.dropbutton:active {
-  background-color: var(--color-primary-dark-1);
-}
-
-.dropbutton:hover p {
-  color: white;
-}
-
-.shadow {
-  -webkit-box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25); /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-  -moz-box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25); /* Firefox 3.5 - 3.6 */
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25); /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
-}
+<style lang="scss">
+@import '../assets/styles/profile-dropdown.scss';
 </style>

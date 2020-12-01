@@ -1,30 +1,39 @@
 <template>
-  <modal
-    name="modal-feedback"
-    :adaptive="true"
-    :height="400"
-    :width="600"
-    :styles="{ 'border-radius': '10px' }"
-    :focusTrap="true"
-    @before-open="beforeOpen"
-  >
-    <div class="container">
-      <h3>{{ params.title }}</h3>
-      <Avatar :path="user.photo" />
-      <p>{{ params.text }}</p>
+  <div class="modal">
+    <modal
+      name="modal-feedback"
+      :adaptive="true"
+      height="auto"
+      :width="600"
+      :styles="{ 'border-radius': '10px' }"
+      :focusTrap="true"
+      @before-open="beforeOpen"
+    >
+      <div class="container">
+        <div class="flex">
+          <div class="flex direction-column grow">
+            <h3>{{ params.title }}</h3>
+            <p>{{ params.text }}</p>
+          </div>
+          <Avatar :path="user.photo" />
+        </div>
 
-      <label for="rating">{{ params.ratingTitle }}</label>
-      <select v-model="data.ratingValue" id="rating">
-        <option v-for="index in 5" :key="index">{{ 5 - index + 1 }}</option>
-      </select>
+        <div>
+          <label for="rating">{{ params.ratingTitle }}</label>
+          <select v-model="data.ratingValue" id="rating">
+            <option v-for="index in 5" :key="index">{{ 5 - index + 1 }}</option>
+          </select>
+        </div>
 
-      <div>
-        <textarea rows="3" v-model="data.text"></textarea>
+        <div :class="{ error: data.text.error }">
+          <span class="mt-10">{{ data.text.error }}</span>
+          <textarea v-model="data.text.value"></textarea>
+        </div>
+
+        <Button :text="button.title" :click="submit" :isOutlined="true" />
       </div>
-
-      <Button :text="button.title" :click="submit" :isOutlined="true" />
-    </div>
-  </modal>
+    </modal>
+  </div>
 </template>
 
 <script>
@@ -62,13 +71,25 @@ export default {
       this.$modal.show('modal-feedback');
     },
     submit() {
-      this.button.action(this.data);
-      this.data = this.resetToDefaults();
+      const text = this.data.text;
+      if (!text.value) {
+        text.error = 'laukas negali būti tuščias';
+      } else {
+        text.error = '';
+      }
+
+      if (!text.error) {
+        this.button.action(this.data);
+        this.data = this.resetToDefaults();
+      }
     },
     resetToDefaults() {
       return {
         ratingValue: 5,
-        text: '',
+        text: {
+          value: '',
+          error: '',
+        },
       };
     },
   },
@@ -78,8 +99,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-  padding: 20px;
-}
+<style lang="scss">
+@import '../assets/styles/modal.scss';
 </style>

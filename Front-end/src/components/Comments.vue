@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h3>Komentarai</h3>
+  <div class="flex direction-column">
+    <h3 class="section-title">Komentarai</h3>
 
     <div v-if="comments && comments.length">
       <CommentCard
@@ -11,20 +11,18 @@
     </div>
 
     <div v-if="isActive">
-      <div>
-        <textarea rows="4" v-model.trim="text">
-          Mano komentaras goes here </textarea
-        >
+      <textarea v-model.trim="text"></textarea>
+
+      <div class="flex justify-between">
+        <label
+          ><input type="checkbox" v-model="receiveEmail" /> Informuoti mane elektroniniu paštu apie komentarus
+        </label>
+
+        <small>Rašydami komentarą, sutinkate su Sąlygomis.</small>
       </div>
 
-      <label
-        ><input type="checkbox" v-model="receiveEmail" /> Informuoti mane apie komentarus el. paštu
-      </label>
-
-      <small>Rašydami komentarą, sutinkate su Sąlygomis.</small>
-
-      <div>
-        <Button text="komentuoti" :click="submit" :isOutlined="true" />
+      <div class="flex justify-end">
+        <Button text="skelbti komentarą" :click="submit" :isOutlined="true" class="mt-20"/>
       </div>
     </div>
   </div>
@@ -57,3 +55,11 @@ export default {
   },
 };
 </script>
+
+<style>
+textarea {
+  height: 100px;
+  resize: none;
+  width: 100%;
+}
+</style>

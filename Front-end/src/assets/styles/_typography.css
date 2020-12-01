@@ -33,7 +33,8 @@ h4 {
 	font-size: 24px;
 }
 
-h5 {
+h5,
+span {
 	font-family: 'Montserrat-Medium';
 	font-size: 13px;
 	letter-spacing: 8%;
@@ -46,7 +47,18 @@ p {
 	line-height: 30px;
 }
 
+input,
+textarea {
+    font-family: "Montserrat-Regular";
+    font-size: 18px;
+}
+
+label, 
 small {
 	font-family: 'Montserrat-Regular';
 	font-size: 13px;
+}
+
+strong {
+	font-family: 'Montserrat-Medium';
 }

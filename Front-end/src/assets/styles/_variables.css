@@ -35,4 +35,10 @@
 
 	/* Effect styles */
 	--shadow:  10px 0px 4px rgba(0, 0, 0, 0.25);
+
+	/* Buttons */
+	--button-padding: 50px;
+
+	/* Other */
+	--page-padding: 0 120px;
 }

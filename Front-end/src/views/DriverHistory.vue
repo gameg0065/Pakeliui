@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <div>
-      <h2>Aktyvūs skelbimai</h2>
+  <div class="align-stretch">
+    <div class="pb-50">
+      <h2 class="page-title">Aktyvūs skelbimai</h2>
       <div v-if="activePosts.length > 0">
         <DriverActivePostCard
           v-for="post in activePosts"
@@ -10,14 +10,14 @@
         />
       </div>
       <div v-else>
-        <p>Jūs neturite aktyvių skelbimų. Sukurkite vieną dabar!</p>
+        <p>Jūs neturite aktyvių skelbimų. Įkelkite vieną dabar!</p>
         <router-link :to="{ name: 'post-create' }">
-          <Button text="sukurti skelbimą" :isSecondary="true" :isLarge="true" />
+          <Button text="įkelti skelbimą" :isSecondary="true" :isLarge="true" />
         </router-link>
       </div>
     </div>
-    <div>
-      <h3>Skelbimų istorija</h3>
+    <div class="bleed-width">
+      <h3 class="section-title">Skelbimų istorija</h3>
       <div v-if="expiredPosts.length > 0">
         <DriverExpiredPostCard
           v-for="post in expiredPosts"

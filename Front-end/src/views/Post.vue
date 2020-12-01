@@ -1,29 +1,30 @@
 <template>
-  <div class="post">
-    <div>
+  <div class="post align-stretch">
+    <div class="page-title flex align-baseline">
       <h2>Skelbimas</h2>
-      <p v-if="isActive" class="post-active">Skelbimo būsena: aktyvus</p>
-      <p v-else class="post-expired">Skelbimo būsena: nebegaliojantis</p>
+      <h5 v-if="isActive" class="text-color-primary">Skelbimo būsena: aktyvus</h5>
+      <h5 v-else class="text-color-secondary">Skelbimo būsena: nebegaliojantis</h5>
     </div>
 
-    <div>
-      <UserCardInPost :post="post" />
+    <div class="flex direction-column pb-50">
+      <UserCardInPost :post="post"/>
       <Button
         text="rezervuoti"
         :click="reserve"
         :isDisabled="!isActive || userIsAuthor"
         :isOutlined="true"
+        class="align-self-center"
       />
     </div>
 
-    <div>
+    <div class="info">
       <div>
         <small>Kelionės data </small>
         <p>{{ post.date }}</p>
       </div>
       <div>
         <small>Kelionės laikas </small>
-        {{ post.time }}
+        <p>{{ post.time }}</p> 
       </div>
       <div>
         <small>Iš miesto </small>
@@ -47,26 +48,32 @@
       </div>
       <div>
         <small>Laisvų vietų skaičius</small>
-        <p>paskaičiuoti</p>
+        <p>TODO</p>
       </div>
       <div>
         <small>Kelionės kaina</small>
         <p>{{ post.price }}€</p>
       </div>
-      <div>
+      <div class="extra">
         <small>Papildoma informacija</small>
         <p>{{ post.info }}</p>
       </div>
+
+      <img src="https://i.stack.imgur.com/yEshb.gif" alt="map" class="map"/>
     </div>
 
-    <img src="https://i.stack.imgur.com/yEshb.gif" alt="map" />
 
     <Button
       text="rezervuoti"
       :click="reserve"
       :isDisabled="!isActive || userIsAuthor"
+      :isLarge="true"
+      class="mb-50"
     />
-    <Comments :comments="post.comments" :isActive="isActive" />
+
+    <div class="bleed-width pb-50">
+      <Comments :comments="post.comments" :isActive="isActive"/>
+    </div>
   </div>
 </template>
 
@@ -127,12 +134,7 @@ export default {
 };
 </script>
 
-<style scoped>
-p.post-active {
-  color: var(--color-primary);
-}
 
-p.post-expired {
-  color: var(--color-secondary);
-}
+<style lang="scss">
+@import '../assets/styles/post.scss';
 </style>

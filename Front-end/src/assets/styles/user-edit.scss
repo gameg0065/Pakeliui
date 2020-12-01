@@ -1,0 +1,23 @@
+.user-edit {
+	align-items: stretch;
+	display: flex;
+	flex-direction: column;
+
+	label {
+		padding-right: 20px;
+		text-align: right;
+		width: 220px;
+	}
+
+	input,
+	textarea {
+		flex: 1;
+	}
+
+	& > div:nth-child(odd) {
+		background-color: var(--color-gray-1);
+		flex: 1;
+		margin: 0 -9999rem;
+		padding: 0 9999rem;
+	}
+}
