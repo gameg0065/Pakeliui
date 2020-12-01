@@ -28,8 +28,9 @@ namespace BackEnd.Services
 
         public Task Execute(string apiKey, string subject, string message, string email)
         {
-            // nemanau kad cia reiktu laikyti api key reiksme
+            // tikriausiai nelabai gerai cia laikyt api key
             apiKey = "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";
+            Options.SendGridUser = "PakeliuiOfficial";
 
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
