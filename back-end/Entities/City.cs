@@ -1,34 +1,17 @@
 using System;
-using System.Linq;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-public class City
+namespace BackEnd.Models
 {
-
-    public City(
-        int id,
-        string cityName,
-        int countryID)
-    { 
-        ID = id;
-        CityName = cityName;
-        CountryID = countryID;
-    } 
-    public int ID { get; set; }
-    public string CityName { get; set; }
-    public int CountryID { get; set; }
-    
-    public void SetID(int id)
+    public class City
     {
-        ID = id;
-    }
-    public void SetCityName(string cityName)
-    {
-        CityName = cityName;
-    }
-    public void SetCountryID(int countryID)
-    {
-        CountryID = countryID;
+        [Key]
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Index(IsUnique = true)]
+        public int ID { get; set; }
+        public string CityName { get; set; }
+        public int CountryID { get; set; }
     }
 }

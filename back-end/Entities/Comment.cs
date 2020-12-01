@@ -1,41 +1,19 @@
 using System;
-using System.Linq;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-public class Comment
+namespace BackEnd.Models
 {
-
-    public Comment(
-        int id,
-        int userID,
-        int travelID,
-        string content)
-    { 
-        ID = id;
-        UserID = userID;
-        TravelID = travelID;
-        Content = content;
-    } 
-    public int ID { get; set; }
-    public int UserID { get; set; }
-    public int TravelID { get; set; }
-    public string Content { get; set; }
-    
-    public void SetID(int id)
+    public class Comment
     {
-        ID = id;
-    }
-    public void SetUserID(int userID)
-    {
-        UserID = userID;
-    }
-    public void SetTravelID(int travelID)
-    {
-        TravelID = travelID;
-    }
-    public void SetContent(string content)
-    {
-        Content = content;
+        [Key]
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Index(IsUnique = true)]
+        public int ID { get; set; }
+        public int UserID { get; set; }
+        public int TravelID { get; set; }
+        public DateTime Date { get; set; }
+        public string Text { get; set; }
     }
 }

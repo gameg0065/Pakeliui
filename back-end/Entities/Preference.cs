@@ -1,34 +1,17 @@
 using System;
-using System.Linq;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-public class Preference
+namespace BackEnd.Models
 {
-
-    public Preference(
-        int id,
-        string name,
-        string iconPath)
-    { 
-        ID = id;
-        Name = name;
-        IconPath = iconPath;
-    } 
-    public int ID { get; set; }
-    public string Name { get; set; }
-    public string IconPath { get; set; }
-    
-    public void SetID(int id)
+    public class Preference
     {
-        ID = id;
-    }
-    public void SetName(string name)
-    {
-        Name = name;
-    }
-    public void SetIconPath(string iconPath)
-    {
-        IconPath = iconPath;
+        [Key]
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Index(IsUnique = true)]
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string IconPath { get; set; }
     }
 }

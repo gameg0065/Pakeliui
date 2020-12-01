@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace BackEnd.DAL
 {
-    public class CarsDataBase
+    public class PreferencesDataBase
     {
         private readonly BackEndContext _dbContext;
 
-        public CarsDataBase(BackEndContext dbContext)
+        public PreferencesDataBase(BackEndContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<List<Car>> GetCars()
+        public async Task<List<Preference>> GetPreferences()
         {
-            var list = new List<Car>();
-            var result = await _dbContext.Cars.ToListAsync();
+            var list = new List<Preference>();
+            var result = await _dbContext.Preferences.ToListAsync();
             if (result.Count() <= 0)
             {
                 return list;
@@ -28,9 +28,9 @@ namespace BackEnd.DAL
             return list;
         }
 
-        public bool CreateCar(Car car)
+        public bool CreatePreference(Preference Preference)
         {
-            var created = _dbContext.Cars.Add(car);
+            var created = _dbContext.Preferences.Add(Preference);
             if (created != null)
             {
                 _dbContext.SaveChanges();

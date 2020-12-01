@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace BackEnd.DAL
 {
-    public class CarsDataBase
+    public class CitiesDataBase
     {
         private readonly BackEndContext _dbContext;
 
-        public CarsDataBase(BackEndContext dbContext)
+        public CitiesDataBase(BackEndContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<List<Car>> GetCars()
+        public async Task<List<City>> GetCities()
         {
-            var list = new List<Car>();
-            var result = await _dbContext.Cars.ToListAsync();
+            var list = new List<City>();
+            var result = await _dbContext.Cities.ToListAsync();
             if (result.Count() <= 0)
             {
                 return list;
@@ -28,9 +28,9 @@ namespace BackEnd.DAL
             return list;
         }
 
-        public bool CreateCar(Car car)
+        public bool CreateCity(City City)
         {
-            var created = _dbContext.Cars.Add(car);
+            var created = _dbContext.Cities.Add(City);
             if (created != null)
             {
                 _dbContext.SaveChanges();
