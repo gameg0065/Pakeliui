@@ -12,7 +12,7 @@ namespace BackEnd.Models
         [Index(IsUnique = true)]
         public int ID { get; set; }
         public int UserID { get; set; }
-        public int TravelID { get; set; }
+        public int TravelID { get; set; }       // rename to PostID
         public DateTime Date { get; set; }
         public string Text { get; set; }
     }

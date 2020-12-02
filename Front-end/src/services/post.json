@@ -1,0 +1,43 @@
+{
+	"comments": [
+		{
+			"author": { // authorID
+				"id": 101
+			},
+			"date": "2020-10-15",
+			"id": 1,
+			"text": "Komentaras skelbimų sekcijoje"
+		}
+	],
+	"date": "2020-12-24",
+	"distance": 180, 	// remove
+	"driver": {  		// driverID
+		"id": 110
+	},
+	"id": 2,
+	"info": "Some dull info",
+	"passengers": [
+		{
+			"id": 100,
+			"status": "PENDING",
+			"feedbackID": 123, 		// Add feedbacks here
+		},
+		{
+			"id": 101,
+			"status": "TAKEN"
+		},
+		{
+			"id": 111,
+			"status": "CANCELED"
+		}
+	],
+	"price": 15,
+	"seetCount": 4,
+	"time": "18:00",
+	"route": { 						// remove parenting
+		"dropoff": "Lenino paminklas",
+		"from": "Utena",
+		"pickup": "Norfa",
+		"to": "Šiauliai"
+	}
+},

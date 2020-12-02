@@ -1,3 +1,5 @@
+// Rename to Post, not Travel
+
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,7 +15,7 @@ namespace BackEnd.Models
         [Index(IsUnique = true)]    
         public int ID { get; set; }
         public int DriverID { get; set; }
-        public int CarID { get; set; }
+        public int CarID { get; set; } 
         public int FromCityID { get; set; }
         public int ToCityID { get; set; }
         public DateTime TravelDate { get; set; }
