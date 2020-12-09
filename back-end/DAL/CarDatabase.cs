@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using BackEnd.Models;
 using Microsoft.EntityFrameworkCore;
@@ -39,5 +38,24 @@ namespace BackEnd.DAL
             return created != null;
         }
 
+        public bool UpdateCar(Car car)
+        {
+            var updated = _dbContext.Cars.Update(car);
+            if (updated != null)
+            {
+                _dbContext.SaveChanges();
+            }
+            return updated != null;
+        }
+
+        public bool RemoveCar(Car car)
+        {
+            var removed = _dbContext.Cars.Remove(car);
+            if (removed != null)
+            {
+                _dbContext.SaveChanges();
+            }
+            return removed != null;
+        }
     }
 }

@@ -12,14 +12,14 @@ namespace BackEnd.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TravelController : ControllerBase
+    public class PostController : ControllerBase
     {
 
-        private readonly ILogger<TravelController> _logger;
+        private readonly ILogger<PostController> _logger;
         private readonly BackEndContext _dbContext;
         private readonly IConfiguration Configuration;
 
-        public TravelController(ILogger<TravelController> logger, IConfiguration configuration, BackEndContext dbContext)
+        public PostController(ILogger<PostController> logger, IConfiguration configuration, BackEndContext dbContext)
         {
             _logger = logger;
             Configuration = configuration;
@@ -27,9 +27,9 @@ namespace BackEnd.Controllers
         }
 
         [HttpGet("AllTravels")]
-        public async Task<ActionResult<List<Travel>>> Get()
+        public async Task<ActionResult<List<Post>>> Get()
         {
-            var travelsDatabase = new TravelsDataBase(_dbContext);
+            var travelsDatabase = new PostDataBase(_dbContext);
             var items = await travelsDatabase.GetTravels();
 
             if (items.Count < 1)
@@ -40,10 +40,10 @@ namespace BackEnd.Controllers
             return items;
         }
         [HttpPost]
-        public bool Create(Travel model)
+        public bool Create(Post model)
         {
 
-            var travelsDatabase = new TravelsDataBase(_dbContext);
+            var travelsDatabase = new PostDataBase(_dbContext);
             var items = travelsDatabase.CreateTravel(model);
 
             return items;

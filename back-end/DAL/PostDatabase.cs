@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace BackEnd.DAL
 {
-    public class CountriesDataBase
+    public class PostDataBase
     {
         private readonly BackEndContext _dbContext;
 
-        public CountriesDataBase(BackEndContext dbContext)
+        public PostDataBase(BackEndContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<List<Country>> GetCountries()
+        public async Task<List<Post>> GetTravels()
         {
-            var list = new List<Country>();
-            var result = await _dbContext.Countries.ToListAsync();
+            var list = new List<Post>();
+            var result = await _dbContext.Posts.ToListAsync();
             if (result.Count() <= 0)
             {
                 return list;
@@ -28,9 +28,9 @@ namespace BackEnd.DAL
             return list;
         }
 
-        public bool CreateCountry(Country Country)
+        public bool CreateTravel(Post Travel)
         {
-            var created = _dbContext.Countries.Add(Country);
+            var created = _dbContext.Posts.Add(Travel);
             if (created != null)
             {
                 _dbContext.SaveChanges();
