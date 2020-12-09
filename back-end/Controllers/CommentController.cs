@@ -48,5 +48,22 @@ namespace BackEnd.Controllers
 
             return items;
         }
+
+        [HttpPut]
+        public bool Update(Comment model)
+        {
+            var commentsDatabase = new CommentsDataBase(_dbContext);
+            var item = commentsDatabase.UpdateComment(model);
+
+            return item;
+        }
+        [HttpDelete]
+        public bool Detete(Comment model)
+        {
+            var commentsDatabase = new CommentsDataBase(_dbContext);
+            var item = commentsDatabase.RemoveComment(model);
+
+            return item;
+        }
     }
 }

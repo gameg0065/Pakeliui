@@ -4,14 +4,16 @@ using BackEnd.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BackEnd.Migrations
 {
     [DbContext(typeof(BackEndContext))]
-    partial class BackEndContextModelSnapshot : ModelSnapshot
+    [Migration("20201209072053_AllEntitiesRewritten")]
+    partial class AllEntitiesRewritten
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,7 +93,7 @@ namespace BackEnd.Migrations
                     b.Property<int>("SenderId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Text")
+                    b.Property<string>("Test")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("UserId")
@@ -132,7 +134,10 @@ namespace BackEnd.Migrations
                     b.Property<string>("TravelTo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UserId1")
                         .HasColumnType("int");
 
                     b.Property<int>("seetCount")
@@ -140,7 +145,7 @@ namespace BackEnd.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Posts");
                 });
@@ -250,9 +255,7 @@ namespace BackEnd.Migrations
                 {
                     b.HasOne("BackEnd.Models.User", "User")
                         .WithMany("Posts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId1");
 
                     b.Navigation("User");
                 });

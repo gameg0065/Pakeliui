@@ -28,15 +28,35 @@ namespace BackEnd.DAL
             return list;
         }
 
-        public bool CreateReservation(Reservation Reservation)
+        public bool CreateReservation(Reservation reservation)
         {
-            var created = _dbContext.Reservations.Add(Reservation);
+            var created = _dbContext.Reservations.Add(reservation);
             if (created != null)
             {
                 _dbContext.SaveChanges();
             }
 
             return created != null;
+        }
+
+        public bool UpdateReservation(Reservation reservation)
+        {
+            var updated = _dbContext.Reservations.Update(reservation);
+            if (updated != null)
+            {
+                _dbContext.SaveChanges();
+            }
+            return updated != null;
+        }
+
+        public bool RemoveReservation(Reservation reservation)
+        {
+            var removed = _dbContext.Reservations.Remove(reservation);
+            if (removed != null)
+            {
+                _dbContext.SaveChanges();
+            }
+            return removed != null;
         }
 
     }

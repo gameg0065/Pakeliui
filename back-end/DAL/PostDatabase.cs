@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace BackEnd.DAL
 {
-    public class CommentsDataBase
+    public class PostDataBase
     {
         private readonly BackEndContext _dbContext;
 
-        public CommentsDataBase(BackEndContext dbContext)
+        public PostDataBase(BackEndContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<List<Comment>> GetComments()
+        public async Task<List<Post>> GetPosts()
         {
-            var list = new List<Comment>();
-            var result = await _dbContext.Comments.ToListAsync();
+            var list = new List<Post>();
+            var result = await _dbContext.Posts.Include(x => x.Comments).Include(x => x.Passengers).Include(x => x.User).ToListAsync();
             if (result.Count() <= 0)
             {
                 return list;
@@ -28,9 +28,9 @@ namespace BackEnd.DAL
             return list;
         }
 
-        public bool CreateComment(Comment comment)
+        public bool CreatePost(Post post)
         {
-            var created = _dbContext.Comments.Add(comment);
+            var created = _dbContext.Posts.Add(post);
             if (created != null)
             {
                 _dbContext.SaveChanges();
@@ -38,10 +38,9 @@ namespace BackEnd.DAL
 
             return created != null;
         }
-
-        public bool UpdateComment(Comment comment)
+        public bool UpdatePost(Post post)
         {
-            var updated = _dbContext.Comments.Update(comment);
+            var updated = _dbContext.Posts.Update(post);
             if (updated != null)
             {
                 _dbContext.SaveChanges();
@@ -49,9 +48,9 @@ namespace BackEnd.DAL
             return updated != null;
         }
 
-        public bool RemoveComment(Comment comment)
+        public bool RemovePost(Post post)
         {
-            var removed = _dbContext.Comments.Remove(comment);
+            var removed = _dbContext.Posts.Remove(post);
             if (removed != null)
             {
                 _dbContext.SaveChanges();

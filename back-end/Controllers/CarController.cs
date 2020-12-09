@@ -42,11 +42,27 @@ namespace BackEnd.Controllers
         [HttpPost]
         public bool Create(Car model)
         {
-
             var carsDatabase = new CarsDataBase(_dbContext);
-            var items = carsDatabase.CreateCar(model);
+            var item = carsDatabase.CreateCar(model);
 
-            return items;
+            return item;
+        }
+
+        [HttpPut]
+        public bool Update(Car model)
+        {
+            var carsDatabase = new CarsDataBase(_dbContext);
+            var item = carsDatabase.UpdateCar(model);
+
+            return item;
+        }
+        [HttpDelete]
+        public bool Detete(Car model)
+        {
+            var carsDatabase = new CarsDataBase(_dbContext);
+            var item = carsDatabase.RemoveCar(model);
+
+            return item;
         }
     }
 }
