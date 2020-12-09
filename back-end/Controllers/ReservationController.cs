@@ -48,5 +48,21 @@ namespace BackEnd.Controllers
 
             return items;
         }
+        [HttpPut]
+        public bool Update(Reservation model)
+        {
+            var reservationsDatabase = new ReservationsDataBase(_dbContext);
+            var item = reservationsDatabase.UpdateReservation(model);
+
+            return item;
+        }
+        [HttpDelete]
+        public bool Detete(Reservation model)
+        {
+            var reservationsDatabase = new ReservationsDataBase(_dbContext);
+            var item = reservationsDatabase.RemoveReservation(model);
+
+            return item;
+        }
     }
 }

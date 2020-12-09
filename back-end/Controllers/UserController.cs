@@ -48,5 +48,21 @@ namespace BackEnd.Controllers
 
             return items;
         }
+        [HttpPut]
+        public bool Update(User model)
+        {
+            var usersDataBase = new UsersDataBase(_dbContext);
+            var item = usersDataBase.UpdateUser(model);
+
+            return item;
+        }
+        [HttpDelete]
+        public bool Detete(User model)
+        {
+            var usersDataBase = new UsersDataBase(_dbContext);
+            var item = usersDataBase.RemoveUser(model);
+
+            return item;
+        }
     }
 }

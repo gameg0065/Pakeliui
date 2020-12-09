@@ -15,7 +15,7 @@ namespace BackEnd.Models
         public int ReceiverId { get; set; }
         public DateTime CreateDate { get; set; }
         public string Rating { get; set; }
-        public string Test { get; set; }
+        public string Text { get; set; }
         public bool ReceiverIsDriver { get; set; }
     }
 }

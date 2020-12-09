@@ -26,27 +26,43 @@ namespace BackEnd.Controllers
             _dbContext = dbContext;
         }
 
-        // [HttpGet("AllPreferences")]
-        // public async Task<ActionResult<List<Feedback>>> Get()
-        // {
-        //     var preferencesDatabase = new FeedbackDataBase(_dbContext);
-        //     var items = await preferencesDatabase.GetPreferences();
+        [HttpGet("AllFeedbacks")]
+        public async Task<ActionResult<List<Feedback>>> Get()
+        {
+            var feedbackDatabase = new FeedbackDataBase(_dbContext);
+            var items = await feedbackDatabase.GetFeedbacks();
 
-        //     if (items.Count < 1)
-        //     {
-        //         return NotFound();
-        //     }
+            if (items.Count < 1)
+            {
+                return NotFound();
+            }
 
-        //     return items;
-        // }
-        // [HttpPost]
-        // public bool Create(Feedback model)
-        // {
+            return items;
+        }
+        [HttpPost]
+        public bool Create(Feedback model)
+        {
 
-        //     var preferencesDatabase = new FeedbackDataBase(_dbContext);
-        //     var items = preferencesDatabase.CreatePreference(model);
+            var feedbackDatabase = new FeedbackDataBase(_dbContext);
+            var items = feedbackDatabase.CreateFeedback(model);
 
-        //     return items;
-        // }
+            return items;
+        }
+        [HttpPut]
+        public bool Update(Feedback model)
+        {
+            var feedbackDatabase = new FeedbackDataBase(_dbContext);
+            var item = feedbackDatabase.UpdateFeedback(model);
+
+            return item;
+        }
+        [HttpDelete]
+        public bool Detete(Feedback model)
+        {
+            var feedbackDatabase = new FeedbackDataBase(_dbContext);
+            var item = feedbackDatabase.RemoveFeedback(model);
+
+            return item;
+        }
     }
 }

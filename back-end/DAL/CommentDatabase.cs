@@ -28,15 +28,35 @@ namespace BackEnd.DAL
             return list;
         }
 
-        public bool CreateComment(Comment Comment)
+        public bool CreateComment(Comment comment)
         {
-            var created = _dbContext.Comments.Add(Comment);
+            var created = _dbContext.Comments.Add(comment);
             if (created != null)
             {
                 _dbContext.SaveChanges();
             }
 
             return created != null;
+        }
+
+        public bool UpdateComment(Comment comment)
+        {
+            var updated = _dbContext.Comments.Update(comment);
+            if (updated != null)
+            {
+                _dbContext.SaveChanges();
+            }
+            return updated != null;
+        }
+
+        public bool RemoveComment(Comment comment)
+        {
+            var removed = _dbContext.Comments.Remove(comment);
+            if (removed != null)
+            {
+                _dbContext.SaveChanges();
+            }
+            return removed != null;
         }
 
     }

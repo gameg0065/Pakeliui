@@ -21,7 +21,7 @@ namespace BackEnd.Models
         public string TravelFrom { get; set; }
         public string TravelTo { get; set; }
         public string Pickup { get; set; }
-        public string UserId { get; set; }
+        public int UserId { get; set; }
         public User User { get; set; }
         public List<Reservation> Passengers { get; set; }
         public List<Comment> Comments { get; set; }

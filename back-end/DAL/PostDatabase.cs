@@ -16,10 +16,10 @@ namespace BackEnd.DAL
             _dbContext = dbContext;
         }
 
-        public async Task<List<Post>> GetTravels()
+        public async Task<List<Post>> GetPosts()
         {
             var list = new List<Post>();
-            var result = await _dbContext.Posts.ToListAsync();
+            var result = await _dbContext.Posts.Include(x => x.Comments).Include(x => x.Passengers).Include(x => x.User).ToListAsync();
             if (result.Count() <= 0)
             {
                 return list;
@@ -28,15 +28,34 @@ namespace BackEnd.DAL
             return list;
         }
 
-        public bool CreateTravel(Post Travel)
+        public bool CreatePost(Post post)
         {
-            var created = _dbContext.Posts.Add(Travel);
+            var created = _dbContext.Posts.Add(post);
             if (created != null)
             {
                 _dbContext.SaveChanges();
             }
 
             return created != null;
+        }
+        public bool UpdatePost(Post post)
+        {
+            var updated = _dbContext.Posts.Update(post);
+            if (updated != null)
+            {
+                _dbContext.SaveChanges();
+            }
+            return updated != null;
+        }
+
+        public bool RemovePost(Post post)
+        {
+            var removed = _dbContext.Posts.Remove(post);
+            if (removed != null)
+            {
+                _dbContext.SaveChanges();
+            }
+            return removed != null;
         }
 
     }

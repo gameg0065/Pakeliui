@@ -26,11 +26,11 @@ namespace BackEnd.Controllers
             _dbContext = dbContext;
         }
 
-        [HttpGet("AllTravels")]
+        [HttpGet("AllPosts")]
         public async Task<ActionResult<List<Post>>> Get()
         {
-            var travelsDatabase = new PostDataBase(_dbContext);
-            var items = await travelsDatabase.GetTravels();
+            var postsDatabase = new PostDataBase(_dbContext);
+            var items = await postsDatabase.GetPosts();
 
             if (items.Count < 1)
             {
@@ -43,10 +43,26 @@ namespace BackEnd.Controllers
         public bool Create(Post model)
         {
 
-            var travelsDatabase = new PostDataBase(_dbContext);
-            var items = travelsDatabase.CreateTravel(model);
+            var postsDatabase = new PostDataBase(_dbContext);
+            var items = postsDatabase.CreatePost(model);
 
             return items;
+        }
+        [HttpPut]
+        public bool Update(Post model)
+        {
+            var postsDatabase = new PostDataBase(_dbContext);
+            var item = postsDatabase.UpdatePost(model);
+
+            return item;
+        }
+        [HttpDelete]
+        public bool Detete(Post model)
+        {
+            var postsDatabase = new PostDataBase(_dbContext);
+            var item = postsDatabase.RemovePost(model);
+
+            return item;
         }
     }
 }

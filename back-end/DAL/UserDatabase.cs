@@ -19,7 +19,7 @@ namespace BackEnd.DAL
         public async Task<List<User>> GetUsers()
         {
             var list = new List<User>();
-            var result = await _dbContext.Users.ToListAsync();
+            var result = await _dbContext.Users.Include(x => x.Car).Include(x => x.Posts).Include(x => x.Feedbacks).ToListAsync();
             if (result.Count() <= 0)
             {
                 return list;
@@ -37,6 +37,26 @@ namespace BackEnd.DAL
             }
 
             return created != null;
+        }
+
+        public bool UpdateUser(User user)
+        {
+            var updated = _dbContext.Users.Update(user);
+            if (updated != null)
+            {
+                _dbContext.SaveChanges();
+            }
+            return updated != null;
+        }
+
+        public bool RemoveUser(User user)
+        {
+            var removed = _dbContext.Users.Remove(user);
+            if (removed != null)
+            {
+                _dbContext.SaveChanges();
+            }
+            return removed != null;
         }
 
     }
