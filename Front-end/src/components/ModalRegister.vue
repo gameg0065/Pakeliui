@@ -123,11 +123,7 @@ export default {
     },
     submit() {
       const name = this.credentials.name;
-      if (!name.value) {
-        name.error = 'prašom įvesti vardą ir pavardę';
-      } else {
-        name.error = '';
-      }
+      name.error = !name.value ? 'prašom įvesti vardą ir pavardę' : '';
 
       const email = this.credentials.email;
       if (!email.value) {
@@ -139,18 +135,12 @@ export default {
       }
 
       const password = this.credentials.password;
-      if (!password.value) {
-        password.error = 'prašom įvesti slaptažodį';
-      } else {
-        password.error = '';
-      }
+      password.error = !password.value ? 'prašom įvesti slaptažodį' : '';
 
       const TOCEnabled = this.credentials.TOCEnabled;
-      if (!TOCEnabled.value) {
-        TOCEnabled.error = this.generalError = 'nesutinkate su sąlygom?';
-      } else {
-        TOCEnabled.error = this.generalError = '';
-      }
+      TOCEnabled.error = this.generalError = !TOCEnabled.value
+        ? 'nesutinkate su sąlygom?'
+        : '';
 
       if (!TOCEnabled.error && !name.error && !email.error && !password.error) {
         const user = {

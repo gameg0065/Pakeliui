@@ -125,11 +125,7 @@ export default {
       }
 
       const password = this.credentials.password;
-      if (!password.value) {
-        password.error = 'prašom įvesti slaptažodį';
-      } else {
-        password.error = '';
-      }
+      password.error = !password.value ? 'prašom įvesti slaptažodį' : '';
 
       if (!email.error && !password.error) {
         Service.getAllUsers()
