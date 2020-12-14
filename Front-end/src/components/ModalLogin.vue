@@ -150,7 +150,11 @@ export default {
             }
 
             console.log(user);
-            this.hide();
+            this.$store.dispatch('login', user).then(() => {
+              console.log('logged in');
+              this.hide();
+            });
+            
 
             // const id = parseInt(email.value);
             // const user = UserService.getUser(id);
