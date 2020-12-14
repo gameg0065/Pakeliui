@@ -37,7 +37,7 @@
 
         <div class="flex align-baseline">
           <label for="contacts-city">Miestas</label>
-          <input type="text" id="city" v-model.trim="user.contacts.city" />
+          <input type="text" id="city" v-model.trim="user.city" />
         </div>
 
         <div class="flex align-baseline">
@@ -45,7 +45,7 @@
           <input
             type="text"
             id="contacts-phone"
-            v-model.trim="user.contacts.phone"
+            v-model.trim="user.phoneNumber"
           />
         </div>
 
@@ -54,7 +54,8 @@
           <input
             type="text"
             id="contacts-email"
-            v-model.trim="user.contacts.email"
+            v-model.trim="user.email"
+            disabled
           />
         </div>
 
@@ -63,7 +64,7 @@
           <input
             type="text"
             id="contacts-facebook"
-            v-model.trim="user.contacts.facebook"
+            v-model.trim="user.facebookLink"
           />
         </div>
 
@@ -82,7 +83,7 @@
 
         <div class="flex align-baseline">
           <label for="user-about">Apie mane</label>
-          <textarea id="user-about" v-model.trim="user.about" />
+          <textarea id="user-about" v-model.trim="user.userInfo" />
         </div>
 
         <label>
@@ -133,18 +134,14 @@
         <div class="flex direction-column grow">
           <div class="flex align-baseline">
             <label for="car-model">Transporto priemonė*</label>
-            <input
-              type="text"
-              id="car-model"
-              v-model.trim="user.driver.car.model"
-            />
+            <input type="text" id="car-model" v-model.trim="user.car.model" />
           </div>
 
           <div class="flex align-baseline">
             <label for="car-date">Pagaminimo metai*</label>
             <Datepicker
               id="car-date"
-              v-model="user.driver.car.date"
+              v-model="user.car.year"
               format="yyyy-MM-dd"
               :monday-first="true"
             />
@@ -152,7 +149,7 @@
 
           <div class="flex align-baseline">
             <label for="driver-contact">Susisiekite su manimi*</label>
-            <select id="driver-contact" v-model="user.driver.contactMethod">
+            <select id="driver-contact" v-model="user.driverContactMethod">
               <option
                 v-for="(option, index) in contactOptions"
                 :key="index"
@@ -168,7 +165,7 @@
             <textarea
               id="driver-about"
               rows="3"
-              v-model.trim="user.driver.about"
+              v-model.trim="user.aboutDriver"
             />
           </div>
 
@@ -194,7 +191,7 @@ import Button from '@/components/Button.vue';
 
 import axios from 'axios';
 import Datepicker from 'vuejs-datepicker';
-import UserService from '@/services/UserService.js';
+import Service from '@/services/Service';
 
 export default {
   name: 'UserEdit',
@@ -210,7 +207,7 @@ export default {
   },
   data() {
     return {
-      contactOptions: ['email', 'facebook', 'phone'],
+      contactOptions: ['email', 'facebookLink', 'phoneNumber'],
       userPhoto: null,
       carPhoto: null,
     };
@@ -230,13 +227,13 @@ export default {
     },
     checkboxChanged() {
       const user = this.user;
-      let driver = user.driver;
+      const car = this.user.car || {};
 
       if (user.isDriver) {
-        driver = driver || {};
-        driver.car = driver.car || {};
-        driver.contact = driver.contact || '';
-        driver.about = driver.about || '';
+        car.manufacturer = car.manufacturer || '';
+        car.model = car.model || '';
+        car.picturePath = car.picturePath || '';
+        car.year = car.year || '2000';
       }
     },
     deleteProfile() {
@@ -253,19 +250,20 @@ export default {
       });
     },
     getUserPhotoPath() {
-      let photo = this.user.photo;
+      let photo = this.user.picturePath;
       if (this.userPhoto) {
         photo = URL.createObjectURL(this.userPhoto);
       }
       return photo;
     },
     getCarPhotoPath() {
-      let photo = this.user.driver.car.photo;
+      let photo = this.user.car.picturePath;
       if (this.carPhoto) {
         photo = URL.createObjectURL(this.carPhoto);
       }
       return photo;
     },
+
     saveProfile() {
       if (this.userPhoto) {
         this.uploadPhoto(this.userPhoto);
@@ -274,24 +272,25 @@ export default {
         this.uploadPhoto(this.carPhoto);
       }
 
-      alert('TODO');
-    },
-    uploadPhoto(photo) {
-      const formData = new FormData();
-      formData.append('upload_preset', 'vue-upload');
-      formData.append('file', photo);
-
-      axios
-        .post('https://api.cloudinary.com/v1_1/ignaspan/upload', formData, {
-          onUploadProgress: (uploadEvent) => {
-            console.log(
-              'Upload progress: ' +
-                Math.round((uploadEvent.loaded / uploadEvent.total) * 100)
-            );
-          },
+      Service.putUser(this.user)
+        .then(() => {
+          this.$store.dispatch('login', this.user);
         })
-        .then((res) => {
-          console.log(res);
+        .then(() => {
+          console.log('saved user');
+        })
+        .catch((error) => {
+          console.log('Could not edit user', error);
+        });
+    },
+
+    uploadPhoto(photo) {
+      Service.uploadPhoto(photo)
+        .then((response) => {
+          console.log('uploaded photo', response);
+        })
+        .catch((error) => {
+          console.log('Could not edit user', error);
         });
     },
   },
