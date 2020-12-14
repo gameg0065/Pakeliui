@@ -11,36 +11,52 @@ const apiClient = axios.create({
 	timeout: 10000
 });
 
+const defaults = {
+	email: '', // required
+	name: '', // required
+	password: '', // required
+	// aboutDriver: '',
+	// birthDate: '2000-12-31',
+	// city: '',
+	// contactMethod: '',
+	// driverContactMethod: '',
+	// driverInfo: '',
+	// facebookLink: '',
+	// isDriver: Boolean,
+	// phoneNumber: '',
+	// picturePath: '',
+	// registrationDate: '2000-12-31',
+	// userInfo: '',
+	car: {
+		//   model: '',
+		//   manufacturer: '',
+		//   year: Number,
+		//   color: '',
+		//   picturePath: '',
+	}
+};
+
 export default {
 	getAllUsers() {
 		return apiClient.get('/api/User/AllUsers/');
 	},
 	postUser(user) {
-		const defaults = {
-			name: '', // required
-			email: '', // required
-			password: '', // required
-			// phoneNumber: '',
-			// birthDate: '2000-12-31',
-			// registrationDate: '2000-12-31',
-			// city: '',
-			// contactMethod: '',
-			// userInfo: '',
-			// driverInfo: '',
-			// facebookLink: '',
-			// picturePath: '',
-			// isDriver: Boolean,
-			// boutDriver: '',
-			// driverContactMethod: '',
-			car: {
-				//   model: '',
-				//   manufacturer: '',
-				//   year: Number,
-				//   color: '',
-				//   picturePath: '',
-			}
-		};
 		const userData = Utils.mergeDeep({}, defaults, user);
 		return apiClient.post('/api/User/', userData);
+	},
+	putUser(user) {
+		const userData = Utils.mergeDeep({}, defaults, user);
+		return apiClient.put('/api/User/', userData);
+	},
+	uploadPhoto(photo) {
+		const formData = new FormData();
+		formData.append('upload_preset', 'vue-upload');
+		formData.append('file', photo);
+
+		return apiClient.post('https://api.cloudinary.com/v1_1/ignaspan/upload', formData, {
+			onUploadProgress: uploadEvent => {
+				console.log('Upload progress: ' + Math.round((uploadEvent.loaded / uploadEvent.total) * 100));
+			}
+		});
 	}
 };
