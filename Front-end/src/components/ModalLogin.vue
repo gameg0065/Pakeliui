@@ -30,7 +30,7 @@
                 type="email"
                 id="email"
                 ref="email"
-                v-model.trim="credentials.email.text"
+                v-model.trim="credentials.email.value"
               />
             </div>
           </div>
@@ -45,7 +45,7 @@
               <input
                 type="password"
                 id="password"
-                v-model="credentials.password.text"
+                v-model="credentials.password.value"
               />
             </div>
           </div>
@@ -81,8 +81,10 @@
 
 <script>
 import Button from '@/components/Button.vue';
-import UserService from '@/services/UserService.js';
+
 import Utils from '@/assets/Utils.js';
+// import UserService from '@/services/UserService.js';
+import Service from '@/services/Service';
 
 export default {
   name: 'ModalLogin',
@@ -114,41 +116,69 @@ export default {
     },
     submit() {
       const email = this.credentials.email;
-      if (!email.text) {
+      if (!email.value) {
         email.error = 'prašom įvesti elektroninį paštą';
-      } else if (!Utils.validateEmail(email.text)) {
+      } else if (!Utils.validateEmail(email.value)) {
         email.error = 'neteisinga forma';
       } else {
         email.error = '';
       }
 
       const password = this.credentials.password;
-      if (!password.text) {
+      if (!password.value) {
         password.error = 'prašom įvesti slaptažodį';
       } else {
         password.error = '';
       }
 
       if (!email.error && !password.error) {
-        const id = parseInt(email.text);
-        const user = UserService.getUser(id);
-        if (!user) {
-          this.generalError = 'toks vartotojas neegzistuoja';
-        } else {
-          this.$store.dispatch('login', user).then(() => {
+        Service.getAllUsers()
+          .then((response) => {
+            if (!response.data) {
+              console.log('Response contains no data');
+              return;
+            }
+
+            const user = response.data.find(function (object) {
+              return object.email.toLowerCase() === email.value.toLowerCase();
+            });
+
+            if (!user) {
+              this.generalError = 'toks vartotojas neegzistuoja';
+              return;
+            }
+
+            if (user.password.toLowerCase() !== password.value.toLowerCase()) {
+              password.error = 'neteisingas slaptažodis';
+              return;
+            }
+
+            console.log(user);
             this.hide();
+
+            // const id = parseInt(email.value);
+            // const user = UserService.getUser(id);
+            // if (!user) {
+            //   this.generalError = 'toks vartotojas neegzistuoja';
+            // } else {
+            //   this.$store.dispatch('login', user).then(() => {
+            //     this.hide();
+            //   });
+            // }
+          })
+          .catch((error) => {
+            console.log('Error getting all users', error);
           });
-        }
       }
     },
     resetToDefaults() {
       return {
         email: {
-          text: '110@some.email',
+          value: '110@some.email',
           error: '',
         },
         password: {
-          text: '',
+          value: '',
           error: '',
         },
         rememberMe: null,
