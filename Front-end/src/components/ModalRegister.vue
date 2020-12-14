@@ -30,7 +30,7 @@
                 type="text"
                 id="name"
                 ref="name"
-                v-model.trim="credentials.name.text"
+                v-model.trim="credentials.name.value"
               />
             </div>
           </div>
@@ -45,7 +45,7 @@
               <input
                 type="email"
                 id="email"
-                v-model.trim="credentials.email.text"
+                v-model.trim="credentials.email.value"
               />
             </div>
           </div>
@@ -60,7 +60,7 @@
               <input
                 type="password"
                 id="nampassworde"
-                v-model.trim="credentials.password.text"
+                v-model.trim="credentials.password.value"
               />
             </div>
           </div>
@@ -93,7 +93,9 @@
 <script>
 import Button from '@/components/Button.vue';
 
+import Service from '@/services/Service';
 import Utils from '@/assets/Utils.js';
+
 export default {
   name: 'ModalRegister',
   components: {
@@ -121,23 +123,23 @@ export default {
     },
     submit() {
       const name = this.credentials.name;
-      if (!name.text) {
+      if (!name.value) {
         name.error = 'prašom įvesti vardą ir pavardę';
       } else {
         name.error = '';
       }
 
       const email = this.credentials.email;
-      if (!email.text) {
+      if (!email.value) {
         email.error = 'prašom įvesti elektroninį paštą';
-      } else if (!Utils.validateEmail(email.text)) {
+      } else if (!Utils.validateEmail(email.value)) {
         email.error = 'neteisinga forma';
       } else {
         email.error = '';
       }
 
       const password = this.credentials.password;
-      if (!password.text) {
+      if (!password.value) {
         password.error = 'prašom įvesti slaptažodį';
       } else {
         password.error = '';
@@ -151,8 +153,21 @@ export default {
       }
 
       if (!TOCEnabled.error && !name.error && !email.error && !password.error) {
-        alert('TODO');
-        this.hide();
+        const user = {
+          name: name.value,
+          email: email.value,
+          password: password.value,
+        };
+
+        Service.postUser(user)
+          .then((response) => {
+            console.log('User created', response);
+
+            this.hide();
+          })
+          .catch((error) => {
+            console.log('Could not create new user', error);
+          });
       }
     },
     resetToDefaults() {
