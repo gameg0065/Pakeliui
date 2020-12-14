@@ -157,6 +157,7 @@ export default {
           name: name.value,
           email: email.value,
           password: password.value,
+          registrationDate: new Date().toISOString().split('.')[0],
         };
 
         Service.postUser(user)
