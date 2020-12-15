@@ -38,7 +38,7 @@ const defaults = {
 
 export default {
 	deleteUser(user) {
-		return apiClient.delete('/api/User/', user);
+		return apiClient.delete('/api/User/', { data: { userId: user.userId } });
 	},
 	getAllUsers() {
 		return apiClient.get('/api/User/AllUsers/');
