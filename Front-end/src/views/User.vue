@@ -3,7 +3,7 @@
     <h2 class="page-title">Profilis</h2>
     <div class="flex pb-50">
       <Avatar :path="user.picturePath" size="big" />
-      
+
       <div>
         <div class="flex align-baseline">
           <small class="fixed-width">Vardas, pavardė</small>
@@ -12,7 +12,7 @@
 
         <div class="flex align-baseline">
           <small class="fixed-width">Registracijos data</small>
-          <p>{{ user.registrationDate ? user.registrationDate.split('T')[0] : '' }}</p>
+          <p>{{ getYearMonthDate(user.registrationDate) }}</p>
         </div>
 
         <!-- <div class="flex align-baseline">
@@ -55,7 +55,6 @@
           <p>{{ user.facebookLink }}</p>
         </div>
       </div>
-
     </div>
 
     <div v-if="user.isDriver">
@@ -89,10 +88,10 @@
             <p>{{ user.car.model }}</p>
           </div>
 
-          <!-- <div class="flex align-baseline">
+          <div class="flex align-baseline">
             <small class="fixed-width">Pagaminimo metai</small>
-            <p>{{ user.car.year }}</p>
-          </div> -->
+            <p>{{ getYearMonthDate(user.car.date) }}</p>
+          </div>
 
           <div class="flex align-baseline">
             <small class="fixed-width">Susisiekite su manimi</small>
@@ -140,7 +139,6 @@
         />
       </div>
     </div> -->
-
   </div>
 </template>
 
@@ -166,12 +164,15 @@ export default {
       const currentUser = this.$store.getters.getUser;
       console.log(currentUser);
       return currentUser;
-      
+
       // const id = parseInt(this.id);
       // return currentUser.id === id ? currentUser : UserService.getUser(id);
     },
   },
   methods: {
+    getYearMonthDate(string) {
+      return string.split('T')[0];
+    },
     countDistance(trips) {
       return trips.reduce((accumulator, trip) => {
         const post = PostService.getPost(trip.id);

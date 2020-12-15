@@ -245,7 +245,6 @@ export default {
         button: {
           title: 'ištrinti',
           action() {
-            //TODO - sitas neveikia
             Service.deleteUser({ userId: user.userId })
               .then((response) => {
                 console.log(response);
