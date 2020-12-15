@@ -263,13 +263,13 @@ export default {
       }
       return photo;
     },
-
-    saveProfile() {
+    async saveProfile() {
       if (this.userPhoto) {
-        this.uploadPhoto(this.userPhoto);
+        await this.uploadPhoto(this.userPhoto, this.user);
       }
+
       if (this.carPhoto) {
-        this.uploadPhoto(this.carPhoto);
+        await this.uploadPhoto(this.carPhoto, this.user.car);
       }
 
       Service.putUser(this.user)
@@ -284,13 +284,14 @@ export default {
         });
     },
 
-    uploadPhoto(photo) {
-      Service.uploadPhoto(photo)
+    uploadPhoto(photo, target) {
+      return Service.uploadPhoto(photo)
         .then((response) => {
+          target.picturePath = response.data.secure_url;
           console.log('uploaded photo', response);
         })
         .catch((error) => {
-          console.log('Could not edit user', error);
+          console.log('Could not upload photo', error);
         });
     },
   },
