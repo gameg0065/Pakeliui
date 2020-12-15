@@ -25,7 +25,7 @@
           <input type="text" id="user-name" v-model.trim="user.name" />
         </div>
 
-        <!-- <div class="flex align-baseline">
+        <div class="flex align-baseline">
           <label for="user-birthdate">Gimimo metai*</label>
           <Datepicker
             id="user-birthdate"
@@ -33,7 +33,7 @@
             format="yyyy-MM-dd"
             :monday-first="true"
           />
-        </div> -->
+        </div>
 
         <div class="flex align-baseline">
           <label for="contacts-city">Miestas</label>
@@ -137,15 +137,15 @@
             <input type="text" id="car-model" v-model.trim="user.car.model" />
           </div>
 
-          <!-- <div class="flex align-baseline">
+          <div class="flex align-baseline">
             <label for="car-date">Pagaminimo metai*</label>
             <Datepicker
               id="car-date"
-              v-model="user.car.year"
+              v-model="user.car.date"
               format="yyyy-MM-dd"
               :monday-first="true"
             />
-          </div> -->
+          </div>
 
           <div class="flex align-baseline">
             <label for="driver-contact">Susisiekite su manimi*</label>
@@ -192,13 +192,14 @@ import Button from '@/components/Button.vue';
 import axios from 'axios';
 import Datepicker from 'vuejs-datepicker';
 import Service from '@/services/Service';
+import Utils from '@/assets/Utils.js';
 
 export default {
   name: 'UserEdit',
   components: {
     Avatar,
     Button,
-    // Datepicker,
+    Datepicker,
   },
   computed: {
     user() {
@@ -233,7 +234,7 @@ export default {
         car.manufacturer = car.manufacturer || '';
         car.model = car.model || '';
         car.picturePath = car.picturePath || '';
-        // car.year = car.year || '2000';
+        car.date = car.date || '';
       }
     },
     deleteProfile() {
@@ -283,6 +284,9 @@ export default {
       if (this.carPhoto) {
         await this.uploadPhoto(this.carPhoto, this.user.car);
       }
+
+      this.user.birthDate = Utils.toDateString(this.user.birthDate);
+      this.user.car.date = Utils.toDateString(this.user.car.date);
 
       Service.putUser(this.user)
         .then(() => {
