@@ -40,8 +40,14 @@ export default {
 	deleteUser(user) {
 		return apiClient.delete('/api/User/', { data: { userId: user.userId } });
 	},
+	getAllPosts() {
+		return apiClient.get('/api/Post/AllPosts/');
+	},
 	getAllUsers() {
 		return apiClient.get('/api/User/AllUsers/');
+	},
+	postPost(post) {
+		return apiClient.post('/api/Post/', post);
 	},
 	postUser(user) {
 		const userData = Utils.mergeDeep({}, defaults, user);
