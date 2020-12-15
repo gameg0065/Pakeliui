@@ -36,7 +36,7 @@
             class="profile-button"
           >
             profilis
-            <Avatar :path="user.photo" size="small" />
+            <Avatar :path="user.picturePath" size="small" />
           </a>
         </li>
       </ul>
