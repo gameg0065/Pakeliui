@@ -237,14 +237,26 @@ export default {
       }
     },
     deleteProfile() {
+      const user = this.user;
       this.$modal.show('modal-notification', {
         title: 'Patvirtinimas',
         text: 'Ar tikrai norite ištrinti profilį? Kelio atgal nėra.',
         button: {
           title: 'ištrinti',
           action() {
-            alert('TODO');
-            this.$modal.hide('modal-notification');
+            //TODO - sitas neveikia
+            Service.deleteUser({ userId: user.userId })
+              .then((response) => {
+                console.log(response);
+                this.$modal.hide('modal-notification');
+
+                this.$router.push('/').then(() => {
+                  this.$store.dispatch('logout');
+                });
+              })
+              .catch((error) => {
+                console.log('Could not delete user', error);
+              });
           },
         },
       });
