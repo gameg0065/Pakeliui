@@ -13,37 +13,29 @@
       />
     </div>
 
-    <div class="flex align-end" :class="{ error: timeError }">
-      <label for="post-time">Kelionės laikas*</label>
-      <div class="flex direction-column">
-        <span>{{ timeError }}</span>
-        <input type="text" id="post-time" v-model.trim="post.time" />
-      </div>
-    </div>
-
-    <!-- <div class="line">
+    <div class="line">
       <label for="post-time">Kelionės laikas*</label>
       <input type="text" id="post-time" v-model="post.time" />
-    </div> -->
+    </div>
 
     <div class="line">
       <label for="route-from">Iš miesto*</label>
-      <input type="text" id="route-from" v-model.trim="post.route.from" />
+      <input type="text" id="route-from" v-model.trim="post.travelFrom" />
     </div>
 
     <div class="line">
       <label for="route-pickup">Paėmimo vieta</label>
-      <input type="text" id="route-pickup" v-model.trim="post.route.pickup" />
+      <input type="text" id="route-pickup" v-model.trim="post.pickup" />
     </div>
 
     <div class="line">
       <label for="route-to">Į miestą*</label>
-      <input type="text" id="route-to" v-model.trim="post.route.to" />
+      <input type="text" id="route-to" v-model.trim="post.travelTo" />
     </div>
 
     <div class="line">
       <label for="route-dropoff">Pristatymo vieta</label>
-      <input type="text" id="route-dropoff" v-model.trim="post.route.dropoff" />
+      <input type="text" id="route-dropoff" v-model.trim="post.dropoff" />
     </div>
 
     <div class="line">
@@ -79,6 +71,8 @@ import Button from '@/components/Button.vue';
 import Datepicker from 'vuejs-datepicker';
 
 import PostService from '@/services/PostService.js';
+import Service from '@/services/Service';
+
 export default {
   name: 'PostCreate',
   props: ['id'],
@@ -86,14 +80,18 @@ export default {
     Button,
     Datepicker,
   },
+  computed: {
+    user() {
+      return this.$store.getters.getUser;
+    },
+  },
   data() {
     return {
-      post: Object,
+      post: {},
       isEditMode: {
         type: Boolean,
         default: false,
       },
-      timeError: '',
     };
   },
   created() {
@@ -103,20 +101,20 @@ export default {
     } else {
       this.isEditMode = false;
     }
-
-    this.post.distance = this.post.distance || 0;
-    this.post.driver = this.post.driver || {};
-    this.post.passengers = this.post.passengers || [];
-    this.post.route = this.post.route || {};
   },
   methods: {
     submit() {
-      if (!this.post.time) {
-        this.timeError = 'enter time';
-      } else {
-        this.timeError = '';
-      }
-      // alert('TODO');
+      this.post.userId = this.user.userId;
+
+      Service.postPost(this.post)
+        .then(() => {
+          console.log('post uploaded');
+          alert('post created/updated');
+          this.post = {};
+        })
+        .catch((error) => {
+          console.log('Could not upload post', error);
+        });
     },
   },
 };
