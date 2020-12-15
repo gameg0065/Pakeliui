@@ -58,54 +58,54 @@
 
     </div>
 
-    <!-- <div v-if="user.isDriver">
+    <div v-if="user.isDriver">
       <h3 class="section-title">Vairuotojo profilis</h3>
       <div class="flex pb-50">
-        <Avatar :path="user.driver.car.photo" size="big" />
+        <Avatar :path="user.car.picturePath" size="big" />
 
         <div>
           <div class="flex align-baseline">
             <small class="fixed-width">Pavėžėjimų skaičius</small>
-            <p>{{ user.driver.posts.length }}</p>
+            <p>{{ user.posts.length }}</p>
           </div>
 
-          <div class="flex align-baseline">
+          <!-- <div class="flex align-baseline">
             <small class="fixed-width">Nukeliauta</small>
             <p>{{ countDistance(this.user.driver.posts) + ' km' }}</p>
-          </div>
+          </div> -->
 
-          <div class="flex align-baseline">
+          <!-- <div class="flex align-baseline">
             <small class="fixed-width">Pavėžėtų keleivių skaičius</small>
             <p>{{ countPassangers() }}</p>
-          </div>
+          </div> -->
 
-          <div class="flex align-baseline">
+          <!-- <div class="flex align-baseline">
             <small class="fixed-width">Vairuotojo įvertinimas</small>
             <Rating :rating="user.driver.rating" />
-          </div>
+          </div> -->
 
           <div class="flex align-baseline">
             <small class="fixed-width">Transporto priemonė</small>
-            <p>{{ user.driver.car.model }}</p>
+            <p>{{ user.car.model }}</p>
           </div>
 
           <div class="flex align-baseline">
             <small class="fixed-width">Pagaminimo metai</small>
-            <p>{{ user.driver.car.date }}</p>
+            <p>{{ user.car.year }}</p>
           </div>
 
           <div class="flex align-baseline">
             <small class="fixed-width">Susisiekite su manimi</small>
-            <p>{{ user.contacts[user.driver.contactMethod] }}</p>
+            <p>{{ user[user.driverContactMethod] }}</p>
           </div>
 
           <div class="flex align-baseline">
             <small class="fixed-width">Vairavimo įgūdžiai</small>
-            <p>{{ user.driver.about }}</p>
+            <p>{{ user.aboutDriver }}</p>
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <!-- <div
       v-if="
