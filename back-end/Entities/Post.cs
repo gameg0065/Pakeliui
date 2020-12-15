@@ -15,7 +15,8 @@ namespace BackEnd.Models
         public int ID { get; set; }
         public int Price { get; set; }
         public int seetCount { get; set; }
-        public DateTime TravelDateTime { get; set; }
+        public string Date { get; set; }
+        public string Time { get; set; }
         public string Info { get; set; }
         public string Dropoff { get; set; }
         public string TravelFrom { get; set; }

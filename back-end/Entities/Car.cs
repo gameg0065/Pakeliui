@@ -14,7 +14,7 @@ namespace BackEnd.Models
         public int ID { get; set; }
         public string Model { get; set; }
         public string Manufacturer { get; set; }
-        public int Year { get; set; }
+        public string Date { get; set; }
         public string PicturePath { get; set; }
     }
 }

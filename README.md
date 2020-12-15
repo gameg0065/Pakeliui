@@ -15,7 +15,7 @@ Cars:
 - obj for post: {
   "model": "Volvo",
   "manufacturer": "Blue",
-  "year": 2012,
+  "date": 2012,
   "color": "blue",
   "picturePath": "test"
   }
@@ -24,7 +24,7 @@ Cars:
   "id": 4,
   "model": "Volvo",
   "manufacturer": "Blue",
-  "year": 2012,
+  "date": 2012,
   "picturePath": "test"
   }
 - delete: https://localhost:5001/api/Car
@@ -37,7 +37,8 @@ Posts:
 - obj for post : {
   "price": 100,
   "seetCount": 4,
-  "travelDateTime": "2020-12-15T00:00:00",
+  "date": "2020-12-15T00:00:00",
+  "time": "2020-12-15T00:00:00",
   "info": "idomi informacija",
   "dropoff": "Ismetimo vieta",
   "travelFrom": "Kaunas",
@@ -59,6 +60,7 @@ Posts:
   "userId": 1,
   "postId": 2,
   "date": "2020-12-15T00:00:00",
+  "time": "2020-12-15T00:00:00",
   "text": "neidomus komentaras"
   }
   ]
@@ -68,7 +70,7 @@ Posts:
   "id": 2,
   "price": 100,
   "seetCount": 4,
-  "travelDateTime": "2020-12-15T00:00:00",
+  "date": "2020-12-15T00:00:00",
   "info": "idomi informacija",
   "dropoff": "Ismetimo vieta",
   "travelFrom": "Kaunas",
