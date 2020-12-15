@@ -89,10 +89,10 @@
             <p>{{ user.car.model }}</p>
           </div>
 
-          <div class="flex align-baseline">
+          <!-- <div class="flex align-baseline">
             <small class="fixed-width">Pagaminimo metai</small>
             <p>{{ user.car.year }}</p>
-          </div>
+          </div> -->
 
           <div class="flex align-baseline">
             <small class="fixed-width">Susisiekite su manimi</small>
