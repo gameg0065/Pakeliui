@@ -3,13 +3,13 @@
     <router-link :to="{ name: 'post', params: { id: post.id } }">
       <h4 class="text-color-primary">
         {{
-          (post.date || 'Kelionės data') +
+          DateFormat.getYearMonthDate(post.date) +
           ', ' +
-          (post.time || 'Kelionės laikas') +
+          DateFormat.getHoursMinutes(post.time) +
           ', ' +
-          (post.travelFrom || 'Kelionė FROM') +
+          post.travelFrom +
           ' - ' +
-          (post.travelTo || 'Kelionė TO')
+          post.travelTo
         }}
       </h4>
     </router-link>
@@ -27,11 +27,16 @@
 <script>
 import DriverFeedbackCard from '@/components/DriverFeedbackCard.vue';
 
+import DateFormat from '@/assets/DateFormat.js';
+
 export default {
   name: 'DriverExpiredPostCard',
   props: ['post'],
   components: {
     DriverFeedbackCard,
+  },
+  created() {
+    this.DateFormat = DateFormat;
   },
   methods: {
     getPassengers(status) {

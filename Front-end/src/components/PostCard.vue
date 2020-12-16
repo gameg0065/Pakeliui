@@ -14,11 +14,7 @@
         </h4>
       </router-link>
       <p>
-        {{
-          (post.date || 'kelionės data') +
-          ', ' +
-          (post.time || 'kelionės laikas')
-        }}
+        {{ DateFormat.getYearMonthDate(post.date) + ', ' + DateFormat.getHoursMinutes(post.time) }}
       </p>
       <small>{{ post.user.name }}</small>
       <p>Laisvų vietų: {{ post.seetCount - post.passengers.length }}</p>
@@ -44,6 +40,8 @@
 import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
 
+import DateFormat from '@/assets/DateFormat.js';
+
 export default {
   name: 'PostCard',
   props: {
@@ -53,6 +51,9 @@ export default {
   components: {
     Avatar,
     Button,
+  },
+  created() {
+    this.DateFormat = DateFormat;
   },
   methods: {
     cancelReservation() {

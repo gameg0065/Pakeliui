@@ -11,9 +11,9 @@
         </router-link>
         <small>
           {{
-            (post.date || 'Kelionės data') +
+            DateFormat.getYearMonthDate(post.date) +
             ', ' +
-            (post.time || 'Kelionės laikas')
+            DateFormat.getHoursMinutes(post.time)
           }}</small
         >
       </div>
@@ -44,6 +44,7 @@ import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
 // import Rating from '@/components/Rating.vue';
 
+import DateFormat from '@/assets/DateFormat.js';
 // import FeedbackService from '@/services/FeedbackService.js';
 
 export default {
@@ -66,6 +67,8 @@ export default {
     };
   },
   created() {
+    this.DateFormat = DateFormat;
+
     const userId = this.user.userId;
     this.passenger = this.post.passengers.find(
       (passenger) => passenger.passengerId === userId

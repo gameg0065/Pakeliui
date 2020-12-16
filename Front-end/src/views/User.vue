@@ -12,7 +12,7 @@
 
         <div class="flex align-baseline">
           <small class="fixed-width">Registracijos data</small>
-          <p>{{ getYearMonthDate(user.registrationDate) }}</p>
+          <p>{{ DateFormat.getYearMonthDate(user.registrationDate) }}</p>
         </div>
 
         <!-- <div class="flex align-baseline">
@@ -90,7 +90,7 @@
 
           <div class="flex align-baseline">
             <small class="fixed-width">Pagaminimo metai</small>
-            <p>{{ getYearMonthDate(user.car.date) }}</p>
+            <p>{{ DateFormat.getYearMonthDate(user.car.date) }}</p>
           </div>
 
           <div class="flex align-baseline">
@@ -148,6 +148,7 @@ import CommentCard from '@/components/CommentCard.vue';
 import Rating from '@/components/Rating.vue';
 
 import FeedbackService from '@/services/FeedbackService.js';
+import DateFormat from '@/assets/DateFormat.js';
 import PostService from '@/services/PostService.js';
 import UserService from '@/services/UserService.js';
 
@@ -169,10 +170,10 @@ export default {
       // return currentUser.id === id ? currentUser : UserService.getUser(id);
     },
   },
+  created() {
+    this.DateFormat = DateFormat;
+  },
   methods: {
-    getYearMonthDate(string) {
-      return string.split('T')[0];
-    },
     countDistance(trips) {
       return trips.reduce((accumulator, trip) => {
         const post = PostService.getPost(trip.id);
