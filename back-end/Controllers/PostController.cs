@@ -39,6 +39,32 @@ namespace BackEnd.Controllers
 
             return items;
         }
+        [HttpGet]
+        public async Task<ActionResult<Post>> GetById(int id)
+        {
+            var postsDatabase = new PostDataBase(_dbContext);
+            var item = await postsDatabase.GetPost(id);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            return item;
+        }
+        [HttpGet("GetPostsByPassengerId")]
+        public async Task<ActionResult<List<Post>>> GetByPassengerId(int id)
+        {
+            var postsDatabase = new PostDataBase(_dbContext);
+            var items = await postsDatabase.GetPostsByPassengerId(id);
+
+            if (items.Count < 1)
+            {
+                return NotFound();
+            }
+
+            return items;
+        }
         [HttpPost]
         public bool Create(Post model)
         {
