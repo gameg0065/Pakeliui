@@ -1,19 +1,25 @@
 <template>
   <div class="card shadow flex direction-column">
     <div class="flex">
-      <Avatar :path="driver.photo" size="small" class="mr-20" />
+      <Avatar :path="post.user.picturePath" size="small" class="mr-20" />
 
       <div class="flex direction-column grow">
         <router-link :to="{ name: 'post', params: { id: post.id } }">
           <p class="text-color-primary">
-            {{ post.route.from + ' - ' + post.route.to }}
+            {{ post.travelFrom + ' - ' + post.travelTo }}
           </p>
         </router-link>
-        <small> {{ post.date + ', ' + post.time }}</small>
+        <small>
+          {{
+            (post.date || 'Kelionės data') +
+            ', ' +
+            (post.time || 'Kelionės laikas')
+          }}</small
+        >
       </div>
 
       <div v-if="passenger.status === 'TAKEN'">
-        <div v-if="trip.feedback">
+        <div v-if="post.feedback">
           <Rating :rating="feedback.rating" />
         </div>
 
@@ -29,26 +35,24 @@
       </p>
     </div>
 
-    <p v-if="trip.feedback" class="mt-10">{{ feedback.text }}</p>
+    <!-- <p v-if="post.feedback" class="mt-10">{{ feedback.text }}</p> -->
   </div>
 </template>
 
 <script>
 import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
-import Rating from '@/components/Rating.vue';
+// import Rating from '@/components/Rating.vue';
 
-import FeedbackService from '@/services/FeedbackService.js';
-import PostService from '@/services/PostService.js';
-import UserService from '@/services/UserService.js';
+// import FeedbackService from '@/services/FeedbackService.js';
 
 export default {
   name: 'FeedbackCard',
-  props: ['trip'],
+  props: ['post'],
   components: {
     Avatar,
     Button,
-    Rating,
+    // Rating,
   },
   computed: {
     user() {
@@ -57,26 +61,19 @@ export default {
   },
   data() {
     return {
-      driver: Object,
       feedback: Object,
       passenger: Object,
-      post: Object,
     };
   },
   created() {
-    const userID = this.user.id;
-
-    this.post = PostService.getPost(this.trip.post.id);
-
+    const userId = this.user.userId;
     this.passenger = this.post.passengers.find(
-      (passenger) => passenger.id === userID
+      (passenger) => passenger.passengerId === userId
     );
 
-    this.driver = UserService.getUser(this.post.driver.id);
-
-    if (this.trip.feedback) {
-      this.feedback = FeedbackService.getFeedback(this.trip.feedback.id);
-    }
+    // if (this.post.feedback) {
+    //   this.feedback = FeedbackService.getFeedback(this.post.feedback.id);
+    // }
   },
   methods: {
     writeFeedback() {

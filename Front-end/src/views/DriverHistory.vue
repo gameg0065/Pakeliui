@@ -3,11 +3,12 @@
     <div class="pb-50">
       <h2 class="page-title">Aktyvūs skelbimai</h2>
       <div v-if="activePosts.length > 0">
-        <DriverActivePostCard
+        TODO
+        <!-- <DriverActivePostCard
           v-for="post in activePosts"
           :key="post.id"
           :post="post"
-        />
+        /> -->
       </div>
       <div v-else>
         <p>Jūs neturite aktyvių skelbimų. Įkelkite vieną dabar!</p>
@@ -42,7 +43,7 @@ import UserService from '@/services/UserService.js';
 export default {
   name: 'DriverHistory',
   components: {
-    DriverActivePostCard,
+    // DriverActivePostCard,
     DriverExpiredPostCard,
   },
   computed: {
@@ -60,8 +61,7 @@ export default {
     const activePosts = this.activePosts;
     const expiredPosts = this.expiredPosts;
     const now = new Date();
-    this.user.driver.posts.forEach(function (obj) {
-      const post = PostService.getPost(obj.id);
+    this.user.posts.forEach(function (post) {
       const postDate = new Date(post.date);
 
       if (postDate.getTime() <= now.getTime()) {

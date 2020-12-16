@@ -3,12 +3,13 @@
     <div class="pb-50">
       <h2 class="page-title">Mano rezervacijos</h2>
       <div v-if="pendingTrips && pendingTrips.length > 0">
-        <PostCard
+        TODO
+        <!-- <PostCard
           v-for="trip in pendingTrips"
           :key="trip.id"
           :post="getPost(trip.post.id)"
           :isPending="true"
-        />
+        /> -->
       </div>
 
       <div v-else class="flex direction-column align-center">
@@ -29,9 +30,9 @@
       <h3 class="section-title">Rezervacijų istorija</h3>
       <div v-if="nonPendingTrips && nonPendingTrips.length > 0">
         <FeedbackCard
-          v-for="trip in nonPendingTrips"
-          :key="trip.id"
-          :trip="trip"
+          v-for="post in nonPendingTrips"
+          :key="post.id"
+          :post="post"
         />
       </div>
       <p v-else>Istorija tuščia</p>
@@ -42,17 +43,17 @@
 <script>
 import Button from '@/components/Button.vue';
 import FeedbackCard from '@/components/FeedbackCard.vue';
-import PostCard from '@/components/PostCard.vue';
+// import PostCard from '@/components/PostCard.vue';
 
 import PostService from '@/services/PostService.js';
-import UserService from '@/services/UserService.js';
+import Service from '@/services/Service';
 
 export default {
   name: 'UserHistory',
   components: {
     Button,
     FeedbackCard,
-    PostCard,
+    // PostCard,
   },
   computed: {
     user() {
@@ -66,23 +67,27 @@ export default {
     };
   },
   created() {
-    const getPost = this.getPost;
     const nonPendingTrips = this.nonPendingTrips;
     const pendingTrips = this.pendingTrips;
-    const userID = this.user.id;
+    const userId = this.user.userId;
 
-    this.user.trips.forEach((trip) => {
-      const post = getPost(trip.post.id);
-      const passenger = post.passengers.find(
-        (passenger) => passenger.id === userID
-      );
-
-      if (passenger.status === 'PENDING') {
-        pendingTrips.push(trip);
-      } else {
-        nonPendingTrips.push(trip);
-      }
-    });
+    Service.getPostsByPassengerId(userId)
+      .then((response) => {
+        const posts = response.data;
+        posts.forEach((post) => {
+          const passenger = post.passengers.find(
+            (passenger) => passenger.passengerId === userId
+          );
+          if (passenger.status === 'PENDING') {
+            pendingTrips.push(post);
+          } else {
+            nonPendingTrips.push(post);
+          }
+        });
+      })
+      .catch((error) => {
+        console.log('Could not get posts by passenger ID ' + userId, error);
+      });
   },
   methods: {
     getPost(id) {
