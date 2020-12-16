@@ -11,7 +11,7 @@
     </div>
 
     <div class="flex direction-column pb-50">
-      <UserCardInPost :post="post" />
+      <UserCardInPost v-if="!isLoading" :post="post" />
       <Button
         text="rezervuoti"
         :click="reserve"
@@ -85,12 +85,11 @@ import Button from '@/components/Button.vue';
 import Comments from '@/components/Comments.vue';
 import UserCardInPost from '@/components/UserCardInPost.vue';
 
-import PostService from '@/services/PostService.js';
+import Service from '@/services/Service';
 
 export default {
   name: 'Post',
-  // TODO
-  props: ['id', 'POST_temp'], // I should remove POST once getPostById() is imlemented
+  props: ['id'],
   components: {
     Comments,
     Button,
@@ -98,29 +97,33 @@ export default {
   },
   data() {
     return {
-      isActive: Boolean,
+      isLoading: true,
       post: {},
     };
   },
   computed: {
+    isActive() {
+      const now = new Date();
+      const postDate = new Date(this.post.date);
+      return postDate.getTime() >= now.getTime();
+    },
     user() {
       return this.$store.getters.getUser;
     },
     userIsAuthor() {
-      console.log(this.post.user.userId);
-      console.log(this.user.userId);
       return this.user ? this.post.user.userId === this.user.userId : false;
     },
   },
+
   created() {
-    // TODO
-    // this.post = PostService.getPost(parseInt(this.id));
-    this.post = this.POST_temp; // should get `post` by ID, once getPostById() is implemented in backend
-
-    const now = new Date();
-    const postDate = new Date(this.post.date);
-
-    this.isActive = postDate.getTime() >= now.getTime();
+    Service.getPostById(parseInt(this.id))
+      .then((response) => {
+        this.post = response.data;
+        this.isLoading = false;
+      })
+      .catch((error) => {
+        console.log('Could not get Post with ID ' + this.id, error);
+      });
   },
   methods: {
     reserve() {

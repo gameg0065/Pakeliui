@@ -8,9 +8,7 @@
       </div> -->
     </div>
     <div class="flex direction-column grow">
-      <router-link
-        :to="{ name: 'post', params: { id: post.id, POST_temp: post } }"
-      >
+      <router-link :to="{ name: 'post', params: { id: post.id } }">
         <h4 class="text-color-primary mb-10">
           {{ post.travelFrom + ' - ' + post.travelTo }}
         </h4>
