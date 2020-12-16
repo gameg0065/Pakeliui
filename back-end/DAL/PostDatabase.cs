@@ -31,7 +31,7 @@ namespace BackEnd.DAL
         public async Task<List<Post>> GetPostsByPassengerId(int id)
         {
             var list = new List<Post>();
-            var result = await _dbContext.Posts.Include(x => x.Comments).Include(x => x.Passengers).Include(x => x.User).Where(x => x.Passengers.Any(y => y.Id == id)).ToListAsync();
+            var result = await _dbContext.Posts.Include(x => x.Comments).Include(x => x.Passengers).Include(x => x.User).Where(x => x.Passengers.Any(y => y.PassengerId == id)).ToListAsync();
             if (result.Count() <= 0)
             {
                 return list;
