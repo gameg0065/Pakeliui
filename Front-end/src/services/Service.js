@@ -46,6 +46,12 @@ export default {
 	getAllUsers() {
 		return apiClient.get('/api/User/AllUsers/');
 	},
+	getPostById(id) {
+		return apiClient.get('api/post/?id=' + id);
+	},
+	getPostsByPassengerId(id) {
+		return apiClient.get('/api/Post/GetPostsByPassengerId/?id=' + id);
+	},
 	postPost(post) {
 		return apiClient.post('/api/Post/', post);
 	},
