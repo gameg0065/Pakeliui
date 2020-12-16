@@ -3,6 +3,8 @@
     <h2 class="page-title">Skelbimai</h2>
     <div class="posts-container flex">
       <PostFilter @on-post-filter-changed="onPostFilterChanged" class="mr-20" />
+      <p v-if="isLoading">Kraunam, kraunam malkas ...</p>
+      <p v-if="!isLoading && posts.length === 0">Skelbimų nerasta ¯\_(ツ)_/¯</p>
       <div class="flex direction-column grow">
         <PostCard v-for="post in posts" :key="post.id" :post="post" />
       </div>
@@ -25,30 +27,37 @@ export default {
   data() {
     return {
       posts: [],
+      isLoading: false,
     };
   },
   async created() {
-    this.posts = await Service.getAllPosts()
-      .then((response) => {
-        return response.data;
-      })
-      .catch((error) => {
-        console.log('Could not get all posts', error);
-      });
+    this.posts = await this.getAllPosts();
   },
   methods: {
-    onPostFilterChanged(route, date) {
-      const stringsAreEqual = this.stringsAreEqual;
+    getAllPosts() {
+      this.isLoading = true;
+      return Service.getAllPosts()
+        .then((response) => {
+          this.isLoading = false;
+          return response.data;
+        })
+        .catch((error) => {
+          this.isLoading = false;
+          console.log('Could not get all posts', error);
+        });
+    },
+    async onPostFilterChanged(route, date) {
+      const posts = await this.getAllPosts();
 
-      this.posts = this.posts.filter(function (post) {
+      this.posts = posts.filter((post) => {
         if (route.from) {
-          if (!stringsAreEqual(route.from, post.travelFrom)) {
+          if (!this.stringsAreEqual(route.from, post.travelFrom)) {
             return false;
           }
         }
 
         if (route.to) {
-          if (!stringsAreEqual(route.to, post.travelTo)) {
+          if (!this.stringsAreEqual(route.to, post.travelTo)) {
             return false;
           }
         }
