@@ -2,12 +2,16 @@
   <div class="post align-stretch">
     <div class="page-title flex align-baseline">
       <h2>Skelbimas</h2>
-      <h5 v-if="isActive" class="text-color-primary">Skelbimo būsena: aktyvus</h5>
-      <h5 v-else class="text-color-secondary">Skelbimo būsena: nebegaliojantis</h5>
+      <h5 v-if="isActive" class="text-color-primary">
+        Skelbimo būsena: aktyvus
+      </h5>
+      <h5 v-else class="text-color-secondary">
+        Skelbimo būsena: nebegaliojantis
+      </h5>
     </div>
 
     <div class="flex direction-column pb-50">
-      <UserCardInPost :post="post"/>
+      <UserCardInPost :post="post" />
       <Button
         text="rezervuoti"
         :click="reserve"
@@ -24,32 +28,32 @@
       </div>
       <div>
         <small>Kelionės laikas </small>
-        <p>{{ post.time }}</p> 
+        <p>{{ post.time }}</p>
       </div>
       <div>
         <small>Iš miesto </small>
-        <p>{{ post.route.from }}</p>
+        <p>{{ post.travelFrom }}</p>
       </div>
       <div>
         <small>Paėmimo vieta</small>
-        <p>{{ post.route.pickup }}</p>
+        <p>{{ post.pickup }}</p>
       </div>
       <div>
         <small>Į miestą</small>
-        <p>{{ post.route.to }}</p>
+        <p>{{ post.travelTo }}</p>
       </div>
       <div>
         <small>Pristatymo vieta</small>
-        <p>{{ post.route.dropoff }}</p>
+        <p>{{ post.dropoff }}</p>
       </div>
       <div>
         <small>Galimas keleivių skaičius</small>
         <p>{{ post.seetCount }}</p>
       </div>
-      <div>
+      <!-- <div>
         <small>Laisvų vietų skaičius</small>
         <p>TODO</p>
-      </div>
+      </div> -->
       <div>
         <small>Kelionės kaina</small>
         <p>{{ post.price }}€</p>
@@ -59,9 +63,8 @@
         <p>{{ post.info }}</p>
       </div>
 
-      <img src="https://i.stack.imgur.com/yEshb.gif" alt="map" class="map"/>
+      <img src="https://i.stack.imgur.com/yEshb.gif" alt="map" class="map" />
     </div>
-
 
     <Button
       text="rezervuoti"
@@ -72,7 +75,7 @@
     />
 
     <div class="bleed-width pb-50">
-      <Comments :comments="post.comments" :isActive="isActive"/>
+      <Comments :comments="post.comments" :isActive="isActive" />
     </div>
   </div>
 </template>
@@ -86,7 +89,8 @@ import PostService from '@/services/PostService.js';
 
 export default {
   name: 'Post',
-  props: ['id'],
+  // TODO
+  props: ['id', 'POST_temp'], // I should remove POST once getPostById() is imlemented
   components: {
     Comments,
     Button,
@@ -95,7 +99,7 @@ export default {
   data() {
     return {
       isActive: Boolean,
-      post: Object,
+      post: {},
     };
   },
   computed: {
@@ -103,11 +107,15 @@ export default {
       return this.$store.getters.getUser;
     },
     userIsAuthor() {
-      return this.user ? this.post.driver.id === this.user.id : false;
+      console.log(this.post.user.userId);
+      console.log(this.user.userId);
+      return this.user ? this.post.user.userId === this.user.userId : false;
     },
   },
   created() {
-    this.post = PostService.getPost(parseInt(this.id));
+    // TODO
+    // this.post = PostService.getPost(parseInt(this.id));
+    this.post = this.POST_temp; // should get `post` by ID, once getPostById() is implemented in backend
 
     const now = new Date();
     const postDate = new Date(this.post.date);
