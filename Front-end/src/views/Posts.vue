@@ -2,7 +2,7 @@
   <div class="posts align-stretch">
     <h2 class="page-title">Skelbimai</h2>
     <div class="posts-container flex">
-      <PostFilter @on-post-filter-changed="onPostFilterChanged" class="mr-20"/>
+      <PostFilter @on-post-filter-changed="onPostFilterChanged" class="mr-20" />
       <div class="flex direction-column grow">
         <PostCard v-for="post in posts" :key="post.id" :post="post" />
       </div>
@@ -14,7 +14,7 @@
 import PostCard from '@/components/PostCard.vue';
 import PostFilter from '@/components/PostFilter.vue';
 
-import PostService from '@/services/PostService.js';
+import Service from '@/services/Service';
 
 export default {
   name: 'Posts',
@@ -27,23 +27,28 @@ export default {
       posts: [],
     };
   },
-  created() {
-    this.posts = PostService.getPosts();
+  async created() {
+    this.posts = await Service.getAllPosts()
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error) => {
+        console.log('Could not get all posts', error);
+      });
   },
   methods: {
     onPostFilterChanged(route, date) {
-      const posts = PostService.getPosts();
       const stringsAreEqual = this.stringsAreEqual;
 
-      this.posts = posts.filter(function (post) {
+      this.posts = this.posts.filter(function (post) {
         if (route.from) {
-          if (!stringsAreEqual(route.from, post.route.from)) {
+          if (!stringsAreEqual(route.from, post.travelFrom)) {
             return false;
           }
         }
 
         if (route.to) {
-          if (!stringsAreEqual(route.to, post.route.to)) {
+          if (!stringsAreEqual(route.to, post.travelTo)) {
             return false;
           }
         }
@@ -60,6 +65,9 @@ export default {
       });
     },
     stringsAreEqual(string1, string2) {
+      string1 = string1 ? string1 : '';
+      string2 = string2 ? string2 : '';
+
       return string1.toLowerCase() === string2.toLowerCase();
     },
   },
