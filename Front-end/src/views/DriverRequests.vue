@@ -3,9 +3,9 @@
     <h2 class="page-title">Rezervacijos, laukiančios patvirtinimo</h2>
     <div v-if="pendingPosts.length > 0">
       <div v-for="post in pendingPosts" :key="post.id">
-        <div v-for="passenger in post.passengers" :key="passenger.id">
+        <div v-for="passenger in post.passengers" :key="passenger.passengerId">
           <div v-if="passenger.status === 'PENDING'">
-            <UserCardForDriver :passengerID="passenger.id" :post="post" />
+            <UserCardForDriver :passengerID="passenger.passengerId" :post="post" />
 
             <div class="flex justify-center">
               <Button
@@ -84,21 +84,19 @@ export default {
       });
     },
     getDriverPostsWithPassengersWithStatus(status) {
-      const postHasPassengersWithStatus = this.postHasPassengersWithStatus;
-      const user = this.user;
-
-      return user.driver.posts.reduce(function (accumulator, trip) {
-        const post = PostService.getPost(trip.id);
-        if (postHasPassengersWithStatus(post, status)) {
+      return this.user.posts.reduce((accumulator, post) => {
+        if (this.postHasPassengersWithStatus(post, status)) {
           accumulator.push(post);
         }
         return accumulator;
       }, []);
     },
     postHasPassengersWithStatus(post, status) {
-      return post.passengers.some(function (passenger) {
-        return passenger.status === status;
-      });
+      if (post.passengers) {
+        return post.passengers.some((passenger) => {
+          return passenger.status === status;
+        });
+      }
     },
   },
 };
