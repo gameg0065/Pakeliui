@@ -3,13 +3,13 @@
     <router-link :to="{ name: 'post', params: { id: post.id } }">
       <h4 class="text-color-primary">
         {{
-          post.date +
+          (post.date || 'Kelionės data') +
           ', ' +
-          post.time +
+          (post.time || 'Kelionės laikas') +
           ', ' +
-          post.route.from +
+          (post.travelFrom || 'Kelionė FROM') +
           ' - ' +
-          post.route.to
+          (post.travelTo || 'Kelionė TO')
         }}
       </h4>
     </router-link>
@@ -17,7 +17,7 @@
 
     <DriverFeedbackCard
       v-for="passenger in getPassengers('TAKEN')"
-      :key="passenger.id"
+      :key="passenger.passengerId"
       :passenger="passenger"
     />
   </div>
@@ -35,9 +35,11 @@ export default {
   },
   methods: {
     getPassengers(status) {
-      return this.post.passengers.filter(
-        (passenger) => passenger.status === status
-      );
+      if (this.post.passengers) {
+        return this.post.passengers.filter(
+          (passenger) => passenger.status === status
+        );
+      }
     },
   },
 };
