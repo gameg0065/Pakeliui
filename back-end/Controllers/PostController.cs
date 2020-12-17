@@ -66,13 +66,13 @@ namespace BackEnd.Controllers
             return items;
         }
         [HttpPost]
-        public bool Create(Post model)
+        public Post Create(Post model)
         {
 
             var postsDatabase = new PostDataBase(_dbContext);
-            var items = postsDatabase.CreatePost(model);
+            var item = postsDatabase.CreatePost(model);
 
-            return items;
+            return item;
         }
         [HttpPut]
         public bool Update(Post model)

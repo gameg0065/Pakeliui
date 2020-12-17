@@ -104,6 +104,8 @@ Posts:
 Users:
 
 - get: https://localhost:5001/api/user/AllUsers
+- get: https://localhost:5001/api/user/UserById?id=1
+- get: https://localhost:5001/api/user/GetUserByEmailAndPass?email=email@email.com&password=lol
 - post: https://localhost:5001/api/User
 - obj for post : {
   "name": "vardenis pavardenis",

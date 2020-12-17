@@ -39,8 +39,26 @@ namespace BackEnd.Controllers
 
             return items;
         }
+
+        [HttpGet("UserById")]
+        public async Task<ActionResult<User>> GetUserById(int id)
+        {
+            var usersDataBase = new UsersDataBase(_dbContext);
+            var items = await usersDataBase.GetUserById(id);
+
+            return items;
+        }
+
+        [HttpGet("GetUserByEmailAndPass")]
+        public async Task<ActionResult<User>> GetUserByEmailAndPass(string email, string password)
+        {
+            var usersDataBase = new UsersDataBase(_dbContext);
+            var items = await usersDataBase.GetUserByEmailAndPass(email, password);
+
+            return items;
+        }
         [HttpPost]
-        public bool Create(User model)
+        public User Create(User model)
         {
 
             var usersDataBase = new UsersDataBase(_dbContext);
@@ -49,7 +67,7 @@ namespace BackEnd.Controllers
             return items;
         }
         [HttpPut]
-        public bool Update(User model)
+        public User Update(User model)
         {
             var usersDataBase = new UsersDataBase(_dbContext);
             var item = usersDataBase.UpdateUser(model);
