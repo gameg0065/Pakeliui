@@ -3,12 +3,11 @@
     <div class="pb-50">
       <h2 class="page-title">Aktyvūs skelbimai</h2>
       <div v-if="activePosts.length > 0">
-        TODO
-        <!-- <DriverActivePostCard
+        <DriverActivePostCard
           v-for="post in activePosts"
           :key="post.id"
           :post="post"
-        /> -->
+        />
       </div>
       <div v-else>
         <p>Jūs neturite aktyvių skelbimų. Įkelkite vieną dabar!</p>
@@ -37,13 +36,10 @@
 import DriverActivePostCard from '@/components/DriverActivePostCard.vue';
 import DriverExpiredPostCard from '@/components/DriverExpiredPostCard.vue';
 
-import PostService from '@/services/PostService.js';
-import UserService from '@/services/UserService.js';
-
 export default {
   name: 'DriverHistory',
   components: {
-    // DriverActivePostCard,
+    DriverActivePostCard,
     DriverExpiredPostCard,
   },
   computed: {
@@ -58,18 +54,20 @@ export default {
     };
   },
   created() {
-    const activePosts = this.activePosts;
-    const expiredPosts = this.expiredPosts;
     const now = new Date();
-    this.user.posts.forEach(function (post) {
-      const postDate = new Date(post.date);
+    const posts = this.user.posts;
 
-      if (postDate.getTime() <= now.getTime()) {
-        expiredPosts.push(post);
-      } else {
-        activePosts.push(post);
-      }
-    });
+    if (posts) {
+      posts.forEach((post) => {
+        const postDate = new Date(post.date);
+
+        if (postDate.getTime() <= now.getTime()) {
+          this.expiredPosts.push(post);
+        } else {
+          this.activePosts.push(post);
+        }
+      });
+    }
   },
 };
 </script>
