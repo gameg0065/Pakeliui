@@ -28,7 +28,17 @@ namespace BackEnd.DAL
             return list;
         }
 
-        public bool CreateUser(User user)
+        public async Task<User> GetUserById(int id)
+        {
+            return await _dbContext.Users.Include(x => x.Car).Include(x => x.Posts).Include(x => x.Feedbacks).Where(x => x.UserId == id).FirstOrDefaultAsync();
+        }
+
+        public async Task<User> GetUserByEmailAndPass(string email, string password)
+        {
+            return await _dbContext.Users.Include(x => x.Car).Include(x => x.Posts).Include(x => x.Feedbacks).Where(x => x.Email == email && x.Password == password).FirstOrDefaultAsync();
+        }
+
+        public User CreateUser(User user)
         {
             var created = _dbContext.Users.Add(user);
             if (created != null)
@@ -36,17 +46,17 @@ namespace BackEnd.DAL
                 _dbContext.SaveChanges();
             }
 
-            return created != null;
+            return user;
         }
 
-        public bool UpdateUser(User user)
+        public User UpdateUser(User user)
         {
             var updated = _dbContext.Users.Update(user);
             if (updated != null)
             {
                 _dbContext.SaveChanges();
             }
-            return updated != null;
+            return user;
         }
 
         public bool RemoveUser(User user)
