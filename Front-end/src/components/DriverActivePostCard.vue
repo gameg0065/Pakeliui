@@ -1,39 +1,40 @@
 <template>
   <div class="card shadow flex direction-column">
+    TODO
     <router-link :to="{ name: 'post', params: { id: post.id } }">
       <h4 class="text-color-primary mb-10">
-        {{ post.route.from + ' - ' + post.route.to }}
+        {{ post.travelFrom + ' - ' + post.travelTo }}
       </h4>
     </router-link>
 
     <div class="flex align-baseline">
       <small>Kelionės data</small>
-      <p>{{ post.date }}</p>
+      <p>{{ DateFormat.getYearMonthDate(post.date) }}</p>
     </div>
 
     <div class="flex align-baseline">
       <small>Kelionės laikas</small>
-      <p>{{ post.time }}</p>
+      <p>{{ DateFormat.getHoursMinutes(post.time) }}</p>
     </div>
 
     <div class="flex align-baseline">
       <small>Iš miesto</small>
-      <p>{{ post.route.from }}</p>
+      <p>{{ post.travelFrom }}</p>
     </div>
 
     <div class="flex align-baseline">
       <small>Paėmimo vieta</small>
-      <p>{{ post.route.pickup }}</p>
+      <p>{{ post.pickup }}</p>
     </div>
 
     <div class="flex align-baseline">
       <small>Į miestą</small>
-      <p>{{ post.route.to }}</p>
+      <p>{{ post.travelTo }}</p>
     </div>
 
     <div class="flex align-baseline">
       <small>Pristatymo vieta</small>
-      <p>{{ post.route.dropoff }}</p>
+      <p>{{ post.dropoff }}</p>
     </div>
 
     <div class="flex align-baseline">
@@ -43,21 +44,18 @@
 
     <div class="flex align-baseline">
       <small>Patvirtinti keleiviai</small>
-      <div v-for="user in getApprovedPassengers(post, 'TAKEN')" :key="user.id">
-        <router-link :to="{ name: 'user', params: { id: user.id } }">
-          <Avatar :path="user.photo" />
+      <div v-for="user in getApprovedPassengers('TAKEN')" :key="user.userId">
+        <router-link :to="{ name: 'user', params: { id: user.userId } }">
+          <Avatar :path="user.picturePath" />
         </router-link>
       </div>
     </div>
 
     <div class="flex align-baseline">
       <small>Keleiviai, laukiantys patvirtinimo</small>
-      <div
-        v-for="user in getApprovedPassengers(post, 'PENDING')"
-        :key="user.id"
-      >
-        <router-link :to="{ name: 'user', params: { id: user.id } }">
-          <Avatar :path="user.photo" />
+      <div v-for="user in getApprovedPassengers('PENDING')" :key="user.userId">
+        <router-link :to="{ name: 'user', params: { id: user.userId } }">
+          <Avatar :path="user.picturePath" />
         </router-link>
       </div>
     </div>
@@ -82,7 +80,9 @@
 import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
 
-import UserService from '@/services/UserService.js';
+import DateFormat from '@/assets/DateFormat.js';
+import Service from '@/services/Service';
+// import UserService from '@/services/UserService.js';
 
 export default {
   name: 'DriverActivePostCard',
@@ -91,29 +91,46 @@ export default {
     Avatar,
     Button,
   },
+  created() {
+    this.DateFormat = DateFormat;
+  },
   methods: {
     deletePost() {
+      const post = this.post;
       this.$modal.show('modal-notification', {
         title: 'Patvirtinimas',
         text: 'Ar tikrai norite ištrinti skelbimą? Kelio atgal nėra.',
         button: {
           title: 'ištrinti',
           action() {
-            alert('TODO');
-            this.$modal.hide('modal-notification');
+            Service.deletePost(post)
+              .then(() => {
+                alert(
+                  'post deleted (you need to logoff/logon to see the effect)'
+                );
+                this.$modal.hide('modal-notification');
+              })
+              .catch((error) => {
+                console.log('Could not delete post', error);
+              });
           },
         },
       });
     },
-    getApprovedPassengers(post, status) {
+    getApprovedPassengers(status) {
+      const passengers = this.post.passengers;
       const users = [];
 
-      post.passengers.forEach(function (passenger) {
-        if (passenger.status === status) {
-          const user = UserService.getUser(passenger.id);
-          users.push(user);
-        }
-      });
+      if (passengers) {
+        passengers.forEach((passenger) => {
+          if (passenger.status === status) {
+            // TODO
+            // Need Users.getUserById() endpoint:
+            // const user = UserService.getUser(passenger.id);
+            // users.push(user);
+          }
+        });
+      }
 
       return users;
     },
