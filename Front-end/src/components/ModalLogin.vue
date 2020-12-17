@@ -31,6 +31,7 @@
                 id="email"
                 ref="email"
                 v-model.trim="credentials.email.value"
+                @keydown="onEmailChange"
               />
             </div>
           </div>
@@ -46,6 +47,7 @@
                 type="password"
                 id="password"
                 v-model="credentials.password.value"
+                @keydown="onPasswordChange"
               />
             </div>
           </div>
@@ -82,9 +84,8 @@
 <script>
 import Button from '@/components/Button.vue';
 
-import Utils from '@/assets/Utils.js';
-// import UserService from '@/services/UserService.js';
 import Service from '@/services/Service';
+import Utils from '@/assets/Utils.js';
 
 export default {
   name: 'ModalLogin',
@@ -98,6 +99,23 @@ export default {
     };
   },
   methods: {
+    onEmailChange() {
+      this.resetEmailError();
+      this.resetGeneralError();
+    },
+    onPasswordChange() {
+      this.resetPasswordError();
+      this.resetGeneralError();
+    },
+    resetEmailError() {
+      this.credentials.email.error = '';
+    },
+    resetPasswordError() {
+      this.credentials.password.error = '';
+    },
+    resetGeneralError() {
+      this.generalError = '';
+    },
     hide() {
       this.$modal.hide('modal-login');
     },
@@ -121,60 +139,33 @@ export default {
       } else if (!Utils.validateEmail(email.value)) {
         email.error = 'neteisinga forma';
       } else {
-        email.error = '';
+        this.resetEmailError();
       }
 
       const password = this.credentials.password;
       password.error = !password.value ? 'prašom įvesti slaptažodį' : '';
 
       if (!email.error && !password.error) {
-        Service.getAllUsers()
+        Service.getUserByEmailAndPass(email.value, password.value)
           .then((response) => {
-            if (!response.data) {
-              console.log('Response contains no data');
-              return;
-            }
-
-            const user = response.data.find(function (object) {
-              return object.email.toLowerCase() === email.value.toLowerCase();
-            });
-
-            if (!user) {
+            if (response.status === 200) {
+              const user = response.data;
+              this.$store.dispatch('login', user).then(() => {
+                this.hide();
+              });
+            } else {
               this.generalError = 'toks vartotojas neegzistuoja';
-              return;
             }
-
-            if (user.password.toLowerCase() !== password.value.toLowerCase()) {
-              password.error = 'neteisingas slaptažodis';
-              return;
-            }
-
-            console.log(user);
-            this.$store.dispatch('login', user).then(() => {
-              console.log('logged in');
-              this.hide();
-            });
-            
-
-            // const id = parseInt(email.value);
-            // const user = UserService.getUser(id);
-            // if (!user) {
-            //   this.generalError = 'toks vartotojas neegzistuoja';
-            // } else {
-            //   this.$store.dispatch('login', user).then(() => {
-            //     this.hide();
-            //   });
-            // }
           })
           .catch((error) => {
-            console.log('Error getting all users', error);
+            console.log('Could not get user by email and password', error);
           });
       }
     },
     resetToDefaults() {
       return {
         email: {
-          value: '110@some.email',
+          value: '',
           error: '',
         },
         password: {
