@@ -162,10 +162,7 @@
 
           <div class="flex align-baseline">
             <label for="driver-about">Vairavimo įgūdžiai</label>
-            <textarea
-              id="driver-about"
-              v-model.trim="user.aboutDriver"
-            />
+            <textarea id="driver-about" v-model.trim="user.aboutDriver" />
           </div>
 
           <div class="flex align-baseline justify-end mt-50">
@@ -290,8 +287,14 @@ export default {
       this.user.car.date = DateFormat.toDateString(this.user.car.date);
 
       Service.putUser(this.user)
+        .then((response) => {
+          this.$store.dispatch('updateUser', this.user);
+        })
         .then(() => {
-          this.$store.dispatch('login', this.user);
+          this.$router.push({
+            name: 'user',
+            params: { id: this.user.userId },
+          });
         })
         .catch((error) => {
           console.log('Could not edit user', error);
