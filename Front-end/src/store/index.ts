@@ -28,6 +28,9 @@ export default new Vuex.Store({
 		},
 		logout({ commit }) {
 			commit('CLEAR_USER_DATA');
+		},
+		updateUser({ commit }, user) {
+			commit('SET_USER', user);
 		}
 	},
 	modules: {}
