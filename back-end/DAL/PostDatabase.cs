@@ -45,7 +45,7 @@ namespace BackEnd.DAL
             return await _dbContext.Posts.Include(x => x.Comments).Include(x => x.Passengers).Include(x => x.User).Where(x => x.ID == id).FirstOrDefaultAsync();
         }
 
-        public bool CreatePost(Post post)
+        public Post CreatePost(Post post)
         {
             var created = _dbContext.Posts.Add(post);
             if (created != null)
@@ -53,7 +53,7 @@ namespace BackEnd.DAL
                 _dbContext.SaveChanges();
             }
 
-            return created != null;
+            return post;
         }
         public bool UpdatePost(Post post)
         {
