@@ -3,13 +3,12 @@
     <div class="pb-50">
       <h2 class="page-title">Mano rezervacijos</h2>
       <div v-if="pendingTrips && pendingTrips.length > 0">
-        TODO
-        <!-- <PostCard
-          v-for="trip in pendingTrips"
-          :key="trip.id"
-          :post="getPost(trip.post.id)"
+        <PostCard
+          v-for="post in pendingTrips"
+          :key="post.id"
+          :post="post"
           :isPending="true"
-        /> -->
+        />
       </div>
 
       <div v-else class="flex direction-column align-center">
@@ -43,9 +42,8 @@
 <script>
 import Button from '@/components/Button.vue';
 import FeedbackCard from '@/components/FeedbackCard.vue';
-// import PostCard from '@/components/PostCard.vue';
+import PostCard from '@/components/PostCard.vue';
 
-import PostService from '@/services/PostService.js';
 import Service from '@/services/Service';
 
 export default {
@@ -53,7 +51,7 @@ export default {
   components: {
     Button,
     FeedbackCard,
-    // PostCard,
+    PostCard,
   },
   computed: {
     user() {
@@ -88,11 +86,6 @@ export default {
       .catch((error) => {
         console.log('Could not get posts by passenger ID ' + userId, error);
       });
-  },
-  methods: {
-    getPost(id) {
-      return PostService.getPost(id);
-    },
   },
 };
 </script>
