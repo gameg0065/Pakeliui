@@ -150,7 +150,8 @@ import Rating from '@/components/Rating.vue';
 import FeedbackService from '@/services/FeedbackService.js';
 import DateFormat from '@/assets/DateFormat.js';
 import PostService from '@/services/PostService.js';
-import UserService from '@/services/UserService.js';
+
+import Service from '@/services/Service';
 
 export default {
   name: 'User',
@@ -160,18 +161,34 @@ export default {
     // CommentCard,
     // Rating,
   },
+  data() {
+    return {
+      user: {},
+      isViewingOwnProfile: Boolean,
+    };
+  },
   computed: {
-    user() {
-      const currentUser = this.$store.getters.getUser;
-      console.log(currentUser);
-      return currentUser;
-
-      // const id = parseInt(this.id);
-      // return currentUser.id === id ? currentUser : UserService.getUser(id);
+    currentUser() {
+      return this.$store.getters.getUser;
     },
   },
   created() {
     this.DateFormat = DateFormat;
+
+    const userId = parseInt(this.id);
+    if (this.currentUser.userId === userId) {
+      this.user = this.currentUser;
+      this.isViewingOwnProfile = true;
+    } else {
+      Service.getUserById(userId)
+        .then((response) => {
+          this.user = response.data;
+          this.isViewingOwnProfile = false;
+        })
+        .catch((error) => {
+          console.log('Could not get user by ID', error);
+        });
+    }
   },
   methods: {
     countDistance(trips) {
