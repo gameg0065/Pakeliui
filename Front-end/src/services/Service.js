@@ -40,6 +40,9 @@ export default {
 	deleteUser(user) {
 		return apiClient.delete('/api/User/', { data: { userId: user.userId } });
 	},
+	deletePost(post) {
+		return apiClient.delete('/api/Post/', { data: { id: post.id } });
+	},
 	getAllPosts() {
 		return apiClient.get('/api/Post/AllPosts/');
 	},
