@@ -55,12 +55,18 @@ export default {
 	getPostsByPassengerId(id) {
 		return apiClient.get('/api/Post/GetPostsByPassengerId/?id=' + id);
 	},
+	getUserById(id) {
+		return apiClient.get('api/User/UserById?id=' + id);
+	},
 	postPost(post) {
 		return apiClient.post('/api/Post/', post);
 	},
 	postUser(user) {
 		const userData = Utils.mergeDeep({}, defaults, user);
 		return apiClient.post('/api/User/', userData);
+	},
+	putPost(post) {
+		return apiClient.put('/api/Post/', post);
 	},
 	putUser(user) {
 		const userData = Utils.mergeDeep({}, defaults, user);
