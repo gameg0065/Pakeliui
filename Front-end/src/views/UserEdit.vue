@@ -164,7 +164,6 @@
             <label for="driver-about">Vairavimo įgūdžiai</label>
             <textarea
               id="driver-about"
-              rows="3"
               v-model.trim="user.aboutDriver"
             />
           </div>
@@ -190,9 +189,9 @@ import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
 
 import axios from 'axios';
+import DateFormat from '@/assets/DateFormat.js';
 import Datepicker from 'vuejs-datepicker';
 import Service from '@/services/Service';
-import Utils from '@/assets/Utils.js';
 
 export default {
   name: 'UserEdit',
@@ -247,12 +246,15 @@ export default {
           action() {
             Service.deleteUser({ userId: user.userId })
               .then((response) => {
-                console.log(response);
                 this.$modal.hide('modal-notification');
 
-                this.$router.push('/').then(() => {
-                  this.$store.dispatch('logout');
-                });
+                this.$router
+                  .push({
+                    name: 'home',
+                  })
+                  .then(() => {
+                    this.$store.dispatch('logout');
+                  });
               })
               .catch((error) => {
                 console.log('Could not delete user', error);
@@ -284,15 +286,12 @@ export default {
         await this.uploadPhoto(this.carPhoto, this.user.car);
       }
 
-      this.user.birthDate = Utils.toDateString(this.user.birthDate);
-      this.user.car.date = Utils.toDateString(this.user.car.date);
+      this.user.birthDate = DateFormat.toDateString(this.user.birthDate);
+      this.user.car.date = DateFormat.toDateString(this.user.car.date);
 
       Service.putUser(this.user)
         .then(() => {
           this.$store.dispatch('login', this.user);
-        })
-        .then(() => {
-          console.log('saved user');
         })
         .catch((error) => {
           console.log('Could not edit user', error);
@@ -303,7 +302,6 @@ export default {
       return Service.uploadPhoto(photo)
         .then((response) => {
           target.picturePath = response.data.secure_url;
-          console.log('uploaded photo', response);
         })
         .catch((error) => {
           console.log('Could not upload photo', error);

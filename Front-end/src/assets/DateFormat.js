@@ -8,5 +8,13 @@ export default {
 		}
 		const date = new Date(string).toISOString()
 		return date.split('T')[0];
-	}
+	},
+	toDateString(date) {
+		if (!date) {
+			return '';
+		}
+		
+		date = date instanceof Date ? date : new Date(date);
+		return date.toISOString();
+	},
 };
