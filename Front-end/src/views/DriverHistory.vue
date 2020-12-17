@@ -4,6 +4,7 @@
       <h2 class="page-title">Aktyvūs skelbimai</h2>
       <div v-if="activePosts.length > 0">
         <DriverActivePostCard
+          @on-post-delete="onPostDelete"
           v-for="post in activePosts"
           :key="post.id"
           :post="post"
@@ -68,6 +69,25 @@ export default {
         }
       });
     }
+  },
+  methods: {
+    removeArrayItemBy(array, object, key) {
+      array.splice(
+        array.findIndex((item) => item[key] === object[key]),
+        1
+      );
+    },
+    onPostDelete(post) {
+      const posts = this.user.posts;
+
+      if (posts) {
+        this.removeArrayItemBy(posts, post, 'id');
+
+        this.$store.dispatch('updateUser', this.user).then(() => {
+          this.removeArrayItemBy(this.activePosts, post, 'id');
+        });
+      }
+    },
   },
 };
 </script>

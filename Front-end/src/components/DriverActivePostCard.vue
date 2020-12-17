@@ -94,28 +94,31 @@ export default {
   created() {
     this.DateFormat = DateFormat;
   },
+  computed: {
+    user() {
+      return this.$store.getters.getUser;
+    },
+  },
   methods: {
     deletePost() {
-      const post = this.post;
       this.$modal.show('modal-notification', {
         title: 'Patvirtinimas',
         text: 'Ar tikrai norite ištrinti skelbimą? Kelio atgal nėra.',
         button: {
           title: 'ištrinti',
-          action() {
-            Service.deletePost(post)
-              .then(() => {
-                alert(
-                  'post deleted (you need to logoff/logon to see the effect)'
-                );
-                this.$modal.hide('modal-notification');
-              })
-              .catch((error) => {
-                console.log('Could not delete post', error);
-              });
-          },
+          action: this.emitPostDeletion,
         },
       });
+    },
+    emitPostDeletion() {
+      Service.deletePost(this.post)
+        .then((response) => {
+          this.$emit('on-post-delete', this.post);
+          this.$modal.hide('modal-notification');
+        })
+        .catch((error) => {
+          console.log('Could not delete post', error);
+        });
     },
     getApprovedPassengers(status) {
       const passengers = this.post.passengers;

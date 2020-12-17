@@ -70,7 +70,6 @@
 import Button from '@/components/Button.vue';
 import Datepicker from 'vuejs-datepicker';
 
-import PostService from '@/services/PostService.js';
 import Service from '@/services/Service';
 
 export default {
@@ -95,26 +94,60 @@ export default {
     };
   },
   created() {
-    if (this.id) {
-      this.isEditMode = true;
-      this.post = PostService.getPost(parseInt(this.id));
-    } else {
-      this.isEditMode = false;
+    this.isEditMode = false;
+    if (this.id && this.user && this.user.posts) {
+      this.post = this.user.posts.find((post) => {
+        return parseInt(post.id) === parseInt(this.id);
+      });
+      if (this.post) {
+        this.isEditMode = true;
+      } else {
+        this.$router.push({
+          name: '404',
+        });
+      }
     }
   },
   methods: {
     submit() {
-      this.post.userId = this.user.userId;
-
-      Service.postPost(this.post)
-        .then(() => {
-          console.log('post uploaded');
-          alert('post created/updated');
-          this.post = {};
-        })
-        .catch((error) => {
-          console.log('Could not upload post', error);
+      const post = this.post;
+      const user = this.user;
+      const redirectToUserHistory = (user, post) => {
+        this.$store.dispatch('updateUser', user).then(() => {
+          post = {};
+          this.$router.push({
+            name: 'driver-history',
+            params: { id: user.userId },
+          });
         });
+      };
+
+      if (this.isEditMode) {
+        Service.putPost(post)
+          .then((response) => {
+            redirectToUserHistory(user, post);
+          })
+          .catch((error) => {
+            console.log('Could not put post', error);
+          });
+      } else {
+        post.userId = user.userId;
+
+        Service.postPost(post)
+          .then((response) => {
+            if (!user.posts) {
+              user.posts = [];
+            }
+
+            post.id = response.data.id;
+            user.posts.push(post);
+
+            redirectToUserHistory(user, post);
+          })
+          .catch((error) => {
+            console.log('Could not create post', error);
+          });
+      }
     },
   },
 };
