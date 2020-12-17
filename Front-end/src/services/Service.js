@@ -55,6 +55,9 @@ export default {
 	getPostsByPassengerId(id) {
 		return apiClient.get('/api/Post/GetPostsByPassengerId/?id=' + id);
 	},
+	getUserByEmailAndPass(email, password) {
+		return apiClient.get('/api/user/GetUserByEmailAndPass?email=' + email + '&password=' + password);
+	},
 	getUserById(id) {
 		return apiClient.get('api/User/UserById?id=' + id);
 	},
