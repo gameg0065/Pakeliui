@@ -65,7 +65,7 @@
         <div>
           <div class="flex align-baseline">
             <small class="fixed-width">Pavėžėjimų skaičius</small>
-            <p>{{ user.posts.length }}</p>
+            <p>{{ user.posts ? user.posts.length : 0 }}</p>
           </div>
 
           <!-- <div class="flex align-baseline">

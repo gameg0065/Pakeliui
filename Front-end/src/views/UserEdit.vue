@@ -20,19 +20,29 @@
       </div>
 
       <div class="flex direction-column grow">
-        <div class="flex align-baseline">
-          <label for="user-name">Vardas, pavardė*</label>
-          <input type="text" id="user-name" v-model.trim="user.name" />
+        <div class="flex align-end" :class="{ error: wipUser.name.error }">
+          <label for="user-name"> Vardas, pavardė* </label>
+          <div class="flex direction-column grow">
+            <span>{{ wipUser.name.error }}</span>
+            <input
+              type="text"
+              id="user-name"
+              v-model.trim="wipUser.name.value"
+            />
+          </div>
         </div>
 
-        <div class="flex align-baseline">
-          <label for="user-birthdate">Gimimo metai*</label>
-          <Datepicker
-            id="user-birthdate"
-            v-model="user.birthDate"
-            format="yyyy-MM-dd"
-            :monday-first="true"
-          />
+        <div class="flex align-end" :class="{ error: wipUser.birthDate.error }">
+          <label for="user-birthdate"> Gimimo metai* </label>
+          <div class="flex direction-column grow">
+            <span>{{ wipUser.birthDate.error }}</span>
+            <Datepicker
+              id="user-birthdate"
+              v-model="wipUser.birthDate.value"
+              format="yyyy-MM-dd"
+              :monday-first="true"
+            />
+          </div>
         </div>
 
         <div class="flex align-baseline">
@@ -40,13 +50,28 @@
           <input type="text" id="city" v-model.trim="user.city" />
         </div>
 
-        <div class="flex align-baseline">
+        <!-- <div class="flex align-baseline">
           <label for="contacts-phone">Telefonas</label>
           <input
             type="text"
             id="contacts-phone"
             v-model.trim="user.phoneNumber"
           />
+        </div> -->
+
+        <div
+          class="flex align-end"
+          :class="{ error: wipUser.phoneNumber.error }"
+        >
+          <label for="contacts-phone"> Telefonas </label>
+          <div class="flex direction-column grow">
+            <span>{{ wipUser.phoneNumber.error }}</span>
+            <input
+              type="text"
+              id="contacts-phone"
+              v-model.trim="wipUser.phoneNumber.value"
+            />
+          </div>
         </div>
 
         <div class="flex align-baseline">
@@ -59,13 +84,28 @@
           />
         </div>
 
-        <div class="flex align-baseline">
+        <!-- <div class="flex align-baseline">
           <label for="contacts-facebook">Facebook paskyra</label>
           <input
             type="text"
             id="contacts-facebook"
             v-model.trim="user.facebookLink"
           />
+        </div> -->
+
+        <div
+          class="flex align-end"
+          :class="{ error: wipUser.facebookLink.error }"
+        >
+          <label for="contacts-facebook"> Facebook paskyra </label>
+          <div class="flex direction-column grow">
+            <span>{{ wipUser.facebookLink.error }}</span>
+            <input
+              type="text"
+              id="contacts-facebook"
+              v-model.trim="wipUser.facebookLink.value"
+            />
+          </div>
         </div>
 
         <div class="flex align-baseline">
@@ -204,8 +244,9 @@ export default {
   },
   data() {
     return {
-      userPhoto: null,
-      carPhoto: null,
+      newUserPhoto: null,
+      newCarPhoto: null,
+      wipUser: this.resetToDefaults(),
       contactOptions: [
         {
           text: 'Elektroniniu paštu',
@@ -222,17 +263,31 @@ export default {
       ],
     };
   },
+  created() {
+    const user = this.user;
+    const wipUser = this.wipUser;
+
+    user.contactMethod = user.contactMethod || 'email';
+
+
+    wipUser.name.value = user.name || '';
+    wipUser.birthDate.value = user.birthDate || '';
+    wipUser.phoneNumber.value = user.phoneNumber || '';
+    wipUser.facebookLink.value = user.facebookLink || '';
+
+    console.log(user);
+  },
   methods: {
     changeCarPhoto(event) {
-      const carPhoto = event.target.files[0];
-      if (carPhoto) {
-        this.carPhoto = carPhoto;
+      const newCarPhoto = event.target.files[0];
+      if (newCarPhoto) {
+        this.newCarPhoto = newCarPhoto;
       }
     },
     changeUserPhoto(event) {
-      const userPhoto = event.target.files[0];
-      if (userPhoto) {
-        this.userPhoto = userPhoto;
+      const newUserPhoto = event.target.files[0];
+      if (newUserPhoto) {
+        this.newUserPhoto = newUserPhoto;
       }
     },
     checkboxChanged() {
@@ -275,25 +330,61 @@ export default {
     },
     getUserPhotoPath() {
       let photo = this.user.picturePath;
-      if (this.userPhoto) {
-        photo = URL.createObjectURL(this.userPhoto);
+      if (this.newUserPhoto) {
+        photo = URL.createObjectURL(this.newUserPhoto);
       }
       return photo;
     },
     getCarPhotoPath() {
       let photo = this.user.car.picturePath;
-      if (this.carPhoto) {
-        photo = URL.createObjectURL(this.carPhoto);
+      if (this.newCarPhoto) {
+        photo = URL.createObjectURL(this.newCarPhoto);
       }
       return photo;
     },
     async saveProfile() {
-      if (this.userPhoto) {
-        await this.uploadPhoto(this.userPhoto, this.user);
+      const user = this.user;
+      const wipUser = this.wipUser;
+
+      wipUser.name.error = !wipUser.name.value
+        ? 'Įveskite vardą ir pavardę'
+        : '';
+
+      wipUser.birthDate.error = !wipUser.birthDate.value
+        ? 'Įveskite gimimo datą'
+        : '';
+
+      if (user.contactMethod === 'phoneNumber') {
+        wipUser.facebookLink.error = '';
+        wipUser.phoneNumber.error = !wipUser.phoneNumber.value
+          ? 'Įveskite telefono numerį'
+          : '';
+      } else if (user.contactMethod === 'facebookLink') {
+        wipUser.phoneNumber.error = '';
+        wipUser.facebookLink.error = !wipUser.facebookLink.value
+          ? "Įveskite Facebook'o nuorodą"
+          : '';
       }
 
-      if (this.carPhoto) {
-        await this.uploadPhoto(this.carPhoto, this.user.car);
+      const formHasErrors = Object.keys(wipUser).some((key) => {
+        return wipUser[key].error !== '';
+      });
+
+      if (formHasErrors) {
+        return;
+      }
+
+      user.name = wipUser.name.value;
+      user.birthDate = wipUser.birthDate.value;
+      user.phoneNumber = wipUser.phoneNumber.value;
+      user.facebookLink = wipUser.facebookLink.value;
+
+      if (this.newUserPhoto) {
+        await this.uploadPhoto(this.newUserPhoto, user);
+      }
+
+      if (this.newCarPhoto) {
+        await this.uploadPhoto(this.newCarPhoto, this.user.car);
       }
 
       this.user.birthDate = DateFormat.toDateString(this.user.birthDate);
@@ -322,6 +413,26 @@ export default {
         .catch((error) => {
           console.log('Could not upload photo', error);
         });
+    },
+    resetToDefaults() {
+      return {
+        name: {
+          value: '',
+          error: '',
+        },
+        birthDate: {
+          value: '',
+          error: '',
+        },
+        phoneNumber: {
+          value: '',
+          error: '',
+        },
+        facebookLink: {
+          value: '',
+          error: '',
+        },
+      };
     },
   },
 };
