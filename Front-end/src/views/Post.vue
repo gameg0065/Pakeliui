@@ -24,11 +24,11 @@
     <div class="info">
       <div>
         <small>Kelionės data </small>
-        <p>{{ post.date }}</p>
+        <p>{{ DateFormat.getYearMonthDate(post.date) }}</p>
       </div>
       <div>
         <small>Kelionės laikas </small>
-        <p>{{ post.time }}</p>
+        <p>{{ DateFormat.getHoursMinutes(post.time) }}</p>
       </div>
       <div>
         <small>Iš miesto </small>
@@ -85,6 +85,7 @@ import Button from '@/components/Button.vue';
 import Comments from '@/components/Comments.vue';
 import UserCardInPost from '@/components/UserCardInPost.vue';
 
+import DateFormat from '@/assets/DateFormat.js';
 import Service from '@/services/Service';
 
 export default {
@@ -116,6 +117,8 @@ export default {
   },
 
   created() {
+    this.DateFormat = DateFormat;
+
     Service.getPostById(parseInt(this.id))
       .then((response) => {
         this.post = response.data;
