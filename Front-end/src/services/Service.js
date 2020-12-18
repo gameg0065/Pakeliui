@@ -43,6 +43,9 @@ export default {
 	deletePost(post) {
 		return apiClient.delete('/api/Post/', { data: { id: post.id } });
 	},
+	getAllComments() {
+		return apiClient.get('api/Comment/AllComments');
+	},
 	getAllPosts() {
 		return apiClient.get('/api/Post/AllPosts/');
 	},
@@ -60,6 +63,9 @@ export default {
 	},
 	getUserById(id) {
 		return apiClient.get('api/User/UserById?id=' + id);
+	},
+	postComment(comment) {
+		return apiClient.post('/api/Comment/', comment);
 	},
 	postPost(post) {
 		return apiClient.post('/api/Post/', post);
