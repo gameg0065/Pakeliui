@@ -21,6 +21,7 @@
       <h3 class="section-title">Skelbimų istorija</h3>
       <div v-if="expiredPosts.length > 0">
         <DriverExpiredPostCard
+          @on-post-delete="onPostDelete"
           v-for="post in expiredPosts"
           :key="post.id"
           :post="post"
@@ -36,6 +37,8 @@
 <script>
 import DriverActivePostCard from '@/components/DriverActivePostCard.vue';
 import DriverExpiredPostCard from '@/components/DriverExpiredPostCard.vue';
+
+import Service from '@/services/Service';
 
 export default {
   name: 'DriverHistory',
@@ -55,36 +58,64 @@ export default {
     };
   },
   created() {
-    const now = new Date();
-    const posts = this.user.posts;
-
-    if (posts) {
-      posts.forEach((post) => {
-        const postDate = new Date(post.date);
-
-        if (postDate.getTime() <= now.getTime()) {
-          this.expiredPosts.push(post);
-        } else {
-          this.activePosts.push(post);
-        }
-      });
-    }
+    this.sortPosts();
   },
   methods: {
-    removeArrayItemBy(array, object, key) {
-      array.splice(
-        array.findIndex((item) => item[key] === object[key]),
-        1
-      );
-    },
-    onPostDelete(post) {
+    deletePostFromCache(post) {
       const posts = this.user.posts;
 
       if (posts) {
         this.removeArrayItemBy(posts, post, 'id');
 
         this.$store.dispatch('updateUser', this.user).then(() => {
-          this.removeArrayItemBy(this.activePosts, post, 'id');
+          this.sortPosts();
+        });
+      }
+    },
+    onPostDelete(post) {
+      const deletePostFromCache = this.deletePostFromCache;
+      const modal = this.$modal;
+
+      modal.show('modal-notification', {
+        title: 'Patvirtinimas',
+        text: 'Ar tikrai norite ištrinti skelbimą? Kelio atgal nėra.',
+        button: {
+          title: 'ištrinti',
+          action() {
+            Service.deletePost(post)
+              .then((response) => {
+                deletePostFromCache(post);
+                modal.hide('modal-notification');
+              })
+              .catch((error) => {
+                console.log('Could not delete post', error);
+              });
+          },
+        },
+      });
+    },
+    removeArrayItemBy(array, object, key) {
+      const index = array.findIndex((item) => item[key] === object[key]);
+      if (index !== -1) {
+        array.splice(index, 1);
+      }
+    },
+    sortPosts() {
+      this.activePosts = [];
+      this.expiredPosts = [];
+
+      const now = new Date();
+      const posts = this.user.posts;
+
+      if (posts) {
+        posts.forEach((post) => {
+          const postDate = new Date(post.date);
+
+          if (postDate.getTime() <= now.getTime()) {
+            this.expiredPosts.push(post);
+          } else {
+            this.activePosts.push(post);
+          }
         });
       }
     },

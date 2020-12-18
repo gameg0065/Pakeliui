@@ -118,10 +118,14 @@ export default {
           if (response.status === 200) {
             const reservations = response.data.passengers;
             if (reservations) {
-              reservations.forEach((reservation) => {
-                Service.deleteReservation(reservation).catch((error) => {
+              const promises = reservations.map((reservation) => {
+                return Service.deleteReservation(reservation).catch((error) => {
                   console.log('Could not delete reservatins', error);
                 });
+              });
+              Promise.all(promises).then(() => {
+                this.pendingPassengers = [];
+                this.takenPassengers = [];
               });
             }
           }
@@ -131,26 +135,7 @@ export default {
         });
     },
     deletePost() {
-      this.$modal.show('modal-notification', {
-        title: 'Patvirtinimas',
-        text: 'Ar tikrai norite ištrinti skelbimą? Kelio atgal nėra.',
-        button: {
-          title: 'ištrinti',
-          action: this.emitPostDeletion,
-        },
-      });
-    },
-    emitPostDeletion() {
-      this.deleteAllReservations().then(() => {
-        Service.deletePost(this.post)
-          .then((response) => {
-            this.$emit('on-post-delete', this.post);
-            this.$modal.hide('modal-notification');
-          })
-          .catch((error) => {
-            console.log('Could not delete post', error);
-          });
-      });
+      this.$emit('on-post-delete', this.post);
     },
     pushPassengers(userId, array) {
       Service.getUserById(userId)
