@@ -161,7 +161,7 @@ Feedback:
 
 - get: https://localhost:5001/api/Feedback/AllFeedbacks,
 - post: https://localhost:5001/api/Feedback
-- obj for post: {
+  obj for post: {
   "senderId": 1,
   "receiverId": 2,
   "CreateDate": "2020-12-09",
@@ -170,7 +170,7 @@ Feedback:
   "ReceiverIsDriver": false
   }
 - put: https://localhost:5001/api/Feedback
-- obj for put: {
+  obj for put: {
   "id": 1,
   "senderId": 1,
   "receiverId": 2,
@@ -180,4 +180,23 @@ Feedback:
   "receiverIsDriver": false
   }
 - delete: https://localhost:5001/api/Feedback
-- obj for delete: { "userId": 5 }
+  obj for delete: { "userId": 5 }
+
+Reservation:
+
+- get: https://localhost:5001/api/reservation/AllReservations
+- post: https://localhost:5001/api/reservation/
+  obj for post: {
+  "passengerId": 1,
+  "postId": 2,
+  "status": "free"
+  },
+  - put: https://localhost:5001/api/reservation/
+    obj for put: {
+    "id": 1,
+    "passengerId": 1,
+    "postId": 2,
+    "status": "free"
+    }
+  - delete: https://localhost:5001/api/reservation/
+    obj for delete: { "id": 5 }

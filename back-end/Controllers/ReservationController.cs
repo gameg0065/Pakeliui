@@ -40,16 +40,16 @@ namespace BackEnd.Controllers
             return items;
         }
         [HttpPost]
-        public bool Create(Reservation model)
+        public Reservation Create(Reservation model)
         {
 
             var reservationsDatabase = new ReservationsDataBase(_dbContext);
-            var items = reservationsDatabase.CreateReservation(model);
+            var item = reservationsDatabase.CreateReservation(model);
 
-            return items;
+            return item;
         }
         [HttpPut]
-        public bool Update(Reservation model)
+        public Reservation Update(Reservation model)
         {
             var reservationsDatabase = new ReservationsDataBase(_dbContext);
             var item = reservationsDatabase.UpdateReservation(model);

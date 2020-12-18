@@ -28,7 +28,7 @@ namespace BackEnd.DAL
             return list;
         }
 
-        public bool CreateReservation(Reservation reservation)
+        public Reservation CreateReservation(Reservation reservation)
         {
             var created = _dbContext.Reservations.Add(reservation);
             if (created != null)
@@ -36,17 +36,17 @@ namespace BackEnd.DAL
                 _dbContext.SaveChanges();
             }
 
-            return created != null;
+            return reservation;
         }
 
-        public bool UpdateReservation(Reservation reservation)
+        public Reservation UpdateReservation(Reservation reservation)
         {
             var updated = _dbContext.Reservations.Update(reservation);
             if (updated != null)
             {
                 _dbContext.SaveChanges();
             }
-            return updated != null;
+            return reservation;
         }
 
         public bool RemoveReservation(Reservation reservation)
