@@ -14,8 +14,7 @@
       <textarea v-model.trim="text"></textarea>
       <small
         >Rašydami komentarą, sutinkate su
-        <router-link :to="{ name: 'terms' }"> Sąlygomis </router-link>
-        .
+        <router-link :to="{ name: 'terms' }"> Sąlygomis</router-link>.
       </small>
       <div class="flex justify-end">
         <Button
