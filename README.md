@@ -191,6 +191,7 @@ Reservation:
   "postId": 2,
   "status": "free"
   },
+
   - put: https://localhost:5001/api/reservation/
     obj for put: {
     "id": 1,
@@ -199,4 +200,25 @@ Reservation:
     "status": "free"
     }
   - delete: https://localhost:5001/api/reservation/
+    obj for delete: { "id": 5 }
+
+    Comments:
+
+- get: https://localhost:5001/api/comment/AllComments
+- post: https://localhost:5001/api/comment/
+  obj for post: {
+  "userId": 1,
+  "postId": 2,
+  "date": "2020-12-15 00:00:00.0000000",
+  "text": "neidomus komentaras"
+  },
+  - put: https://localhost:5001/api/comment/
+    obj for put: {
+    "id": 1,
+    "userId": 1,
+    "postId": 2,
+    "date": "2020-12-15 00:00:00.0000000",
+    "text": "neidomus komentaras"
+    }
+  - delete: https://localhost:5001/api/comment/
     obj for delete: { "id": 5 }

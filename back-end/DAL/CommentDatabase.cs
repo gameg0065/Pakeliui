@@ -28,7 +28,7 @@ namespace BackEnd.DAL
             return list;
         }
 
-        public bool CreateComment(Comment comment)
+        public Comment CreateComment(Comment comment)
         {
             var created = _dbContext.Comments.Add(comment);
             if (created != null)
@@ -36,17 +36,17 @@ namespace BackEnd.DAL
                 _dbContext.SaveChanges();
             }
 
-            return created != null;
+            return comment;
         }
 
-        public bool UpdateComment(Comment comment)
+        public Comment UpdateComment(Comment comment)
         {
             var updated = _dbContext.Comments.Update(comment);
             if (updated != null)
             {
                 _dbContext.SaveChanges();
             }
-            return updated != null;
+            return comment;
         }
 
         public bool RemoveComment(Comment comment)
