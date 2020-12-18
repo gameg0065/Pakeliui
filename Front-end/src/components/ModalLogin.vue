@@ -52,7 +52,7 @@
             </div>
           </div>
 
-          <div class="flex justify-between">
+          <!-- <div class="flex justify-between">
             <label class="checkbox"
               ><input type="checkbox" v-model="credentials.rememberMe" />
               Prisiminkite mane
@@ -62,7 +62,7 @@
                 Pamiršote slaptažodį?
               </a>
             </small>
-          </div>
+          </div> -->
 
           <div
             class="flex direction-column mt-50"
