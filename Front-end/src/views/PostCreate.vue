@@ -3,34 +3,62 @@
     <h2 class="page-title" v-if="isEditMode">Redaguoti skelbimą</h2>
     <h2 class="page-title" v-else>Įkelti skelbimą</h2>
 
-    <div class="line">
-      <label for="post-date">Kelionės data*</label>
-      <Datepicker
-        id="post-date"
-        v-model="post.date"
-        format="yyyy-MM-dd"
-        :monday-first="true"
-      />
+    <div class="flex align-end" :class="{ error: wipPost.date.error }">
+      <label for="post-date"> Kelionės data* </label>
+      <div class="flex direction-column grow">
+        <span>{{ wipPost.date.error }}</span>
+        <Datepicker
+          id="post-date"
+          v-model="wipPost.date.value"
+          format="yyyy-MM-dd"
+          :monday-first="true"
+          @selected="resetErrorFor('date')"
+        />
+      </div>
+    </div>
+
+    <div class="flex align-end" :class="{ error: wipPost.time.error }">
+      <label for="post-time"> Kelionės laikas* </label>
+      <div class="flex direction-column grow">
+        <span>{{ wipPost.time.error }}</span>
+        <input
+          type="text"
+          id="post-time"
+          v-model.trim="wipPost.time.value"
+          @keydown="resetErrorFor('time')"
+        />
+      </div>
+    </div>
+
+    <div class="flex align-end" :class="{ error: wipPost.travelFrom.error }">
+      <label for="post-from"> Iš miesto* </label>
+      <div class="flex direction-column grow">
+        <span>{{ wipPost.travelFrom.error }}</span>
+        <input
+          type="text"
+          id="post-from"
+          v-model.trim="wipPost.travelFrom.value"
+          @keydown="resetErrorFor('travelFrom')"
+        />
+      </div>
     </div>
 
     <div class="line">
-      <label for="post-time">Kelionės laikas*</label>
-      <input type="text" id="post-time" v-model="post.time" />
+      <label for="post-pickup">Paėmimo vieta</label>
+      <input type="text" id="post-pickup" v-model.trim="post.pickup" />
     </div>
 
-    <div class="line">
-      <label for="route-from">Iš miesto*</label>
-      <input type="text" id="route-from" v-model.trim="post.travelFrom" />
-    </div>
-
-    <div class="line">
-      <label for="route-pickup">Paėmimo vieta</label>
-      <input type="text" id="route-pickup" v-model.trim="post.pickup" />
-    </div>
-
-    <div class="line">
-      <label for="route-to">Į miestą*</label>
-      <input type="text" id="route-to" v-model.trim="post.travelTo" />
+    <div class="flex align-end" :class="{ error: wipPost.travelTo.error }">
+      <label for="post-to"> Į miestą* </label>
+      <div class="flex direction-column grow">
+        <span>{{ wipPost.travelTo.error }}</span>
+        <input
+          type="text"
+          id="post-to"
+          v-model.trim="wipPost.travelTo.value"
+          @keydown="resetErrorFor('travelTo')"
+        />
+      </div>
     </div>
 
     <div class="line">
@@ -38,13 +66,17 @@
       <input type="text" id="route-dropoff" v-model.trim="post.dropoff" />
     </div>
 
-    <div class="line">
-      <label for="post-seetCount">Galimas keleivių skaičius*</label>
-      <input
-        type="number"
-        id="post-seetCount"
-        v-model.number="post.seetCount"
-      />
+    <div class="flex align-end" :class="{ error: wipPost.seetCount.error }">
+      <label for="post-seetCount"> Galimas keleivių skaičius* </label>
+      <div class="flex direction-column grow">
+        <span>{{ wipPost.seetCount.error }}</span>
+        <input
+          type="number"
+          id="post-seetCount"
+          v-model.trim="wipPost.seetCount.value"
+          @keydown="resetErrorFor('seetCount')"
+        />
+      </div>
     </div>
 
     <div class="line">
@@ -87,6 +119,7 @@ export default {
   data() {
     return {
       post: {},
+      wipPost: this.resetToDefaults(),
       isEditMode: {
         type: Boolean,
         default: false,
@@ -107,11 +140,20 @@ export default {
         });
       }
     }
+
+    // Copy `post` values to `wipPost`
+    Object.keys(this.wipPost).forEach((key) => {
+      this.wipPost[key].value = this.post[key] || '';
+    });
   },
   methods: {
+    resetErrorFor(key) {
+      this.wipPost[key].error = '';
+    },
     submit() {
       const post = this.post;
       const user = this.user;
+      const wipPost = this.wipPost;
       const redirectToUserHistory = (user, post) => {
         this.$store.dispatch('updateUser', user).then(() => {
           post = {};
@@ -122,32 +164,83 @@ export default {
         });
       };
 
-      if (this.isEditMode) {
-        Service.putPost(post)
-          .then((response) => {
-            redirectToUserHistory(user, post);
-          })
-          .catch((error) => {
-            console.log('Could not put post', error);
-          });
-      } else {
-        post.userId = user.userId;
+      wipPost.date.error = !wipPost.date.value ? 'Įveskite kelionė datą' : '';
+      post.date = wipPost.date.value;
 
-        Service.postPost(post)
-          .then((response) => {
-            if (!user.posts) {
-              user.posts = [];
-            }
+      wipPost.time.error = !wipPost.time.value ? 'Įveskite kelionė laiką' : '';
+      post.time = wipPost.time.value;
 
-            post.id = response.data.id;
-            user.posts.push(post);
+      wipPost.travelFrom.error = !wipPost.travelFrom.value
+        ? 'Įveskite maršruto pradžią'
+        : '';
+      post.travelFrom = wipPost.travelFrom.value;
 
-            redirectToUserHistory(user, post);
-          })
-          .catch((error) => {
-            console.log('Could not create post', error);
-          });
+      wipPost.travelTo.error = !wipPost.travelTo.value
+        ? 'Įveskite maršruto pabaigą'
+        : '';
+      post.travelTo = wipPost.travelTo.value;
+
+      wipPost.seetCount.error = !wipPost.seetCount.value
+        ? 'Įveskite galimą keleivių skaičių'
+        : '';
+      post.seetCount = wipPost.seetCount.value;
+
+      const formHasErrors = Object.keys(wipPost).some((key) => {
+        return wipPost[key].error !== '';
+      });
+
+      if (!formHasErrors) {
+        if (this.isEditMode) {
+          Service.putPost(post)
+            .then((response) => {
+              redirectToUserHistory(user, post);
+            })
+            .catch((error) => {
+              console.log('Could not put post', error);
+            });
+        } else {
+          post.userId = user.userId;
+
+          Service.postPost(post)
+            .then((response) => {
+              if (!user.posts) {
+                user.posts = [];
+              }
+
+              post.id = response.data.id;
+              user.posts.push(post);
+
+              redirectToUserHistory(user, post);
+            })
+            .catch((error) => {
+              console.log('Could not create post', error);
+            });
+        }
       }
+    },
+    resetToDefaults() {
+      return {
+        date: {
+          value: '',
+          error: '',
+        },
+        time: {
+          value: '',
+          error: '',
+        },
+        travelFrom: {
+          value: '',
+          error: '',
+        },
+        travelTo: {
+          value: '',
+          error: '',
+        },
+        seetCount: {
+          value: '',
+          error: '',
+        },
+      };
     },
   },
 };
