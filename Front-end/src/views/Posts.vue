@@ -1,6 +1,14 @@
 <template>
   <div class="posts align-stretch">
     <h2 class="page-title">Skelbimai</h2>
+    <label>
+      <input
+        type="checkbox"
+        v-model="hideExpiredPosts"
+        v-on:change="loadPosts"
+      />
+      Rodyti tik galiojančius skelbimus
+    </label>
     <div class="posts-container flex">
       <PostFilter @on-post-filter-changed="onPostFilterChanged" class="mr-20" />
       <p v-if="isLoading">Kraunam, kraunam malkas ...</p>
@@ -28,18 +36,34 @@ export default {
     return {
       posts: [],
       isLoading: false,
+      hideExpiredPosts: true,
     };
   },
   async created() {
-    this.posts = await this.getAllPosts();
+    this.loadPosts();
   },
   methods: {
+    async loadPosts() {
+      this.posts = await this.getAllPosts();
+    },
     getAllPosts() {
+      this.posts = [];
       this.isLoading = true;
+
+      const now = new Date();
       return Service.getAllPosts()
         .then((response) => {
           this.isLoading = false;
-          return response.data;
+
+          const posts = response.data;
+          if (this.hideExpiredPosts) {
+            return posts.filter((post) => {
+              const postDate = new Date(post.date);
+              return postDate.getTime() >= now.getTime();
+            });
+          } else {
+            return posts;
+          }
         })
         .catch((error) => {
           this.isLoading = false;
