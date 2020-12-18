@@ -137,16 +137,54 @@ export default {
         });
     },
     reserve() {
+      if (!this.post.passengers) {
+        this.post.passengers = [];
+      }
+
+      let reservation = this.post.passengers.find((passenger) => {
+        return passenger.passengerId === this.user.userId;
+      });
+
+      if (reservation) {
+        let message;
+        const status = reservation.status;
+
+        if (status === 'PENDING') {
+          message =
+            'Jūs jau rezervavote šią kelionę. Palaukite kol vairuotojas ją patvirtins.';
+        } else if (status === 'TAKEN') {
+          message = 'Jūs jau dalyvaujate šioje kelionėje';
+        }
+
+        this.showMessage(message, 'Na, ką padarysi ¯\\_(ツ)_/¯');
+      } else {
+        reservation = {
+          passengerId: this.user.userId,
+          postId: this.post.id,
+          status: 'PENDING',
+        };
+
+        Service.postReservation(reservation)
+          .then((response) => {
+            if (response.status === 200) {
+              this.showMessage('Rezervacijos užklausa išsiųsta vairuotojui');
+              this.loadPost();
+            }
+          })
+          .catch((error) => {
+            console.log('Could not get all reservations', error);
+          });
+      }
+    },
+    showMessage(text, buttonTitle) {
       const modal = this.$modal;
-      modal.show('modal-messaging', {
+      modal.show('modal-notification', {
         title: 'Kelionės rezervacija',
-        text:
-          'Žinutė apie Jūsų rezervaciją bus išsiųsta vairuotojui, kai paspausite mygtuką „REZERVUOTI“. Žemiau esančiame laukelyje palikite žinutę vairuotojui.',
+        text: text,
         button: {
-          title: 'rezervuoti',
+          title: buttonTitle || 'OK',
           action(data) {
-            alert('TODO');
-            modal.hide('modal-messaging');
+            modal.hide('modal-notification');
           },
         },
       });

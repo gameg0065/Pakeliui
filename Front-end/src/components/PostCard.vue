@@ -57,19 +57,7 @@ export default {
   },
   methods: {
     cancelReservation() {
-      const modal = this.$modal;
-      modal.show('modal-messaging', {
-        title: 'Rezervacijos atšaukimas',
-        text:
-          'Ar tikrai norite atšaukti rezervaciją? Mes apie tai informuosime vairuotoją. Žemiau esančiame laukelyje palikite žinutę vairuotojui.',
-        button: {
-          title: 'atšaukti rezervaciją',
-          action(data) {
-            alert('TODO');
-            modal.hide('modal-messaging');
-          },
-        },
-      });
+      this.$emit('on-cancel-reservation', this.post);
     },
     hasExpired() {
       const now = new Date();

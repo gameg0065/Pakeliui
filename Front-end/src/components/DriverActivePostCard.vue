@@ -1,6 +1,5 @@
 <template>
   <div class="card shadow flex direction-column">
-    TODO
     <router-link :to="{ name: 'post', params: { id: post.id } }">
       <h4 class="text-color-primary mb-10">
         {{ post.travelFrom + ' - ' + post.travelTo }}
@@ -44,7 +43,7 @@
 
     <div class="flex align-baseline">
       <small>Patvirtinti keleiviai</small>
-      <div v-for="user in getApprovedPassengers('TAKEN')" :key="user.userId">
+      <div v-for="user in takenPassengers" :key="user.userId">
         <router-link :to="{ name: 'user', params: { id: user.userId } }">
           <Avatar :path="user.picturePath" />
         </router-link>
@@ -53,7 +52,7 @@
 
     <div class="flex align-baseline">
       <small>Keleiviai, laukiantys patvirtinimo</small>
-      <div v-for="user in getApprovedPassengers('PENDING')" :key="user.userId">
+      <div v-for="user in pendingPassengers" :key="user.userId">
         <router-link :to="{ name: 'user', params: { id: user.userId } }">
           <Avatar :path="user.picturePath" />
         </router-link>
@@ -62,8 +61,15 @@
 
     <div class="flex justify-end mt-50">
       <Button
-        text="ištrinti"
+        text="ištrinti skelbimą"
         :click="deletePost"
+        :isOutlined="true"
+        :isSecondary="true"
+        class="mr-20"
+      />
+      <Button
+        text="atšaukti visus keleivius"
+        :click="deleteAllReservations"
         :isOutlined="true"
         :isSecondary="true"
         class="mr-20"
@@ -82,7 +88,6 @@ import Button from '@/components/Button.vue';
 
 import DateFormat from '@/assets/DateFormat.js';
 import Service from '@/services/Service';
-// import UserService from '@/services/UserService.js';
 
 export default {
   name: 'DriverActivePostCard',
@@ -91,8 +96,15 @@ export default {
     Avatar,
     Button,
   },
+  data() {
+    return {
+      pendingPassengers: [],
+      takenPassengers: [],
+    };
+  },
   created() {
     this.DateFormat = DateFormat;
+    this.sortPassengers();
   },
   computed: {
     user() {
@@ -100,6 +112,24 @@ export default {
     },
   },
   methods: {
+    deleteAllReservations() {
+      return Service.getPostById(this.post.id)
+        .then((response) => {
+          if (response.status === 200) {
+            const reservations = response.data.passengers;
+            if (reservations) {
+              reservations.forEach((reservation) => {
+                Service.deleteReservation(reservation).catch((error) => {
+                  console.log('Could not delete reservatins', error);
+                });
+              });
+            }
+          }
+        })
+        .catch((error) => {
+          console.log('Could not get post by ID', error);
+        });
+    },
     deletePost() {
       this.$modal.show('modal-notification', {
         title: 'Patvirtinimas',
@@ -111,31 +141,51 @@ export default {
       });
     },
     emitPostDeletion() {
-      Service.deletePost(this.post)
+      this.deleteAllReservations().then(() => {
+        Service.deletePost(this.post)
+          .then((response) => {
+            this.$emit('on-post-delete', this.post);
+            this.$modal.hide('modal-notification');
+          })
+          .catch((error) => {
+            console.log('Could not delete post', error);
+          });
+      });
+    },
+    pushPassengers(userId, array) {
+      Service.getUserById(userId)
         .then((response) => {
-          this.$emit('on-post-delete', this.post);
-          this.$modal.hide('modal-notification');
+          if (response.status === 200) {
+            array.push(response.data);
+          }
         })
         .catch((error) => {
-          console.log('Could not delete post', error);
+          console.log('Could not get all comments', error);
         });
     },
-    getApprovedPassengers(status) {
-      const passengers = this.post.passengers;
-      const users = [];
+    sortPassengers() {
+      Service.getPostById(this.post.id)
+        .then((response) => {
+          if (response.status === 200) {
+            const passengers = response.data.passengers;
+            if (!passengers) {
+              return;
+            }
 
-      if (passengers) {
-        passengers.forEach((passenger) => {
-          if (passenger.status === status) {
-            // TODO
-            // Need Users.getUserById() endpoint:
-            // const user = UserService.getUser(passenger.id);
-            // users.push(user);
+            passengers.forEach((passenger) => {
+              let array;
+              if (passenger.status === 'PENDING') {
+                array = this.pendingPassengers;
+              } else if (passenger.status === 'TAKEN') {
+                array = this.takenPassengers;
+              }
+              this.pushPassengers(passenger.passengerId, array);
+            });
           }
+        })
+        .catch((error) => {
+          console.log('Could not get post by ID', error);
         });
-      }
-
-      return users;
     },
   },
 };

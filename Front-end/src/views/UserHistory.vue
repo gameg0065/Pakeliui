@@ -8,6 +8,7 @@
           :key="post.id"
           :post="post"
           :isPending="true"
+          @on-cancel-reservation="onCancelReservation"
         />
       </div>
 
@@ -65,27 +66,54 @@ export default {
     };
   },
   created() {
-    const nonPendingTrips = this.nonPendingTrips;
-    const pendingTrips = this.pendingTrips;
-    const userId = this.user.userId;
+    this.loadTrips();
+  },
+  methods: {
+    loadTrips() {
+      this.nonPendingTrips = [];
+      this.pendingTrips = [];
 
-    Service.getPostsByPassengerId(userId)
-      .then((response) => {
-        const posts = response.data;
-        posts.forEach((post) => {
-          const passenger = post.passengers.find(
-            (passenger) => passenger.passengerId === userId
-          );
-          if (passenger.status === 'PENDING') {
-            pendingTrips.push(post);
-          } else {
-            nonPendingTrips.push(post);
-          }
+      const nonPendingTrips = this.nonPendingTrips;
+      const pendingTrips = this.pendingTrips;
+      const userId = this.user.userId;
+
+      Service.getPostsByPassengerId(userId)
+        .then((response) => {
+          const posts = response.data;
+          posts.forEach((post) => {
+            const passenger = post.passengers.find(
+              (passenger) => passenger.passengerId === userId
+            );
+            if (passenger.status === 'PENDING') {
+              pendingTrips.push(post);
+            } else {
+              nonPendingTrips.push(post);
+            }
+          });
+        })
+        .catch((error) => {
+          console.log('Could not get posts by passenger ID ' + userId, error);
         });
-      })
-      .catch((error) => {
-        console.log('Could not get posts by passenger ID ' + userId, error);
+    },
+    onCancelReservation(post) {
+      if (!post.passengers) {
+        return;
+      }
+
+      const reservation = post.passengers.find((passenger) => {
+        return passenger.passengerId === this.user.userId;
       });
+
+      if (reservation) {
+        Service.deleteReservation(reservation)
+          .then((response) => {
+            this.loadTrips();
+          })
+          .catch((error) => {
+            console.log('Could not remove reservation', error);
+          });
+      }
+    },
   },
 };
 </script>
