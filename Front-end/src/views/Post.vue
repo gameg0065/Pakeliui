@@ -75,7 +75,12 @@
     />
 
     <div class="bleed-width pb-50">
-      <Comments :comments="post.comments" :isActive="isActive" />
+      <Comments
+        :isActive="isActive"
+        :post="post"
+        :user="user"
+        @on-comment-submit="loadPost"
+      />
     </div>
   </div>
 </template>
@@ -92,8 +97,8 @@ export default {
   name: 'Post',
   props: ['id'],
   components: {
-    Comments,
     Button,
+    Comments,
     UserCardInPost,
   },
   data() {
@@ -115,20 +120,22 @@ export default {
       return this.user ? this.post.user.userId === this.user.userId : false;
     },
   },
-
   created() {
     this.DateFormat = DateFormat;
-
-    Service.getPostById(parseInt(this.id))
-      .then((response) => {
-        this.post = response.data;
-        this.isLoading = false;
-      })
-      .catch((error) => {
-        console.log('Could not get Post with ID ' + this.id, error);
-      });
+    this.loadPost();
   },
   methods: {
+    loadPost() {
+      this.isLoading = true;
+      Service.getPostById(parseInt(this.id))
+        .then((response) => {
+          this.post = response.data;
+          this.isLoading = false;
+        })
+        .catch((error) => {
+          console.log('Could not get Post with ID ' + this.id, error);
+        });
+    },
     reserve() {
       const modal = this.$modal;
       modal.show('modal-messaging', {
