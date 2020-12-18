@@ -40,17 +40,17 @@ namespace BackEnd.Controllers
             return items;
         }
         [HttpPost]
-        public bool Create(Comment model)
+        public Comment Create(Comment model)
         {
 
             var commentsDatabase = new CommentsDataBase(_dbContext);
-            var items = commentsDatabase.CreateComment(model);
+            var item = commentsDatabase.CreateComment(model);
 
-            return items;
+            return item;
         }
 
         [HttpPut]
-        public bool Update(Comment model)
+        public Comment Update(Comment model)
         {
             var commentsDatabase = new CommentsDataBase(_dbContext);
             var item = commentsDatabase.UpdateComment(model);
