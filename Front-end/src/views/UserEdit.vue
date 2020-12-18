@@ -74,9 +74,9 @@
             <option
               v-for="(option, index) in contactOptions"
               :key="index"
-              :value="option"
+              :value="option.value"
             >
-              {{ option }}
+              {{ option.text }}
             </option>
           </select>
         </div>
@@ -153,9 +153,9 @@
               <option
                 v-for="(option, index) in contactOptions"
                 :key="index"
-                :value="option"
+                :value="option.value"
               >
-                {{ option }}
+                {{ option.text }}
               </option>
             </select>
           </div>
@@ -204,9 +204,22 @@ export default {
   },
   data() {
     return {
-      contactOptions: ['email', 'facebookLink', 'phoneNumber'],
       userPhoto: null,
       carPhoto: null,
+      contactOptions: [
+        {
+          text: 'Elektroniniu paštu',
+          value: 'email',
+        },
+        {
+          text: 'Facebook nuoroda',
+          value: 'facebookLink',
+        },
+        {
+          text: 'Telefonu',
+          value: 'phoneNumber',
+        },
+      ],
     };
   },
   methods: {
