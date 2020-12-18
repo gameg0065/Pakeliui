@@ -43,11 +43,17 @@ export default {
 	deletePost(post) {
 		return apiClient.delete('/api/Post/', { data: { id: post.id } });
 	},
+	deleteReservation(reservation) {
+		return apiClient.delete('/api/Reservation/', { data: { id: reservation.id } });
+	},
 	getAllComments() {
 		return apiClient.get('api/Comment/AllComments');
 	},
 	getAllPosts() {
 		return apiClient.get('/api/Post/AllPosts/');
+	},
+	getAllReservations() {
+		return apiClient.get('api/Reservation/AllReservations');
 	},
 	getAllUsers() {
 		return apiClient.get('/api/User/AllUsers/');
@@ -70,12 +76,18 @@ export default {
 	postPost(post) {
 		return apiClient.post('/api/Post/', post);
 	},
+	postReservation(reservation) {
+		return apiClient.post('/api/Reservation/', reservation);
+	},
 	postUser(user) {
 		const userData = Utils.mergeDeep({}, defaults, user);
 		return apiClient.post('/api/User/', userData);
 	},
 	putPost(post) {
 		return apiClient.put('/api/Post/', post);
+	},
+	putReservation(reservation) {
+		return apiClient.put('/api/Reservation/', reservation);
 	},
 	putUser(user) {
 		const userData = Utils.mergeDeep({}, defaults, user);
