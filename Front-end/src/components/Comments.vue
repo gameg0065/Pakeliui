@@ -12,16 +12,11 @@
 
     <div v-if="isActive">
       <textarea v-model.trim="text"></textarea>
-
-      <div class="flex justify-between">
-        <label
-          ><input type="checkbox" v-model="receiveEmail" /> Informuoti mane
-          elektroniniu paštu apie komentarus
-        </label>
-
-        <small>Rašydami komentarą, sutinkate su Sąlygomis.</small>
-      </div>
-
+      <small
+        >Rašydami komentarą, sutinkate su
+        <router-link :to="{ name: 'terms' }"> Sąlygomis </router-link>
+        .
+      </small>
       <div class="flex justify-end">
         <Button
           text="skelbti komentarą"
@@ -53,7 +48,6 @@ export default {
   },
   data() {
     return {
-      receiveEmail: null,
       text: null,
     };
   },
