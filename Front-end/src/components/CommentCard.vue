@@ -4,7 +4,7 @@
       <Avatar :path="comentator.picturePath" class="mr-20" />
 
       <div class="flex direction-column grow">
-        <router-link :to="{ name: 'user', params: { id: comentator.userId } }">
+          <router-link :to="{ name: 'user', params: { id: comentator.userId || 0 } }">
           <p class="text-color-primary">{{ comentator.name }}</p>
         </router-link>
 
