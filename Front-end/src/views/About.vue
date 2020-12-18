@@ -21,25 +21,25 @@
       <div class="profile">
         <Avatar
           size="big"
+          :path="require('../assets/images/team/tomas-sinkunas.png')"
+        />
+        <p>Tomas Šinkūnas</p>
+      </div>
+
+      <div class="profile">
+        <Avatar
+          size="big"
+          :path="require('../assets/images/team/vadimas-kozemiakinas.png')"
+        />
+        <p>Vadimas Kožemiakinas</p>
+      </div>
+
+      <div class="profile">
+        <Avatar
+          size="big"
           :path="require('../assets/images/team/aiste-stonciute.png')"
         />
         <p>Aistė Stončiūtė</p>
-      </div>
-
-      <div class="profile">
-        <Avatar
-          size="big"
-          :path="require('../assets/images/team/benjaminas-racas.png')"
-        />
-        <p>Benjaminas Račas</p>
-      </div>
-
-      <div class="profile">
-        <Avatar
-          size="big"
-          :path="require('../assets/images/team/ignas-pangonis.png')"
-        />
-        <p>Ignas Pangonis</p>
       </div>
 
       <div class="profile">
@@ -53,18 +53,19 @@
       <div class="profile">
         <Avatar
           size="big"
-          :path="require('../assets/images/team/tomas-sinkunas.png')"
+          :path="require('../assets/images/team/ignas-pangonis.png')"
         />
-        <p>Tomas Šinkūnas</p>
+        <p>Ignas Pangonis</p>
       </div>
 
       <div class="profile">
         <Avatar
           size="big"
-          :path="require('../assets/images/team/vadimas-kozemiakinas.png')"
+          :path="require('../assets/images/team/benjaminas-racas.png')"
         />
-        <p>Vadimas Kožemiakinas</p>
+        <p>Benjaminas Račas</p>
       </div>
+
     </div>
   </div>
 </template>
