@@ -15,10 +15,11 @@
           <p>{{ DateFormat.getYearMonthDate(user.registrationDate) }}</p>
         </div>
 
-        <!-- <div class="flex align-baseline">
+        <div class="flex align-baseline">
           <small class="fixed-width">Kelionių skaičius</small>
-          <p>{{ user.trips.length }}</p>
-        </div> -->
+          <p>{{ userTrips.length }}</p>
+          <!-- <p>{{ user.trips.length }}</p> -->
+        </div>
 
         <!-- <div class="flex align-baseline">
           <small class="fixed-width">Nukeliauta</small>
@@ -164,7 +165,7 @@ export default {
   data() {
     return {
       user: {},
-      isViewingOwnProfile: Boolean,
+      userTrips: [],
     };
   },
   computed: {
@@ -172,25 +173,38 @@ export default {
       return this.$store.getters.getUser;
     },
   },
-  created() {
+  async created() {
     this.DateFormat = DateFormat;
 
     const userId = parseInt(this.id);
     if (this.currentUser.userId === userId) {
       this.user = this.currentUser;
-      this.isViewingOwnProfile = true;
     } else {
-      Service.getUserById(userId)
+      await Service.getUserById(userId)
         .then((response) => {
           this.user = response.data;
-          this.isViewingOwnProfile = false;
+          
+          console.log('in service')
         })
         .catch((error) => {
           console.log('Could not get user by ID', error);
         });
     }
+
+    this.countUserTrips(this.user);
   },
   methods: {
+    countUserTrips(user) {
+      Service.getPostsByPassengerId(user.userId)
+        .then((response) => {
+          if (response.status === 200) {
+            this.userTrips = response.data;
+          }
+        })
+        .catch((error) => {
+          console.log('Could not get posts by passenger ID', error);
+        });
+    },
     countDistance(trips) {
       return trips.reduce((accumulator, trip) => {
         const post = PostService.getPost(trip.id);
