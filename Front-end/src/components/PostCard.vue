@@ -23,8 +23,13 @@
     <div>
       <p v-if="hasExpired()" class="text-color-secondary">NEBEGALIOJANTIS</p>
 
-      <div v-if="isPending" class="flex direction-column align-end">
-        <p class="text-color-primary">LAUKIAMA PATVIRTINIMO</p>
+      <div v-if="reservation" class="flex direction-column align-end">
+        <p v-if="reservation.status === 'PENDING'" class="text-color-primary">
+          LAUKIAMA PATVIRTINIMO
+        </p>
+        <p v-if="reservation.status === 'TAKEN'" class="text-color-primary">
+          PATVIRTiNTA
+        </p>
         <Button
           text="Atšaukti rezervaciją"
           :click="cancelReservation"
@@ -41,23 +46,49 @@ import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
 
 import DateFormat from '@/assets/DateFormat.js';
+import Service from '@/services/Service';
 
 export default {
   name: 'PostCard',
   props: {
-    isPending: Boolean,
     post: Object,
   },
   components: {
     Avatar,
     Button,
   },
+  data() {
+    return {
+      reservation: {},
+    };
+  },
+  computed: {
+    user() {
+      return this.$store.getters.getUser;
+    },
+  },
   created() {
     this.DateFormat = DateFormat;
+
+    if (this.post.passengers) {
+      this.reservation = this.post.passengers.find((passenger) => {
+        return passenger.passengerId === this.user.userId;
+      });
+    }
   },
   methods: {
     cancelReservation() {
-      this.$emit('on-cancel-reservation', this.post);
+      if (this.reservation) {
+        Service.deleteReservation(this.reservation)
+          .then((response) => {
+            if (response.status === 200) {
+              this.$emit('on-cancel-reservation', this.post, this.reservation);
+            }
+          })
+          .catch((error) => {
+            console.log('Could not remove reservation', error);
+          });
+      }
     },
     hasExpired() {
       const now = new Date();

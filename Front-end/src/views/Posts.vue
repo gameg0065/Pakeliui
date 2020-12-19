@@ -14,7 +14,12 @@
       <p v-if="isLoading">Kraunam, kraunam malkas ...</p>
       <p v-if="!isLoading && posts.length === 0">Skelbimų nerasta ¯\_(ツ)_/¯</p>
       <div class="flex direction-column grow">
-        <PostCard v-for="post in posts" :key="post.id" :post="post" />
+        <PostCard
+          v-for="post in posts"
+          :key="post.id"
+          :post="post"
+          @on-cancel-reservation="onCancelReservation"
+        />
       </div>
     </div>
   </div>
@@ -96,6 +101,9 @@ export default {
         }
         return true;
       });
+    },
+    onCancelReservation(post, reservation) {
+      this.loadPosts();
     },
     stringsAreEqual(string1, string2) {
       string1 = string1 ? string1 : '';

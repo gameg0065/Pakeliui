@@ -2,12 +2,11 @@
   <div class="align-stretch">
     <div class="pb-50">
       <h2 class="page-title">Mano rezervacijos</h2>
-      <div v-if="pendingTrips && pendingTrips.length > 0">
+      <div v-if="futurePosts && futurePosts.length > 0">
         <PostCard
-          v-for="post in pendingTrips"
+          v-for="post in futurePosts"
           :key="post.id"
           :post="post"
-          :isPending="true"
           @on-cancel-reservation="onCancelReservation"
         />
       </div>
@@ -29,9 +28,9 @@
     </div>
     <div class="bleed-width">
       <h3 class="section-title">Rezervacijų istorija</h3>
-      <div v-if="nonPendingTrips && nonPendingTrips.length > 0">
+      <div v-if="expiredPosts && expiredPosts.length > 0">
         <FeedbackCard
-          v-for="post in nonPendingTrips"
+          v-for="post in expiredPosts"
           :key="post.id"
           :post="post"
         />
@@ -62,58 +61,40 @@ export default {
   },
   data() {
     return {
-      nonPendingTrips: [],
-      pendingTrips: [],
+      expiredPosts: [],
+      futurePosts: [],
     };
   },
   created() {
-    this.loadTrips();
+    this.loadPosts();
   },
   methods: {
-    loadTrips() {
-      this.nonPendingTrips = [];
-      this.pendingTrips = [];
+    loadPosts() {
+      this.expiredPosts = [];
+      this.futurePosts = [];
 
-      const nonPendingTrips = this.nonPendingTrips;
-      const pendingTrips = this.pendingTrips;
-      const userId = this.user.userId;
+      const now = new Date();
 
-      Service.getPostsByPassengerId(userId)
+      Service.getPostsByPassengerId(this.user.userId)
         .then((response) => {
-          const posts = response.data;
-          posts.forEach((post) => {
-            const passenger = post.passengers.find(
-              (passenger) => passenger.passengerId === userId
-            );
-            if (passenger.status === 'PENDING') {
-              pendingTrips.push(post);
-            } else {
-              nonPendingTrips.push(post);
-            }
-          });
+          if (response.status === 200) {
+            const posts = response.data;
+            posts.forEach((post) => {
+              const postDate = new Date(post.date);
+              if (postDate.getTime() >= now.getTime()) {
+                this.futurePosts.push(post);
+              } else {
+                this.expiredPosts.push(post);
+              }
+            });
+          }
         })
         .catch((error) => {
-          console.log('Could not get posts by passenger ID ' + userId, error);
+          console.log('Could not get posts by passenger ID', error);
         });
     },
-    onCancelReservation(post) {
-      if (!post.passengers) {
-        return;
-      }
-
-      const reservation = post.passengers.find((passenger) => {
-        return passenger.passengerId === this.user.userId;
-      });
-
-      if (reservation) {
-        Service.deleteReservation(reservation)
-          .then((response) => {
-            this.loadTrips();
-          })
-          .catch((error) => {
-            console.log('Could not remove reservation', error);
-          });
-      }
+    onCancelReservation(post, reservation) {
+      this.loadPosts();
     },
   },
 };
