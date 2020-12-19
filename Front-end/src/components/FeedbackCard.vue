@@ -19,7 +19,7 @@
       </div>
 
       <div v-if="passenger.status === 'TAKEN'">
-        <div v-if="post.feedback">
+        <!-- <div v-if="post.feedback">
           <Rating :rating="feedback.rating" />
         </div>
 
@@ -28,7 +28,7 @@
           text="rašyti atsiliepimą"
           :click="writeFeedback"
           :isOutlined="true"
-        />
+        /> -->
       </div>
       <p v-else class="text-color-secondary">
         {{ passenger.status }}
@@ -52,7 +52,7 @@ export default {
   props: ['post'],
   components: {
     Avatar,
-    Button,
+    // Button,
     // Rating,
   },
   computed: {
