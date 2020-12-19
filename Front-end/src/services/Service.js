@@ -49,6 +49,9 @@ export default {
 	getAllComments() {
 		return apiClient.get('api/Comment/AllComments');
 	},
+	getAllFeedbacks() {
+		return apiClient.get('api/Feedback/AllFeedbacks');
+	},
 	getAllPosts() {
 		return apiClient.get('/api/Post/AllPosts/');
 	},
@@ -72,6 +75,9 @@ export default {
 	},
 	postComment(comment) {
 		return apiClient.post('/api/Comment/', comment);
+	},
+	postFeedback(feedback) {
+		return apiClient.post('/api/Feedback/', feedback);
 	},
 	postPost(post) {
 		return apiClient.post('/api/Post/', post);
