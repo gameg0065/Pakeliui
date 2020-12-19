@@ -359,9 +359,23 @@ export default {
         ? 'Įveskite vardą ir pavardę'
         : '';
 
-      wipUser.birthDate.error = !wipUser.birthDate.value
-        ? 'Įveskite gimimo datą'
-        : '';
+      let birthDateError = '';
+      if (!wipUser.birthDate.value) {
+        birthDateError = 'Įveskite gimimo datą';
+      } else {
+        const userAge = DateFormat.getAge(wipUser.birthDate.value);
+        const minUserAge = 18;
+        if (userAge < 0) {
+          birthDateError = 'Vartotojai iš ateities yra draudžiami';
+        } else if (userAge < minUserAge) {
+          birthDateError =
+            'Tai kad tu dar snarglys. Palauk kol tau bus ' +
+            minUserAge +
+            ' metų';
+        }
+      }
+
+      wipUser.birthDate.error = birthDateError;
 
       this.validateContacts(user.contactMethod, wipUser);
 
@@ -369,9 +383,20 @@ export default {
         wipCar.model.error = !wipCar.model.value
           ? 'Įveskite automobilio modelį'
           : '';
-        wipCar.date.error = !wipCar.date.value
-          ? 'Įveskite automobilio pagaminimo datą'
-          : '';
+
+        let carDateError = '';
+        if (!wipCar.date.value) {
+          carDateError = 'Įveskite automobilio pagaminimo datą';
+        } else {
+          const carAge = DateFormat.getAge(wipCar.date.value);
+          const minCarAge = 10;
+          if (carAge < 0) {
+            carDateError = 'Automobiliai iš ateities yra draudžiami';
+          } else if (carAge > minCarAge) {
+            carDateError = 'Metalo laužas. Max ' + minCarAge + ' metų';
+          }
+        }
+        wipCar.date.error = carDateError;
 
         this.validateContacts(user.driverContactMethod, wipUser);
       }
