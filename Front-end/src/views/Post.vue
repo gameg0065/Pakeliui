@@ -59,7 +59,8 @@
         <p>{{ post.info }}</p>
       </div>
 
-      <img src="https://i.stack.imgur.com/yEshb.gif" alt="map" class="map"/>
+      <!-- <img src="https://i.stack.imgur.com/yEshb.gif" alt="map" class="map"/> -->
+      <Map v-bind="[post.route.from, post.route.to]" />
     </div>
 
 
@@ -81,6 +82,7 @@
 import Button from '@/components/Button.vue';
 import Comments from '@/components/Comments.vue';
 import UserCardInPost from '@/components/UserCardInPost.vue';
+import Map from '@/components/Map.vue';
 
 import PostService from '@/services/PostService.js';
 
@@ -91,6 +93,7 @@ export default {
     Comments,
     Button,
     UserCardInPost,
+    Map,
   },
   data() {
     return {
