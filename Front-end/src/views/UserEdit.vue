@@ -28,6 +28,7 @@
               type="text"
               id="user-name"
               v-model.trim="wipUser.name.value"
+              @keydown="resetUserErrorFor('name')"
             />
           </div>
         </div>
@@ -41,6 +42,7 @@
               v-model="wipUser.birthDate.value"
               format="yyyy-MM-dd"
               :monday-first="true"
+              @selected="resetUserErrorFor('birthDate')"
             />
           </div>
         </div>
@@ -61,6 +63,7 @@
               type="text"
               id="contacts-phone"
               v-model.trim="wipUser.phoneNumber.value"
+              @keydown="resetUserErrorFor('phoneNumber')"
             />
           </div>
         </div>
@@ -86,6 +89,7 @@
               type="text"
               id="contacts-facebook"
               v-model.trim="wipUser.facebookLink.value"
+              @keydown="resetUserErrorFor('facebookLink')"
             />
           </div>
         </div>
@@ -162,6 +166,7 @@
                 type="text"
                 id="car-model"
                 v-model.trim="wipCar.model.value"
+                @keydown="resetCarErrorFor('model')"
               />
             </div>
           </div>
@@ -175,6 +180,7 @@
                 v-model="wipCar.date.value"
                 format="yyyy-MM-dd"
                 :monday-first="true"
+                @selected="resetCarErrorFor('date')"
               />
             </div>
           </div>
@@ -485,6 +491,12 @@ export default {
           error: '',
         },
       };
+    },
+    resetCarErrorFor(key) {
+      this.wipCar[key].error = '';
+    },
+    resetUserErrorFor(key) {
+      this.wipUser[key].error = '';
     },
   },
 };
