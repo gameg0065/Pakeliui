@@ -15,11 +15,12 @@
       <div v-else class="flex direction-column align-center">
         <p>
           Jūs neturite rezervuotų kelionių. Rezervuokite vieną peržiūrėdami
-          skelbimus
+          skelbimus.
         </p>
         <router-link :to="{ name: 'posts' }">
           <Button
             text="skelbimai"
+            class="mt-20"
             :isSecondary="true"
             :isLarge="true"
           />

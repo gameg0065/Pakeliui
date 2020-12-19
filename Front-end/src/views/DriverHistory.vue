@@ -10,10 +10,17 @@
           :post="post"
         />
       </div>
-      <div v-else>
-        <p>Jūs neturite aktyvių skelbimų. Įkelkite vieną dabar!</p>
+      <div v-else class="flex direction-column align-center">
+        <p>
+          Jūs neturite aktyvių skelbimų. Įkelkite vieną dabar!
+        </p>
         <router-link :to="{ name: 'post-create' }">
-          <Button text="įkelti skelbimą" :isSecondary="true" :isLarge="true" />
+          <Button
+            text="įkelti skelbimą"
+            class="mt-20"
+            :isSecondary="true"
+            :isLarge="true"
+          />
         </router-link>
       </div>
     </div>
@@ -35,6 +42,7 @@
 </template>
 
 <script>
+import Button from '@/components/Button.vue';
 import DriverActivePostCard from '@/components/DriverActivePostCard.vue';
 import DriverExpiredPostCard from '@/components/DriverExpiredPostCard.vue';
 
@@ -43,6 +51,7 @@ import Service from '@/services/Service';
 export default {
   name: 'DriverHistory',
   components: {
+    Button,
     DriverActivePostCard,
     DriverExpiredPostCard,
   },
