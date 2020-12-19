@@ -4,11 +4,15 @@
       <Avatar :path="comentator.picturePath" class="mr-20" />
 
       <div class="flex direction-column grow">
-          <router-link :to="{ name: 'user', params: { id: comentator.userId || 0 } }">
+        <router-link
+          :to="{ name: 'user', params: { id: comentator.userId || 0 } }"
+        >
           <p class="text-color-primary">{{ comentator.name }}</p>
         </router-link>
 
-        <small>{{ DateFormat.getYearMonthDate(comment.date) }}</small>
+        <small>{{
+          DateFormat.getYearMonthDate(comment.date || comment.createDate)
+        }}</small>
       </div>
 
       <!-- <Rating :rating="comentator.rating" /> -->
@@ -43,8 +47,8 @@ export default {
   },
   created() {
     this.DateFormat = DateFormat;
-
-    Service.getUserById(this.comment.userId)
+    const userId = this.comment.userId || this.comment.senderId;
+    Service.getUserById(userId)
       .then((response) => {
         this.comentator = response.data;
       })

@@ -106,39 +106,27 @@
       </div>
     </div>
 
-    <!-- <div
-      v-if="
-        user.feedbacks &&
-        user.feedbacks.received &&
-        user.feedbacks.received.length > 0
-      "
-    >
+    <div v-if="userFeedbacks && userFeedbacks > 0">
       <h3 class="section-title">Atsiliepimai apie mane kaip keleivį</h3>
       <div class="pb-50">
         <CommentCard
-          v-for="feedback in getFeedbacks(user.feedbacks.received)"
+          v-for="feedback in userFeedbacks"
           :key="feedback.id"
           :comment="feedback"
         />
       </div>
     </div>
 
-    <div
-      v-if="
-        user.driver.feedbacks &&
-        user.driver.feedbacks.received &&
-        user.driver.feedbacks.received.length > 0
-      "
-    >
+    <div v-if="driverFeedbacks && driverFeedbacks.length > 0">
       <h3 class="section-title">Atsiliepimai apie mane kaip vairuotoją</h3>
       <div class="pb-50">
         <CommentCard
-          v-for="feedback in getFeedbacks(user.driver.feedbacks.received)"
+          v-for="feedback in driverFeedbacks"
           :key="feedback.id"
           :comment="feedback"
         />
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -158,13 +146,15 @@ export default {
   props: ['id'],
   components: {
     Avatar,
-    // CommentCard,
+    CommentCard,
     // Rating,
   },
   data() {
     return {
       user: {},
       userTrips: [],
+      userFeedbacks: [],
+      driverFeedbacks: [],
     };
   },
   computed: {
@@ -189,6 +179,7 @@ export default {
     }
 
     this.countUserTrips(this.user);
+    this.loadFeedbacks(this.user);
   },
   methods: {
     countUserTrips(user) {
@@ -200,6 +191,25 @@ export default {
         })
         .catch((error) => {
           console.log('Could not get posts by passenger ID', error);
+        });
+    },
+    loadFeedbacks(user) {
+      Service.getAllFeedbacks(user.userId)
+        .then((response) => {
+          if (response.status === 200) {
+            response.data.forEach((feedback) => {
+              if (feedback.receiverId === user.userId) {
+                if (feedback.receiverIsDriver) {
+                  this.driverFeedbacks.push(feedback);
+                } else {
+                  this.userFeedbacks.push(feedback);
+                }
+              }
+            });
+          }
+        })
+        .catch((error) => {
+          console.log('Could not get all feedbacks', error);
         });
     },
     countDistance(trips) {
