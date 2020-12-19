@@ -18,7 +18,6 @@
         <div class="flex align-baseline">
           <small class="fixed-width">Kelionių skaičius</small>
           <p>{{ userTrips.length }}</p>
-          <!-- <p>{{ user.trips.length }}</p> -->
         </div>
 
         <!-- <div class="flex align-baseline">
@@ -66,7 +65,7 @@
         <div>
           <div class="flex align-baseline">
             <small class="fixed-width">Pavėžėjimų skaičius</small>
-            <p>{{ user.posts ? user.posts.length : 0 }}</p>
+            <p>{{ user.posts.length }}</p>
           </div>
 
           <!-- <div class="flex align-baseline">
@@ -183,8 +182,6 @@ export default {
       await Service.getUserById(userId)
         .then((response) => {
           this.user = response.data;
-          
-          console.log('in service')
         })
         .catch((error) => {
           console.log('Could not get user by ID', error);
