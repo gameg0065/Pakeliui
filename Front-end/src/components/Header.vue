@@ -44,10 +44,6 @@
   </div>
 </template>
 
-<style lang="scss">
-@import '../assets/styles/header.scss';
-</style>
-
 <script>
 import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
@@ -65,3 +61,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import '../assets/styles/header.scss';
+</style>
