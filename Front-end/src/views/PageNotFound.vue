@@ -9,7 +9,7 @@
           :isSecondary="false"
           :isLarge="true"
           :isOutlined="true"
-          class="button"
+          class="mt-20"
         />
       </router-link>
     </div>
@@ -31,9 +31,5 @@ export default {
 .pageNotFound h1 {
   color: var(--color-secondary);
   font-size: 100px;
-}
-
-.pageNotFound .button {
-  margin: 20px;
 }
 </style>

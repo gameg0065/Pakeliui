@@ -14,13 +14,11 @@
       <p>Susisiekite su manimi: {{ getContactInfo() }}</p>
     </div>
 
-    <!-- <Rating :rating="user.driver.rating" /> -->
   </div>
 </template>
 
 <script>
 import Avatar from '@/components/Avatar.vue';
-// import Rating from '@/components/Rating.vue';
 
 import Service from '@/services/Service';
 
@@ -29,7 +27,6 @@ export default {
   props: ['post'],
   components: {
     Avatar,
-    // Rating,
   },
   data() {
     return {

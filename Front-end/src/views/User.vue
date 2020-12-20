@@ -22,12 +22,12 @@
 
         <!-- <div class="flex align-baseline">
           <small class="fixed-width">Nukeliauta</small>
-          <p>{{ countDistance(this.user.trips) + ' km' }}</p>
+          <p> TODO ' km' </p>
         </div> -->
 
         <!-- <div class="flex align-baseline">
           <small class="fixed-width">Įvertinimas</small>
-          <Rating :rating="user.rating" />
+          <Rating TODO />
         </div> -->
 
         <div class="flex align-baseline">
@@ -70,7 +70,7 @@
 
           <!-- <div class="flex align-baseline">
             <small class="fixed-width">Nukeliauta</small>
-            <p>{{ countDistance(this.user.driver.posts) + ' km' }}</p>
+            <p> TODO + ' km' </p>
           </div> -->
 
           <div class="flex align-baseline">
@@ -80,7 +80,7 @@
 
           <!-- <div class="flex align-baseline">
             <small class="fixed-width">Vairuotojo įvertinimas</small>
-            <Rating :rating="user.driver.rating" />
+            <Rating TODO />
           </div> -->
 
           <div class="flex align-baseline">
@@ -133,12 +133,8 @@
 <script>
 import Avatar from '@/components/Avatar.vue';
 import CommentCard from '@/components/CommentCard.vue';
-import Rating from '@/components/Rating.vue';
 
-import FeedbackService from '@/services/FeedbackService.js';
 import DateFormat from '@/assets/DateFormat.js';
-import PostService from '@/services/PostService.js';
-
 import Service from '@/services/Service';
 
 export default {
@@ -147,7 +143,6 @@ export default {
   components: {
     Avatar,
     CommentCard,
-    // Rating,
   },
   data() {
     return {
@@ -228,32 +223,6 @@ export default {
         .catch((error) => {
           console.log('Could not get posts by author ID', error);
         });
-    },
-    countDistance(trips) {
-      return trips.reduce((accumulator, trip) => {
-        const post = PostService.getPost(trip.id);
-        accumulator += post.distance;
-        return accumulator;
-      }, 0);
-    },
-    countDistanceAsDriver() {
-      return this.user.driver.posts.reduce((accumulator, trip) => {
-        const post = PostService.getPost(trip.id);
-        accumulator += post.distance;
-        return accumulator;
-      }, 0);
-    },
-    countPassangers() {
-      return this.user.driver.posts.reduce((accumulator, trip) => {
-        const post = PostService.getPost(trip.id);
-        accumulator += post.passengers.length;
-        return accumulator;
-      }, 0);
-    },
-    getFeedbacks(feedbacks) {
-      return feedbacks.map((feedback) =>
-        FeedbackService.getFeedback(feedback.id)
-      );
     },
   },
 };

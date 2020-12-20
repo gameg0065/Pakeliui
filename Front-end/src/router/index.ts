@@ -3,7 +3,6 @@ import VueRouter, { RouteConfig } from 'vue-router';
 
 import Home from '../views/Home.vue';
 import About from '../views/About.vue';
-import Contacts from '../views/Contacts.vue';
 import DriverHistory from '../views/DriverHistory.vue';
 import DriverRequests from '../views/DriverRequests.vue';
 import PageNotFound from '../views/PageNotFound.vue';
@@ -27,11 +26,6 @@ const routes: Array<RouteConfig> = [
 		path: '/about',
 		name: 'about',
 		component: About
-	},
-	{
-		path: '/contacts',
-		name: 'contacts',
-		component: Contacts
 	},
 	{
 		path: '/user/:id/driver/history',

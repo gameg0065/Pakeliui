@@ -14,8 +14,6 @@
           DateFormat.getYearMonthDate(comment.date || comment.createDate)
         }}</small>
       </div>
-
-      <!-- <Rating :rating="comentator.rating" /> -->
     </div>
 
     <p>{{ comment.text }}</p>
@@ -24,7 +22,6 @@
 
 <script>
 import Avatar from '@/components/Avatar.vue';
-// import Rating from '@/components/Rating.vue';
 
 import DateFormat from '@/assets/DateFormat.js';
 import Service from '@/services/Service';
@@ -38,7 +35,6 @@ export default {
   },
   components: {
     Avatar,
-    // Rating,
   },
   data() {
     return {

@@ -18,42 +18,24 @@
         >
       </div>
 
-      <div v-if="passenger.status === 'TAKEN'">
-        <!-- <div v-if="post.feedback">
-          <Rating :rating="feedback.rating" />
-        </div>
-
-        <Button
-          v-else
-          text="rašyti atsiliepimą"
-          :click="writeFeedback"
-          :isOutlined="true"
-        /> -->
-      </div>
-      <p v-else class="text-color-secondary">
+      <p v-if="passenger.status !== 'TAKEN'" class="text-color-secondary">
         {{ passenger.status }}
       </p>
     </div>
-
-    <!-- <p v-if="post.feedback" class="mt-10">{{ feedback.text }}</p> -->
   </div>
 </template>
 
 <script>
 import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
-// import Rating from '@/components/Rating.vue';
 
 import DateFormat from '@/assets/DateFormat.js';
-// import FeedbackService from '@/services/FeedbackService.js';
 
 export default {
   name: 'FeedbackCard',
   props: ['post'],
   components: {
     Avatar,
-    // Button,
-    // Rating,
   },
   computed: {
     user() {
@@ -73,15 +55,6 @@ export default {
     this.passenger = this.post.passengers.find(
       (passenger) => passenger.passengerId === userId
     );
-
-    // if (this.post.feedback) {
-    //   this.feedback = FeedbackService.getFeedback(this.post.feedback.id);
-    // }
-  },
-  methods: {
-    writeFeedback() {
-      alert('TODO');
-    },
   },
 };
 </script>
