@@ -64,6 +64,9 @@ export default {
 	getPostById(id) {
 		return apiClient.get('api/post/?id=' + id);
 	},
+	getPostsByAuthorId(id) {
+		return apiClient.get('/api/Post/GetByAuthorId/?id=' + id);
+	},
 	getPostsByPassengerId(id) {
 		return apiClient.get('/api/Post/GetPostsByPassengerId/?id=' + id);
 	},
