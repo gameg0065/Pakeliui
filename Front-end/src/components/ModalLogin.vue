@@ -52,18 +52,6 @@
             </div>
           </div>
 
-          <!-- <div class="flex justify-between">
-            <label class="checkbox"
-              ><input type="checkbox" v-model="credentials.rememberMe" />
-              Prisiminkite mane
-            </label>
-            <small>
-              <a href="#" @click.prevent="remindPassword">
-                Pamiršote slaptažodį?
-              </a>
-            </small>
-          </div> -->
-
           <div
             class="flex direction-column mt-50"
             :class="{ error: generalError }"
