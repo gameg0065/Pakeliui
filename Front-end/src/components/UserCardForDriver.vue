@@ -12,7 +12,6 @@
         <p>Susisiekite su manimi: {{ user[user.contactMethod] }}</p>
       </div>
 
-      <!-- <Rating :rating="user.rating" /> -->
     </div>
     <router-link :to="{ name: 'post', params: { id: post.id } }">
       <Button text="atidaryti skelbimą" :isOutlined="true" class="mt-10" />
@@ -23,7 +22,6 @@
 <script>
 import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
-import Rating from '@/components/Rating.vue';
 
 import Service from '@/services/Service';
 
@@ -33,7 +31,6 @@ export default {
   components: {
     Avatar,
     Button,
-    // Rating,
   },
   data() {
     return {
