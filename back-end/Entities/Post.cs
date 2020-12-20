@@ -18,6 +18,8 @@ namespace BackEnd.Models
         public string Date { get; set; }
         public string Time { get; set; }
         public string Info { get; set; }
+        public double Distance { get; set; }
+        public string IntermediateCities { get; set; }
         public string Dropoff { get; set; }
         public string TravelFrom { get; set; }
         public string TravelTo { get; set; }
