@@ -35,6 +35,7 @@ Posts:
 - get: https://localhost:5001/api/Post/AllPosts
 - getByPassengerId: https://localhost:5001/api/post/GetPostsByPassengerId?id=4
 - getById: https://localhost:5001/api/post/?id=2
+- getByAuthorId: https://localhost:5001/api/post/GetByAuthorId?id=1
 - post: https://localhost:5001/api/Post
 - obj for post : {
   "price": 100,

@@ -58,10 +58,13 @@ namespace BackEnd.Controllers
             var postsDatabase = new PostDataBase(_dbContext);
             var items = await postsDatabase.GetPostsByPassengerId(id);
 
-            if (items.Count < 1)
-            {
-                return NotFound();
-            }
+            return items;
+        }
+        [HttpGet("GetByAuthorId")]
+        public async Task<ActionResult<List<Post>>> GetByAuthorId(int id)
+        {
+            var postsDatabase = new PostDataBase(_dbContext);
+            var items = await postsDatabase.GetByAuthorId(id);
 
             return items;
         }

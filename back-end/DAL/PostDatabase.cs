@@ -39,6 +39,18 @@ namespace BackEnd.DAL
             list = result;
             return list;
         }
+        public async Task<List<Post>> GetByAuthorId(int id)
+        {
+            var list = new List<Post>();
+            var result = await _dbContext.Posts.Include(x => x.Comments).Include(x => x.Passengers).Include(x => x.User).Where(x => x.UserId == id).ToListAsync();
+            if (result.Count() <= 0)
+            {
+                return list;
+            }
+            list = result;
+            return list;
+        }
+
 
         public async Task<Post> GetPost(int id)
         {
