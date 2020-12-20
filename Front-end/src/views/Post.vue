@@ -48,6 +48,10 @@
           <p>{{ post.dropoff }}</p>
         </div>
         <div class="flex align-baseline">
+          <small class="fixed-width">Tarpiniai miestai</small>
+          <p>{{ post.intermediateCities }}</p>
+        </div>
+        <div class="flex align-baseline">
           <small class="fixed-width">Galimas keleivių skaičius</small>
           <p>{{ post.seetCount }}</p>
         </div>
@@ -57,7 +61,7 @@
       </div> -->
         <div class="flex align-baseline">
           <small class="fixed-width">Kelionės kaina</small>
-          <p>{{ post.price }}</p>
+          <p>{{ post.price }}€</p>
         </div>
         <div class="flex align-baseline">
           <small class="fixed-width">Papildoma informacija</small>
