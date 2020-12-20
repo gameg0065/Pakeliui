@@ -64,7 +64,7 @@
           <p>{{ post.info }}</p>
         </div>
       </div>
-      <Map v-if="!isLoading" :cities="[post.travelFrom, post.travelTo]" class="mb-10"/>
+      <Map v-if="!isLoading" :cities="cities" class="mb-10" />
     </div>
 
     <Button
@@ -106,6 +106,7 @@ export default {
   },
   data() {
     return {
+      cities: [],
       isLoading: true,
       post: {},
     };
@@ -133,11 +134,27 @@ export default {
       Service.getPostById(parseInt(this.id))
         .then((response) => {
           this.post = response.data;
+        })
+        .then(() => {
+          this.parseCities();
           this.isLoading = false;
         })
         .catch((error) => {
           console.log('Could not get Post with ID ' + this.id, error);
         });
+    },
+    parseCities() {
+      const post = this.post;
+      this.cities = [post.travelFrom];
+      
+      const intermediateCities = post.intermediateCities;
+      if (intermediateCities) {
+        const citiesArray = intermediateCities.split(',').map((item) => {
+          return item.trim();
+        });
+        this.cities = this.cities.concat(citiesArray);
+      }
+      this.cities.push(post.travelTo);
     },
     reserve() {
       if (!this.post.passengers) {
