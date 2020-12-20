@@ -2,10 +2,6 @@
   <div class="card shadow flex">
     <div class="flex direction-column align-center mr-20">
       <Avatar :path="post.user.picturePath" />
-      <!-- <div class="flex align-center pt-10">
-        <img src="../assets/icons/star.svg" alt="star" class="mr-10"/>
-        <small>{{ driver.driver.rating }} / 5</small>
-      </div> -->
     </div>
     <div class="flex direction-column grow">
       <router-link :to="{ name: 'post', params: { id: post.id } }">
