@@ -223,7 +223,6 @@
 import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
 
-import axios from 'axios';
 import DateFormat from '@/assets/DateFormat.js';
 import Datepicker from 'vuejs-datepicker';
 import Service from '@/services/Service';
