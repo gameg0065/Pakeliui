@@ -2,7 +2,7 @@ import axios from 'axios';
 import Utils from '@/assets/Utils.js';
 
 const apiClient = axios.create({
-	baseURL: `https://localhost:5001`,
+	baseURL: `https://pakeliui.herokuapp.com`,
 	withCredentials: false,
 	headers: {
 		Accept: 'application/json',
