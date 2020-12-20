@@ -66,6 +66,11 @@
       <input type="text" id="route-dropoff" v-model.trim="post.dropoff" />
     </div>
 
+    <div class="line">
+      <label for="route-intermediate">Tarpiniai miestai</label>
+      <input type="text" id="route-intermediate" v-model.trim="post.intermediateCities" />
+    </div>
+
     <div class="flex align-end" :class="{ error: wipPost.seetCount.error }">
       <label for="post-seetCount"> Galimas keleivių skaičius* </label>
       <div class="flex direction-column grow">

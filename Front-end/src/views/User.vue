@@ -73,10 +73,10 @@
             <p> TODO + ' km' </p>
           </div> -->
 
-          <!-- <div class="flex align-baseline">
+          <div class="flex align-baseline">
             <small class="fixed-width">Pavėžėtų keleivių skaičius</small>
-            <p> TODO </p>
-          </div> -->
+            <p>{{ passengers.length }}</p>
+          </div>
 
           <!-- <div class="flex align-baseline">
             <small class="fixed-width">Vairuotojo įvertinimas</small>
@@ -150,6 +150,7 @@ export default {
       userTrips: [],
       userFeedbacks: [],
       driverFeedbacks: [],
+      passengers: [],
     };
   },
   computed: {
@@ -175,6 +176,7 @@ export default {
 
     this.countUserTrips(this.user);
     this.loadFeedbacks(this.user);
+    this.loadPassengerrs(this.user);
   },
   methods: {
     countUserTrips(user) {
@@ -205,6 +207,21 @@ export default {
         })
         .catch((error) => {
           console.log('Could not get all feedbacks', error);
+        });
+    },
+    loadPassengerrs(user) {
+      Service.getPostsByAuthorId(user.userId)
+        .then((response) => {
+          if (response.status === 200) {
+            response.data.forEach((post) => {
+              if (post.passengers) {
+                this.passengers = this.passengers.concat(post.passengers);
+              }
+            });
+          }
+        })
+        .catch((error) => {
+          console.log('Could not get posts by author ID', error);
         });
     },
   },

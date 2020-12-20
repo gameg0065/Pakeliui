@@ -21,49 +21,54 @@
       />
     </div>
 
-    <div class="info">
-      <div>
-        <small>Kelionės data </small>
-        <p>{{ DateFormat.getYearMonthDate(post.date) }}</p>
-      </div>
-      <div>
-        <small>Kelionės laikas </small>
-        <p>{{ DateFormat.getHoursMinutes(post.time) }}</p>
-      </div>
-      <div>
-        <small>Iš miesto </small>
-        <p>{{ post.travelFrom }}</p>
-      </div>
-      <div>
-        <small>Paėmimo vieta</small>
-        <p>{{ post.pickup }}</p>
-      </div>
-      <div>
-        <small>Į miestą</small>
-        <p>{{ post.travelTo }}</p>
-      </div>
-      <div>
-        <small>Pristatymo vieta</small>
-        <p>{{ post.dropoff }}</p>
-      </div>
-      <div>
-        <small>Galimas keleivių skaičius</small>
-        <p>{{ post.seetCount }}</p>
-      </div>
-      <!-- <div>
+    <div class="flex">
+      <div class="flex direction-column grow">
+        <div class="flex align-baseline">
+          <small class="fixed-width">Kelionės data</small>
+          <p>{{ DateFormat.getYearMonthDate(post.date) }}</p>
+        </div>
+        <div class="flex align-baseline">
+          <small class="fixed-width">Kelionės laikas</small>
+          <p>{{ DateFormat.getHoursMinutes(post.time) }}</p>
+        </div>
+        <div class="flex align-baseline">
+          <small class="fixed-width">Iš miesto</small>
+          <p>{{ post.travelFrom }}</p>
+        </div>
+        <div class="flex align-baseline">
+          <small class="fixed-width">Paėmimo vieta</small>
+          <p>{{ post.pickup }}</p>
+        </div>
+        <div class="flex align-baseline">
+          <small class="fixed-width">Į miestą</small>
+          <p>{{ post.travelTo }}</p>
+        </div>
+        <div class="flex align-baseline">
+          <small class="fixed-width">Pristatymo vieta</small>
+          <p>{{ post.dropoff }}</p>
+        </div>
+        <div class="flex align-baseline">
+          <small class="fixed-width">Tarpiniai miestai</small>
+          <p>{{ post.intermediateCities }}</p>
+        </div>
+        <div class="flex align-baseline">
+          <small class="fixed-width">Galimas keleivių skaičius</small>
+          <p>{{ post.seetCount }}</p>
+        </div>
+        <!-- <div>
         <small>Laisvų vietų skaičius</small>
         <p>TODO</p>
       </div> -->
-      <div>
-        <small>Kelionės kaina</small>
-        <p>{{ post.price }}€</p>
+        <div class="flex align-baseline">
+          <small class="fixed-width">Kelionės kaina</small>
+          <p>{{ post.price }}€</p>
+        </div>
+        <div class="flex align-baseline">
+          <small class="fixed-width">Papildoma informacija</small>
+          <p>{{ post.info }}</p>
+        </div>
       </div>
-      <div class="extra">
-        <small>Papildoma informacija</small>
-        <p>{{ post.info }}</p>
-      </div>
-
-      <img src="https://i.stack.imgur.com/yEshb.gif" alt="map" class="map" />
+      <Map v-if="!isLoading" :cities="cities" class="mb-10" />
     </div>
 
     <Button
@@ -88,6 +93,7 @@
 <script>
 import Button from '@/components/Button.vue';
 import Comments from '@/components/Comments.vue';
+import Map from '@/components/Map.vue';
 import UserCardInPost from '@/components/UserCardInPost.vue';
 
 import DateFormat from '@/assets/DateFormat.js';
@@ -99,10 +105,12 @@ export default {
   components: {
     Button,
     Comments,
+    Map,
     UserCardInPost,
   },
   data() {
     return {
+      cities: [],
       isLoading: true,
       post: {},
     };
@@ -130,11 +138,27 @@ export default {
       Service.getPostById(parseInt(this.id))
         .then((response) => {
           this.post = response.data;
+        })
+        .then(() => {
+          this.parseCities();
           this.isLoading = false;
         })
         .catch((error) => {
           console.log('Could not get Post with ID ' + this.id, error);
         });
+    },
+    parseCities() {
+      const post = this.post;
+      this.cities = [post.travelFrom];
+      
+      const intermediateCities = post.intermediateCities;
+      if (intermediateCities) {
+        const citiesArray = intermediateCities.split(',').map((item) => {
+          return item.trim();
+        });
+        this.cities = this.cities.concat(citiesArray);
+      }
+      this.cities.push(post.travelTo);
     },
     reserve() {
       if (!this.post.passengers) {
