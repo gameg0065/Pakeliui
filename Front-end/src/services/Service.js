@@ -64,8 +64,14 @@ export default {
 	getPostById(id) {
 		return apiClient.get('api/post/?id=' + id);
 	},
+	getPostsByAuthorId(id) {
+		return apiClient.get('/api/Post/GetByAuthorId/?id=' + id);
+	},
 	getPostsByPassengerId(id) {
 		return apiClient.get('/api/Post/GetPostsByPassengerId/?id=' + id);
+	},
+	getUrl(url) {
+		return axios.get(url);
 	},
 	getUserByEmailAndPass(email, password) {
 		return apiClient.get('/api/user/GetUserByEmailAndPass?email=' + email + '&password=' + password);
