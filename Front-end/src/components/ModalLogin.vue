@@ -30,7 +30,8 @@
                 type="email"
                 id="email"
                 ref="email"
-                v-model.trim="credentials.email.text"
+                v-model.trim="credentials.email.value"
+                @keydown="onEmailChange"
               />
             </div>
           </div>
@@ -45,12 +46,13 @@
               <input
                 type="password"
                 id="password"
-                v-model="credentials.password.text"
+                v-model="credentials.password.value"
+                @keydown="onPasswordChange"
               />
             </div>
           </div>
 
-          <div class="flex justify-between">
+          <!-- <div class="flex justify-between">
             <label class="checkbox"
               ><input type="checkbox" v-model="credentials.rememberMe" />
               Prisiminkite mane
@@ -60,7 +62,7 @@
                 Pamiršote slaptažodį?
               </a>
             </small>
-          </div>
+          </div> -->
 
           <div
             class="flex direction-column mt-50"
@@ -81,7 +83,8 @@
 
 <script>
 import Button from '@/components/Button.vue';
-import UserService from '@/services/UserService.js';
+
+import Service from '@/services/Service';
 import Utils from '@/assets/Utils.js';
 
 export default {
@@ -96,6 +99,23 @@ export default {
     };
   },
   methods: {
+    onEmailChange() {
+      this.resetEmailError();
+      this.resetGeneralError();
+    },
+    onPasswordChange() {
+      this.resetPasswordError();
+      this.resetGeneralError();
+    },
+    resetEmailError() {
+      this.credentials.email.error = '';
+    },
+    resetPasswordError() {
+      this.credentials.password.error = '';
+    },
+    resetGeneralError() {
+      this.generalError = '';
+    },
     hide() {
       this.$modal.hide('modal-login');
     },
@@ -114,41 +134,42 @@ export default {
     },
     submit() {
       const email = this.credentials.email;
-      if (!email.text) {
+      if (!email.value) {
         email.error = 'prašom įvesti elektroninį paštą';
-      } else if (!Utils.validateEmail(email.text)) {
+      } else if (!Utils.validateEmail(email.value)) {
         email.error = 'neteisinga forma';
       } else {
-        email.error = '';
+        this.resetEmailError();
       }
 
       const password = this.credentials.password;
-      if (!password.text) {
-        password.error = 'prašom įvesti slaptažodį';
-      } else {
-        password.error = '';
-      }
+      password.error = !password.value ? 'prašom įvesti slaptažodį' : '';
 
       if (!email.error && !password.error) {
-        const id = parseInt(email.text);
-        const user = UserService.getUser(id);
-        if (!user) {
-          this.generalError = 'toks vartotojas neegzistuoja';
-        } else {
-          this.$store.dispatch('login', user).then(() => {
-            this.hide();
+        Service.getUserByEmailAndPass(email.value, password.value)
+          .then((response) => {
+            if (response.status === 200) {
+              const user = response.data;
+              this.$store.dispatch('login', user).then(() => {
+                this.hide();
+              });
+            } else {
+              this.generalError = 'toks vartotojas neegzistuoja';
+            }
+          })
+          .catch((error) => {
+            console.log('Could not get user by email and password', error);
           });
-        }
       }
     },
     resetToDefaults() {
       return {
         email: {
-          text: '110@some.email',
+          value: '',
           error: '',
         },
         password: {
-          text: '',
+          value: '',
           error: '',
         },
         rememberMe: null,

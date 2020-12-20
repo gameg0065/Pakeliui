@@ -2,12 +2,16 @@
   <div class="post align-stretch">
     <div class="page-title flex align-baseline">
       <h2>Skelbimas</h2>
-      <h5 v-if="isActive" class="text-color-primary">Skelbimo būsena: aktyvus</h5>
-      <h5 v-else class="text-color-secondary">Skelbimo būsena: nebegaliojantis</h5>
+      <h5 v-if="isActive" class="text-color-primary">
+        Skelbimo būsena: aktyvus
+      </h5>
+      <h5 v-else class="text-color-secondary">
+        Skelbimo būsena: nebegaliojantis
+      </h5>
     </div>
 
     <div class="flex direction-column pb-50">
-      <UserCardInPost :post="post"/>
+      <UserCardInPost v-if="!isLoading" :post="post" />
       <Button
         text="rezervuoti"
         :click="reserve"
@@ -20,36 +24,36 @@
     <div class="info">
       <div>
         <small>Kelionės data </small>
-        <p>{{ post.date }}</p>
+        <p>{{ DateFormat.getYearMonthDate(post.date) }}</p>
       </div>
       <div>
         <small>Kelionės laikas </small>
-        <p>{{ post.time }}</p> 
+        <p>{{ DateFormat.getHoursMinutes(post.time) }}</p>
       </div>
       <div>
         <small>Iš miesto </small>
-        <p>{{ post.route.from }}</p>
+        <p>{{ post.travelFrom }}</p>
       </div>
       <div>
         <small>Paėmimo vieta</small>
-        <p>{{ post.route.pickup }}</p>
+        <p>{{ post.pickup }}</p>
       </div>
       <div>
         <small>Į miestą</small>
-        <p>{{ post.route.to }}</p>
+        <p>{{ post.travelTo }}</p>
       </div>
       <div>
         <small>Pristatymo vieta</small>
-        <p>{{ post.route.dropoff }}</p>
+        <p>{{ post.dropoff }}</p>
       </div>
       <div>
         <small>Galimas keleivių skaičius</small>
         <p>{{ post.seetCount }}</p>
       </div>
-      <div>
+      <!-- <div>
         <small>Laisvų vietų skaičius</small>
         <p>TODO</p>
-      </div>
+      </div> -->
       <div>
         <small>Kelionės kaina</small>
         <p>{{ post.price }}€</p>
@@ -59,9 +63,8 @@
         <p>{{ post.info }}</p>
       </div>
 
-      <img src="https://i.stack.imgur.com/yEshb.gif" alt="map" class="map"/>
+      <img src="https://i.stack.imgur.com/yEshb.gif" alt="map" class="map" />
     </div>
-
 
     <Button
       text="rezervuoti"
@@ -72,7 +75,12 @@
     />
 
     <div class="bleed-width pb-50">
-      <Comments :comments="post.comments" :isActive="isActive"/>
+      <Comments
+        :isActive="isActive"
+        :post="post"
+        :user="user"
+        @on-comment-submit="loadPost"
+      />
     </div>
   </div>
 </template>
@@ -82,50 +90,101 @@ import Button from '@/components/Button.vue';
 import Comments from '@/components/Comments.vue';
 import UserCardInPost from '@/components/UserCardInPost.vue';
 
-import PostService from '@/services/PostService.js';
+import DateFormat from '@/assets/DateFormat.js';
+import Service from '@/services/Service';
 
 export default {
   name: 'Post',
   props: ['id'],
   components: {
-    Comments,
     Button,
+    Comments,
     UserCardInPost,
   },
   data() {
     return {
-      isActive: Boolean,
-      post: Object,
+      isLoading: true,
+      post: {},
     };
   },
   computed: {
+    isActive() {
+      const now = new Date();
+      const postDate = new Date(this.post.date);
+      return postDate.getTime() >= now.getTime();
+    },
     user() {
       return this.$store.getters.getUser;
     },
     userIsAuthor() {
-      return this.user ? this.post.driver.id === this.user.id : false;
+      return this.user ? this.post.user.userId === this.user.userId : false;
     },
   },
   created() {
-    this.post = PostService.getPost(parseInt(this.id));
-
-    const now = new Date();
-    const postDate = new Date(this.post.date);
-
-    this.isActive = postDate.getTime() >= now.getTime();
+    this.DateFormat = DateFormat;
+    this.loadPost();
   },
   methods: {
+    loadPost() {
+      this.isLoading = true;
+      Service.getPostById(parseInt(this.id))
+        .then((response) => {
+          this.post = response.data;
+          this.isLoading = false;
+        })
+        .catch((error) => {
+          console.log('Could not get Post with ID ' + this.id, error);
+        });
+    },
     reserve() {
+      if (!this.post.passengers) {
+        this.post.passengers = [];
+      }
+
+      let reservation = this.post.passengers.find((passenger) => {
+        return passenger.passengerId === this.user.userId;
+      });
+
+      if (reservation) {
+        let message;
+        const status = reservation.status;
+
+        if (status === 'PENDING') {
+          message =
+            'Jūs jau rezervavote šią kelionę. Palaukite kol vairuotojas ją patvirtins.';
+        } else if (status === 'TAKEN') {
+          message = 'Jūs jau dalyvaujate šioje kelionėje';
+        }
+
+        this.showMessage(message, 'Na, ką padarysi ¯\\_(ツ)_/¯');
+      } else {
+        reservation = {
+          passengerId: this.user.userId,
+          postId: this.post.id,
+          status: 'PENDING',
+        };
+
+        Service.postReservation(reservation)
+          .then((response) => {
+            if (response.status === 200) {
+              this.showMessage('Rezervacijos užklausa išsiųsta vairuotojui');
+              this.loadPost();
+            }
+          })
+          .catch((error) => {
+            console.log('Could not get all reservations', error);
+          });
+      }
+    },
+    showMessage(text, buttonTitle) {
       const modal = this.$modal;
-      modal.show('modal-messaging', {
+      modal.show('modal-notification', {
         title: 'Kelionės rezervacija',
-        text:
-          'Žinutė apie Jūsų rezervaciją bus išsiųsta vairuotojui, kai paspausite mygtuką „REZERVUOTI“. Žemiau esančiame laukelyje palikite žinutę vairuotojui.',
+        text: text,
         button: {
-          title: 'rezervuoti',
+          title: buttonTitle || 'OK',
           action(data) {
-            alert('TODO');
-            modal.hide('modal-messaging');
+            modal.hide('modal-notification');
           },
         },
       });

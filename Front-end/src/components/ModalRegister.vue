@@ -30,7 +30,8 @@
                 type="text"
                 id="name"
                 ref="name"
-                v-model.trim="credentials.name.text"
+                v-model.trim="credentials.name.value"
+                @keydown="onNameChange"
               />
             </div>
           </div>
@@ -45,7 +46,8 @@
               <input
                 type="email"
                 id="email"
-                v-model.trim="credentials.email.text"
+                v-model.trim="credentials.email.value"
+                @keydown="onEmailChange"
               />
             </div>
           </div>
@@ -60,7 +62,8 @@
               <input
                 type="password"
                 id="nampassworde"
-                v-model.trim="credentials.password.text"
+                v-model.trim="credentials.password.value"
+                @keydown="onPasswordChange"
               />
             </div>
           </div>
@@ -93,7 +96,9 @@
 <script>
 import Button from '@/components/Button.vue';
 
+import Service from '@/services/Service';
 import Utils from '@/assets/Utils.js';
+
 export default {
   name: 'ModalRegister',
   components: {
@@ -106,6 +111,30 @@ export default {
     };
   },
   methods: {
+    onNameChange() {
+      this.resetNameError();
+      this.resetGeneralError();
+    },
+    onEmailChange() {
+      this.resetEmailError();
+      this.resetGeneralError();
+    },
+    onPasswordChange() {
+      this.resetPasswordError();
+      this.resetGeneralError();
+    },
+    resetNameError() {
+      this.credentials.name.error = '';
+    },
+    resetEmailError() {
+      this.credentials.email.error = '';
+    },
+    resetPasswordError() {
+      this.credentials.password.error = '';
+    },
+    resetGeneralError() {
+      this.generalError = '';
+    },
     hide() {
       this.$modal.hide('modal-register');
     },
@@ -121,38 +150,65 @@ export default {
     },
     submit() {
       const name = this.credentials.name;
-      if (!name.text) {
-        name.error = 'prašom įvesti vardą ir pavardę';
-      } else {
-        name.error = '';
-      }
+      name.error = !name.value ? 'prašom įvesti vardą ir pavardę' : '';
 
       const email = this.credentials.email;
-      if (!email.text) {
+      if (!email.value) {
         email.error = 'prašom įvesti elektroninį paštą';
-      } else if (!Utils.validateEmail(email.text)) {
+      } else if (!Utils.validateEmail(email.value)) {
         email.error = 'neteisinga forma';
       } else {
-        email.error = '';
+        this.resetEmailError();
       }
 
       const password = this.credentials.password;
-      if (!password.text) {
-        password.error = 'prašom įvesti slaptažodį';
-      } else {
-        password.error = '';
-      }
+      password.error = !password.value ? 'prašom įvesti slaptažodį' : '';
 
       const TOCEnabled = this.credentials.TOCEnabled;
-      if (!TOCEnabled.value) {
-        TOCEnabled.error = this.generalError = 'nesutinkate su sąlygom?';
-      } else {
-        TOCEnabled.error = this.generalError = '';
-      }
+      TOCEnabled.error = this.generalError = !TOCEnabled.value
+        ? 'nesutinkate su sąlygom?'
+        : '';
 
       if (!TOCEnabled.error && !name.error && !email.error && !password.error) {
-        alert('TODO');
-        this.hide();
+        const user = {
+          name: name.value,
+          email: email.value,
+          password: password.value,
+          registrationDate: new Date().toISOString().split('.')[0],
+        };
+
+        Service.getAllUsers()
+          .then((response) => {
+            const users = response.data;
+
+            const userExists = users.some((testUser) => {
+              return testUser.email.toLowerCase() === user.email.toLowerCase();
+            });
+
+            if (userExists) {
+              this.generalError = 'toks vartotojas jau egzistuoja';
+              return;
+            }
+
+            Service.postUser(user).then((response) => {
+              if (response.status === 200) {
+                const user = response.data;
+                this.$store.dispatch('login', user).then(() => {
+                  this.hide();
+                  this.resetToDefaults();
+                  this.$router.push({
+                    name: 'user-edit',
+                    params: { id: user.userId },
+                  });
+                });
+              } else {
+                this.generalError = 'nepavyko sukurti vartotojo';
+              }
+            });
+          })
+          .catch((error) => {
+            console.log('Could not create new user', error);
+          });
       }
     },
     resetToDefaults() {

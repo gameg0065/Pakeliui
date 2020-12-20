@@ -10,6 +10,7 @@
     <ProfileDropdown
       v-if="dropdownIsVisible"
       @on-profile-button-click="onProfileButtonClick"
+      style="z-index: 100"
     />
 
     <Header @on-profile-button-click="onProfileButtonClick" />

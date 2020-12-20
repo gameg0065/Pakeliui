@@ -2,7 +2,8 @@
   <div class="user align-stretch">
     <h2 class="page-title">Profilis</h2>
     <div class="flex pb-50">
-      <Avatar :path="user.photo" size="big" />
+      <Avatar :path="user.picturePath" size="big" />
+
       <div>
         <div class="flex align-baseline">
           <small class="fixed-width">Vardas, pavardė</small>
@@ -11,47 +12,47 @@
 
         <div class="flex align-baseline">
           <small class="fixed-width">Registracijos data</small>
-          <p>{{ user.registrationDate }}</p>
+          <p>{{ DateFormat.getYearMonthDate(user.registrationDate) }}</p>
         </div>
 
         <div class="flex align-baseline">
           <small class="fixed-width">Kelionių skaičius</small>
-          <p>{{ user.trips.length }}</p>
+          <p>{{ userTrips.length }}</p>
         </div>
 
-        <div class="flex align-baseline">
+        <!-- <div class="flex align-baseline">
           <small class="fixed-width">Nukeliauta</small>
           <p>{{ countDistance(this.user.trips) + ' km' }}</p>
-        </div>
+        </div> -->
 
-        <div class="flex align-baseline">
+        <!-- <div class="flex align-baseline">
           <small class="fixed-width">Įvertinimas</small>
           <Rating :rating="user.rating" />
-        </div>
+        </div> -->
 
         <div class="flex align-baseline">
           <small class="fixed-width">Apie mane</small>
-          <p>{{ user.about }}</p>
+          <p>{{ user.userInfo }}</p>
         </div>
 
         <div class="flex align-baseline">
           <small class="fixed-width">Miestas</small>
-          <p>{{ user.contacts.city }}</p>
+          <p>{{ user.city }}</p>
         </div>
 
         <div class="flex align-baseline">
           <small class="fixed-width">Elektroninis paštas</small>
-          <p>{{ user.contacts.email }}</p>
+          <p>{{ user.email }}</p>
         </div>
 
         <div class="flex align-baseline">
           <small class="fixed-width">Telefono numeris</small>
-          <p>{{ user.contacts.phone }}</p>
+          <p>{{ user.phoneNumber }}</p>
         </div>
 
         <div class="flex align-baseline">
           <small class="fixed-width">Facebook paskyra</small>
-          <p>{{ user.contacts.facebook }}</p>
+          <p>{{ user.facebookLink }}</p>
         </div>
       </div>
     </div>
@@ -59,79 +60,68 @@
     <div v-if="user.isDriver">
       <h3 class="section-title">Vairuotojo profilis</h3>
       <div class="flex pb-50">
-        <Avatar :path="user.driver.car.photo" size="big" />
+        <Avatar :path="user.car.picturePath" size="big" />
 
         <div>
           <div class="flex align-baseline">
             <small class="fixed-width">Pavėžėjimų skaičius</small>
-            <p>{{ user.driver.posts.length }}</p>
+            <p>{{ user.posts ? user.posts.length : 0 }}</p>
           </div>
 
-          <div class="flex align-baseline">
+          <!-- <div class="flex align-baseline">
             <small class="fixed-width">Nukeliauta</small>
             <p>{{ countDistance(this.user.driver.posts) + ' km' }}</p>
-          </div>
+          </div> -->
 
-          <div class="flex align-baseline">
+          <!-- <div class="flex align-baseline">
             <small class="fixed-width">Pavėžėtų keleivių skaičius</small>
             <p>{{ countPassangers() }}</p>
-          </div>
+          </div> -->
 
-          <div class="flex align-baseline">
+          <!-- <div class="flex align-baseline">
             <small class="fixed-width">Vairuotojo įvertinimas</small>
             <Rating :rating="user.driver.rating" />
-          </div>
+          </div> -->
 
           <div class="flex align-baseline">
             <small class="fixed-width">Transporto priemonė</small>
-            <p>{{ user.driver.car.model }}</p>
+            <p>{{ user.car.model }}</p>
           </div>
 
           <div class="flex align-baseline">
             <small class="fixed-width">Pagaminimo metai</small>
-            <p>{{ user.driver.car.date }}</p>
+            <p>{{ DateFormat.getYearMonthDate(user.car.date) }}</p>
           </div>
 
           <div class="flex align-baseline">
             <small class="fixed-width">Susisiekite su manimi</small>
-            <p>{{ user.contacts[user.driver.contactMethod] }}</p>
+            <p>{{ user[user.driverContactMethod] }}</p>
           </div>
 
           <div class="flex align-baseline">
             <small class="fixed-width">Vairavimo įgūdžiai</small>
-            <p>{{ user.driver.about }}</p>
+            <p>{{ user.aboutDriver }}</p>
           </div>
         </div>
       </div>
     </div>
 
-    <div
-      v-if="
-        user.feedbacks &&
-        user.feedbacks.received &&
-        user.feedbacks.received.length > 0
-      "
-    >
+    <div v-if="userFeedbacks && userFeedbacks > 0">
       <h3 class="section-title">Atsiliepimai apie mane kaip keleivį</h3>
       <div class="pb-50">
         <CommentCard
-          v-for="feedback in getFeedbacks(user.feedbacks.received)"
+          v-for="feedback in userFeedbacks"
           :key="feedback.id"
           :comment="feedback"
         />
       </div>
     </div>
-    <div
-      v-if="
-        user.driver.feedbacks &&
-        user.driver.feedbacks.received &&
-        user.driver.feedbacks.received.length > 0
-      "
-    >
+
+    <div v-if="driverFeedbacks && driverFeedbacks.length > 0">
       <h3 class="section-title">Atsiliepimai apie mane kaip vairuotoją</h3>
       <div class="pb-50">
         <CommentCard
-          v-for="feedback in getFeedbacks(user.driver.feedbacks.received)"
+          v-for="feedback in driverFeedbacks"
           :key="feedback.id"
           :comment="feedback"
         />
@@ -146,8 +136,10 @@ import CommentCard from '@/components/CommentCard.vue';
 import Rating from '@/components/Rating.vue';
 
 import FeedbackService from '@/services/FeedbackService.js';
+import DateFormat from '@/assets/DateFormat.js';
 import PostService from '@/services/PostService.js';
-import UserService from '@/services/UserService.js';
+
+import Service from '@/services/Service';
 
 export default {
   name: 'User',
@@ -155,16 +147,71 @@ export default {
   components: {
     Avatar,
     CommentCard,
-    Rating,
+    // Rating,
+  },
+  data() {
+    return {
+      user: {},
+      userTrips: [],
+      userFeedbacks: [],
+      driverFeedbacks: [],
+    };
   },
   computed: {
-    user() {
-      const currentUser = this.$store.getters.getUser;
-      const id = parseInt(this.id);
-      return currentUser.id === id ? currentUser : UserService.getUser(id);
+    currentUser() {
+      return this.$store.getters.getUser;
     },
   },
+  async created() {
+    this.DateFormat = DateFormat;
+
+    const userId = parseInt(this.id);
+    if (this.currentUser.userId === userId) {
+      this.user = this.currentUser;
+    } else {
+      await Service.getUserById(userId)
+        .then((response) => {
+          this.user = response.data;
+        })
+        .catch((error) => {
+          console.log('Could not get user by ID', error);
+        });
+    }
+
+    this.countUserTrips(this.user);
+    this.loadFeedbacks(this.user);
+  },
   methods: {
+    countUserTrips(user) {
+      Service.getPostsByPassengerId(user.userId)
+        .then((response) => {
+          if (response.status === 200) {
+            this.userTrips = response.data;
+          }
+        })
+        .catch((error) => {
+          console.log('Could not get posts by passenger ID', error);
+        });
+    },
+    loadFeedbacks(user) {
+      Service.getAllFeedbacks(user.userId)
+        .then((response) => {
+          if (response.status === 200) {
+            response.data.forEach((feedback) => {
+              if (feedback.receiverId === user.userId) {
+                if (feedback.receiverIsDriver) {
+                  this.driverFeedbacks.push(feedback);
+                } else {
+                  this.userFeedbacks.push(feedback);
+                }
+              }
+            });
+          }
+        })
+        .catch((error) => {
+          console.log('Could not get all feedbacks', error);
+        });
+    },
     countDistance(trips) {
       return trips.reduce((accumulator, trip) => {
         const post = PostService.getPost(trip.id);

@@ -2,23 +2,24 @@
   <div class="align-stretch">
     <div class="pb-50">
       <h2 class="page-title">Mano rezervacijos</h2>
-      <div v-if="pendingTrips && pendingTrips.length > 0">
+      <div v-if="futurePosts && futurePosts.length > 0">
         <PostCard
-          v-for="trip in pendingTrips"
-          :key="trip.id"
-          :post="getPost(trip.post.id)"
-          :isPending="true"
+          v-for="post in futurePosts"
+          :key="post.id"
+          :post="post"
+          @on-cancel-reservation="onCancelReservation"
         />
       </div>
 
       <div v-else class="flex direction-column align-center">
         <p>
           Jūs neturite rezervuotų kelionių. Rezervuokite vieną peržiūrėdami
-          skelbimus
+          skelbimus.
         </p>
         <router-link :to="{ name: 'posts' }">
           <Button
             text="skelbimai"
+            class="mt-20"
             :isSecondary="true"
             :isLarge="true"
           />
@@ -27,11 +28,11 @@
     </div>
     <div class="bleed-width">
       <h3 class="section-title">Rezervacijų istorija</h3>
-      <div v-if="nonPendingTrips && nonPendingTrips.length > 0">
+      <div v-if="expiredPosts && expiredPosts.length > 0">
         <FeedbackCard
-          v-for="trip in nonPendingTrips"
-          :key="trip.id"
-          :trip="trip"
+          v-for="post in expiredPosts"
+          :key="post.id"
+          :post="post"
         />
       </div>
       <p v-else>Istorija tuščia</p>
@@ -44,8 +45,7 @@ import Button from '@/components/Button.vue';
 import FeedbackCard from '@/components/FeedbackCard.vue';
 import PostCard from '@/components/PostCard.vue';
 
-import PostService from '@/services/PostService.js';
-import UserService from '@/services/UserService.js';
+import Service from '@/services/Service';
 
 export default {
   name: 'UserHistory',
@@ -61,32 +61,40 @@ export default {
   },
   data() {
     return {
-      nonPendingTrips: [],
-      pendingTrips: [],
+      expiredPosts: [],
+      futurePosts: [],
     };
   },
   created() {
-    const getPost = this.getPost;
-    const nonPendingTrips = this.nonPendingTrips;
-    const pendingTrips = this.pendingTrips;
-    const userID = this.user.id;
-
-    this.user.trips.forEach((trip) => {
-      const post = getPost(trip.post.id);
-      const passenger = post.passengers.find(
-        (passenger) => passenger.id === userID
-      );
-
-      if (passenger.status === 'PENDING') {
-        pendingTrips.push(trip);
-      } else {
-        nonPendingTrips.push(trip);
-      }
-    });
+    this.loadPosts();
   },
   methods: {
-    getPost(id) {
-      return PostService.getPost(id);
+    loadPosts() {
+      this.expiredPosts = [];
+      this.futurePosts = [];
+
+      const now = new Date();
+
+      Service.getPostsByPassengerId(this.user.userId)
+        .then((response) => {
+          if (response.status === 200) {
+            const posts = response.data;
+            posts.forEach((post) => {
+              const postDate = new Date(post.date);
+              if (postDate.getTime() >= now.getTime()) {
+                this.futurePosts.push(post);
+              } else {
+                this.expiredPosts.push(post);
+              }
+            });
+          }
+        })
+        .catch((error) => {
+          console.log('Could not get posts by passenger ID', error);
+        });
+    },
+    onCancelReservation(post, reservation) {
+      this.loadPosts();
     },
   },
 };

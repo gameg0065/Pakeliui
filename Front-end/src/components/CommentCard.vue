@@ -1,17 +1,21 @@
 <template>
   <div class="card shadow flex direction-column">
     <div class="flex">
-      <Avatar :path="comentator.photo" class="mr-20" />
+      <Avatar :path="comentator.picturePath" class="mr-20" />
 
       <div class="flex direction-column grow">
-        <router-link :to="{ name: 'user', params: { id: comentator.id } }">
+        <router-link
+          :to="{ name: 'user', params: { id: comentator.userId || 0 } }"
+        >
           <p class="text-color-primary">{{ comentator.name }}</p>
         </router-link>
 
-        <small>{{ comment.date }}</small>
+        <small>{{
+          DateFormat.getYearMonthDate(comment.date || comment.createDate)
+        }}</small>
       </div>
 
-      <Rating :rating="comentator.rating" />
+      <!-- <Rating :rating="comentator.rating" /> -->
     </div>
 
     <p>{{ comment.text }}</p>
@@ -20,8 +24,10 @@
 
 <script>
 import Avatar from '@/components/Avatar.vue';
-import Rating from '@/components/Rating.vue';
-import UserService from '@/services/UserService.js';
+// import Rating from '@/components/Rating.vue';
+
+import DateFormat from '@/assets/DateFormat.js';
+import Service from '@/services/Service';
 
 export default {
   name: 'CommentCard',
@@ -32,7 +38,7 @@ export default {
   },
   components: {
     Avatar,
-    Rating,
+    // Rating,
   },
   data() {
     return {
@@ -40,7 +46,15 @@ export default {
     };
   },
   created() {
-    this.comentator = UserService.getUser(this.comment.author.id);
+    this.DateFormat = DateFormat;
+    const userId = this.comment.userId || this.comment.senderId;
+    Service.getUserById(userId)
+      .then((response) => {
+        this.comentator = response.data;
+      })
+      .catch((error) => {
+        console.log('Could not get user by ID', error);
+      });
   },
 };
 </script>

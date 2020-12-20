@@ -2,7 +2,7 @@
   <div class="profile-dropdown shadow">
     <router-link
       @click.native="emitClick"
-      :to="{ name: 'user', params: { id: user.id } }"
+      :to="{ name: 'user', params: { id: user.userId } }"
     >
       <div class="dropbutton">
         <img src="../assets/icons/user.svg" />
@@ -12,7 +12,7 @@
 
     <router-link
       @click.native="emitClick"
-      :to="{ name: 'user-edit', params: { id: user.id } }"
+      :to="{ name: 'user-edit', params: { id: user.userId } }"
     >
       <div class="dropbutton">
         <img src="../assets/icons/settings.svg" />
@@ -22,7 +22,7 @@
 
     <router-link
       @click.native="emitClick"
-      :to="{ name: 'user-history', params: { id: user.id } }"
+      :to="{ name: 'user-history', params: { id: user.userId } }"
     >
       <div class="dropbutton">
         <img src="../assets/icons/archive.svg" />
@@ -40,7 +40,7 @@
 
       <router-link
         @click.native="emitClick"
-        :to="{ name: 'driver-history', params: { id: user.id } }"
+        :to="{ name: 'driver-history', params: { id: user.userId } }"
       >
         <div class="dropbutton">
           <img src="../assets/icons/archive.svg" />
@@ -50,7 +50,7 @@
 
       <router-link
         @click.native="emitClick"
-        :to="{ name: 'driver-requests', params: { id: user.id } }"
+        :to="{ name: 'driver-requests', params: { id: user.userId } }"
       >
         <div class="dropbutton">
           <img src="../assets/icons/inbox.svg" />

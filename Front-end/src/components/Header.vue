@@ -20,13 +20,13 @@
       </ul>
       <ul class="right-links">
         <li v-if="!user">
-          <a href="#" @click.prevent="$modal.show('modal-login')"
-            >prisijungti</a
+          <a href="#" @click.prevent="$modal.show('modal-register')"
+            >registruotis</a
           >
         </li>
         <li v-if="!user">
-          <a href="#" @click.prevent="$modal.show('modal-register')"
-            >registruotis</a
+          <a href="#" @click.prevent="$modal.show('modal-login')"
+            >prisijungti</a
           >
         </li>
         <li v-if="user">
@@ -36,7 +36,7 @@
             class="profile-button"
           >
             profilis
-            <Avatar :path="user.photo" size="small" />
+            <Avatar :path="user.picturePath" size="small" />
           </a>
         </li>
       </ul>

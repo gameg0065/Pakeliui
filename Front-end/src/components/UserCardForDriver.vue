@@ -1,21 +1,21 @@
 <template>
   <div class="card shadow flex direction-column">
     <div class="flex">
-      <Avatar :path="user.photo" class="mr-20" />
+      <Avatar :path="user.picturePath" class="mr-20" />
 
       <div class="flex direction-column grow">
-        <router-link :to="{ name: 'user', params: { id: user.id } }">
+        <router-link :to="{ name: 'user', params: { id: user.userId || 0 } }">
           <h4 class="text-color-primary mb-10">{{ user.name }}</h4>
         </router-link>
 
-        <small> Kelionių skaičius: {{ countTrips() }} </small>
-        <p>Susisiekite su manimi: {{ getContactInfo() }}</p>
+        <small> Kelionių skaičius: {{ userTrips.length }} </small>
+        <p>Susisiekite su manimi: {{ user[user.contactMethod] }}</p>
       </div>
 
-      <Rating :rating="user.rating" />
+      <!-- <Rating :rating="user.rating" /> -->
     </div>
     <router-link :to="{ name: 'post', params: { id: post.id } }">
-      <Button text="atidaryti skelbimą" :isOutlined="true" class="mt-10"/>
+      <Button text="atidaryti skelbimą" :isOutlined="true" class="mt-10" />
     </router-link>
   </div>
 </template>
@@ -25,8 +25,7 @@ import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
 import Rating from '@/components/Rating.vue';
 
-import PostService from '@/services/PostService.js';
-import UserService from '@/services/UserService.js';
+import Service from '@/services/Service';
 
 export default {
   name: 'UserCardForDriver',
@@ -34,36 +33,40 @@ export default {
   components: {
     Avatar,
     Button,
-    Rating,
+    // Rating,
   },
   data() {
     return {
       user: Object,
+      userTrips: [],
     };
   },
   created() {
-    this.user = UserService.getUser(this.passengerID);
+    this.getUser(this.passengerID);
+    this.getUserTrips(this.passengerID);
   },
   methods: {
-    countTrips() {
-      const posts = PostService.getPosts();
-      const user = this.user;
-
-      let counter = 0;
-      posts.forEach(function (post) {
-        post.passengers.forEach(function (passenger) {
-          if (passenger.id === user.id && passenger.status === 'TAKEN') {
-            counter++;
+    getUser(userId) {
+      Service.getUserById(userId)
+        .then((response) => {
+          if (response.status === 200) {
+            this.user = response.data;
           }
+        })
+        .catch((error) => {
+          console.log('Could not getUserById', error);
         });
-      });
-
-      return counter;
     },
-    getContactInfo() {
-      const contactMethod = this.user.contactMethod;
-      const contactInfo = this.user.contacts[contactMethod];
-      return contactInfo;
+    getUserTrips(userId) {
+      Service.getPostsByPassengerId(userId)
+        .then((response) => {
+          if (response.status === 200) {
+            this.userTrips = response.data;
+          }
+        })
+        .catch((error) => {
+          console.log('Could not getPostsByPassengerId', error);
+        });
     },
   },
 };
