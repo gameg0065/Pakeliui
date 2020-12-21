@@ -15,7 +15,7 @@
       <Button
         text="rezervuoti"
         :click="reserve"
-        :isDisabled="!isActive || userIsAuthor"
+        :isDisabled="!isActive || userIsAuthor || carIsFull()"
         :isOutlined="true"
         class="align-self-center"
       />
@@ -63,6 +63,18 @@
           <small class="fixed-width">Kelionės kaina</small>
           <p>{{ post.price }}€</p>
         </div>
+
+        <div v-if="!isLoading" class="flex align-baseline">
+          <small class="fixed-width">Patvirtinti keleiviai</small>
+          <div v-for="takenUser in takenUsers" :key="takenUser.userId">
+            <router-link
+              :to="{ name: 'user', params: { id: takenUser.userId } }"
+            >
+              <Avatar :path="takenUser.picturePath" class="mr-20"/>
+            </router-link>
+          </div>
+        </div>
+
         <div class="flex align-baseline">
           <small class="fixed-width">Papildoma informacija</small>
           <p>{{ post.info }}</p>
@@ -74,7 +86,7 @@
     <Button
       text="rezervuoti"
       :click="reserve"
-      :isDisabled="!isActive || userIsAuthor"
+      :isDisabled="!isActive || userIsAuthor || carIsFull()"
       :isLarge="true"
       class="mb-50"
     />
@@ -91,6 +103,7 @@
 </template>
 
 <script>
+import Avatar from '@/components/Avatar.vue';
 import Button from '@/components/Button.vue';
 import Comments from '@/components/Comments.vue';
 import Map from '@/components/Map.vue';
@@ -103,6 +116,7 @@ export default {
   name: 'Post',
   props: ['id'],
   components: {
+    Avatar,
     Button,
     Comments,
     Map,
@@ -113,6 +127,7 @@ export default {
       cities: [],
       isLoading: true,
       post: {},
+      takenUsers: [],
     };
   },
   computed: {
@@ -133,6 +148,9 @@ export default {
     this.loadPost();
   },
   methods: {
+    carIsFull() {
+      return this.post.seetCount <= this.takenUsers.length;
+    },
     loadPost() {
       this.isLoading = true;
       Service.getPostById(parseInt(this.id))
@@ -141,6 +159,9 @@ export default {
         })
         .then(() => {
           this.parseCities();
+        })
+        .then(() => {
+          this.parseUsers();
           this.isLoading = false;
         })
         .catch((error) => {
@@ -159,6 +180,20 @@ export default {
         this.cities = this.cities.concat(citiesArray);
       }
       this.cities.push(post.travelTo);
+    },
+    parseUsers() {
+      const passengers = this.post.passengers;
+      if (passengers) {
+        passengers.forEach((passenger) => {
+          if (passenger.status === 'TAKEN') {
+            Service.getUserById(passenger.passengerId).then((response) => {
+              if (response.status === 200) {
+                this.takenUsers.push(response.data);
+              }
+            });
+          }
+        });
+      }
     },
     reserve() {
       if (!this.post.passengers) {

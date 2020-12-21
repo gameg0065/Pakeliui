@@ -60,7 +60,8 @@ export default {
         .then((response) => {
           this.isLoading = false;
 
-          const posts = response.data;
+          const posts = response.data.sort(this.sortPostsByDateAndTime);
+
           if (this.hideExpiredPosts) {
             return posts.filter((post) => {
               const postDate = new Date(post.date);
@@ -104,6 +105,21 @@ export default {
     },
     onCancelReservation(post, reservation) {
       this.loadPosts();
+    },
+    sortPostsByDateAndTime(post1, post2) {
+      if (post1.date && post2.date) {
+        const post1Date = new Date(post1.date);
+        const post2Date = new Date(post2.date);
+        const timeSeparator = ':';
+
+        if (post1.time) {
+          post1Date.setHours(...post1.time.split(timeSeparator));
+        }
+        if (post2.time) {
+          post2Date.setHours(...post2.time.split(timeSeparator));
+        }
+        return post1Date - post2Date;
+      }
     },
     stringsAreEqual(string1, string2) {
       string1 = string1 ? string1 : '';

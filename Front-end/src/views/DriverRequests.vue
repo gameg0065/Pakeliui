@@ -112,33 +112,23 @@ export default {
       });
     },
     getDriverPostsWithPendingPassengers() {
-      Service.getAllPosts()
+      Service.getPostsByAuthorId(this.user.userId)
         .then((response) => {
-          const posts = response.data;
-          if (response.status === 200 && posts) {
-            const userPosts = posts.filter((post) => {
-              return post.userId === this.user.userId;
-            });
-
-            this.pendingPosts = userPosts.reduce((accumulator, post) => {
-              if (
-                post.passengers &&
-                this.postHasPassengersWithStatus(post, 'PENDING')
-              ) {
-                accumulator.push(post);
+          if (response.status === 200) {
+            response.data.forEach((post) => {
+              const passengers = post.passengers;
+              if (passengers && this.containsPendingPassengers(passengers)) {
+                this.pendingPosts.push(post);
               }
-              return accumulator;
-            }, []);
+            });
           }
         })
         .catch((error) => {
           console.log('Could not get all posts', error);
         });
     },
-    postHasPassengersWithStatus(post, status) {
-      return post.passengers.some((passenger) => {
-        return passenger.status === status;
-      });
+    containsPendingPassengers(array, key, value) {
+      return array.some((item) => item.status === 'PENDING');
     },
   },
 };
