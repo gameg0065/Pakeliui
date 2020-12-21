@@ -35,7 +35,7 @@
           <small class="fixed-width">Iš miesto</small>
           <p>{{ post.travelFrom }}</p>
         </div>
-        <div class="flex align-baseline">
+        <div v-if="post.pickup" class="flex align-baseline">
           <small class="fixed-width">Paėmimo vieta</small>
           <p>{{ post.pickup }}</p>
         </div>
@@ -43,11 +43,11 @@
           <small class="fixed-width">Į miestą</small>
           <p>{{ post.travelTo }}</p>
         </div>
-        <div class="flex align-baseline">
+        <div v-if="post.dropoff" class="flex align-baseline">
           <small class="fixed-width">Pristatymo vieta</small>
           <p>{{ post.dropoff }}</p>
         </div>
-        <div class="flex align-baseline">
+        <div v-if="post.intermediateCities" class="flex align-baseline">
           <small class="fixed-width">Tarpiniai miestai</small>
           <p>{{ post.intermediateCities }}</p>
         </div>
@@ -64,18 +64,47 @@
           <p>{{ post.price }}€</p>
         </div>
 
-        <div v-if="!isLoading" class="flex align-baseline">
-          <small class="fixed-width">Patvirtinti keleiviai</small>
+        <div
+          v-if="!isLoading && takenUsers.length > 0"
+          class="flex align-baseline"
+        >
+          <small class="fixed-width align-self-center"
+            >Patvirtinti keleiviai</small
+          >
           <div v-for="takenUser in takenUsers" :key="takenUser.userId">
             <router-link
               :to="{ name: 'user', params: { id: takenUser.userId } }"
             >
-              <Avatar :path="takenUser.picturePath" class="mr-20"/>
+              <Avatar
+                :path="takenUser.picturePath"
+                size="small"
+                class="mr-10"
+              />
             </router-link>
           </div>
         </div>
 
-        <div class="flex align-baseline">
+        <div
+          v-if="!isLoading && pendingUsers.length > 0"
+          class="flex align-baseline"
+        >
+          <small class="fixed-width align-self-center"
+            >Nepatvirtinti keleiviai</small
+          >
+          <div v-for="pendingUser in pendingUsers" :key="pendingUser.userId">
+            <router-link
+              :to="{ name: 'user', params: { id: pendingUser.userId } }"
+            >
+              <Avatar
+                :path="pendingUser.picturePath"
+                size="small"
+                class="mr-10"
+              />
+            </router-link>
+          </div>
+        </div>
+
+        <div v-if="post.info" class="flex align-baseline">
           <small class="fixed-width">Papildoma informacija</small>
           <p>{{ post.info }}</p>
         </div>
@@ -127,6 +156,7 @@ export default {
       cities: [],
       isLoading: true,
       post: {},
+      pendingUsers: [],
       takenUsers: [],
     };
   },
@@ -171,7 +201,7 @@ export default {
     parseCities() {
       const post = this.post;
       this.cities = [post.travelFrom];
-      
+
       const intermediateCities = post.intermediateCities;
       if (intermediateCities) {
         const citiesArray = intermediateCities.split(',').map((item) => {
@@ -184,16 +214,29 @@ export default {
     parseUsers() {
       const passengers = this.post.passengers;
       if (passengers) {
+        this.pendingUsers = [];
+        this.takenUsers = [];
+
         passengers.forEach((passenger) => {
+          const passengerId = passenger.passengerId;
           if (passenger.status === 'TAKEN') {
-            Service.getUserById(passenger.passengerId).then((response) => {
-              if (response.status === 200) {
-                this.takenUsers.push(response.data);
-              }
-            });
+            this.pushUserToArray(passengerId, this.takenUsers);
+          } else if (passenger.status === 'PENDING') {
+            this.pushUserToArray(passengerId, this.pendingUsers);
           }
         });
       }
+    },
+    pushUserToArray(userId, array) {
+      Service.getUserById(userId)
+        .then((response) => {
+          if (response.status === 200) {
+            array.push(response.data);
+          }
+        })
+        .catch((error) => {
+          console.log('Could not get user by ID', error);
+        });
     },
     reserve() {
       if (!this.post.passengers) {
