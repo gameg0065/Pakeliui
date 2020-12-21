@@ -45,7 +45,7 @@
       <small>Patvirtinti keleiviai</small>
       <div v-for="user in takenPassengers" :key="user.userId">
         <router-link :to="{ name: 'user', params: { id: user.userId } }">
-          <Avatar :path="user.picturePath" />
+          <Avatar :path="user.picturePath" class="mr-20" />
         </router-link>
       </div>
     </div>
@@ -54,7 +54,7 @@
       <small>Keleiviai, laukiantys patvirtinimo</small>
       <div v-for="user in pendingPassengers" :key="user.userId">
         <router-link :to="{ name: 'user', params: { id: user.userId } }">
-          <Avatar :path="user.picturePath" />
+          <Avatar :path="user.picturePath" class="mr-20" />
         </router-link>
       </div>
     </div>

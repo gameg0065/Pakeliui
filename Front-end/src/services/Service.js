@@ -37,8 +37,14 @@ const defaults = {
 };
 
 export default {
-	deleteUser(user) {
-		return apiClient.delete('/api/User/', { data: { userId: user.userId } });
+	deleteCar(car) {
+		return apiClient.delete('/api/Car/', { data: { id: car.id } });
+	},
+	deleteComment(comment) {
+		return apiClient.delete('/api/Comment/', { data: { id: comment.id } });
+	},
+	deleteFeedback(feedback) {
+		return apiClient.delete('/api/Feedback/', { data: { userId: feedback.senderId } });
 	},
 	deletePost(post) {
 		return apiClient.delete('/api/Post/', { data: { id: post.id } });
@@ -46,26 +52,32 @@ export default {
 	deleteReservation(reservation) {
 		return apiClient.delete('/api/Reservation/', { data: { id: reservation.id } });
 	},
+	deleteUser(user) {
+		return apiClient.delete('/api/User/', { data: { userId: user.userId } });
+	},
+	getAllCars() {
+		return apiClient.get('api/Car/AllCars/');
+	},
 	getAllComments() {
-		return apiClient.get('api/Comment/AllComments');
+		return apiClient.get('api/Comment/AllComments/');
 	},
 	getAllFeedbacks() {
-		return apiClient.get('api/Feedback/AllFeedbacks');
+		return apiClient.get('api/Feedback/AllFeedbacks/');
 	},
 	getAllPosts() {
 		return apiClient.get('/api/Post/AllPosts/');
 	},
 	getAllReservations() {
-		return apiClient.get('api/Reservation/AllReservations');
+		return apiClient.get('api/Reservation/AllReservations/');
 	},
 	getAllUsers() {
 		return apiClient.get('/api/User/AllUsers/');
 	},
-	getPostById(id) {
-		return apiClient.get('api/post/?id=' + id);
-	},
 	getPostsByAuthorId(id) {
 		return apiClient.get('/api/Post/GetByAuthorId/?id=' + id);
+	},
+	getPostById(id) {
+		return apiClient.get('api/post/?id=' + id);
 	},
 	getPostsByPassengerId(id) {
 		return apiClient.get('/api/Post/GetPostsByPassengerId/?id=' + id);
@@ -78,6 +90,9 @@ export default {
 	},
 	getUserById(id) {
 		return apiClient.get('api/User/UserById?id=' + id);
+	},
+	postCar(car) {
+		return apiClient.post('/api/Car/', car);
 	},
 	postComment(comment) {
 		return apiClient.post('/api/Comment/', comment);
@@ -94,6 +109,15 @@ export default {
 	postUser(user) {
 		const userData = Utils.mergeDeep({}, defaults, user);
 		return apiClient.post('/api/User/', userData);
+	},
+	putCar(car) {
+		return apiClient.put('/api/Car/', car);
+	},
+	putComment(comment) {
+		return apiClient.put('/api/Comment/', comment);
+	},
+	putFeedback(feedback) {
+		return apiClient.put('/api/Feedback/', feedback);
 	},
 	putPost(post) {
 		return apiClient.put('/api/Post/', post);
