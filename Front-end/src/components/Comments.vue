@@ -11,7 +11,15 @@
     </div>
 
     <div v-if="isActive">
-      <textarea v-model.trim="text"></textarea>
+      <div class="flex direction-column grow" :class="{ error: text.error }">
+        <span>{{ text.error }}</span>
+        <textarea
+          id="post-info"
+          v-model.trim="text.value"
+          @keydown="resetTextError"
+        />
+      </div>
+
       <small
         >Rašydami komentarą, sutinkate su
         <router-link :to="{ name: 'terms' }"> Sąlygomis</router-link>.
@@ -47,12 +55,26 @@ export default {
   },
   data() {
     return {
-      text: null,
+      text: {
+        value: '',
+        error: '',
+      },
     };
   },
   methods: {
+    resetTextError() {
+      this.text.error = '';
+    },
     submit() {
-      if (!this.text) {
+      const maxInfoLength = 500;
+      if (this.text.value && this.text.value.length > maxInfoLength) {
+        this.text.error =
+          'Čia ne mokslinis traktatas. Max ' + maxInfoLength + ' simbolių.';
+      } else {
+        this.resetTextError();
+      }
+
+      if (this.text.error) {
         return;
       }
 
@@ -60,13 +82,13 @@ export default {
         userId: this.user.userId,
         postId: this.post.id,
         date: new Date().toISOString(),
-        text: this.text,
+        text: this.text.value,
       };
 
       Service.postComment(comment)
         .then((response) => {
           if (response.status === 200) {
-            this.text = '';
+            this.text.value = '';
             this.$emit('on-comment-submit');
           }
         })
