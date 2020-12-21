@@ -21,7 +21,7 @@
       <p>{{ post.travelFrom }}</p>
     </div>
 
-    <div class="flex align-baseline">
+    <div v-if="post.pickup" class="flex align-baseline">
       <small>Paėmimo vieta</small>
       <p>{{ post.pickup }}</p>
     </div>
@@ -31,7 +31,7 @@
       <p>{{ post.travelTo }}</p>
     </div>
 
-    <div class="flex align-baseline">
+    <div v-if="post.dropoff" class="flex align-baseline">
       <small>Pristatymo vieta</small>
       <p>{{ post.dropoff }}</p>
     </div>
@@ -41,7 +41,7 @@
       <p>{{ post.seetCount }}</p>
     </div>
 
-    <div class="flex align-baseline">
+    <div v-if="takenPassengers.length > 0" class="flex align-baseline">
       <small>Patvirtinti keleiviai</small>
       <div v-for="user in takenPassengers" :key="user.userId">
         <router-link :to="{ name: 'user', params: { id: user.userId } }">
@@ -50,7 +50,7 @@
       </div>
     </div>
 
-    <div class="flex align-baseline">
+    <div v-if="pendingPassengers.length > 0" class="flex align-baseline">
       <small>Keleiviai, laukiantys patvirtinimo</small>
       <div v-for="user in pendingPassengers" :key="user.userId">
         <router-link :to="{ name: 'user', params: { id: user.userId } }">
@@ -68,6 +68,7 @@
         class="mr-20"
       />
       <Button
+        v-if="takenPassengers.length > 0 || pendingPassengers.length > 0"
         text="atšaukti visus keleivius"
         :click="deleteAllReservations"
         :isOutlined="true"
