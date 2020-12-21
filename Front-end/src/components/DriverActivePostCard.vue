@@ -6,81 +6,85 @@
       </h4>
     </router-link>
 
-    <div class="flex align-baseline">
-      <small>Kelionės data</small>
-      <p>{{ DateFormat.getYearMonthDate(post.date) }}</p>
-    </div>
+    <div class="flex">
+      <div class="flex direction-column grow">
+        <div class="flex align-baseline">
+          <small>Kelionės data</small>
+          <p>{{ DateFormat.getYearMonthDate(post.date) }}</p>
+        </div>
 
-    <div class="flex align-baseline">
-      <small>Kelionės laikas</small>
-      <p>{{ DateFormat.getHoursMinutes(post.time) }}</p>
-    </div>
+        <div class="flex align-baseline">
+          <small>Kelionės laikas</small>
+          <p>{{ DateFormat.getHoursMinutes(post.time) }}</p>
+        </div>
 
-    <div class="flex align-baseline">
-      <small>Iš miesto</small>
-      <p>{{ post.travelFrom }}</p>
-    </div>
+        <div class="flex align-baseline">
+          <small>Iš miesto</small>
+          <p>{{ post.travelFrom }}</p>
+        </div>
 
-    <div v-if="post.pickup" class="flex align-baseline">
-      <small>Paėmimo vieta</small>
-      <p>{{ post.pickup }}</p>
-    </div>
+        <div v-if="post.pickup" class="flex align-baseline">
+          <small>Paėmimo vieta</small>
+          <p>{{ post.pickup }}</p>
+        </div>
 
-    <div class="flex align-baseline">
-      <small>Į miestą</small>
-      <p>{{ post.travelTo }}</p>
-    </div>
+        <div class="flex align-baseline">
+          <small>Į miestą</small>
+          <p>{{ post.travelTo }}</p>
+        </div>
 
-    <div v-if="post.dropoff" class="flex align-baseline">
-      <small>Pristatymo vieta</small>
-      <p>{{ post.dropoff }}</p>
-    </div>
+        <div v-if="post.dropoff" class="flex align-baseline">
+          <small>Pristatymo vieta</small>
+          <p>{{ post.dropoff }}</p>
+        </div>
 
-    <div class="flex align-baseline">
-      <small>Galimas keleivių skaičius</small>
-      <p>{{ post.seetCount }}</p>
-    </div>
+        <div class="flex align-baseline">
+          <small>Galimas keleivių skaičius</small>
+          <p>{{ post.seetCount }}</p>
+        </div>
 
-    <div v-if="takenPassengers.length > 0" class="flex">
-      <small class="align-self-center">Patvirtinti keleiviai</small>
-      <div v-for="user in takenPassengers" :key="user.userId">
-        <router-link :to="{ name: 'user', params: { id: user.userId } }">
-          <Avatar :path="user.picturePath" class="mr-20" />
+        <div v-if="takenPassengers.length > 0" class="flex">
+          <small class="align-self-center">Patvirtinti keleiviai</small>
+          <div v-for="user in takenPassengers" :key="user.userId">
+            <router-link :to="{ name: 'user', params: { id: user.userId } }">
+              <Avatar :path="user.picturePath" class="mr-20" />
+            </router-link>
+          </div>
+        </div>
+
+        <div v-if="pendingPassengers.length > 0" class="flex">
+          <small class="align-self-center"
+            >Keleiviai, laukiantys patvirtinimo</small
+          >
+          <div v-for="user in pendingPassengers" :key="user.userId">
+            <router-link :to="{ name: 'user', params: { id: user.userId } }">
+              <Avatar :path="user.picturePath" class="mr-20" />
+            </router-link>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex direction-column">
+        <Button
+          text="ištrinti skelbimą"
+          :click="deletePost"
+          :isOutlined="true"
+          :isSecondary="true"
+          class="mb-10"
+        />
+        <Button
+          v-if="takenPassengers.length > 0 || pendingPassengers.length > 0"
+          text="atšaukti visus keleivius"
+          :click="deleteAllReservations"
+          :isOutlined="true"
+          :isSecondary="true"
+          class="mb-10"
+        />
+
+        <router-link :to="{ name: 'post-edit', params: { id: post.id } }">
+          <Button text="redaguoti" :isOutlined="true" />
         </router-link>
       </div>
-    </div>
-
-    <div v-if="pendingPassengers.length > 0" class="flex">
-      <small class="align-self-center"
-        >Keleiviai, laukiantys patvirtinimo</small
-      >
-      <div v-for="user in pendingPassengers" :key="user.userId">
-        <router-link :to="{ name: 'user', params: { id: user.userId } }">
-          <Avatar :path="user.picturePath" class="mr-20" />
-        </router-link>
-      </div>
-    </div>
-
-    <div class="flex justify-end mt-50">
-      <Button
-        text="ištrinti skelbimą"
-        :click="deletePost"
-        :isOutlined="true"
-        :isSecondary="true"
-        class="mr-20"
-      />
-      <Button
-        v-if="takenPassengers.length > 0 || pendingPassengers.length > 0"
-        text="atšaukti visus keleivius"
-        :click="deleteAllReservations"
-        :isOutlined="true"
-        :isSecondary="true"
-        class="mr-20"
-      />
-
-      <router-link :to="{ name: 'post-edit', params: { id: post.id } }">
-        <Button text="redaguoti" :isOutlined="true" />
-      </router-link>
     </div>
   </div>
 </template>
