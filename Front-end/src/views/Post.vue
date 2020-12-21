@@ -210,6 +210,9 @@ export default {
     parseUsers() {
       const passengers = this.post.passengers;
       if (passengers) {
+        this.pendingUsers = [];
+        this.takenUsers = [];
+
         passengers.forEach((passenger) => {
           const passengerId = passenger.passengerId;
           if (passenger.status === 'TAKEN') {
