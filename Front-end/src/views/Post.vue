@@ -68,7 +68,9 @@
           v-if="!isLoading && takenUsers.length > 0"
           class="flex align-baseline"
         >
-          <small class="fixed-width">Patvirtinti keleiviai</small>
+          <small class="fixed-width align-self-center"
+            >Patvirtinti keleiviai</small
+          >
           <div v-for="takenUser in takenUsers" :key="takenUser.userId">
             <router-link
               :to="{ name: 'user', params: { id: takenUser.userId } }"
@@ -86,7 +88,9 @@
           v-if="!isLoading && pendingUsers.length > 0"
           class="flex align-baseline"
         >
-          <small class="fixed-width">Nepatvirtinti keleiviai</small>
+          <small class="fixed-width align-self-center"
+            >Nepatvirtinti keleiviai</small
+          >
           <div v-for="pendingUser in pendingUsers" :key="pendingUser.userId">
             <router-link
               :to="{ name: 'user', params: { id: pendingUser.userId } }"
@@ -197,7 +201,7 @@ export default {
     parseCities() {
       const post = this.post;
       this.cities = [post.travelFrom];
-      
+
       const intermediateCities = post.intermediateCities;
       if (intermediateCities) {
         const citiesArray = intermediateCities.split(',').map((item) => {
