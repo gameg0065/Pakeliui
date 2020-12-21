@@ -41,8 +41,8 @@
       <p>{{ post.seetCount }}</p>
     </div>
 
-    <div v-if="takenPassengers.length > 0" class="flex align-baseline">
-      <small>Patvirtinti keleiviai</small>
+    <div v-if="takenPassengers.length > 0" class="flex">
+      <small class="align-self-center">Patvirtinti keleiviai</small>
       <div v-for="user in takenPassengers" :key="user.userId">
         <router-link :to="{ name: 'user', params: { id: user.userId } }">
           <Avatar :path="user.picturePath" class="mr-20" />
@@ -50,8 +50,10 @@
       </div>
     </div>
 
-    <div v-if="pendingPassengers.length > 0" class="flex align-baseline">
-      <small>Keleiviai, laukiantys patvirtinimo</small>
+    <div v-if="pendingPassengers.length > 0" class="flex">
+      <small class="align-self-center"
+        >Keleiviai, laukiantys patvirtinimo</small
+      >
       <div v-for="user in pendingPassengers" :key="user.userId">
         <router-link :to="{ name: 'user', params: { id: user.userId } }">
           <Avatar :path="user.picturePath" class="mr-20" />
