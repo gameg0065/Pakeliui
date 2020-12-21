@@ -66,7 +66,7 @@
 
       <div class="flex direction-column">
         <Button
-          text="ištrinti skelbimą"
+          text="ištrinti"
           :click="deletePost"
           :isOutlined="true"
           :isSecondary="true"
@@ -74,7 +74,7 @@
         />
         <Button
           v-if="takenPassengers.length > 0 || pendingPassengers.length > 0"
-          text="atšaukti visus keleivius"
+          text="atšaukti keleivius"
           :click="deleteAllReservations"
           :isOutlined="true"
           :isSecondary="true"
@@ -187,6 +187,6 @@ export default {
 small {
   padding-right: 20px;
   text-align: right;
-  width: 220px;
+  min-width: 220px;
 }
 </style>
