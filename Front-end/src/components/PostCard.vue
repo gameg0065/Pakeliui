@@ -10,10 +10,14 @@
         </h4>
       </router-link>
       <p>
-        {{ DateFormat.getYearMonthDate(post.date) + ', ' + DateFormat.getHoursMinutes(post.time) }}
+        {{
+          DateFormat.getYearMonthDate(post.date) +
+          ', ' +
+          DateFormat.getHoursMinutes(post.time)
+        }}
       </p>
       <small>{{ post.user.name }}</small>
-      <p>Laisvų vietų: {{ post.seetCount - post.passengers.length }}</p>
+      <p>Laisvų vietų: {{ post.seetCount - takenPassengers.length }}</p>
     </div>
 
     <div>
@@ -56,6 +60,7 @@ export default {
   data() {
     return {
       reservation: {},
+      takenPassengers: [],
     };
   },
   computed: {
@@ -66,9 +71,14 @@ export default {
   created() {
     this.DateFormat = DateFormat;
 
-    if (this.post.passengers) {
-      this.reservation = this.post.passengers.find((passenger) => {
+    const passengers = this.post.passengers;
+    if (passengers) {
+      this.reservation = passengers.find((passenger) => {
         return passenger.passengerId === this.user.userId;
+      });
+
+      this.takenPassengers = passengers.filter((passenger) => {
+        return passenger.status === 'TAKEN';
       });
     }
   },
