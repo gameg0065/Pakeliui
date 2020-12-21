@@ -60,7 +60,12 @@ export default {
         .then((response) => {
           this.isLoading = false;
 
-          const posts = response.data;
+          const posts = response.data.sort((a, b) => {
+            if (a.date && b.date) {
+              return new Date(a.date) - new Date(b.date);
+            }
+          });
+
           if (this.hideExpiredPosts) {
             return posts.filter((post) => {
               const postDate = new Date(post.date);
