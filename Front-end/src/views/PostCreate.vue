@@ -89,9 +89,16 @@
       <input type="number" id="post-price" v-model.number="post.price" />
     </div>
 
-    <div class="line">
-      <label for="post-info">Papildoma informacija</label>
-      <textarea id="post-info" v-model.trim="post.info" />
+    <div class="flex align-end" :class="{ error: wipPost.info.error }">
+      <label for="post-info"> Papildoma informacija </label>
+      <div class="flex direction-column grow">
+        <span>{{ wipPost.info.error }}</span>
+        <textarea
+          id="post-info"
+          v-model.trim="wipPost.info.value"
+          @keydown="resetErrorFor('info')"
+        />
+      </div>
     </div>
 
     <Button
@@ -205,6 +212,15 @@ export default {
         : '';
       post.seetCount = wipPost.seetCount.value;
 
+      const maxInfoLength = 500;
+      if (wipPost.info.value && wipPost.info.value.length > maxInfoLength) {
+        wipPost.info.error =
+          'Čia ne mokslinis traktatas. Max ' + maxInfoLength + ' simbolių.';
+      } else {
+        wipPost.info.error = '';
+        post.info = wipPost.info.value;
+      }
+
       const formHasErrors = Object.keys(wipPost).some((key) => {
         return wipPost[key].error !== '';
       });
@@ -257,6 +273,10 @@ export default {
           error: '',
         },
         seetCount: {
+          value: '',
+          error: '',
+        },
+        info: {
           value: '',
           error: '',
         },
