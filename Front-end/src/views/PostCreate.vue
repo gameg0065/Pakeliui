@@ -169,8 +169,23 @@ export default {
         });
       };
 
-      wipPost.date.error = !wipPost.date.value ? 'Įveskite kelionė datą' : '';
-      post.date = wipPost.date.value;
+      if (wipPost.date.value) {
+        const now = new Date();
+        const postDate = new Date(wipPost.date.value);
+        const isToday =
+          now.getDate() === postDate.getDate() &&
+          now.getMonth() === postDate.getMonth() &&
+          now.getFullYear() === postDate.getFullYear();
+
+        if (!isToday && now.getTime() > postDate.getTime()) {
+          wipPost.date.error = 'Kelionė praeityje';
+        } else {
+          wipPost.date.error = '';
+          post.date = wipPost.date.value;
+        }
+      } else {
+        wipPost.date.error = 'Įveskite kelionė datą';
+      }
 
       wipPost.time.error = !wipPost.time.value ? 'Įveskite kelionė laiką' : '';
       post.time = wipPost.time.value;
