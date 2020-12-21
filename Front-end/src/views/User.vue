@@ -30,27 +30,27 @@
           <Rating TODO />
         </div> -->
 
-        <div class="flex align-baseline">
+        <div v-if="user.userInfo" class="flex align-baseline">
           <small class="fixed-width">Apie mane</small>
           <p>{{ user.userInfo }}</p>
         </div>
 
-        <div class="flex align-baseline">
+        <div v-if="user.city" class="flex align-baseline">
           <small class="fixed-width">Miestas</small>
           <p>{{ user.city }}</p>
         </div>
 
-        <div class="flex align-baseline">
+        <div v-if="user.email" class="flex align-baseline">
           <small class="fixed-width">Elektroninis paštas</small>
           <p>{{ user.email }}</p>
         </div>
 
-        <div class="flex align-baseline">
+        <div v-if="user.phoneNumber" class="flex align-baseline">
           <small class="fixed-width">Telefono numeris</small>
           <p>{{ user.phoneNumber }}</p>
         </div>
 
-        <div class="flex align-baseline">
+        <div v-if="user.facebookLink" class="flex align-baseline">
           <small class="fixed-width">Facebook paskyra</small>
           <p>{{ user.facebookLink }}</p>
         </div>
@@ -98,7 +98,7 @@
             <p>{{ user[user.driverContactMethod] }}</p>
           </div>
 
-          <div class="flex align-baseline">
+          <div v-if="user.aboutDriver" class="flex align-baseline">
             <small class="fixed-width">Vairavimo įgūdžiai</small>
             <p>{{ user.aboutDriver }}</p>
           </div>

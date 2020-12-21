@@ -35,7 +35,7 @@
           <small class="fixed-width">Iš miesto</small>
           <p>{{ post.travelFrom }}</p>
         </div>
-        <div class="flex align-baseline">
+        <div v-if="post.pickup" class="flex align-baseline">
           <small class="fixed-width">Paėmimo vieta</small>
           <p>{{ post.pickup }}</p>
         </div>
@@ -43,11 +43,11 @@
           <small class="fixed-width">Į miestą</small>
           <p>{{ post.travelTo }}</p>
         </div>
-        <div class="flex align-baseline">
+        <div v-if="post.dropoff" class="flex align-baseline">
           <small class="fixed-width">Pristatymo vieta</small>
           <p>{{ post.dropoff }}</p>
         </div>
-        <div class="flex align-baseline">
+        <div v-if="post.intermediateCities" class="flex align-baseline">
           <small class="fixed-width">Tarpiniai miestai</small>
           <p>{{ post.intermediateCities }}</p>
         </div>
@@ -64,7 +64,7 @@
           <p>{{ post.price }}€</p>
         </div>
 
-        <div v-if="!isLoading" class="flex align-baseline">
+        <div v-if="!isLoading && takenUsers.length > 0" class="flex align-baseline">
           <small class="fixed-width">Patvirtinti keleiviai</small>
           <div v-for="takenUser in takenUsers" :key="takenUser.userId">
             <router-link
@@ -75,7 +75,7 @@
           </div>
         </div>
 
-        <div class="flex align-baseline">
+        <div v-if="post.info" class="flex align-baseline">
           <small class="fixed-width">Papildoma informacija</small>
           <p>{{ post.info }}</p>
         </div>
