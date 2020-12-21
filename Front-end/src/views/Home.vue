@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <InProgressBanner />
     <div class="hero-text">
       <h1>Geresnis būdas keliauti</h1>
       <h3>
@@ -38,12 +37,10 @@
 
 <script>
 import Button from '@/components/Button.vue';
-import InProgressBanner from '../components/InProgressBanner';
 export default {
   name: 'Home',
   components: {
     Button,
-    InProgressBanner,
   },
   computed: {
     user() {
