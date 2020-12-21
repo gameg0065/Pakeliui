@@ -215,7 +215,7 @@ export default {
           message = 'Jūs jau dalyvaujate šioje kelionėje';
         }
 
-        this.showMessage(message, 'Na, ką padarysi ¯\\_(ツ)_/¯');
+        this.showMessage(message, 'Gerai, palauksiu');
       } else {
         reservation = {
           passengerId: this.user.userId,

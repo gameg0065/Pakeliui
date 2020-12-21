@@ -123,7 +123,7 @@ export default {
     submit() {
       const email = this.credentials.email;
       if (!email.value) {
-        email.error = 'prašom įvesti elektroninį paštą';
+        email.error = 'prašome įvesti elektroninį paštą';
       } else if (!Utils.validateEmail(email.value)) {
         email.error = 'neteisinga forma';
       } else {
@@ -131,7 +131,7 @@ export default {
       }
 
       const password = this.credentials.password;
-      password.error = !password.value ? 'prašom įvesti slaptažodį' : '';
+      password.error = !password.value ? 'prašome įvesti slaptažodį' : '';
 
       if (!email.error && !password.error) {
         Service.getUserByEmailAndPass(email.value, password.value)

@@ -191,10 +191,10 @@ export default {
           post.date = wipPost.date.value;
         }
       } else {
-        wipPost.date.error = 'Įveskite kelionė datą';
+        wipPost.date.error = 'Įveskite kelionės datą';
       }
 
-      wipPost.time.error = !wipPost.time.value ? 'Įveskite kelionė laiką' : '';
+      wipPost.time.error = !wipPost.time.value ? 'Įveskite kelionės laiką' : '';
       post.time = wipPost.time.value;
 
       wipPost.travelFrom.error = !wipPost.travelFrom.value

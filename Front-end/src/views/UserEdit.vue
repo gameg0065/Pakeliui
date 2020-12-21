@@ -371,10 +371,10 @@ export default {
         const userAge = DateFormat.getAge(wipUser.birthDate.value);
         const minUserAge = 18;
         if (userAge < 0) {
-          birthDateError = 'Vartotojai iš ateities yra draudžiami';
+          birthDateError = 'Neteisingai įvesta gimimo data';
         } else if (userAge < minUserAge) {
           birthDateError =
-            'Tai kad tu dar snarglys. Palauk kol tau bus ' +
+            'Sistema naudotis galima tik sulaukus ' +
             minUserAge +
             ' metų';
         }
@@ -396,9 +396,9 @@ export default {
           const carAge = DateFormat.getAge(wipCar.date.value);
           const minCarAge = 10;
           if (carAge < 0) {
-            carDateError = 'Automobiliai iš ateities yra draudžiami';
+            carDateError = 'Neteisingai įvesta pagaminimo data';
           } else if (carAge > minCarAge) {
-            carDateError = 'Metalo laužas. Max ' + minCarAge + ' metų';
+            carDateError = 'Max ' + minCarAge + ' metų';
           }
         }
         wipCar.date.error = carDateError;
