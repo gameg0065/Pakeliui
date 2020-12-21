@@ -11,8 +11,8 @@
     </label>
     <div class="posts-container flex">
       <PostFilter @on-post-filter-changed="onPostFilterChanged" class="mr-20" />
-      <p v-if="isLoading">Kraunam, kraunam malkas ...</p>
-      <p v-if="!isLoading && posts.length === 0">Skelbimų nerasta ¯\_(ツ)_/¯</p>
+      <p v-if="isLoading">Prašome palaukti</p>
+      <p v-if="!isLoading && posts.length === 0">Skelbimų nerasta</p>
       <div class="flex direction-column grow">
         <PostCard
           v-for="post in posts"

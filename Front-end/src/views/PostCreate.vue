@@ -169,10 +169,10 @@ export default {
         });
       };
 
-      wipPost.date.error = !wipPost.date.value ? 'Įveskite kelionė datą' : '';
+      wipPost.date.error = !wipPost.date.value ? 'Įveskite kelionės datą' : '';
       post.date = wipPost.date.value;
 
-      wipPost.time.error = !wipPost.time.value ? 'Įveskite kelionė laiką' : '';
+      wipPost.time.error = !wipPost.time.value ? 'Įveskite kelionės laiką' : '';
       post.time = wipPost.time.value;
 
       wipPost.travelFrom.error = !wipPost.travelFrom.value

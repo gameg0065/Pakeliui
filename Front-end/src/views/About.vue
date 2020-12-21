@@ -47,7 +47,7 @@
           size="big"
           :path="require('../assets/images/team/tomas-kvedaravicius.png')"
         />
-        <p>Tomas Kvedravičius</p>
+        <p>Tomas Kvedaravičius</p>
       </div>
 
       <div class="profile">

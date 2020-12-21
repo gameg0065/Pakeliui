@@ -35,7 +35,7 @@
         />
       </div>
       <div v-else>
-        <p>istorija tuščia</p>
+        <p>Istorija tuščia</p>
       </div>
     </div>
   </div>

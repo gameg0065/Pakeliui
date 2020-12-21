@@ -150,11 +150,11 @@ export default {
     },
     submit() {
       const name = this.credentials.name;
-      name.error = !name.value ? 'prašom įvesti vardą ir pavardę' : '';
+      name.error = !name.value ? 'prašome įvesti vardą ir pavardę' : '';
 
       const email = this.credentials.email;
       if (!email.value) {
-        email.error = 'prašom įvesti elektroninį paštą';
+        email.error = 'prašome įvesti elektroninį paštą';
       } else if (!Utils.validateEmail(email.value)) {
         email.error = 'neteisinga forma';
       } else {
@@ -162,11 +162,11 @@ export default {
       }
 
       const password = this.credentials.password;
-      password.error = !password.value ? 'prašom įvesti slaptažodį' : '';
+      password.error = !password.value ? 'prašome įvesti slaptažodį' : '';
 
       const TOCEnabled = this.credentials.TOCEnabled;
       TOCEnabled.error = this.generalError = !TOCEnabled.value
-        ? 'nesutinkate su sąlygom?'
+        ? 'nesutinkate su sąlygomis?'
         : '';
 
       if (!TOCEnabled.error && !name.error && !email.error && !password.error) {

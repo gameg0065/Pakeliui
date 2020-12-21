@@ -77,7 +77,7 @@ export default {
               title: 'Rezervacijos patvirtinimas',
               text: 'Rezervacija sėkmingai patvirtinta',
               button: {
-                title: 'Nice!',
+                title: 'Valio!',
                 action(data) {
                   modal.hide('modal-notification');
                 },
