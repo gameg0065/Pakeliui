@@ -73,7 +73,11 @@
             <router-link
               :to="{ name: 'user', params: { id: takenUser.userId } }"
             >
-              <Avatar :path="takenUser.picturePath" class="mr-20" />
+              <Avatar
+                :path="takenUser.picturePath"
+                size="small"
+                class="mr-10"
+              />
             </router-link>
           </div>
         </div>
@@ -87,7 +91,11 @@
             <router-link
               :to="{ name: 'user', params: { id: pendingUser.userId } }"
             >
-              <Avatar :path="pendingUser.picturePath" class="mr-20" />
+              <Avatar
+                :path="pendingUser.picturePath"
+                size="small"
+                class="mr-10"
+              />
             </router-link>
           </div>
         </div>
