@@ -53,8 +53,8 @@ export default {
   padding: 20px;
 
   p {
-    font-size: 14px;
     color: white;
+    font-size: 14px;
     line-height: unset;
   }
 }
