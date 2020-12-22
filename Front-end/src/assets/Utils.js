@@ -1,4 +1,15 @@
 export default {
+	isCarFull(post) {
+		if (!post.passengers || post.passengers.length === 0) {
+			return false;
+		}
+
+		const takenPassengers = post.passengers.filter(passenger => {
+			return passenger.status === 'TAKEN';
+		});
+
+		return takenPassengers.length >= post.seetCount;
+	},
 	isObject(item) {
 		return item && typeof item === 'object' && !Array.isArray(item);
 	},
