@@ -241,7 +241,7 @@ export default {
         title: 'Kelionės rezervacija',
         text: text,
         button: {
-          title: buttonTitle || 'OK',
+          title: buttonTitle || 'Gerai',
           action(data) {
             modal.hide('modal-notification');
           },
