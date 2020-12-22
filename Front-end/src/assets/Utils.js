@@ -1,4 +1,15 @@
 export default {
+	isCarFull(post) {
+		if (!post.passengers || post.passengers.length === 0) {
+			return false;
+		}
+
+		const takenPassengers = post.passengers.filter(passenger => {
+			return passenger.status === 'TAKEN';
+		});
+
+		return takenPassengers.length >= post.seetCount;
+	},
 	isObject(item) {
 		return item && typeof item === 'object' && !Array.isArray(item);
 	},
@@ -18,6 +29,27 @@ export default {
 		}
 
 		return this.mergeDeep(target, ...sources);
+	},
+	sortPostsByDateAndTime(post1, post2) {
+		if (post1.date && post2.date) {
+			const post1Date = new Date(post1.date);
+			const post2Date = new Date(post2.date);
+			const timeSeparator = ':';
+
+			if (post1.time) {
+				post1Date.setHours(...post1.time.split(timeSeparator));
+			}
+			if (post2.time) {
+				post2Date.setHours(...post2.time.split(timeSeparator));
+			}
+			return post1Date - post2Date;
+		}
+	},
+	stringsAreEqual(string1, string2) {
+		string1 = string1 ? string1 : '';
+		string2 = string2 ? string2 : '';
+
+		return string1.toLowerCase() === string2.toLowerCase();
 	},
 	validateEmail(email) {
 		//eslint-disable-next-line

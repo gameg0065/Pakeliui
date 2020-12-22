@@ -47,6 +47,7 @@ import DriverActivePostCard from '@/components/DriverActivePostCard.vue';
 import DriverExpiredPostCard from '@/components/DriverExpiredPostCard.vue';
 
 import Service from '@/services/Service';
+import Utils from '@/assets/Utils.js';
 
 export default {
   name: 'DriverHistory',
@@ -117,6 +118,7 @@ export default {
       const posts = this.user.posts;
 
       if (posts) {
+        posts.sort(Utils.sortPostsByDateAndTime);
         posts.forEach((post) => {
           const postDate = new Date(post.date);
 

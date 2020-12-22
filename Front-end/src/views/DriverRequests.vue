@@ -24,7 +24,7 @@
               />
               <Button
                 text="patvirtinti"
-                @click.native.prevent="approve(reservation)"
+                @click.native.prevent="approve(reservation, post)"
                 :isOutlined="true"
               />
             </div>
@@ -43,6 +43,7 @@ import Button from '@/components/Button.vue';
 import UserCardForDriver from '@/components/UserCardForDriver.vue';
 
 import Service from '@/services/Service';
+import Utils from '@/assets/Utils.js';
 
 export default {
   name: 'DriverRequests',
@@ -64,30 +65,43 @@ export default {
     this.getDriverPostsWithPendingPassengers();
   },
   methods: {
-    approve(reservation) {
-      reservation.status = 'TAKEN';
+    approve(reservation, post) {
+      const modal = this.$modal;
 
-      Service.putReservation(reservation)
-        .then((response) => {
-          if (response.status === 200) {
-            this.getDriverPostsWithPendingPassengers();
-
-            const modal = this.$modal;
-            modal.show('modal-notification', {
-              title: 'Rezervacijos patvirtinimas',
-              text: 'Rezervacija sėkmingai patvirtinta',
-              button: {
-                title: 'Valio!',
-                action(data) {
-                  modal.hide('modal-notification');
-                },
-              },
-            });
-          }
-        })
-        .catch((error) => {
-          console.log('Could not put reservation', error);
+      if (Utils.isCarFull(post)) {
+        modal.show('modal-notification', {
+          title: 'Rezervacijos patvirtinimas',
+          text: 'Sorry, automobilyje nebėra laisvų vietų',
+          button: {
+            title: 'O tai tau!',
+            action(data) {
+              modal.hide('modal-notification');
+            },
+          },
         });
+      } else {
+        reservation.status = 'TAKEN';
+        Service.putReservation(reservation)
+          .then((response) => {
+            if (response.status === 200) {
+              this.getDriverPostsWithPendingPassengers().then(() => {
+                modal.show('modal-notification', {
+                  title: 'Rezervacijos patvirtinimas',
+                  text: 'Rezervacija sėkmingai patvirtinta',
+                  button: {
+                    title: 'Valio!',
+                    action(data) {
+                      modal.hide('modal-notification');
+                    },
+                  },
+                });
+              });
+            }
+          })
+          .catch((error) => {
+            console.log('Could not put reservation', error);
+          });
+      }
     },
     dismiss(reservation) {
       const modal = this.$modal;
@@ -101,8 +115,9 @@ export default {
           action(data) {
             Service.deleteReservation(reservation)
               .then((response) => {
-                reloadPosts();
-                modal.hide('modal-notification');
+                reloadPosts().then(() => {
+                  modal.hide('modal-notification');
+                });
               })
               .catch((error) => {
                 console.log('Could not remove reservation', error);
@@ -112,7 +127,8 @@ export default {
       });
     },
     getDriverPostsWithPendingPassengers() {
-      Service.getPostsByAuthorId(this.user.userId)
+      this.pendingPosts = [];
+      return Service.getPostsByAuthorId(this.user.userId)
         .then((response) => {
           if (response.status === 200) {
             response.data.forEach((post) => {
