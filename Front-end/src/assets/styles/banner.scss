@@ -1,0 +1,31 @@
+.banner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 12px;
+  padding: 10px;
+  background: #f2f2f2;
+  font-family: 'Montserrat';
+}
+
+.banner_content {
+  grid-column: auto/ span 5;
+  padding: 5px;
+  text-align: center;
+}
+
+.banner_button {
+  margin: 15px 0;
+  grid-column: auto / span 1;
+  text-align: center;
+}
+.banner_button.accept {
+  padding: 5px 0;
+  background: #F784AD;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.banner_button.accept:hover {
+  background: #F23D7E;
+}

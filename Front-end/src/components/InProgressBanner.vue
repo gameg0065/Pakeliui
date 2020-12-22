@@ -48,33 +48,5 @@ export default {
 </script>
 
 <style>
-.banner {
-  position: fixed;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 12px;
-  padding: 10px;
-  background: #f2f2f2;
-}
-
-.banner_content {
-  grid-column: auto/ span 5;
-  padding: 5px;
-  text-align: center;
-}
-
-.banner_button {
-  margin: 15px 0;
-  grid-column: auto / span 1;
-  text-align: center;
-}
-.banner_button.accept {
-  padding: 5px 0;
-  background: #42b983;
-  color: #ffffff;
-  cursor: pointer;
-}
-.banner_button.accept:hover {
-  background: #42b955;
-}
+@import '../assets/styles/banner.scss';
 </style>
