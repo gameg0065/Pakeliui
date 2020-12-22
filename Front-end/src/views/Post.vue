@@ -64,6 +64,16 @@
           <p>{{ post.price }}€</p>
         </div>
 
+        <div class="flex align-baseline">
+          <small class="fixed-width">Maršruto ilgis</small>
+          <p>{{ distance || 'skaičiuoju' }} Km</p>
+        </div>
+
+        <div class="flex align-baseline">
+          <small class="fixed-width">Kelionės trukmė</small>
+          <p>{{ duration || 'skaičiuoju' }}</p>
+        </div>
+
         <div
           v-if="!isLoading && takenUsers.length > 0"
           class="flex align-baseline"
@@ -109,7 +119,12 @@
           <p>{{ post.info }}</p>
         </div>
       </div>
-      <Map v-if="!isLoading" :cities="cities" class="mb-10" />
+      <Map
+        v-if="!isLoading"
+        :cities="cities"
+        @on-distance-calculated="onDistanceCalculated"
+        class="mb-10"
+      />
     </div>
 
     <Button
@@ -154,6 +169,8 @@ export default {
   data() {
     return {
       cities: [],
+      distance: 0,
+      duration: '',
       isLoading: true,
       post: {},
       pendingUsers: [],
@@ -197,6 +214,10 @@ export default {
         .catch((error) => {
           console.log('Could not get Post with ID ' + this.id, error);
         });
+    },
+    onDistanceCalculated(distance, duration) {
+      this.distance = parseInt(distance / 1000);
+      this.duration = DateFormat.toHHMMSS(duration);
     },
     parseCities() {
       const post = this.post;

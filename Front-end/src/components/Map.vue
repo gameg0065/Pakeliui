@@ -26,6 +26,8 @@ export default {
       ],
       circleColor: '#BB83FF',
       lineColor: '#F784AD',
+      travelDistance: 0,
+      travelTime: 0,
     };
   },
   methods: {
@@ -102,13 +104,15 @@ export default {
         '?steps=true&geometries=geojson&access_token=' +
         this.accessToken;
 
-      Service.getUrl(url)
+      return Service.getUrl(url)
         .then((response) => {
           if (response.status === 200) {
             const routes = response.data.routes;
             if (routes && routes.length > 0) {
-              const geometry = routes[0].geometry;
-              this.drawLine(id, geometry.coordinates);
+              const route = routes[0];
+              this.travelDistance += route.distance;
+              this.travelTime += route.duration;
+              this.drawLine(id, route.geometry.coordinates);
             }
           }
         })
@@ -116,12 +120,11 @@ export default {
           console.log('Maps. Could not get URL', error);
         });
     },
-
-    drawRoutes(features) {
+    async drawRoutes(features) {
       for (let i = 1; i < features.length; i++) {
         const start = features[i - 1].center;
         const end = features[i].center;
-        this.drawRoute('route' + i, start, end);
+        await this.drawRoute('route' + i, start, end);
       }
     },
   },
@@ -163,7 +166,13 @@ export default {
       Promise.all(features)
         .then((features) => {
           this.drawPoints(features);
-          this.drawRoutes(features);
+          this.drawRoutes(features).then(() => {
+            this.$emit(
+              'on-distance-calculated',
+              this.travelDistance,
+              this.travelTime
+            );
+          });
         })
         .catch((e) => {
           console.log('Maps error accured:', e);
