@@ -1,52 +1,61 @@
 <template>
-  <div class="banner" v-if="isOpen">
-    <div class="banner_content">
-      <slot name="message">
-        {{ message }}
-      </slot>
-    </div>
-    <div class="banner_button accept" @click="accept">
-      {{ buttonTextAccept }}
-    </div>
+  <div class="banner" v-if="!accepted">
+    <p>
+      Ši sistema - studentų komandos projektinis darbas, sukurtas mokymosi
+      tikslais. Dabartinė sistemos versija nėra galutinė ir užbaigta, todėl ne
+      visos funkcijos yra tinkamai įgyvendintos, jos gali turėti klaidų ar
+      netikslumų. Įspėjame, kad Pakeliui komanda už vartotojų duomenų saugumą
+      neatsako.
+    </p>
+    <Button
+      text="supratau"
+      :isSecondary="true"
+      :isOutlined="true"
+      @click.native.prevent="set(true)"
+    />
   </div>
 </template>
 
 <script>
+import Button from '@/components/Button.vue';
+
 export default {
   name: 'InProgressBanner',
-  props: {
-    buttonTextAccept: {
-      type: String,
-      default: 'Supratau',
-    },
-    message: {
-      type: String,
-      default:
-        'Ši sistema - studentų komandos projektinis darbas, sukurtas mokymosi tikslais. Dabartinė sistemos versija nėra galutinė ir užbaigta, todėl ne visos funkcijos yra tinkamai įgyvendintos, jos gali turėti klaidų ar netikslumų. Įspėjame, kad Pakeliui komanda už vartotojų duomenų saugumą neatsako.',
-    },
+  components: {
+    Button,
   },
   data() {
     return {
-      isOpen: false,
+      accepted: false,
+      keyName: 'GDPR:accepted',
     };
   },
   created() {
-    if (!this.getGDPR() == true) {
-      this.isOpen = true;
-    }
+    this.accepted = this.get();
   },
   methods: {
-    getGDPR() {
-      return localStorage.getItem('GDPR:accepted', true);
+    get() {
+      return localStorage.getItem(this.keyName);
     },
-    accept() {
-      this.isOpen = false;
-      localStorage.setItem('GDPR:accepted', true);
+    set(value) {
+      localStorage.setItem(this.keyName, value);
+      this.accepted = value;
     },
   },
 };
 </script>
 
-<style>
-@import '../assets/styles/banner.scss';
+<style lang="scss">
+.banner {
+  align-items: center;
+  background-color: var(--color-secondary-dark-1);
+  display: flex;
+  padding: 20px;
+
+  p {
+    font-size: 14px;
+    color: white;
+    line-height: unset;
+  }
+}
 </style>
