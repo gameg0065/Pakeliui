@@ -14,6 +14,7 @@
     />
 
     <Header @on-profile-button-click="onProfileButtonClick" />
+    <InProgressBanner />
 
     <router-view :key="$route.fullPath" class="page" />
 
@@ -24,7 +25,7 @@
 <script>
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
-
+import InProgressBanner from '@/components/InProgressBanner.vue';
 import ModalFeedback from '@/components/ModalFeedback.vue';
 import ModalLogin from '@/components/ModalLogin.vue';
 import ModalMessaging from '@/components/ModalMessaging.vue';
@@ -37,6 +38,7 @@ export default {
   components: {
     Header,
     Footer,
+    InProgressBanner,
     ModalFeedback,
     ModalLogin,
     ModalMessaging,
