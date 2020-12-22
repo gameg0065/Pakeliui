@@ -70,18 +70,18 @@ export default {
       Service.putReservation(reservation)
         .then((response) => {
           if (response.status === 200) {
-            this.getDriverPostsWithPendingPassengers();
-
-            const modal = this.$modal;
-            modal.show('modal-notification', {
-              title: 'Rezervacijos patvirtinimas',
-              text: 'Rezervacija sėkmingai patvirtinta',
-              button: {
-                title: 'Valio!',
-                action(data) {
-                  modal.hide('modal-notification');
+            this.getDriverPostsWithPendingPassengers().then(() => {
+              const modal = this.$modal;
+              modal.show('modal-notification', {
+                title: 'Rezervacijos patvirtinimas',
+                text: 'Rezervacija sėkmingai patvirtinta',
+                button: {
+                  title: 'Valio!',
+                  action(data) {
+                    modal.hide('modal-notification');
+                  },
                 },
-              },
+              });
             });
           }
         })
@@ -101,8 +101,9 @@ export default {
           action(data) {
             Service.deleteReservation(reservation)
               .then((response) => {
-                reloadPosts();
-                modal.hide('modal-notification');
+                reloadPosts().then(() => {
+                  modal.hide('modal-notification');
+                });
               })
               .catch((error) => {
                 console.log('Could not remove reservation', error);
@@ -112,7 +113,8 @@ export default {
       });
     },
     getDriverPostsWithPendingPassengers() {
-      Service.getPostsByAuthorId(this.user.userId)
+      this.pendingPosts = [];
+      return Service.getPostsByAuthorId(this.user.userId)
         .then((response) => {
           if (response.status === 200) {
             response.data.forEach((post) => {
