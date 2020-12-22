@@ -185,7 +185,7 @@ export default {
           now.getFullYear() === postDate.getFullYear();
 
         if (!isToday && now.getTime() > postDate.getTime()) {
-          wipPost.date.error = 'Kelionė praeityje';
+          wipPost.date.error = 'Kelionė praeityje negalima';
         } else {
           wipPost.date.error = '';
           post.date = wipPost.date.value;
