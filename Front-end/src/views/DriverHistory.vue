@@ -47,6 +47,7 @@ import DriverActivePostCard from '@/components/DriverActivePostCard.vue';
 import DriverExpiredPostCard from '@/components/DriverExpiredPostCard.vue';
 
 import Service from '@/services/Service';
+import Utils from '@/assets/Utils.js';
 
 export default {
   name: 'DriverHistory',
@@ -117,7 +118,7 @@ export default {
       const posts = this.user.posts;
 
       if (posts) {
-        posts.sort(this.sortPostsByDateAndTime);
+        posts.sort(Utils.sortPostsByDateAndTime);
         posts.forEach((post) => {
           const postDate = new Date(post.date);
 
@@ -127,21 +128,6 @@ export default {
             this.activePosts.push(post);
           }
         });
-      }
-    },
-    sortPostsByDateAndTime(post1, post2) {
-      if (post1.date && post2.date) {
-        const post1Date = new Date(post1.date);
-        const post2Date = new Date(post2.date);
-        const timeSeparator = ':';
-
-        if (post1.time) {
-          post1Date.setHours(...post1.time.split(timeSeparator));
-        }
-        if (post2.time) {
-          post2Date.setHours(...post2.time.split(timeSeparator));
-        }
-        return post1Date - post2Date;
       }
     },
   },
